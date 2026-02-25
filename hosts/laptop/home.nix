@@ -9,6 +9,7 @@ imports = [
 ../../modules/home-manager/zsh.nix # better bash
 ../../modules/home-manager/git.nix
 ../../modules/home-manager/ssh.nix
+../../modules/home-manager/fastfetch.nix
 ];
 
 

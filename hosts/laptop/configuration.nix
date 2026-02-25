@@ -111,10 +111,6 @@
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    warpinator # used to send files via Lan between Linux systems
-    #zoxide # better cd moved into home-manager
-    fastfetch
-    #git #enabled in home-manager
     tree # shows dir in tree
     zsh # better bash
   ];
