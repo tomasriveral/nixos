@@ -1,0 +1,26 @@
+use hyprland
+transfer everything
+list to things to transfere:
+
+
+finish to link github
+make a zsh script that nixos-rebuild switch
+and uploads it to github
+git add .
+git add -A
+git commit -m "Describe the change"
+git push
+
+
+write README.md
+
+only things which is not declarative is git. Dont want my email in a repo.
+guide on how to connect to git in ./modules/home-manager/git.nix
+
+
+
+write an install script
+
+which setups config.
+
+and setups github and ssh
