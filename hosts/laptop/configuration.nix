@@ -40,6 +40,9 @@
 # Enable the GNOME Desktop Environment.
 #  services.displayManager.gdm.enable = true;
 #  services.desktopManager.gnome.enable = true;
+# we dont use gnome but some utils yes -> see pckgs
+
+
 # enable hyprland WM
 programs.hyprland = {
 	enable = true;
@@ -136,7 +139,16 @@ services.upower.enable = true;
     cliphist # Wayland clipboard manager
     wl-clipboard # cli copy/past utilities for Wayland
     jp # lightweight and flexible cli JSON parser
-  ];
+    notepad-next
+    #we need to install gnome and kde utils individually as we dont use gnome
+    gnome-calculator
+    snapshot
+    gnome-characters
+    gnome-disk-utility
+    kdePackages.okular
+    nautilus
+    gnome-font-viewer
+];
 
 # fonts
 fonts.packages = with pkgs; [

@@ -13,7 +13,7 @@
 		"$mod" = "SUPER";
 		"$term" = "kitty";
 		"$editor" = "nvim";
-		"$file" = "nautilius";
+		"$file" = "nautilus";
 		"$browser" = "firefox"; # change to librewolf later
 # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
 # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
@@ -94,7 +94,7 @@
 			"$mod, E, exec, $file"
 			"$mod, F, exec, $browser"
 			"$mod+Shift, A, exec, rofi -show drun"
-			
+			"$mod, Q, exec, custom-dontkillsteam"	
 			#plugins keybindings
 
 		];

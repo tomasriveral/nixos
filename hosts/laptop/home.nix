@@ -14,6 +14,7 @@ imports = [
 ../../modules/home-manager/hyprland.nix
 ../../modules/home-manager/wlogout.nix # logout utility
 ../../modules/home-manager/rofi.nix # launcher and keybindings helper
+../../modules/home-manager/batsignal.nix # notify daemon for battery
 ];
 
 
@@ -35,7 +36,7 @@ home.stateVersion = "25.11"; # Please read the comment before changing.
 # environment.
 home.packages = [
 #scritps
-(pkgs.callPackage ./modules/scripts/dontkillsteam.nix {})
+(pkgs.callPackage ../../modules/scripts/dontkillsteam.nix {})
 
 # # Adds the 'hello' command to your environment. It prints a friendly
 # # "Hello, world!" when run.
