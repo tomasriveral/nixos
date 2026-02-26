@@ -14,7 +14,7 @@ imports = [
 ../../modules/home-manager/hyprland.nix
 ../../modules/home-manager/wlogout.nix # logout utility
 ../../modules/home-manager/rofi.nix # launcher and keybindings helper
-../../modules/home-manager/batsignal.nix # notify daemon for battery
+../../modules/home-manager/swaync.nix # notification daemon
 ];
 
 
