@@ -89,6 +89,8 @@
 			"$mod+Shift+Ctrl, Down, movewindow, d"
 			"$mod, mouse_down, workspace, e+1"
 			"$mod, mouse_up, workspace, e-1"
+			"$mod, V, exec, cliphist list | rofi -dmenu| cliphist decode | wl-copy" # copy paste
+			"$mod, B, exec, hyprkeys -bkr | rofi -dmenu"
 			#apps keybindings
 			"$mod, T, exec, $term"
 			"$mod, E, exec, $file"

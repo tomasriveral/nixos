@@ -142,6 +142,7 @@ services.upower.enable = true;
     notepad-next
     libnotify # Library that sends desktop notifications to a notification daemon
     ripgrep #better grepp
+    hyprkeys # keybind helper
 #we need to install gnome and kde utils individually as we dont use gnome
     gnome-calculator
     snapshot
