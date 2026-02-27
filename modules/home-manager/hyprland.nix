@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let 
+	wallpaper = ../../assets/wallpaper1.jpg;
+in
 {
 
 
@@ -137,7 +140,10 @@
 			"wl-paste --type text --watch cliphist store" # clipboard store text data
 			"wl-paste --type image --watch cliphist store" # clipboard store image data
 			"custom-batterynotify"
-			"custom-wallpaper"
+			#wallpapers
+			"swww img ${wallpaper}"
+			"swww-daemon"
+			"sleep 1 && custom-wallpaper"
 		];
 # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
 # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
