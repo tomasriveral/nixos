@@ -16,6 +16,7 @@ imports = [
 ../../modules/home-manager/rofi.nix # launcher and keybindings helper
 ../../modules/home-manager/swaync.nix # notification daemon
 ../../modules/home-manager/neovim.nix # dont use nixvim. broken
+../../modules/home-manager/rclone.nix 
 ];
 
 
@@ -48,6 +49,7 @@ home.packages = [
 (pkgs.callPackage ../../modules/scripts/weather.nix {})
 (pkgs.callPackage ../../modules/scripts/cowsay.nix {})
 (pkgs.callPackage ../../modules/scripts/wallpaper.nix {})
+(pkgs.callPackage ../../modules/scripts/mountkdrive.nix {})
 # # Adds the 'hello' command to your environment. It prints a friendly
 # # "Hello, world!" when run.
 # pkgs.hello

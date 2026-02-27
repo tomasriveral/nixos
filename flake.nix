@@ -8,13 +8,13 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    };
 # never got nixvim to wokrs. ):
 #   nixvim = {
 #	url = "github:nix-community/nixvim/nixos-25.11";
    # };
-  };
 
-  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
@@ -22,8 +22,8 @@
   {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
-        modules = [
+       specialArgs = { inherit inputs;}; 
+       modules = [
 	  ./hosts/laptop/configuration.nix
         ];
       };
