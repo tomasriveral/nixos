@@ -17,7 +17,7 @@
   home-manager.useUserPackages = true;
 
 home-manager.users = {
-  tomasr = { pkgs, ... }: import ./home.nix { inherit pkgs; };
+  tomasr = ./home.nix;
 };
 
   # Bootloader.

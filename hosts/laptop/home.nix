@@ -15,6 +15,7 @@ imports = [
 ../../modules/home-manager/wlogout.nix # logout utility
 ../../modules/home-manager/rofi.nix # launcher and keybindings helper
 ../../modules/home-manager/swaync.nix # notification daemon
+../../modules/home-manager/neovim.nix # dont use nixvim. broken
 ];
 
 
@@ -22,7 +23,7 @@ imports = [
 #	enable = true;
 #	imports = [ ../../modules/nixvim/neovim.nix ];
 #	package = pkgs.neovim;
-};
+#};
 # Home Manager needs a bit of information about you and the paths it should
 
   # Required for Home Manager
