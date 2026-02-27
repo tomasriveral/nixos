@@ -17,7 +17,9 @@ imports = [
 ../../modules/home-manager/swaync.nix # notification daemon
 ../../modules/home-manager/neovim.nix # dont use nixvim. broken
 ../../modules/home-manager/rclone.nix 
+../../modules/home-manager/waybar.nix
 ];
+
 
 
 #programs.nixvim = {
@@ -50,6 +52,10 @@ home.packages = [
 (pkgs.callPackage ../../modules/scripts/cowsay.nix {})
 (pkgs.callPackage ../../modules/scripts/wallpaper.nix {})
 (pkgs.callPackage ../../modules/scripts/mountkdrive.nix {})
+(pkgs.callPackage ../../modules/scripts/weatherwaybar.nix {})
+(pkgs.callPackage ../../modules/scripts/colorpicker.nix {})
+#pkgs
+pkgs.gruvbox-gtk-theme
 # # Adds the 'hello' command to your environment. It prints a friendly
 # # "Hello, world!" when run.
 # pkgs.hello
@@ -68,7 +74,15 @@ home.packages = [
 # '')
 ];
 
-#ssh config
+#maybe migrate both of them in a separate file
+# gtk config
+gtk.theme = {
+enable = true;
+name = "Gruvbox-GTK-Theme-BL-MB";
+package = pkgs.gruvbox-gtk-theme;
+};
+
+# ssh config
 
 programs.ssh.enable = true;
 services.ssh-agent.enable = true;

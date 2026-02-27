@@ -120,7 +120,7 @@ services.upower.enable = true;
   programs.firefox.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = false;
 
 
   # List packages installed in system profile. To search, run:
@@ -146,6 +146,10 @@ services.upower.enable = true;
     cmatrix
     swww #wallpaper daemon
     socat # Utility for bidirectional data transfer between two independent data channels (used to communicate between hyprland and swww to change wallpapers dinamically)
+gcc # GNU C compiler
+libreoffice
+gruvbox-gtk-theme
+hyprpicker
 #we need to install gnome and kde utils individually as we dont use gnome
     gnome-calculator
     snapshot

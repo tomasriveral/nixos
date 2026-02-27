@@ -99,7 +99,8 @@ in
 			"$mod, E, exec, $file"
 			"$mod, F, exec, $browser"
 			"$mod+Shift, A, exec, rofi -show drun"
-			"$mod, Q, exec, custom-dontkillsteam"	
+			"$mod, Q, exec, custom-dontkillsteam"
+			"Ctrl+Alt, W, exec, pkill waybar || waybar"
 			#plugins keybindings
 
 		];
@@ -140,11 +141,12 @@ in
 			"wl-paste --type text --watch cliphist store" # clipboard store text data
 			"wl-paste --type image --watch cliphist store" # clipboard store image data
 			"custom-batterynotify"
-			#wallpapers
+			#wallpapers/b
 			"swww img ${wallpaper}"
 			"swww-daemon"
 			"sleep 1 && custom-wallpaper"
 			"custom-mountkdrive"
+			"waybar"
 		];
 # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
 # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
