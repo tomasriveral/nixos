@@ -6,6 +6,8 @@
     #font.name = nerd-fonts._0xproto;
     #font.size = "10";
     extraConfig = ''
+font	nerd-fonts._0xproto
+font_size	14
 bold_font        auto
 italic_font      auto
 bold_italic_font auto

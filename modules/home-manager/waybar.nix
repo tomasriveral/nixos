@@ -393,7 +393,7 @@
 @define-color active @color6;
 
 * {
-  font-size: 16px;
+  font-size: 23px;
   font-family: "0xProto Nerd Font";
   min-width: 8px;
   min-height: 0px;
@@ -428,7 +428,7 @@ tooltip {
 
 menu label,
 tooltip label {
-  font-size: 14px;
+  font-size: 20px;
   color: lighter(@active);
 }
 
@@ -464,7 +464,7 @@ tooltip label {
 #together,
 #submap,
 #custom-weather {
-	font-size: 12px;
+	font-size: 17px;
 }
 
 #custom-recorder,
@@ -489,7 +489,7 @@ tooltip label {
 #custom-hotspot,
 #custom-github,
 #custom-notifications {
-  font-size: 14px;
+  font-size: 20px;
 }
 
 #custom-hotspot {
@@ -510,17 +510,17 @@ tooltip label {
 }
 
 #custom-cpu-icon {
-  font-size: 25px;
+  font-size: 36px;
 }
 
 #custom-cputemp,
 #temperature {
-	font-size: 12px;
+	font-size: 17px;
 }
 #disk,
 #memory,
 #cpu {
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
 }
 
@@ -592,7 +592,7 @@ tooltip label {
 }
 
 #battery {
-  font-size: 12px;
+  font-size: 17px;
   border-radius: 8px;
   padding: 4px 0px;
   margin: 4px 2px 4px 2px;
@@ -615,13 +615,13 @@ tooltip label {
 }
 
 #battery.powerdraw {
-	font-size: 12px;
+	font-size: 17px;
 	padding: 0;
 	margin-right: -20px;
 	margin-left: -20px;
 }
 #battery.w {
-	font-size: 12px;
+	font-size: 17px;
 	padding: 0;
 	margin-left: -20px;
 	margin-right: -20px;

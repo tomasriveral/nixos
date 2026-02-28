@@ -20,6 +20,8 @@ imports = [
 ../../modules/home-manager/waybar.nix
 #../../modules/home-manager/oh-my-posh.nix # zsh customizer
 ../../modules/home-manager/oh-my-zsh.nix # another zsh customizer
+../../modules/home-manager/hypridle.nix
+../../modules/home-manager/swaylock.nix
 ];
 
 
@@ -56,6 +58,7 @@ home.packages = [
 (pkgs.callPackage ../../modules/scripts/mountkdrive.nix {})
 (pkgs.callPackage ../../modules/scripts/weatherwaybar.nix {})
 (pkgs.callPackage ../../modules/scripts/colorpicker.nix {})
+(pkgs.callPackage ../../modules/scripts/killall.nix {})
 #pkgs
 pkgs.gruvbox-gtk-theme
 # # Adds the 'hello' command to your environment. It prints a friendly

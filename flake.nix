@@ -8,7 +8,7 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    };
+  };
 # never got nixvim to wokrs. ):
 #   nixvim = {
 #	url = "github:nix-community/nixvim/nixos-25.11";

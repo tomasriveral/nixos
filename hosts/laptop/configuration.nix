@@ -19,6 +19,12 @@ home-manager.users = {
   tomasr = ./home.nix;
 };
 
+environment.pathsToLink = [
+  "/share/applications"
+  "/share/xdg-desktop-portal"
+];
+
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -57,6 +63,7 @@ programs.hyprland = {
 	withUWSM = true;
 	xwayland.enable = true;
 };
+
 
 #enable sddm
 services.displayManager.sddm = {
@@ -126,26 +133,34 @@ services.upower.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    wget
-    tree # shows dir in tree
-    zsh # better bash
-    brightnessctl # control brightness
-    pulseaudio # sound server
-    playerctl # controls media player
-    blueman # GTK-based Bluetooth Manager
-    udiskie # removable disk automounter for udisks
-    networkmanagerapplet # NetworkManager control applet
-    cliphist # Wayland clipboard manager
-    wl-clipboard # cli copy/past utilities for Wayland
-    jp # lightweight and flexible cli JSON parser
-    notepad-next
-    libnotify # Library that sends desktop notifications to a notification daemon
-    ripgrep #better grepp
-    hyprkeys # keybind helper
-    cowsay
-    cmatrix
-    swww #wallpaper daemon
-    socat # Utility for bidirectional data transfer between two independent data channels (used to communicate between hyprland and swww to change wallpapers dinamically)
+#we need to install gnome and kde utils individually as we dont use gnome
+gnome-calculator
+snapshot
+gnome-characters
+gnome-disk-utility
+kdePackages.okular
+nautilus
+gnome-font-viewer
+wget
+tree # shows dir in tree
+zsh # better bash
+brightnessctl # control brightness
+pulseaudio # sound server
+playerctl # controls media player
+blueman # GTK-based Bluetooth Manager
+udiskie # removable disk automounter for udisks
+networkmanagerapplet # NetworkManager control applet
+cliphist # Wayland clipboard manager
+wl-clipboard # cli copy/past utilities for Wayland
+jp # lightweight and flexible cli JSON parser
+notepad-next
+libnotify # Library that sends desktop notifications to a notification daemon
+ripgrep #better grepp
+hyprkeys # keybind helper
+cowsay
+cmatrix
+swww #wallpaper daemon
+socat # Utility for bidirectional data transfer between two independent data channels (used to communicate between hyprland and swww to change wallpapers dinamically)
 gcc # GNU C compiler
 libreoffice
 gruvbox-gtk-theme
@@ -154,14 +169,12 @@ powertop
 inetutils # collections of network programs such as telnet
 python313Packages.pygments # used for ccat (comment of colorize plugin from oh-my-zsh)
 fzf
-#we need to install gnome and kde utils individually as we dont use gnome
-    gnome-calculator
-    snapshot
-    gnome-characters
-    gnome-disk-utility
-    kdePackages.okular
-    nautilus
-    gnome-font-viewer
+jq # json parser used in some scripts
+bottom # Cross-platform graphical process/system monitor with a customizable interface
+cmatrix
+tomato-c # pomodoro timer
+pavucontrol # PulseAudio Volume Control
+hyprshot
 ];
 
 # fonts
