@@ -18,7 +18,8 @@ imports = [
 ../../modules/home-manager/neovim.nix # dont use nixvim. broken
 ../../modules/home-manager/rclone.nix 
 ../../modules/home-manager/waybar.nix
-../../modules/home-manager/oh-my-posh # zsh customizer
+#../../modules/home-manager/oh-my-posh.nix # zsh customizer
+../../modules/home-manager/oh-my-zsh.nix # another zsh customizer
 ];
 
 

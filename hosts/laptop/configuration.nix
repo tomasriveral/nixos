@@ -151,7 +151,8 @@ libreoffice
 gruvbox-gtk-theme
 hyprpicker
 powertop
-telnet
+inetutils # collections of network programs such as telnet
+python313Packages.pygments # used for ccat (comment of colorize plugin from oh-my-zsh)
 #we need to install gnome and kde utils individually as we dont use gnome
     gnome-calculator
     snapshot

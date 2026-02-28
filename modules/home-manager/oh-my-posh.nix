@@ -6,5 +6,4 @@
     enableZshIntegration = true;
     useTheme = "gruvbox";
     };
-  };
 }
