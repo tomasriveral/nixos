@@ -1,11 +1,20 @@
-{ writeShellApplication, hyprpicker, libnotify, toybox, ... }:
+
+# useless
+# used to come from my old dotfiles which were copied from fedora-hyprdots
+# just use hyprpicker | tee >(wl-copy) | cliphist store
+# because hyprpicker and cliphist are inside my configuration.nix
+# no need to verify their existence
+
+
+{ writeShellApplication, hyprpicker, libnotify, toybox, wl-clipboard, ... }:
 
 writeShellApplication {
-	name = "custom-colorpicker";
+	name = "custom-colorpicker-useless";
 	runtimeInputs = [
 		hyprpicker
 		libnotify
 		toybox
+		wl-clipboard
 	];
 	text = ''
 check() {

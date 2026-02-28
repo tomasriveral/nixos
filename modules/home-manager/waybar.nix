@@ -13,19 +13,18 @@
 	modules-left = [
 		"hyprland/workspaces"
 		"group/info"
+		"group/power"
 	];
-	
-	
 	modules-center = [
-		"hyprland/window"
 	];
 	modules-right = [
+		"hyprland/window"
 		"group/brightness"
 		"group/sound"
 		"group/connection"
 		"group/together"
 		"tray"
-		"group/power"
+		"battery"
 	];
 	# groups settings are organized by alphabetical order	
 	"group/audio" = {
@@ -95,13 +94,9 @@
 	};
 	"group/power" = {
 		orientation = "inherit";
-		drawer = {
-			transition-duration = 500;
-			transition-left-to-right = false;
-		};
 		modules = [
-			"battery"
-			"power-profiles-daemon"
+			"battery#w"
+			"battery#powerdraw"
 		];
 	};
 	"group/sound" = {
@@ -162,6 +157,37 @@
 		orientation = "vertical";
 		device = "intel_backlight";
 	};
+	battery = {
+    		#rotate = 90;
+    		interval = 30;
+		states = {
+      			good = 95;
+      			warning = 20;
+      			critical = 15;
+    		};
+    		format = "{icon} {capacity}";
+    		format-charging = "<b>{icon} {capacity}% </b>";
+    		format-full = "<span color='#82A55F'><b>{icon}</b></span>";
+    		format-icons = [
+      			"󰁻"
+		        "󰁼"
+		        "󰁾"
+		        "󰂀"
+		        "󰂂"
+ 		        "󰁹"
+    		];
+    		tooltip-format = "{timeTo} {capacity} %";
+  	};
+	"battery#powerdraw" = {
+		rotate = 90;
+		interval = 10;
+		format = "{power:.0001f}";
+	};
+	"battery#w" = {
+		rotate = 90;
+		interval = 100000;
+		format = "W";
+	};
 	bluetooth = {
 		format-on = "";
     		format-off = "󰂲";
@@ -202,11 +228,7 @@
 	};
 	"custom/colorpicker" = {
     		format = "";
-    		return-type = "json";
-    		interval = "once";
-    		exec = "custom-colorpicker -j";
-    		on-click = "sleep 1 && ~/.config/waybar/scripts/colorpicker.sh";
-    		signal = 1;
+    		on-click = "hyprpicker | tee >(wl-copy) | cliphist store";
   	};
 	"custom/cpu-icon" = {
 		format = "󰻠";
@@ -380,6 +402,7 @@
   box-shadow: none;
   text-shadow: none;
   padding: 0px;
+  margin: 0px;
 
 }
 
@@ -440,7 +463,10 @@ tooltip label {
 #disk,
 #together,
 #submap,
-#custom-weather
+#custom-weather {
+	font-size: 12px;
+}
+
 #custom-recorder,
 #connection,
 #cnoti,
@@ -488,6 +514,9 @@ tooltip label {
 }
 
 #custom-cputemp,
+#temperature {
+	font-size: 12px;
+}
 #disk,
 #memory,
 #cpu {
@@ -506,6 +535,10 @@ tooltip label {
 
 #submap {
   margin-bottom: 0px;
+}
+
+#hyprland.window {
+	margin-left: 20px;
 }
 
 #workspaces {
@@ -545,7 +578,7 @@ tooltip label {
 }
 
 #tray {
-  padding: 4px 0px 4px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 #bluetooth {
@@ -559,6 +592,7 @@ tooltip label {
 }
 
 #battery {
+  font-size: 12px;
   border-radius: 8px;
   padding: 4px 0px;
   margin: 4px 2px 4px 2px;
@@ -578,6 +612,19 @@ tooltip label {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+#battery.powerdraw {
+	font-size: 12px;
+	padding: 0;
+	margin-right: -20px;
+	margin-left: -20px;
+}
+#battery.w {
+	font-size: 12px;
+	padding: 0;
+	margin-left: -20px;
+	margin-right: -20px;
 }
 
 #clock {
