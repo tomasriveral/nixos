@@ -34,7 +34,7 @@
 			transition-duration = 500;
 			transition-left-to-right = false;
 		};
-		items = [
+		modules = [
 			"pulseaudio"
 			"pulseaudio#mic"
 			"pulseaudio/slider"
@@ -46,7 +46,7 @@
 			transition-duration = 500;
 			transition-left-to-right = true;
 		};
-		items = [
+		modules = [
 			"bluetooth"
 			"bluetooth#status"
 		];
@@ -57,18 +57,18 @@
 			transition-duration = 500;
 			transition-left-to-right = false;
 		};
-		items = [
+		modules = [
 			"backlight"
 			"backlight/slider"
 		];
 	};
 	"group/connection" = {
 		orientation = "inherit";
-		items = [ "group/network" ];
+		modules = [ "group/network" ];
 	};
 	"group/gcpu" = {
 		orientation = "inherit";
-		items = [
+		modules = [
 			"custom/cpu-icon"
 			"temperature"
 			"cpu"
@@ -76,7 +76,7 @@
 	};
 	"group/info" = {
 		orientation = "inherit";
-		items = [
+		modules = [
 			"group/gcpu"
 			"memory"
 			"disk"
@@ -88,7 +88,7 @@
 			transition-duration = 500;
 			transition-left-to-right = true;
 		};
-		items = [
+		modules = [
 			"network"
 			"network#speed"
 		];
@@ -99,21 +99,21 @@
 			transition-duration = 500;
 			transition-left-to-right = false;
 		};
-		items = [
+		modules = [
 			"battery"
 			"power-profiles-daemon"
 		];
 	};
 	"group/sound" = {
 		orientation = "inherit";
-		items = [
+		modules = [
 			"group/audio"
 			"custom/notification"
 		];
 	};
 	"group/together" = {
 		orientation = "inherit";
-		items = [
+		modules = [
 			"group/utils"
 			"clock"
 		];
@@ -124,7 +124,7 @@
 			transition-duration = 500;
 			transition-left-to-right = true;
 		};
-		items = [
+		modules = [
 			"custom/weather"
 			"custom/colorpicker"
 		];

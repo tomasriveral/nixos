@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
+	../../modules/nixos/battery.nix
 ];
 
 
@@ -150,6 +151,7 @@ gcc # GNU C compiler
 libreoffice
 gruvbox-gtk-theme
 hyprpicker
+power-profiles-daemon
 #we need to install gnome and kde utils individually as we dont use gnome
     gnome-calculator
     snapshot
