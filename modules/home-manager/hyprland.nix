@@ -145,8 +145,8 @@ in
 			"Ctrl+$mod, 6, exec, custom-killall"
 			# reloads the autostart programs
 			"Ctrl+$mod, 4, exec, sleep 3 && kitty -o font_size=16 -e sh -c 'custom-weather'"
-			"Ctrl+$mod, 4, exec, sleep 2 && kitty -o font_size=8 -e sh -c 'custom-cowsay'"
-			"Ctrl+$mod, 4, exec, kitty -e 'sleep 2 & clear & fastfetch'"
+			"Ctrl+$mod, 4, exec, sleep 2 && kitty -o font_size=11 -e sh -c 'custom-cowsay'"
+			"Ctrl+$mod, 4, exec, kitty -e 'custom-launch'"
 			"Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
 			"Ctrl+$mod, 4, exec, sleep 3 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
 			#plugins keybindings
@@ -203,9 +203,9 @@ in
 			#######################
 			"[workspace 1 silent]  sleep 3 && kitty -o font_size=16 -e sh -c 'custom-weather'"
 			# will launch weather (Third) with a reduced font size
-			"[workspace 1 silent] sleep 2 && kitty -o font_size=8 -e sh -c 'custom-cowsay'"
+			"[workspace 1 silent] sleep 2 && kitty -o font_size=11§ -e sh -c 'custom-cowsay'"
 			# will launch quotes (fourth)
-			"[workspace 1 silent] kitty - e 'sleep 2 & clear & fastfetch'"
+			"[workspace 1 silent] kitty -e 'custom-launch'"
 			# the terminal will exec .zshrc so FastFetch will be launched (First)
 			"[workspace 1 silent] sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
 			# will launch bottom (second)

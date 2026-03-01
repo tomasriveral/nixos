@@ -59,6 +59,7 @@ home.packages = [
 (pkgs.callPackage ../../modules/scripts/weatherwaybar.nix {})
 (pkgs.callPackage ../../modules/scripts/colorpicker.nix {})
 (pkgs.callPackage ../../modules/scripts/killall.nix {})
+(pkgs.callPackage ../../modules/scripts/launch.nix {}) # necessary for the apps i launch with hyprland at every start
 #pkgs
 pkgs.gruvbox-gtk-theme
 # # Adds the 'hello' command to your environment. It prints a friendly
