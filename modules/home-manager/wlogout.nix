@@ -34,7 +34,7 @@ in
       }
       {
         label = "logout";
-        action = "hyprctl dispatch exit 0";
+        action = "loginctl terminate-session $(loginctl show-session $(loginctl | grep $USER | awk '{print $1}') -p Id --value)";
         text = " Logout (E) ";
         keybind = "e";
       }

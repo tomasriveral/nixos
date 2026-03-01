@@ -40,7 +40,7 @@
       # Optional commands (leave null or comment if unused)
       hibernate_cmd = null;
       inactivity_cmd = null;
-      login_cmd = null;
+      #login_cmd = "exec hyprland";
       logout_cmd = null;
       sleep_cmd = null;
 
