@@ -204,7 +204,7 @@ in
 			#######################
 			"[workspace 1 silent]  sleep 3 && kitty -o font_size=16 -e sh -c 'custom-weather'"
 			# will launch weather (Third) with a reduced font size
-			"[workspace 1 silent] sleep 2 && kitty -o font_size=11§ -e sh -c 'custom-cowsay'"
+			"[workspace 1 silent] sleep 2 && kitty -o font_size=11 -e sh -c 'custom-cowsay'"
 			# will launch quotes (fourth)
 			"[workspace 1 silent] kitty -e 'custom-launch'"
 			# the terminal will exec .zshrc so FastFetch will be launched (First)
@@ -287,8 +287,13 @@ in
 				# enable ipc events for shake
 				ipc = false;
 			};
-
-		};
+          };
+          "plugin:overview" = {
+            disableGestures = true;
+            showEmptyWorkspace = true;
+            workspaceActiveBorder = "rgb(ab7746)";
+            disableBlur = true;
+          };
 
 #####################################################
 #####################################################

@@ -583,10 +583,10 @@ vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' 
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- Disable relative numbers even if a plugin (like neovim-sensible) turns them on
-      vim.opt.colorcolumn = ""
       vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    vim.opt.relativenumber = false
+      vim.opt.colorcolumn = ""
+      vim.opt.relativenumber = false
   end,
 })    
 '';

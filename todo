@@ -2,43 +2,12 @@ use hyprland
 transfer everything
 list to things to transfere:
 
-
-finish to link github
-make a zsh script that nixos-rebuild switch
-and uploads it to github
-git add .
-git add -A
-git commit -m "Describe the change"
-git push
-
-
-write README.md
-
-only things which is not declarative is git. Dont want my email in a repo.
-guide on how to connect to git in ./modules/home-manager/git.nix
-
-
-
-write an install script
-
-which setups config.
-
-and setups github and ssh
-
-
-
-
-
-
-
 some cursor-themed
 audacity.x86_64       
 biber.noarch                                       
 dolphin.x86_64   may be customized or nautilus cust
 gimp.x86_64                                        
-git.x86_64   end config                            
 hyprcursor.x86_64                                  
-hyprgraphics.x86_64       
 librewolf ?
 ollama.x86_64                                      
 plymouth.x86_64                                    
@@ -53,6 +22,5 @@ texlive-bibtex.x86_64
 thunderbird.x86_64    
 tor.x86_64               
 torbrowser-launcher.noarch
-wlogout.x86_64
 Google Chrome needed for Framework 16 rgb macropad
-
+replace sddm by ly
