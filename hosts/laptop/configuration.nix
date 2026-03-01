@@ -9,7 +9,9 @@
       ./hardware-configuration.nix
       inputs.home-manager.nixosModules.default
 	../../modules/nixos/battery.nix
-];
+    #../../modules/nixos/ly.nix
+    ../../modules/nixos/lyminimal.nix
+  ];
 
 home-manager = {
 	useGlobalPkgs = true;
@@ -57,6 +59,12 @@ environment.pathsToLink = [
 #  services.displayManager.gdm.enable = true;
 #  services.desktopManager.gnome.enable = true;
 # we dont use gnome but some utils yes -> see pckgs
+#enable sddm
+#services.displayManager.sddm = {
+#	enable = true;
+#	wayland.enable = true;
+#};
+# we use ly as the displayManager. see ../../modules/nixos/ly.nix
 
 
 # enable hyprland WM
@@ -67,11 +75,6 @@ programs.hyprland = {
 };
 
 
-#enable sddm
-services.displayManager.sddm = {
-	enable = true;
-	wayland.enable = true;
-};
 
 services.upower.enable = true;
 
