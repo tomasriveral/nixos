@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs,... }:
 
 let 
 	wallpaper = ../../assets/wallpaper1.jpg;
@@ -14,6 +14,7 @@ in
 
 	wayland.windowManager.hyprland.plugins = [
 		pkgs.hyprlandPlugins.hyprspace
+		pkgs.hyprlandPlugins.hypr-dynamic-cursors
 	];
 	wayland.windowManager.hyprland.settings = {
 		"$mod" = "SUPER";
@@ -250,6 +251,79 @@ in
 #|   |    |       ||       ||   |_| ||   | | | |   | _____| |
 #|___|    |_______||_______||_______||___| |_|  |__||_______|
 #
+		"plugin:dynamic-cursors" = {
+			enabled = true;
+			threshold = 2;
+			mode = "rotate";
+			rotate = {
+				# length in px of the simulated stick used to rotate the cursor
+				# most realistic if this is your actual cursor size
+				length = 20;
+				offset = 0;
+			};
+			shake = {
+				enabled = true;
+				# use nearest-neighbour (pixelated) scaling when shaking
+				# may look weird when effects are enabled
+				nearest = true;
+				threshold = 4;
+				# magnification level immediately after shake start
+				base = 4.0;
+				# magnification increase per second when continuing to shake
+				speed = 4.0;
+				# how much the speed is influenced by the current shake intensitiy
+				influence = 0.0;
+
+				# maximal magnification the cursor can reach
+				# values below 1 disable the limit (e.g. 0)
+				limit = 0.0;
+
+				# time in millseconds the cursor will stay magnified after a shake has ended
+				timeout = 2000;
+
+				# show cursor behaviour `tilt`, `rotate`, etc. while shaking
+				effects = true;
+
+				# enable ipc events for shake
+				ipc = false;
+			};
+
+		};
+
+#####################################################
+#####################################################
+# theme
+		decoration = {
+			dim_special = 0.3;
+			blur = {
+				special = true;
+				enabled = true;
+				size = 4;
+				passes = 2;
+				new_optimizations = true;
+				ignore_opacity = true;
+			};
+		};
+		general = {
+			gaps_in = 3;
+			gaps_out = 8;
+			border_size = 4;
+			"col.active_border" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+			"col.inactive_border" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+			layout = "dwindle";
+			resize_on_border = true;
+
+
+		};
+		group = {
+			"col.border_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+			"col.border_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+    			"col.border_locked_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+    			"col.border_locked_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+		};
+####################################################
+##################################################
+
 # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
 # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
 		windowrulev2 = [
@@ -325,6 +399,7 @@ in
 "float,class:^(com.github.unrud.VideoDownloader)$" # VideoDownloader-Gkk
 "float,class:^(io.gitlab.adhami3310.Impression)$" # Impression-Gtk
 "float,class:^(io.missioncenter.MissionCenter)$" # MissionCenter-Gtk
+# add a float for tomato when in kitty
 #"plugin:imgborders:noimgborders, tag:noborder"
 		];
 		layerrule = [
@@ -339,5 +414,8 @@ in
 "blur,logout_dialog"
 
 		];
+
 	};
 }
+
+

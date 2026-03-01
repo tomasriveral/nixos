@@ -11,13 +11,15 @@
 	../../modules/nixos/battery.nix
 ];
 
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-
-home-manager.users = {
-  tomasr = ./home.nix;
+home-manager = {
+	useGlobalPkgs = true;
+	useUserPackages = true;
+	users = {
+		tomasr = ./home.nix;
+	};
+	#extraSpecialArgs = { inherit inputs; };
 };
+
 
 environment.pathsToLink = [
   "/share/applications"
@@ -175,6 +177,7 @@ cmatrix
 tomato-c # pomodoro timer
 pavucontrol # PulseAudio Volume Control
 hyprshot
+hyprcursor
 ];
 
 # fonts

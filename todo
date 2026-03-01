@@ -24,3 +24,35 @@ write an install script
 which setups config.
 
 and setups github and ssh
+
+
+
+
+
+
+
+some cursor-themed
+audacity.x86_64       
+biber.noarch                                       
+dolphin.x86_64   may be customized or nautilus cust
+gimp.x86_64                                        
+git.x86_64   end config                            
+hyprcursor.x86_64                                  
+hyprgraphics.x86_64       
+librewolf ?
+ollama.x86_64                                      
+plymouth.x86_64                                    
+python3.x86_64                                     
+qt6-qtwebsockets.x86_64 maybe copy from rivendel hy
+quickshell.x86_64                                  
+raylib-devel.x86_64                                
+some notification daemon 0.12-32.fc43              
+texlive.noarch     
+texlive-biblatex.noarch
+texlive-bibtex.x86_64
+thunderbird.x86_64    
+tor.x86_64               
+torbrowser-launcher.noarch
+wlogout.x86_64
+Google Chrome needed for Framework 16 rgb macropad
+

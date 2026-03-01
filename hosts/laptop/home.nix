@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 # every import imports a specific module for an app. This module contains the enabling of this app and its settings.
@@ -16,6 +16,7 @@ imports = [
 ../../modules/home-manager/rofi.nix # launcher and keybindings helper
 ../../modules/home-manager/swaync.nix # notification daemon
 ../../modules/home-manager/neovim.nix # dont use nixvim. broken
+#../../modules/home-manager/neovim2.nix # ./neovim2.nix uses vim plug instead of the nix repository as with ./neovim.nix see the begining of neovim2 for an explanation
 ../../modules/home-manager/rclone.nix 
 ../../modules/home-manager/waybar.nix
 #../../modules/home-manager/oh-my-posh.nix # zsh customizer
@@ -23,6 +24,7 @@ imports = [
 ../../modules/home-manager/hypridle.nix
 ../../modules/home-manager/swaylock.nix
 ];
+
 
 
 

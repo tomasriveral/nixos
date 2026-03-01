@@ -1,53 +1,13 @@
 { config, pkgs, ... }:
+# same as ./neovim.nix but you vim plug.
+# i tried importing my nvim config from fedora to a more nixy way but a lot of settings and plugins didnt work. Maybe i'll fix it latter
+# the only difference is the we use :PlugInstall or a similar command before doing anything
 
 {
   programs.neovim = {
     enable = true;
     vimAlias = true;
     viAlias = true;
-    plugins = [
-	pkgs.vimPlugins.vimtex
-	pkgs.vimPlugins.zoxide-vim
-	pkgs.vimPlugins.gruvbox
-	pkgs.vimPlugins.neovim-sensible
-	pkgs.vimPlugins.nvim-web-devicons
-	pkgs.vimPlugins.nvim-tree-lua
-	pkgs.vimPlugins.nvim-surround
-	pkgs.vimPlugins.floaterm
-	pkgs.vimPlugins.nvim-lspconfig
-	pkgs.vimPlugins.cmp-nvim-lsp
-	pkgs.vimPlugins.cmp-buffer
-	pkgs.vimPlugins.cmp-path
-	pkgs.vimPlugins.cmp-cmdline
-	pkgs.vimPlugins.nvim-cmp
-	pkgs.vimPlugins.cmp-vsnip
-	pkgs.vimPlugins.vim-vsnip
-	pkgs.vimPlugins.dashboard-nvim
-	pkgs.vimPlugins.lualine-nvim
-    # nix coloring and etc.
-    pkgs.vimPlugins.vim-nix
-	# required for Telescope
-	pkgs.vimPlugins.plenary-nvim
-	pkgs.vimPlugins.blink-ripgrep-nvim
-	pkgs.vimPlugins.nvim-treesitter
-	pkgs.vimPlugins.telescope-nvim
-	# scrollbar 
-	pkgs.vimPlugins.nvim-scrollbar
-	# ufo
-	pkgs.vimPlugins.promise-async
-	pkgs.vimPlugins.nvim-ufo
-	# cheatsheet
-	pkgs.vimPlugins.cheatsheet-nvim
-	pkgs.vimPlugins.popup-nvim
-	# multiple cursor
-	#Plug 'brenton-leighton/multiple-cursors.nvim'
-	# i use instead the following:
-	pkgs.vimPlugins.vim-visual-multi
-# plugins not found
-	#Plug 'arminveres/md-pdf.nvim'
-	#Plug "sharkdp/fd"
-	#Plug 'sontungexpt/better-diagnostic-virtual-text'
-    ];
     extraLuaConfig = ''
 local vim = vim
 -- local Plug = vim.fn['plug#']
@@ -65,13 +25,13 @@ vim.g.have_nerd_font = true
 -- Make line numbers default
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.opt.relativenumber = false
+-- vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.opt.showmode = false
+vim.opt.showmode = true
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -272,30 +232,30 @@ require('ufo').setup({
 -- Color schemes should be loaded after plug#end().
 vim.o.background = "dark" -- or "light" for light mode
 -- Default options:
---require("gruvbox").setup({
---  terminal_colors = true, -- add neovim terminal colors
---  undercurl = true,
---  underline = true,
---  bold = true,
---  italic = {
---    strings = true,
---    emphasis = true,
---    comments = true,
---    operators = false,
---    folds = true,
---  },
---  strikethrough = true,
---  invert_selection = false,
---  invert_signs = false,
---  invert_tabline = false,
---  invert_intend_guides = false,
---  inverse = true, -- invert background for search, diffs, statuslines and errors
---  contrast = "", -- can be "hard", "soft" or empty string
---  palette_overrides = {},
---  overrides = {},
---  dim_inactive = false,
---  transparent_mode = false,
---})
+require("gruvbox").setup({
+  terminal_colors = true, -- add neovim terminal colors
+  undercurl = true,
+  underline = true,
+  bold = true,
+  italic = {
+    strings = true,
+    emphasis = true,
+    comments = true,
+    operators = false,
+    folds = true,
+  },
+  strikethrough = true,
+  invert_selection = false,
+  invert_signs = false,
+  invert_tabline = false,
+  invert_intend_guides = false,
+  inverse = true, -- invert background for search, diffs, statuslines and errors
+  contrast = "", -- can be "hard", "soft" or empty string
+  palette_overrides = {},
+  overrides = {},
+  dim_inactive = false,
+  transparent_mode = false,
+})
 vim.cmd("colorscheme gruvbox")
 -- nvim-tree https://github.com/nvim-tree/nvim-tree.lua
 -- disable netrw at the very start of your init.lua
@@ -325,41 +285,41 @@ vim.opt.number = true
 -- Uncomment for opening the navigable tree file systeme on startup of NeoVim
 --vim.cmd('NvimTreeOpen')
 
---require('md-pdf').setup({
---    --- Set margins around document
---    margins = "1.5cm",
---    -- tango, pygments are quite nice for white on white
---    highlight = "tango",
---    -- Generate a table of contents, on by default
---    toc = true,
---    -- Define a custom preview command, enabling hooks and other custom logic
---    preview_cmd = function() return 'firefox' end,
---    -- if true, then the markdown file is continuously converted on each write, even if the
---    -- file viewer closed, e.g., firefox is "closed" once the document is opened in it.
---    ignore_viewer_state = false,
---    -- Specify font, `nil` uses the default font of the theme
---    fonts = nil,
---    -- or, where all or only some options can be specified. NOTE: those that are `nil` can be left
---    -- out completely
---    fonts = {
---        main_font = nil,
---        sans_font = "DejaVuSans",
---        mono_font = "IosevkaTerm Nerd Font Mono",
---        math_font = nil,
---    },
---    -- Custom options passed to `pandoc` CLI call, can be ignored for setup
---    pandoc_user_args = nil,
---    -- or
---    pandoc_user_args = {
---        -- short
---        "-V KEY[:VALUE]",
---        -- long options
---        "--standalone=[true|false]",
---    },
---    --- Path to output. Needs to be always relative, e.g.: "./", "../", "./out" or simply "out", but
---    --- not absolute e.g.: "/"!
---    output_path = "",
---})
+require('md-pdf').setup({
+    --- Set margins around document
+    margins = "1.5cm",
+    -- tango, pygments are quite nice for white on white
+    highlight = "tango",
+    -- Generate a table of contents, on by default
+    toc = true,
+    -- Define a custom preview command, enabling hooks and other custom logic
+    preview_cmd = function() return 'firefox' end,
+    -- if true, then the markdown file is continuously converted on each write, even if the
+    -- file viewer closed, e.g., firefox is "closed" once the document is opened in it.
+    ignore_viewer_state = false,
+    -- Specify font, `nil` uses the default font of the theme
+    fonts = nil,
+    -- or, where all or only some options can be specified. NOTE: those that are `nil` can be left
+    -- out completely
+    fonts = {
+        main_font = nil,
+        sans_font = "DejaVuSans",
+        mono_font = "IosevkaTerm Nerd Font Mono",
+        math_font = nil,
+    },
+    -- Custom options passed to `pandoc` CLI call, can be ignored for setup
+    pandoc_user_args = nil,
+    -- or
+    pandoc_user_args = {
+        -- short
+        "-V KEY[:VALUE]",
+        -- long options
+        "--standalone=[true|false]",
+    },
+    --- Path to output. Needs to be always relative, e.g.: "./", "../", "./out" or simply "out", but
+    --- not absolute e.g.: "/"!
+    output_path = "",
+})
 
 -- setup mapping
 vim.keymap.set("n", "<Space>,", function()
@@ -582,13 +542,6 @@ vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live gr
 vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
--- Disable relative numbers even if a plugin (like neovim-sensible) turns them on
-      vim.opt.colorcolumn = ""
-      vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.opt.relativenumber = false
-  end,
-})    
-'';
+    '';
   };
 }
