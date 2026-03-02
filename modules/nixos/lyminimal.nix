@@ -10,7 +10,7 @@
       # Basic TUI settings
       clear_password = true;
       default_input = "password";
-      fg = "0x00FFFFFF";
+      fg = "0xdecda600";
       full_color = true;
       hide_borders = false;
       hide_key_hints = true;
@@ -40,7 +40,7 @@
       # Optional commands (leave null or comment if unused)
       hibernate_cmd = null;
       inactivity_cmd = null;
-      #login_cmd = "exec hyprland";
+      #login_cmd = "exec /run/current-system/sw/bin/hyprland";
       logout_cmd = null;
       sleep_cmd = null;
 
