@@ -147,7 +147,6 @@
           installation_mode = "force_installed";
         };
       };
-      };
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
