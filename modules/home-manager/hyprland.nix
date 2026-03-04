@@ -190,7 +190,8 @@ in
 			"nm-applet --indicator" # systray app for Network/wifi
 			"wl-paste --type text --watch cliphist store" # clipboard store text data
 			"wl-paste --type image --watch cliphist store" # clipboard store image data
-			"custom-batterynotify"
+            "custom-batterynotify"
+            "custom-batterywarning"
 			#wallpapers/b
 			"swww img ${wallpaper}"
 			"swww-daemon"
