@@ -75,7 +75,8 @@ in
 		# binds to do
 		# when librewolf setup put $browser as librewolf
 		# with framework 16 rgb keypad
-		# exec a little kitty floating window with tomato executed (pomodoro app)
+        # exec a little kitty floating window with tomato executed (pomodoro app)
+        # exec the hyprpicker -> copy
 		# if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
 #bind = Ctrl+$mainMod, 1, exec, pgrep -x ollama > /dev/null || ollama serve & notify-send -u normal -t 3000 "Running Deepseek-r1 with 1.5b parameters" "" &  kitty -e sh -c "ollama run deepseek-r1:1.5b"
 #bind = Ctrl+$mainMod, 2, exec, pgrep -x ollama > /dev/null || ollama serve & notify-send -u normal -t 3000 "Running Deepseek-r1 with 8b parameters" "" &  kitty -e sh -c "ollama run deepseek-r1:8b"
