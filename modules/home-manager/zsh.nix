@@ -24,7 +24,7 @@ custom-cat() {
 	l = "ls -CF";
 	ls = "ls -hA -s --color";
 	cat = "custom-cat";
-    pomodoro = "kitty -e 'tomato'";
+    pomodoro = "custom-tomato";
     librewolf = "kitty --class \"custom-librewolfprofiles\" --name \"Select LibreWolf profile\" --hold custom-librewolfprofiles";
   };
   };

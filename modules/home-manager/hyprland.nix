@@ -141,7 +141,7 @@ in
 			", F11, exec, hyprshot -m output"
 			"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
 			# framework 16 rgb macropad
-			"$mod, P, exec, swaync-client -t"
+            #"$mod, P, exec, swaync-client -t" # bugs the SUPER key.
 			"Ctrl+$mod, 3, exec, pavucontrol"
 			"Ctrl+$mod, 5, exec, gnome-characters"
 			"Ctrl+$mod, 6, exec, custom-killall"
@@ -408,6 +408,8 @@ in
 "float,class:^(io.missioncenter.MissionCenter)$" # MissionCenter-Gtk
 "float,class:^(custom-librewolfprofiles)$"
 "size 400 175, class:^(custom-librewolfprofiles)$"
+"float,initialTitle:^(custom-pomodoro)$"
+"size 600 600,initialTitle:^(custom-pomodoro)$"
 # add a float for tomato when in kitty
 #"plugin:imgborders:noimgborders, tag:noborder"
 		];

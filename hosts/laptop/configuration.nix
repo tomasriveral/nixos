@@ -28,8 +28,8 @@ environment.pathsToLink = [
   "/share/applications"
   "/share/xdg-desktop-portal"
 ];
-
-
+# removes uxterm
+services.xserver.excludePackages = [ pkgs.xterm ];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

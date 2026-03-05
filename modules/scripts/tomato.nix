@@ -9,6 +9,6 @@ writeShellApplication {
       tomato-c
 	];
 	text = ''
-kitty -e tomato
+kitty --name "custom-pomodoro" -e tomato 
 '';
 }
