@@ -184,6 +184,7 @@ hyprshot
 hyprcursor
 vial # Open-source GUI and QMK fork for configuring your keyboard in real time
 mplayer # Movie player that supports many video formats
+chromium # used only to flash the firmware on my framework laptop 16 (keyboard.frame.work) as only chromium based browser support webHID. 
 ];
 
 # fonts
