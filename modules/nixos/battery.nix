@@ -39,8 +39,8 @@
         CPU_ENERGY_PERF_POLICY_ON_BAT = "balance_power";
         PLATFORM_PROFILE_ON_AC = "performance";
         PLATFORM_PROFILE_ON_BAT = "balanced";
-        START_CHARGE_THRESH_BAT0 = 75;
-        STOP_CHARGE_THRESH_BAT0 = 81;
+        START_CHARGE_THRESH_BAT1 = 75;
+        STOP_CHARGE_THRESH_BAT1= 85;
       };
     };
 #  };
