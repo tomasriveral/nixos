@@ -289,33 +289,33 @@
       };
       search = {
         force = true;
+        default = "quant";
+        privateDefault = "qant";
+        order = [
+          "q"
+          "map"
+          "np"
+          "nw"
+          "bookmarks"
+          "tabs"
+          "history"
+        ];
         engines = {
           # don't need these default ones
           "amazondotcom-es".metaData.hidden = true;
           "bing".metaData.hidden = true;
           "ebay".metaData.hidden = true;
-          "metager".metaData.hidden = true;
-          "mojeek".metaData.hidden = true;
-          "seerex".metaData.hidden = true;
+          "metager".metaData.hidden = true; # dont work
+          "mojeek".metaData.hidden = true; # dont work
+          "seerx".metaData.hidden = true;
           "perplexity".metaData.hidden = true;
-          "startpage" = {
+          "google".metaData.hidden = true;
+          "startpage".metaData.hidden = true;
+          "duckduckgo".metaData.hidden = true;
+          "quant" = {
             urls = [
               {
-                template = "https://www.startpage.com/sp/search";
-                params = [
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [ "sp" ];
-          };
-          "ddg" = {
-            urls = [
-              {
-                template = "https://duckduckgo.com";
+                template = "https://www.qwant.com/";
                 params = [
                   {
                     name = "q";
@@ -324,12 +324,12 @@
                 ];
               }
             ];
-            definedAliases = [ "d" ];
+            definedAliases = [ "q" ];
           };
-          "google-maps" = {
+          "OpenStreeetMap" = {
             urls = [
               {
-                template = "https://www.google.com/maps/search/";
+                template = "https://www.openstreetmap";
                 params = [
                   {
                     name = "q";
@@ -338,7 +338,7 @@
                 ];
               }
             ];
-            definedAliases = [ "gm" ];
+            definedAliases = [ "map" ];
           };
           "Home Manager Options" = {
             urls = [
@@ -352,7 +352,7 @@
                 ];
               }
             ];
-            definedAliases = [ "ho" ];
+            definedAliases = [ "hm" ];
           };
           "Nix Packages" = {
             urls = [
@@ -372,50 +372,15 @@
             ];
             definedAliases = [ "np" ];
           };
-          "youtube" = {
+          "Nix Wiki" = {
             urls = [
               {
-                template = "https://www.youtube.com/results";
-                params = [
-                  {
-                    name = "search_query";
-                    value = "{searchTerms}";
-                  }
-                ];
+                template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
               }
             ];
-            definedAliases = [ "y" ];
+            definedAliases = [ "nw" ];
           };
-          "Wikipedia" = {
-            urls = [
-              {
-                template = "https://en.wikipedia.org/wiki/Special:Search";
-                params = [
-                  {
-                    name = "search";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [ "wik" ];
-          };
-          
-          "GitHub" = {
-            urls = [
-              {
-                template = "https://github.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [ "gh" ];
-            };
-          };
+        };
       };
     };
     profiles.other = {
