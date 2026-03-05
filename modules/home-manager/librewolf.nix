@@ -380,6 +380,14 @@
             ];
             definedAliases = [ "nw" ];
           };
+          "Repology" = {
+            urls = [
+              {
+                template = "https://repology.org/projects/?search={searchTerms}";
+              }
+            ];
+            definedAliases = [ "rp" ];
+          };
         };
       };
     };
@@ -558,45 +566,13 @@
             ];
             definedAliases = [ "map" ];
           };
-          "Home Manager Options" = {
+          "Onche.org" = {
             urls = [
               {
-                template = "https://home-manager-options.extranix.com/";
-                params = [
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
+              template = "https://onche.org/forum/1/blabla-general/search?by=topic&q={searchTerms}";
               }
             ];
-            definedAliases = [ "hm" ];
-          };
-          "Nix Packages" = {
-            urls = [
-              {
-                template = "https://search.nixos.org/packages";
-                params = [
-                  {
-                    name = "type";
-                    value = "packages";
-                  }
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [ "np" ];
-          };
-          "Nix Wiki" = {
-            urls = [
-              {
-                template = "https://wiki.nixos.org/w/index.php?search={searchTerms}";
-              }
-            ];
-            definedAliases = [ "nw" ];
+            definedAliases = [ "on" ];
           };
         };
       };
