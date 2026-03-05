@@ -287,6 +287,17 @@
           };
         };
       };
+      bookmarks = {
+        force = true;
+        settings = [
+          {
+            name = "Nixos Config";
+            tags = [ "github" ];
+            keyword = "github";
+            url = "https://github.com/Totorile1/nixos";
+          }
+        ];
+      };
       search = {
         force = true;
         default = "quant";
