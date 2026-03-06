@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, libs, inputs, ... }:
+{ config, pkgs, pkgs-unstable, libs, inputs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -20,7 +20,7 @@ home-manager = {
 	users = {
 		tomasr = ./home.nix;
 	};
-	#extraSpecialArgs = { inherit inputs; };
+	extraSpecialArgs = { inherit pkgs-unstable; };
 };
 
 
@@ -70,9 +70,10 @@ services.xserver.excludePackages = [ pkgs.xterm ];
 
 # enable hyprland WM
 programs.hyprland = {
-	enable = true;
-	withUWSM = true;
-	xwayland.enable = true;
+    enable = true;
+    package = pkgs-unstable.hyprland; # we use the unstable branch to get the latest features
+    withUWSM = true;
+    xwayland.enable = true;
 };
 
 
@@ -139,6 +140,7 @@ services.upower.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+# use pkgs-unstable if you want the package from the unstable channel
 #we need to install gnome and kde utils individually as we dont use gnome
 gnome-calculator
 snapshot

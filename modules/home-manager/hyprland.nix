@@ -1,4 +1,4 @@
-{ config, pkgs,... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let 
 	wallpaper = ../../assets/wallpaper1.jpg;
@@ -8,7 +8,7 @@ in
 
 	#refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
 	wayland.windowManager.hyprland.enable = true;
-
+    wayland.windowManager.hyprland.package = pkgs-unstable.hyprland;
 	#hint Electron apps to use on wayland;
 	home.sessionVariables.NIXOS_OZONE_WL="1";
 
@@ -333,99 +333,71 @@ in
 
 # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
 # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
-		windowrulev2 = [
-"opacity 0.90 0.90,class:^(firefox)$"
-"opacity 0.90 0.90,class:^(Brave-browser)$"
-"opacity 0.80 0.80,class:^(code-oss)$"
-"opacity 0.80 0.80,class:^(Code)$"
-"opacity 0.80 0.80,class:^(code-url-handler)$"
-"opacity 0.80 0.80,class:^(code-insiders-url-handler)$"
-"opacity 0.75 0.75,class:^(kitty)$"
-"opacity 0.80 0.80,class:^(org.kde.dolphin)$"
-"opacity 0.80 0.80,class:^(org.kde.ark)$"
-"opacity 0.80 0.80,class:^(nwg-look)$"
-"opacity 0.80 0.80,class:^(qt5ct)$"
-"opacity 0.80 0.80,class:^(qt6ct)$"
-"opacity 0.80 0.80,class:^(kvantummanager)$"
-"opacity 0.80 0.70,class:^(org.pulseaudio.pavucontrol)$"
-"opacity 0.80 0.70,class:^(blueman-manager)$"
-"opacity 0.80 0.70,class:^(nm-applet)$"
-"opacity 0.80 0.70,class:^(nm-connection-editor)$"
-"opacity 0.80 0.70,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-"opacity 0.80 0.70,class:^(polkit-gnome-authentication-agent-1)$"
-"opacity 0.80 0.70,class:^(org.freedesktop.impl.portal.desktop.gtk)$"
-"opacity 0.80 0.70,class:^(org.freedesktop.impl.portal.desktop.hyprland)$"
-"opacity 0.70 0.70,class:^([Ss]team)$"
-"opacity 0.70 0.70,class:^(steamwebhelper)$"
-"opacity 0.70 0.70,class:^(Spotify)$"
-"opacity 0.70 0.70,initialTitle:^(Spotify Free)$"
-"opacity 0.90 0.90,class:^(com.github.rafostar.Clapper)$" # Clapper-Gtk
-"opacity 0.80 0.80,class:^(com.github.tchx84.Flatseal)$" # Flatseal-Gtk
-"opacity 0.80 0.80,class:^(hu.kramo.Cartridges)$" # Cartridges-Gtk
-"opacity 0.80 0.80,class:^(com.obsproject.Studio)$" # Obs-Qt
-"opacity 0.80 0.80,class:^(gnome-boxes)$" # Boxes-Gtk
-"opacity 0.80 0.80,class:^(discord)$" # Discord-Electron
-"opacity 0.80 0.80,class:^(WebCord)$" # WebCord-Electron
-"opacity 0.80 0.80,class:^(ArmCord)$" # ArmCord-Electron
-"opacity 0.80 0.80,class:^(app.drey.Warp)$" # Warp-Gtk
-"opacity 0.80 0.80,class:^(net.davidotek.pupgui2)$" # ProtonUp-Qt
-"opacity 0.80 0.80,class:^(yad)$" # Protontricks-Gtk
-"opacity 0.80 0.80,class:^(Signal)$" # Signal-Gtk
-"opacity 0.80 0.80,class:^(io.github.alainm23.planify)$" # planify-Gtk
-"opacity 0.80 0.80,class:^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
-"opacity 0.80 0.80,class:^(com.github.unrud.VideoDownloader)$" # VideoDownloader-Gtk
-"opacity 0.80 0.80,class:^(io.gitlab.adhami3310.Impression)$" # Impression-Gtk
-"opacity 0.80 0.80,class:^(io.missioncenter.MissionCenter)$" # MissionCenter-Gtk
-"opacity 0.80 0.80,class:^(io.github.flattool.Warehouse)$" # Warehouse-Gtk
-"float,class:^(org.kde.dolphin)$,title:^(Progress Dialog — Dolphin)$"
-"float,class:^(org.kde.dolphin)$,title:^(Copying — Dolphin)$"
-"float,class:^(firefox)$,title:^(Picture-in-Picture)$"
-"float,class:^(firefox)$,title:^(Library)$"
-"float,class:^(kitty)$,title:^(top)$"
-"float,class:^(kitty)$,title:^(btop)$"
-"float,class:^(kitty)$,title:^(htop)$"
-"float,class:^(vlc)$"
-"float,class:^(kvantummanager)$"
-"float,class:^(qt5ct)$"
-"float,class:^(qt6ct)$"
-"float,class:^(nwg-look)$"
-"float,class:^(org.kde.ark)$"
-"float,class:^(org.pulseaudio.pavucontrol)$"
-"float,class:^(blueman-manager)$"
-"float,class:^(nm-applet)$"
-"float,class:^(nm-connection-editor)$"
-"float,class:^(org.kde.polkit-kde-authentication-agent-1)$"
-"float,class:^(Signal)$" # Signal-Gtk
-"float,class:^(com.github.rafostar.Clapper)$" # Clapper-Gtk
-"float,class:^(app.drey.Warp)$" # Warp-Gtk
-"float,class:^(net.davidotek.pupgui2)$" # ProtonUp-Qt
-"float,class:^(yad)$" # Protontricks-Gtk
-"float,class:^(eog)$" # Imageviewer-Gtk
-"float,class:^(io.github.alainm23.planify)$" # planify-Gtk
-"float,class:^(io.gitlab.theevilskeleton.Upscaler)$" # Upscaler-Gtk
-"float,class:^(com.github.unrud.VideoDownloader)$" # VideoDownloader-Gkk
-"float,class:^(io.gitlab.adhami3310.Impression)$" # Impression-Gtk
-"float,class:^(io.missioncenter.MissionCenter)$" # MissionCenter-Gtk
-"float,class:^(custom-librewolfprofiles)$"
-"size 400 175, class:^(custom-librewolfprofiles)$"
-"float,initialTitle:^(custom-pomodoro)$"
-"size 600 600,initialTitle:^(custom-pomodoro)$"
+        windowrule = [
+"opacity 0.90 0.90, match:class ^(firefox)$"
+"opacity 0.90 0.90, match:class ^(Brave-browser)$"
+"opacity 0.80 0.80, match:class ^(code-oss)$"
+"opacity 0.80 0.80, match:class ^(Code)$"
+"opacity 0.80 0.80, match:class ^(code-url-handler)$"
+"opacity 0.80 0.80, match:class ^(code-insiders-url-handler)$"
+"opacity 0.75 0.75, match:class ^(kitty)$"
+"opacity 0.80 0.80, match:class ^(org.kde.dolphin)$"
+"opacity 0.80 0.80, float on, match:class ^(org.kde.ark)$"
+"opacity 0.80 0.80, float on, match:class ^(nwg-look)$"
+"opacity 0.80 0.80, float on, match:class ^(qt5ct)$"
+"opacity 0.80 0.80, float on, match:class ^(qt6ct)$"
+"opacity 0.80 0.80, float on, match:class ^(kvantummanager)$"
+"opacity 0.80 0.70, float on, match:class ^(org.pulseaudio.pavucontrol)$"
+"opacity 0.80 0.70, float on, match:class ^(blueman-manager)$"
+"opacity 0.80 0.70, float on, match:class ^(nm-applet)$"
+"opacity 0.80 0.70, float on, match:class ^(nm-connection-editor)$"
+"opacity 0.80 0.70, float on, match:class ^(org.kde.polkit-kde-authentication-agent-1)$"
+"opacity 0.80 0.70, match:class ^(polkit-gnome-authentication-agent-1)$"
+"opacity 0.80 0.70, match:class ^(org.freedesktop.impl.portal.desktop.gtk)$"
+"opacity 0.80 0.70, match:class ^(org.freedesktop.impl.portal.desktop.hyprland)$"
+"opacity 0.70 0.70, match:class ^([Ss]team)$"
+"opacity 0.70 0.70, match:class ^(steamwebhelper)$"
+"opacity 0.70 0.70, match:class ^(Spotify)$"
+"opacity 0.70 0.70, match:initial_title ^(Spotify Free)$"
+"opacity 0.90 0.90, float on, match:class ^(com.github.rafostar.Clapper)$"
+"opacity 0.80 0.80, match:class ^(com.github.tchx84.Flatseal)$"
+"opacity 0.80 0.80, match:class ^(hu.kramo.Cartridges)$"
+"opacity 0.80 0.80, match:class ^(com.obsproject.Studio)$"
+"opacity 0.80 0.80, match:class ^(gnome-boxes)$"
+"opacity 0.80 0.80, match:class ^(discord)$"
+"opacity 0.80 0.80, match:class ^(WebCord)$"
+"opacity 0.80 0.80, match:class ^(ArmCord)$"
+"opacity 0.80 0.80, float on, match:class ^(app.drey.Warp)$"
+"opacity 0.80 0.80, float on, match:class ^(net.davidotek.pupgui2)$"
+"opacity 0.80 0.80, float on, match:class ^(yad)$"
+"opacity 0.80 0.80, float on, match:class ^(Signal)$"
+"opacity 0.80 0.80, float on, match:class ^(io.github.alainm23.planify)$"
+"opacity 0.80 0.80, float on, match:class ^(io.gitlab.theevilskeleton.Upscaler)$"
+"opacity 0.80 0.80, float on, match:class ^(com.github.unrud.VideoDownloader)$"
+"opacity 0.80 0.80, float on, match:class ^(io.gitlab.adhami3310.Impression)$"
+"opacity 0.80 0.80, float on, match:class ^(io.missioncenter.MissionCenter)$"
+"opacity 0.80 0.80, match:class ^(io.github.flattool.Warehouse)$"
+"float on, match:class ^(org.kde.dolphin)$, match:title ^(Progress Dialog — Dolphin)$"
+"float on, match:class ^(org.kde.dolphin)$, match:title ^(Copying — Dolphin)$"
+"float on, match:class ^(firefox)$, match:title ^(Picture-in-Picture)$"
+"float on, match:class ^(firefox)$, match:title ^(Library)$"
+"float on, match:class ^(kitty)$, match:title ^(top)$"
+"float on, match:class ^(kitty)$, match:title ^(btop)$"
+"float on, match:class ^(kitty)$, match:title ^(htop)$"
+"float on, match:class ^(vlc)$"
+"float on, match:class ^(eog)$"
+"float on, size 400 175, match:class ^(custom-librewolfprofiles)$"
+"float on, size 600 600, match:initial_title ^(custom-pomodoro)$"
+];
 # add a float for tomato when in kitty
 #"plugin:imgborders:noimgborders, tag:noborder"
-		];
-		layerrule = [
-"blur,rofi"
-"ignorezero,rofi"
-"blur,notifications"
-"ignorezero,notifications"
-"blur,swaync-notification-window"
-"ignorezero,swaync-notification-window"
-"blur,swaync-control-center"
-"ignorezero,swaync-control-center"
-"blur,logout_dialog"
-
-		];
-
+layerrule = [
+"blur on, ignore_alpha 0, match:namespace rofi"
+"blur on, ignore_alpha 0, match:namespace notifications"
+"blur on, ignore_alpha 0, match:namespace swaync-notification-window"
+"blur on, ignore_alpha 0, match:namespace swaync-control-center"
+"blur on, match:namespace logout_dialog"
+];
 	};
 }
 
