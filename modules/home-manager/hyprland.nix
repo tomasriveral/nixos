@@ -13,8 +13,8 @@ in
 	home.sessionVariables.NIXOS_OZONE_WL="1";
 
 	wayland.windowManager.hyprland.plugins = [
-		pkgs.hyprlandPlugins.hyprspace
-		pkgs.hyprlandPlugins.hypr-dynamic-cursors
+        #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
+        #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
 	];
 	wayland.windowManager.hyprland.settings = {
 		"$mod" = "SUPER";
@@ -126,9 +126,12 @@ in
 			"$mod, mouse_up, workspace, e-1"
 			"$mod, V, exec, cliphist list | rofi -dmenu| cliphist decode | wl-copy" # copy paste
 			"$mod, B, exec, hyprkeys -bkr | rofi -dmenu"
-			"$mod, A, tagwindow, noborder" # used to not apply image border
+            #"$mod, A, tagwindow, noborder" # used to not apply image border
 			"$mod, S, togglespecialworkspace,"
-			"Alt+$mod, S, movetoworkspace, special" 
+            "Alt+$mod, S, movetoworkspace, special" 
+            # for the scrolling layout 
+            "$mod, A, layoutmsg, move -col"
+            "$mod, D, layoutmsg, move +col"
 			#apps keybindings
 			"$mod, T, exec, $term"
 			"$mod, E, exec, $file"
@@ -330,6 +333,26 @@ in
 		};
 ####################################################
 ##################################################
+
+# /$$      /$$                     /$$                                                        
+#| $$  /$ | $$                    | $$                                                        
+#| $$ /$$$| $$  /$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$ 
+#| $$/$$ $$ $$ /$$__  $$ /$$__  $$| $$  /$$/ /$$_____/ /$$__  $$ |____  $$ /$$_____/ /$$__  $$
+#| $$$$_  $$$$| $$  \ $$| $$  \__/| $$$$$$/ |  $$$$$$ | $$  \ $$  /$$$$$$$| $$      | $$$$$$$$
+#| $$$/ \  $$$| $$  | $$| $$      | $$_  $$  \____  $$| $$  | $$ /$$__  $$| $$      | $$_____/
+#| $$/   \  $$|  $$$$$$/| $$      | $$ \  $$ /$$$$$$$/| $$$$$$$/|  $$$$$$$|  $$$$$$$|  $$$$$$$
+#|__/     \__/ \______/ |__/      |__/  \__/|_______/ | $$____/  \_______/ \_______/ \_______/
+#                                                     | $$                                    
+#                                                     | $$                                    
+#                                                     |__/                                    
+#     see https://wiki.hypr.land/Configuring/Workspace-Rules/
+        workspace = [
+            "1, layout:master"
+            "2, layout:scrolling, layoutopt:direction:right"
+            "special, layout:monocle"
+        ];
+
+
 
 # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
 # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
