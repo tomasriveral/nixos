@@ -150,7 +150,8 @@ in
             "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 3 2 colorpicker
             "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
             "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
-		# if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
+            "Ctrl+Alt, 9, exec, anki"
+# if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
         # maybe exec sudo framework-tools-tui
 
             #plugins keybindings

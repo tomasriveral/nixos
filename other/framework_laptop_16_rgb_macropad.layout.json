@@ -11,7 +11,7 @@
     "{KC_LCTL,KC_LGUI,KC_6}",
     "{+KC_LCTL}{+KC_LALT}7{-KC_LALT}{-KC_LCTL}",
     "{+KC_LCTL}{+KC_LALT}8{-KC_LALT}{-KC_LCTL}",
-    "",
+    "{+KC_LCTL}{+KC_LALT}9{-KC_LALT}{-KC_LCTL}",
     "",
     "",
     "",
@@ -23,7 +23,7 @@
     [
       "MACRO(3)",
       "MACRO(0)",
-      "KC_NO",
+      "MACRO(9)",
       "KC_NO",
       "MACRO(5)",
       "MACRO(1)",
