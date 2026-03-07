@@ -22,4 +22,4 @@ thunderbird.x86_64
 tor.x86_64               
 torbrowser-launcher.noarch
 replace sddm by ly
-
+maybe configure a bit ripgrep? majuscules

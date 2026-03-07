@@ -73,15 +73,7 @@ in
 # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
 # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
 		# binds to do
-		# when librewolf setup put $browser as librewolf
-		# with framework 16 rgb keypad
-        # exec a little kitty floating window with tomato executed (pomodoro app)
-        # exec the hyprpicker -> copy
-		# if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
-#bind = Ctrl+$mainMod, 1, exec, pgrep -x ollama > /dev/null || ollama serve & notify-send -u normal -t 3000 "Running Deepseek-r1 with 1.5b parameters" "" &  kitty -e sh -c "ollama run deepseek-r1:1.5b"
-#bind = Ctrl+$mainMod, 2, exec, pgrep -x ollama > /dev/null || ollama serve & notify-send -u normal -t 3000 "Running Deepseek-r1 with 8b parameters" "" &  kitty -e sh -c "ollama run deepseek-r1:8b"
-        # exec custom-performance
-
+        
 		bind = [
 			#hyprland/utility keybindings
 			"$mod, W, togglefloating"
@@ -144,17 +136,24 @@ in
 			", F11, exec, hyprshot -m output"
 			"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
 			# framework 16 rgb macropad
-            #"$mod, P, exec, swaync-client -t" # bugs the SUPER key.
-			"Ctrl+$mod, 3, exec, pavucontrol"
-			"Ctrl+$mod, 5, exec, gnome-characters"
-			"Ctrl+$mod, 6, exec, custom-killall"
-			# reloads the autostart programs
+            "Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1
+			"Ctrl+$mod, 3, exec, pavucontrol" # pos 1 3
+			"Ctrl+$mod, 5, exec, gnome-characters" # pos 2 3
+			"Ctrl+$mod, 6, exec, custom-killall" # pos 1 1 
+			# reloads the autostart programs # pos 3 1
 			"Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=16 -e sh -c 'custom-weather'"
 			"Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=11 -e sh -c 'custom-cowsay'"
 			"Ctrl+$mod, 4, exec, kitty -e 'custom-launch'"
 			"Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
 			"Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
-			#plugins keybindings
+            # exec a little kitty floating window with tomato executed (pomodoro app)
+        # exec the hyprpicker -> copy
+		# if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
+#bind = Ctrl+$mainMod, 1, exec, pgrep -x ollama > /dev/null || ollama serve & notify-send -u normal -t 3000 "Running Deepseek-r1 with 1.5b parameters" "" &  kitty -e sh -c "ollama run deepseek-r1:1.5b"
+#bind = Ctrl+$mainMod, 2, exec, pgrep -x ollama > /dev/null || ollama serve & notify-send -u normal -t 3000 "Running Deepseek-r1 with 8b parameters" "" &  kitty -e sh -c "ollama run deepseek-r1:8b"
+        # exec custom-performance
+
+            #plugins keybindings
             #"$mod, SPACE, overview:toggle, "
 
 		];
@@ -414,7 +413,7 @@ in
 "float on, match:class ^(vlc)$"
 "float on, match:class ^(eog)$"
 "float on, size 400 175, match:class ^(custom-librewolfprofiles)$"
-"float on, size 600 600, match:initial_title ^(custom-pomodoro)$"
+"float on, size 600 600, match:initial_class ^(custom-pomodoro)$"
 "border_size 0, match:float 0, match:workspace w[tv1]"
 "rounding 0, match:float 0, match:workspace w[tv1]"
 "border_size 0, match:float 0, match:workspace f[1]"

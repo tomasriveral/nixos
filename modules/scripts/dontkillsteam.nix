@@ -6,9 +6,10 @@ writeShellApplication {
 		hyprland
 		jq
 	];
-	text = ''
-		if [[ $(hyprctl activewindow -j | jq -r ".class") == "Steam" ]]; then
-			hyprctl dispatch minimize
+    text = ''
+        class=$(hyprctl activewindow -j | jq -r ".class")
+		if [[ "$class" == "Steam" || "$class" == "custom-pomodoro" ]]; then
+			hyprctl dispatch movetoworkspacesilent special
 		else
 			hyprctl dispatch killactive ""
 		fi

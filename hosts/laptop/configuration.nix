@@ -12,6 +12,7 @@
     #../../modules/nixos/ly.nix
     ../../modules/nixos/lyminimal.nix
     ../../modules/nixos/anki.nix
+    ../../modules/nixos/udevsimple.nix
   ];
 
 home-manager = {
@@ -188,6 +189,10 @@ vial # Open-source GUI and QMK fork for configuring your keyboard in real time
 mplayer # Movie player that supports many video formats
 chromium # used only to flash the firmware on my framework laptop 16 (keyboard.frame.work) as only chromium based browser support webHID. 
 capitaine-cursors-themed # cursor theme
+usbutils # used for lsusb
+# used for the framework 16 laptop
+framework-tool
+framework-tool-tui
 ];
 
 # fonts
