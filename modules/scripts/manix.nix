@@ -1,4 +1,4 @@
-{ writeShellApplication, manix, ripgrep, fzf, stdenv, ... }:
+{ writeShellApplication, manix, ripgrep, fzf, ... }:
 
 let
   cacheTime = "10";
@@ -10,7 +10,6 @@ writeShellApplication {
 		manix
         ripgrep
         fzf
-        stdenv
 	];
     text = ''
 CACHE_DIR="''${XDG_CACHE_HOME:-$HOME/.cache}"

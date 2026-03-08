@@ -15,6 +15,14 @@
     ../../modules/nixos/udevsimple.nix
   ];
 
+
+
+# grub theme
+boot.loader.grub = {
+    theme = inputs.nixos-grub-themes.packages.${pkgs.system}.nixos; # if you want to use nixos grub theme
+};
+
+
   nix.nixPath = [
     "nixpkgs=${inputs.nixpkgs.outPath}"
     "home-manager=${inputs.home-manager.outPath}"

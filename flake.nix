@@ -5,6 +5,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # used for some packages
+    nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +16,7 @@
 #	url = "github:nix-community/nixvim/nixos-25.11";
    # };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager,... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-grub-themes, ... }@inputs: 
   let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
