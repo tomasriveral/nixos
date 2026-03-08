@@ -211,6 +211,7 @@ framework-tool-tui
 
 #some nix tools
 manix
+deadnix
 ];
 
 # fonts
