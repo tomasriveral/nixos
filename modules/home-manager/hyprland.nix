@@ -144,7 +144,7 @@ in {
       "Ctrl+$mod, 4, exec, kitty -e 'custom-launch'"
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
-      "Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
+      #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
       "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
       "Ctrl+$mod, 5, exec, gnome-characters" # pos 2 2 special chars
       "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 3 2 colorpicker

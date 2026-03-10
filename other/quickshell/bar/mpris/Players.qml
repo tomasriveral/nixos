@@ -52,7 +52,8 @@ MouseArea {
                 acceptedButtons: Qt.LeftButton
                 implicitWidth: 20
                 implicitHeight: 20
-                image: "../../assets/fastforward.png"
+                //image: "../../assets/fastforward.png"
+                iconSource:"../../assets/fastforward.png"
                 mirror: true
                 hoverEnabled: true
                 enabled: MprisController.canGoPrevious
@@ -71,7 +72,8 @@ MouseArea {
                 implicitHeight: 26
                 Layout.leftMargin: -4
                 Layout.rightMargin: -4
-                image: `../../assets/${MprisController.isPlaying ? "pause" : "play"}.png`
+                //image: `../../assets/${MprisController.isPlaying ? "pause" : "play"}.png`
+                iconSource:`../../assets/${MprisController.isPlaying ? "pause" : "play"}.png`
                 hoverEnabled: true
                 enabled: MprisController.canTogglePlaying
                 onClicked: MprisController.togglePlaying()
@@ -81,7 +83,8 @@ MouseArea {
                 acceptedButtons: Qt.LeftButton
                 implicitWidth: 20
                 implicitHeight: 20
-                image: "../../assets/fastforward.png"
+                //image: "../../assets/fastforward.png"
+                iconSource:"../../assets/fastforward.png"
                 hoverEnabled: true
                 enabled: MprisController.canGoNext
                 onClicked: MprisController.next()

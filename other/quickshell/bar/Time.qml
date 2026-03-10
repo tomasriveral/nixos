@@ -13,7 +13,7 @@ Text {
 
     Process {
         id: dateProc
-        command: ["date", "+%H⯁%M"]
+        command: ["date", "+%H:%M"]
         running: true
         stdout: SplitParser {
             onRead: data => timetxt.text = data

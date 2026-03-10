@@ -7,7 +7,7 @@ import Quickshell.Io
 Singleton {
     id: root
 
-    readonly property var getThemeProc: Process {
+    /*readonly property var getThemeProc: Process {
         running: true
         command: ["gsettings", "get", "org.gnome.desktop.interface", "color-scheme"]
         stdout: SplitParser {
@@ -31,5 +31,5 @@ Singleton {
         gtk4ThemeProc.running = true;
         gtk3ThemeProc.command = ["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", `"Adwaita${root.isDarkTheme ? "-dark" : ""}"`];
         gtk3ThemeProc.running = true;
-    }
+      }*/
 }

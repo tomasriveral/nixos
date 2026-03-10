@@ -117,7 +117,8 @@ Item {
         visible: false
         Process {
             id: screamCmd
-            command: ["play", "--no-show-progress", "assets/wilhelm-scream.ogg"]
+            command: ["mplayer", "../assets/wilhelm-scream.ogg"]
+            //command: ["play", "--no-show-progress", "assets/wilhelm-scream.ogg"]
         }
         onVisibleChanged: () => {
             if (visible) {
@@ -177,7 +178,8 @@ Item {
 
     Process {
         id: playSoundCmd
-        command: ["play", "--no-show-progress", "assets/trumpet.wav"]
+        command: ["mplayer", "../assets/trumpet.wav"]
+        //command: ["play", "--no-show-progress", "assets/trumpet.wav"]
     }
     Component.onCompleted: playSoundCmd.startDetached()
 }

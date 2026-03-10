@@ -28,9 +28,14 @@ PanelWindow {
 
         onNotification: notif => {
             notif.tracked = true;
-            root.notifs = [...root.notifs, notif];
-        }
+            //root.notifs = [...root.notifs, notif]; // sometimes sent as null
+            if (notif) {
+              notif.tracked = true;
+              root.notifs = [...root.notifs, notif];
+            }
+          }
     }
+
 
     visible: stack.children.length != 0
     mask: Region {
@@ -79,11 +84,13 @@ PanelWindow {
             notif: modelData
 
             onDismissed: () => {
+              if (notif) { //handles sometimes WARN scene: @notifs/Overlay.qml[82:-1]: TypeError: Cannot read property 'dismiss' of null
                 modelData.dismiss();
                 // Remove from list
                 const index = root.notifs.indexOf(notif);
                 if (index > -1)
-                    root.notifs.splice(index, 1);
+                root.notifs.splice(index, 1);
+              }
             }
         }
     }

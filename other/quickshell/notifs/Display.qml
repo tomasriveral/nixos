@@ -45,7 +45,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
 
-                Text {
+                /*Text { // we sanitize in case there is some null notification
                     Layout.maximumWidth: bannerRect.width
                     text: root.notif.summary + (root.notif.body ? "\n=======" : "")
                     font.family: "BigBlueTermPlusNerdFont"
@@ -63,7 +63,24 @@ Item {
                     font.pointSize: 14
                     font.bold: false
                     color: "#9292B6"
-                }
+                  }*/
+                Text {
+                  text: root.notif ? root.notif.summary + (root.notif.body ? "\n" : "") : ""
+                  font.family: "BigBlueTermPlusNerdFont"
+                  wrapMode: Text.Wrap
+                  font.pointSize: 18
+                  font.bold: true
+                  color: "#9292B6"
+              }
+              
+              Text {
+                  text: root.notif ? root.notif.body : ""
+                  font.family: "BigBlueTermPlusNerdFont"
+                  wrapMode: Text.Wrap
+                  font.pointSize: 14
+                  font.bold: false
+                  color: "#9292B6"
+              }
             }
         }
     }

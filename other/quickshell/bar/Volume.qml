@@ -30,7 +30,8 @@ MouseArea {
 
     Image {
         anchors.fill: parent
-        source: `../assets/${root.node.audio.muted ? "noaudio" : "audio"}.png`
+        //source: `../assets/${root.node.audio.muted ? "noaudio" : "audio"}.png`
+        source: root.node ? `../assets/${root.node.audio.muted ? "noaudio" : "audio"}.png` : "../assets/noaudio.png"
         smooth: false
 
         scale: popupLoader.active ? 0.9 : 1

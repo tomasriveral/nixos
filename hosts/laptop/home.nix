@@ -17,12 +17,12 @@
     ../../modules/home-manager/hyprland.nix
     ../../modules/home-manager/wlogout.nix # logout utility
     ../../modules/home-manager/rofi.nix # launcher and keybindings helper
-    ../../modules/home-manager/swaync.nix # notification daemon
+    #notifications are now manager with quickshell../../modules/home-manager/swaync.nix # notification daemon 
     ../../modules/home-manager/neovim.nix # dont use nixvim. broken
     #../../modules/home-manager/neovim2.nix # ./neovim2.nix uses vim plug instead of the nix repository as with ./neovim.nix see the begining of neovim2 for an explanation
     ../../modules/home-manager/rclone.nix
-    ../../modules/home-manager/waybar.nix
-    ../../modules/home-manager/quickshell.nix # used for widgets. Maybe it will replace waybar
+    #../../modules/home-manager/waybar.nix
+    ../../modules/home-manager/quickshell.nix # used for widgets, waybar and notifications
 #../../modules/home-manager/oh-my-posh.nix # zsh customizer
     ../../modules/home-manager/oh-my-zsh.nix # another zsh customizer
     ../../modules/home-manager/hypridle.nix

@@ -10,7 +10,7 @@ MouseArea {
 
     required property var bar
     property int wsBaseIndex: 1
-    property int wsCount: 7
+    property int wsCount: 9
     readonly property HyprlandMonitor monitor: Hyprland.monitorFor(bar.screen)
     property int currentIndex: 0
     property int existsCount: 0

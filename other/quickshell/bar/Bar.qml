@@ -91,7 +91,7 @@ PanelWindow {
 
                 spacing: 12
 
-                Launcher {}
+                //Launcher {}
 
                 Workspaces {
                     bar: root
@@ -154,7 +154,7 @@ PanelWindow {
                     bar: root
                 }
 
-                Theme {}
+                //Theme {}
 
                 Power {
                     id: power

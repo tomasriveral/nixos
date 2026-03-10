@@ -355,7 +355,8 @@ PopupWindow {
                         implicitWidth: 24
                         implicitHeight: 24
                         enabled: MprisController.loopSupported
-                        image: {
+                        //image: {
+                        /*iconSource {
                             switch (MprisController.loopState) {
                             case MprisLoopState.None:
                                 return "../../assets/repeat-off.png";
@@ -364,7 +365,17 @@ PopupWindow {
                             case MprisLoopState.Track:
                                 return "../../assets/repeat-once.png";
                             }
+                          }*/
+                        function getLoopIcon() {
+                          switch (MprisController.loopState) {
+                          case MprisLoopState.None: return "../../assets/repeat-off.png";
+                          case MprisLoopState.Playlist: return "../../assets/repeat.png";
+                          case MprisLoopState.Track: return "../../assets/repeat-once.png";
                         }
+                        return "../../assets/repeat-off.png"; // fallback
+                      }
+
+                      iconSource: getLoopIcon()
                         onClicked: {
                             let target = MprisLoopState.None;
                             switch (MprisController.loopState) {
@@ -388,7 +399,8 @@ PopupWindow {
                         implicitWidth: 32
                         implicitHeight: 32
                         enabled: MprisController.canGoPrevious
-                        image: "../../assets/fastforward.png"
+                        //image: "../../assets/fastforward.png"
+                        iconSource: "../../assets/fastforward.png"
                         mirror: true
                         onClicked: MprisController.previous()
                     }
@@ -397,7 +409,8 @@ PopupWindow {
                         implicitWidth: 42
                         implicitHeight: 42
                         enabled: MprisController.canTogglePlaying
-                        image: `../../assets/${MprisController.isPlaying ? "pause" : "play"}.png`
+                        //image: `../../assets/${MprisController.isPlaying ? "pause" : "play"}.png`
+                        iconSource: `../../assets/${MprisController.isPlaying ? "pause" : "play"}.png`
                         onClicked: MprisController.togglePlaying()
                     }
 
@@ -407,7 +420,8 @@ PopupWindow {
                         implicitWidth: 32
                         implicitHeight: 32
                         enabled: MprisController.canGoNext
-                        image: "../../assets/fastforward.png"
+                        //image: "../../assets/fastforward.png"
+                        iconSource: "../../assets/fastforward.png"
                         onClicked: MprisController.next()
                     }
 
@@ -417,7 +431,8 @@ PopupWindow {
                         implicitWidth: 24
                         implicitHeight: 24
                         enabled: MprisController.shuffleSupported
-                        image: `../../assets/${MprisController.hasShuffle ? "shuffle" : "noshuffle"}.png`
+                        //image: `../../assets/${MprisController.hasShuffle ? "shuffle" : "noshuffle"}.png`
+                        iconSource: `../../assets/${MprisController.hasShuffle ? "shuffle" : "noshuffle"}.png`
                         onClicked: MprisController.setShuffle(!MprisController.hasShuffle)
                     }
                 }

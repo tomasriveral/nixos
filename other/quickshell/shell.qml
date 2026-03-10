@@ -2,12 +2,12 @@ import Quickshell
 import QtQuick
 import "bar" as Bar
 import "notifs" as Notifs
-import "launcher" as Launcher
+//import "launcher" as Launcher
 import "screenshot" as Screenshot
-import "lock" as Lock
+//import "lock" as Lock
 
 ShellRoot {
-    Bg {}
+    //Bg {}
 
     Bar.Bar {
         id: bar
@@ -18,8 +18,8 @@ ShellRoot {
     }
 
     Component.onCompleted: () => {
-        Launcher.Controller.init();
+        //Launcher.Controller.init();
         Screenshot.Controller.init();
-        Lock.Controller.init();
+        //Lock.Controller.init();
     }
 }
