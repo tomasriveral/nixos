@@ -13,7 +13,7 @@ Item {
     readonly property bool isPluggedIn: isCharging || chargeState == UPowerDeviceState.PendingCharge
     readonly property real percentage: UPower.displayDevice.percentage
     readonly property bool isLow: percentage <= 0.20
-    readonly property bool isLaptop: UPowerDevice.isLaptop // hardcoded because this doesnt work UPowerDevice.isLaptopBattery
+    readonly property bool isLaptop: true // hardcoded because this doesnt work UPowerDevice.isLaptopBattery
     width: 32
     height: 32
 

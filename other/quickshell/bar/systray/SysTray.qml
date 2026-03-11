@@ -16,7 +16,7 @@ Rectangle {
     implicitWidth: row.implicitWidth + 10
     Layout.fillHeight: true
 
-    color: "transparent"
+    color: Theme.Colors.sysTrayColor1
 
     RowLayout {
         id: row
@@ -126,7 +126,7 @@ Rectangle {
 
                                 Rectangle {
                                     anchors.fill: parent
-                                    color: Theme.Colors.sysTrayColor2
+                                    color: Theme.Colors.sysTrayColor3
                                     MenuView {
                                         id: menuView
                                         anchors.fill: parent

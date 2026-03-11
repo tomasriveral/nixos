@@ -9,6 +9,7 @@ import Quickshell.Widgets
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import Quickshell.Services.Mpris
+import "../../theme" as Theme
 import "../.."
 import "../../components"
 import ".."
@@ -26,7 +27,7 @@ PopupWindow {
         item: wrapper
     }
 
-    color: "transparent"
+    color: Theme.Colors.playerPopupColor1
 
     property Scope positionInfo: Scope {
         id: positionInfo
@@ -65,7 +66,7 @@ PopupWindow {
         id: wrapper
         implicitWidth: 500
         implicitHeight: popupContent.implicitHeight + popupContent.anchors.margins * 2
-        color: "#824524"
+        color: Theme.Colors.playerPopupColor2
 
         x: 200
         y: -wrapper.height
@@ -149,7 +150,7 @@ PopupWindow {
                     anchors.centerIn: parent
                     implicitWidth: 50
                     implicitHeight: 50
-                    color: "#824524"
+                    color: Theme.Colors.playerPopupColor3
                 }
 
                 RowLayout {
@@ -231,7 +232,7 @@ PopupWindow {
                     anchors.centerIn: parent
                     text: MprisController.activePlayer.identity
                     font.family: "BigBlueTermPlusNerdFont"
-                    color: "white"
+                    color: Theme.Colors.playerPopupColor4
                 }
             }
 
@@ -277,7 +278,7 @@ PopupWindow {
                                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                                 implicitHeight: 128
                                 implicitWidth: 128
-                                color: "transparent"
+                                color: Theme.Colors.playerPopupColor5
 
                                 Image {
                                     id: img
@@ -298,7 +299,7 @@ PopupWindow {
                                     text: flickable.track.title
                                     font.pointSize: albumLabel.font.pointSize + 1
                                     font.family: "BigBlueTermPlusNerdFont"
-                                    color: "white"
+                                    color: Theme.Colors.playerPopupColor6
                                     elide: Text.ElideRight
                                     Layout.maximumWidth: Math.min(300, implicitWidth)
                                 }
@@ -308,7 +309,7 @@ PopupWindow {
                                     text: flickable.track.album
                                     opacity: 0.8
                                     font.family: "BigBlueTermPlusNerdFont"
-                                    color: "white"
+                                    color: Theme.Colors.playerPopupColor7
                                     Layout.maximumWidth: Math.min(300, implicitWidth)
                                 }
 
@@ -316,7 +317,7 @@ PopupWindow {
                                     text: flickable.track.artist
                                     opacity: 0.8
                                     font.family: "BigBlueTermPlusNerdFont"
-                                    color: "white"
+                                    color: Theme.Colors.playerPopupColor8
                                     Layout.maximumWidth: Math.min(300, implicitWidth)
                                 }
                             }
@@ -445,7 +446,7 @@ PopupWindow {
                     Layout.preferredWidth: lengthLabel.implicitWidth
                     text: positionInfo.timeStr(positionInfo.position)
                     font.family: "BigBlueTermPlusNerdFont"
-                    color: "white"
+                    color: Theme.Colors.playerPopupColor9
                 }
 
                 Slider {
@@ -474,7 +475,7 @@ PopupWindow {
                         implicitHeight: 24
                         width: slider.availableWidth
                         height: implicitHeight
-                        color: "#824524"
+                        color: Theme.Colors.playerPopupColor10
 
                         Rectangle {
                             anchors.margins: 8
@@ -482,7 +483,7 @@ PopupWindow {
                             y: anchors.topMargin
                             width: slider.visualPosition * (parent.width - anchors.leftMargin - anchors.rightMargin)
                             height: parent.height - anchors.topMargin - anchors.bottomMargin
-                            color: "#8D804B"
+                            color: Theme.Colors.playerPopupColor11
                         }
                     }
 
@@ -492,7 +493,7 @@ PopupWindow {
                         implicitWidth: 16
                         implicitHeight: 16
                         rotation: 45
-                        color: "#8D804B"
+                        color: Theme.Colors.playerPopupColor12
                     }
 
                     Connections {
@@ -520,7 +521,7 @@ PopupWindow {
                     id: lengthLabel
                     text: positionInfo.timeStr(positionInfo.length)
                     font.family: "BigBlueTermPlusNerdFont"
-                    color: "white"
+                    color: Theme.Colors.playerPopupColor13
                 }
             }
         }
