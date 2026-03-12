@@ -11,7 +11,6 @@ in {
   wayland.windowManager.hyprland.package = pkgs-unstable.hyprland;
   #hint Electron apps to use on wayland;
   home.sessionVariables.NIXOS_OZONE_WL = "1";
-
   wayland.windowManager.hyprland.plugins = [
     #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
     #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
@@ -132,9 +131,11 @@ in {
       "$mod, Q, exec, custom-dontkillsteam"
       "Ctrl+Alt, W, exec, pkill waybar || waybar"
       "$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
-      "$mod, F11, exec, hyprshot -m  window"
-      ", F11, exec, hyprshot -m output"
-      "$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
+      #"$mod, F11, exec, hyprshot -m  window"
+      #", F11, exec, hyprshot -m output"
+      #"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
+      "$mod_SHIFT, S, exec, qs ipc call screenshot toggle"
+      "Ctrl+$mod_SHIFT, S, exec, qs, ipc call screenshotsave toggle"
       # framework 16 rgb macropad
       "Ctrl+$mod, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
       "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode

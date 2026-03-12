@@ -39,7 +39,7 @@ PanelWindow {
     }
     Process {
         id: notifyCmd
-        command: ["notify-send", "\"Screenshot copied\"", "\"The screenshot was copied to your clipboard\""]
+        command: ["notify-send", "\"Screenshot copied\"", "\"The screenshot was copied to your clipboard\\n\and saved to ~/Pictures/"]
         running: false
         onExited: root.controller.isOpen = false
     }
@@ -53,7 +53,7 @@ PanelWindow {
             const y = Math.ceil(root.top);
             const w = Math.floor(root.right - root.left);
             const h = Math.floor(root.bottom - root.top);
-            cmd.command = ["sh", "-c", `grim -g "${x},${y} ${w}x${h}" - | wl-copy`];
+            cmd.command = ["zsh", "-c", `grim -g "${x},${y} ${w}x${h}" - | wl-copy && grim -g "${x},${y} ${w}x${h}"`]; // we copy it once and save it another time
             cmd.running = true;
         }
     }

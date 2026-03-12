@@ -197,7 +197,11 @@
     cmatrix
     tomato-c # pomodoro timer
     pavucontrol # PulseAudio Volume Control
-    hyprshot
+    #hyprshot
+    grim # Grab images from a Wayland compositor Used for quickshell screenshot tool
+    xdg-utils
+    mailcap
+
     hyprcursor
     vial # Open-source GUI and QMK fork for configuring your keyboard in real time
     mplayer # Movie player that supports many video formats
