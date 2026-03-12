@@ -27,17 +27,16 @@ with quickshell:
   see all thoses waarnings and errors
   set keybinds. for screenshot
   fix screenshot (copy, write, etc.)
-  fix battery icon
   fix player control icons
   remove unnecessary stuff
-  
+  give battery percentage
   maybe modify some of the images (like the notification body)
   do a full bar (no ugly empty space at top)
   add brightness slider
   maybe change sound icon by volume level
   maybe incorpore the fast fourier transform code
 
-  add some modules to see system stats
+
   
   maybe write some notification center
 

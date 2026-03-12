@@ -21,8 +21,10 @@
   ];
 
   documentation.man.generateCaches = true; # used for the man script
+  
+  hardware.bluetooth.enable = true;
 
-qt.enable = true;
+  qt.enable = true;
 
   # grub theme
   boot.loader.grub = {

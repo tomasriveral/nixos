@@ -107,46 +107,65 @@ PanelWindow {
                 smooth: false
             }
 
-            RowLayout {
-                id: sysinfo
-                spacing: 10
-
-                property int cpu: 0
-                property int mem: 0
-                property int disk: 0
-                property real power: 0
-
-                Timer {
-                    interval: 2000
-                    running: true
-                    repeat: true
-                    onTriggered: sysProcess.running = true
-                }
-
-                Process {
-                    id: sysProcess
-                    command: ["QS-sysinfo"]
-
-                    stdout: SplitParser {
-                        onRead: function(line) {
-                            try {
-                                var data = JSON.parse(line)
-                                sysinfo.cpu = data.cpu
-                                sysinfo.mem = data.mem
-                                sysinfo.disk = data.disk
-                                sysinfo.power = data.power
-                            } catch(e) {}
-                        }
-                    }
-                }
-
-                Text {
-                    id: infoText
-                    text: "CPU " + sysinfo.cpu + "%  MEM " + sysinfo.mem + "%  DSK " + sysinfo.disk + "%  PWR " + sysinfo.power + "W"
-                    font.pixelSize: 18
-                    color: Theme.Colors.barColor8
-                }
-            }
+           RowLayout {
+              id: sysinfo
+              spacing: 10
+          
+              property int cpu: 0
+              property int mem: 0
+              property int disk: 0
+              property real power: 0
+              property int temp: 0
+              property int fan: 0
+              property int down: 0
+              property int up: 0
+          
+              Timer {
+                  interval: 2000
+                  running: true
+                  repeat: true
+                  onTriggered: sysProcess.running = true
+              }
+          
+              Process {
+                  id: sysProcess
+                  command: ["QS-sysinfo"]
+          
+                  stdout: SplitParser {
+                      onRead: function(line) {
+                          try {
+                              var data = JSON.parse(line)
+          
+                              sysinfo.cpu = parseInt(data.cpu)
+                              sysinfo.mem = parseInt(data.mem)
+                              sysinfo.disk = parseInt(data.disk)
+                              sysinfo.power = parseFloat(data.power)
+                              sysinfo.temp = parseInt(data.temp)
+                              sysinfo.fan = parseInt(data.fan)
+                              sysinfo.down = parseInt(data.down)
+                              sysinfo.up = parseInt(data.up)
+          
+                          } catch(e) {}
+                      }
+                  }
+              }
+          
+              Column {
+                  spacing: 2
+          
+                  Text {
+                      text: "CPU " + sysinfo.cpu + "%  |  MEM " + sysinfo.mem + "%  |  PWR " + sysinfo.power.toFixed(1) + "W  |  UP " + sysinfo.up
+                      font.pixelSize: 18
+                      color: Theme.Colors.barColor8
+                  }
+          
+                  Text {
+                      text: "TMP " + sysinfo.temp + "°C  |  DSK " + sysinfo.disk + "%  |  FAN " + sysinfo.fan + "  |  DOWN " + sysinfo.down
+                      font.pixelSize: 18
+                      color: Theme.Colors.barColor8
+                  }
+              }
+        } 
         }
 
         // ---------------- RIGHT MODULE ----------------
