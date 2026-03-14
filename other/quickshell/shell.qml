@@ -17,9 +17,10 @@ ShellRoot {
         bar: bar
     }
 
-    Component.onCompleted: () => {
+    Component.onCompleted: {
         //Launcher.Controller.init();
         Screenshot.Controller.init();
         //Lock.Controller.init();
-    }
+        Notifs.NotificationCenter.init();
+      }
 }

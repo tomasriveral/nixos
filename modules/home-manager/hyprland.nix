@@ -202,6 +202,7 @@ in {
       "custom-mountkdrive"
       "waybar"
       "custom-gitnotify"
+      "QS-notifycache" # builds the cache that will be used for the notification history
 
       #########################
       # login autostart

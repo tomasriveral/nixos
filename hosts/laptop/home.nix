@@ -77,7 +77,9 @@
     (pkgs.callPackage ../../modules/scripts/man.nix {})
     (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
     (pkgs.callPackage ../../modules/scripts/QSsysinfo.nix {})
-    #pkgs
+    (pkgs.callPackage ../../modules/scripts/QSnotifycache.nix {})
+    (pkgs.callPackage ../../modules/scripts/QSnotifyhistory.nix {})
+#pkgs
     pkgs.gruvbox-gtk-theme
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.

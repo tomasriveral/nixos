@@ -47,7 +47,7 @@ for f in /sys/class/hwmon/hwmon*/fan*_input; do
     count=$((count + 1))
   fi
 done
-fan=$(( sum / count / 1000 ))  
+fan=$(( sum / count ))  
 fan=$(printf "%4s" "$fan")
 
 mem=$(free | awk '/Mem:/ {printf("%.0f",$3/$2*100)}')

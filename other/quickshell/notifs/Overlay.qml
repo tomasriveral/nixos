@@ -2,10 +2,13 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Services.Notifications
 import "../theme" as Theme
 import "."
+
+
 
 PanelWindow {
     id: root
@@ -23,8 +26,13 @@ PanelWindow {
         bottom: true
         right: true
     }
-
+    Process {
+          id: notifLogger
+    }
     NotificationServer {
+
+        
+
         actionsSupported: true
 
         onNotification: notif => {
@@ -33,6 +41,9 @@ PanelWindow {
             if (notif) {
               notif.tracked = true;
               root.notifs = [...root.notifs, notif];
+
+              notifLogger.command = ["QS-notifyhistory", notif.appName, notif.summary, notif.body, notif.urgency]
+              notifLogger.running = true // logs the notification for later
             }
           }
     }

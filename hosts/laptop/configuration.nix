@@ -211,7 +211,6 @@
     # used for the framework 16 laptop
     framework-tool
     framework-tool-tui
-    
     krita # image edition
     yt-dlp# some youtube downloader
     vlc
@@ -223,6 +222,7 @@
     libsForQt5.qt5.qtgraphicaleffects
     mprisence
     kdePackages.qt5compat
+    
   ];
 
   # fonts

@@ -15,7 +15,6 @@ Item {
 
     ColumnLayout {
         id: layout
-
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
@@ -30,15 +29,23 @@ Item {
             smooth: false
         }
 
-        Rectangle {
+        Item {
             id: bannerRect
 
-            color: Theme.Colors.background
+            //color: "transparent" //Theme.Colors.background
             Layout.fillWidth: true
-            implicitHeight: textColumn.height
+            implicitHeight: textColumn.implicitHeight
             Layout.leftMargin: (width / trumpetTop.sourceSize.width) * 2 + 3
             Layout.rightMargin: (width / trumpetTop.sourceSize.width) * 2 + 3
 
+            Image {
+                //anchors.right: parent.right
+                height: textColumn.height
+                width: textColumn.width
+                source: "../assets/wood.png"
+                smooth: false
+                //opacity: 0.4
+            }
             ColumnLayout {
                 id: textColumn
 
@@ -69,7 +76,7 @@ Item {
                   text: root.notif ? root.notif.summary + (root.notif.body ? "\n" : "") : ""
                   font.family: "BigBlueTermPlusNerdFont"
                   wrapMode: Text.Wrap
-                  font.pointSize: 18
+                  font.pointSize: 14
                   font.bold: true
                   color: Theme.Colors.displayColor1
               }
@@ -78,7 +85,9 @@ Item {
                   text: root.notif ? root.notif.body : ""
                   font.family: "BigBlueTermPlusNerdFont"
                   wrapMode: Text.Wrap
-                  font.pointSize: 14
+                  Layout.maximumWidth: bannerRect.width
+                  Layout.fillWidth: true
+                  font.pointSize: 11
                   font.bold: false
                   color: Theme.Colors.displayColor2
               }
