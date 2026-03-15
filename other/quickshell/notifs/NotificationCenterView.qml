@@ -12,7 +12,7 @@ Rectangle {
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     color: Theme.Colors.notificationCenterColor1
-    visible: false
+    visible: true
 
     ListModel {
         id: notificationsModel
@@ -30,7 +30,14 @@ Rectangle {
         blockLoading: true
     }
 
+    Process {
+        id: clearProcess
+        command: ["QS-notifycache"]
+        onExited: reload()
+    }
+
     function reload() {
+        historyFile.reload()
         notificationsModel.clear()
 
         var text = historyFile.text()
@@ -57,7 +64,8 @@ Rectangle {
             var urgency = lines[i++] || "normal"
             var body = bodyLines.join("\n")
 
-            notificationsModel.append({
+            // insert at beginning to invert order
+            notificationsModel.insert(0, {
                 app: app,
                 title: title,
                 body: body,
@@ -68,76 +76,65 @@ Rectangle {
     }
 
     Component.onCompleted: reload()
-    ListView {
-    id: listView
-    anchors.fill: parent
-    model: notificationsModel
-    spacing: 10
-    clip: true
 
-    Component.onCompleted: {
-        console.log("DISPLAY DEBUG: ListView created")
-        console.log("DISPLAY DEBUG: Model count =", notificationsModel.count)
-        console.log("DISPLAY DEBUG: View width =", width, "height =", height)
-    }
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 8
 
-    onCountChanged: {
-        console.log("DISPLAY DEBUG: ListView count changed ->", count)
-    }
-
-    delegate: Rectangle {
-        width: ListView.view.width
-        color: "transparent"
-        border.color: "transparent"
-        border.width: 1
-        radius: 4
-
-        Component.onCompleted: {
-            console.log("DISPLAY DEBUG: Delegate created")
-            console.log("DISPLAY DEBUG: app =", app)
-            console.log("DISPLAY DEBUG: title =", title)
-            console.log("DISPLAY DEBUG: body =", body)
-            console.log("DISPLAY DEBUG: delegate width =", width)
-            console.log("DISPLAY DEBUG: delegate height=", height)
+        Button {
+            text: "Clear"
+            Layout.fillWidth: true
+            onClicked: {
+                clearProcess.running = true
+            }
         }
 
-        Column {
-            id: columnContent
-            //anchors.fill: parent
-            anchors.margins: 8
-            spacing: 4
+        ListView {
+            id: listView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            model: notificationsModel
+            spacing: 10
+            clip: true
 
-            Text {
-                text: time + " | " + app
-                color: "black"
-                width: ListView.view.width - 16 
-                Component.onCompleted: {
-                    console.log("DISPLAY DEBUG: time/app text created:", text)
-                }
-            }
+            delegate: Rectangle {
+                width: ListView.width
+                color: Theme.Colors.notificationCenterColor1
+                border.color: Theme.Colors.notificationCenterColor3
+                border.width: 1
+                radius: 4
+                visible: true
 
-            Text {
-                text: title
-                color: "black"
-                font.bold: true
-                wrapMode: Text.Wrap
-                width: ListView.view.width - 16 
-                Component.onCompleted: {
-                    console.log("DISPLAY DEBUG: title text created:", text)
-                }
-            }
+                Column {
+                    id: columnContent
+                    anchors.fill: parent
+                    anchors.margins: 8
+                    spacing: 4
 
-            Text {
-                text: body
-                color: "black"
-                wrapMode: Text.Wrap
-                width: ListView.view.width - 16 
-                Component.onCompleted: {
-                    console.log("DISPLAY DEBUG: body text created:", text)
+                    Text {
+                        text: time
+                        color: Theme.Colors.notificationCenterColor4
+                        width: ListView.width - 16
+                    }
+
+                    Text {
+                        text: title
+                        color: Theme.Colors.notificationCenterColor4
+                        font.bold: true
+                        wrapMode: Text.Wrap
+                        width: ListView.width - 16
+                    }
+
+                    Text {
+                        text: body
+                        color: Theme.Colors.notificationCenterColor4
+                        wrapMode: Text.Wrap
+                        width: ListView.width - 16
+                    }
                 }
+
+                height: 100 + columnContent.implicitHeight
             }
-          }
-      height: 100 + columnContent.implicitHeight // necessary gives the height for the delegate
+        }
     }
-  }
 }

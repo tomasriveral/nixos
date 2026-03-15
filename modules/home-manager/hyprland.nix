@@ -129,7 +129,7 @@ in {
       "$mod, F, exec, $browser"
       "$mod+Shift, A, exec, rofi -show drun"
       "$mod, Q, exec, custom-dontkillsteam"
-      "Ctrl+Alt, W, exec, pkill waybar || waybar"
+      #"Ctrl+Alt, W, exec, pkill waybar || waybar"
       "$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
       #"$mod, F11, exec, hyprshot -m  window"
       #", F11, exec, hyprshot -m output"
@@ -145,6 +145,7 @@ in {
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
       #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
+      "Ctrl+Alt, 1, exec, qs ipc call notifications toggle"
       "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
       "Ctrl+$mod, 5, exec, gnome-characters" # pos 2 2 special chars
       "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 3 2 colorpicker
@@ -200,7 +201,7 @@ in {
       "swww-daemon"
       "sleep 1 && custom-wallpaper"
       "custom-mountkdrive"
-      "waybar"
+      #"waybar"
       "custom-gitnotify"
       "QS-notifycache" # builds the cache that will be used for the notification history
 

@@ -5,6 +5,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 import "." as Notifs
+import "../theme" as Theme
 
 Singleton {
     id: root
@@ -16,15 +17,15 @@ Singleton {
         implicitHeight: notificationCenter.height
         anchors.right: notificationCenter.right
         anchors.top: notificationCenter.top
+        color: Theme.Colors.notificationCenterColor1 // needs to be set. Do not delete
 
         Notifs.NotificationCenterView {
             id: notificationCenter
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            //width: 500
-            //anchors.verticalCenter: parent.verticalCenter
-        }
+            color: Theme.Colors.notificationCenterColor2
+          }
     }
 
     IpcHandler {
@@ -35,5 +36,9 @@ Singleton {
             if (window.visible)
                 notificationCenter.reload()
         }
+      }
+
+    function init() {
+    // empty function to define first reference to singleton. Do not delete. It will break.
     }
 }
