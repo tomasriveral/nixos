@@ -151,7 +151,7 @@
   programs.firefox.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = false;
+  nixpkgs.config.allowUnfree = true; # Nonfree packages: Obsidian
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

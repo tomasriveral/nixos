@@ -21,6 +21,14 @@ maybe configure a bit ripgrep? majuscules
 things to do?
 deadnix and aljandra to clean up the repo
 
+Setup obsidian (plugsins, etc.)
+  maybe setup some vaults in obsidian.nix. It seams that it cant direclty use kdrive as a vault.
+  maybe see if shell script to backup every few ...?
+  see if use git or kdrive
+  fzf vault select?
+
+setup kdrive as a git remote
+
 
 
 with quickshell:
