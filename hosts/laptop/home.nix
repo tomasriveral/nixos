@@ -31,6 +31,7 @@
     ../../modules/home-manager/librewolf.nix # privacy browser
     ../../modules/home-manager/cursor.nix # cursor (the icon not the app)
     ../../modules/home-manager/ripgrep.nix # better grep
+    ../../modules/home-manager/obsidian.nix
   ];
 
   #programs.nixvim = {
