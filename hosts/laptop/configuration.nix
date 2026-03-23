@@ -222,6 +222,9 @@
     libsForQt5.qt5.qtgraphicaleffects
     mprisence
     kdePackages.qt5compat
+
+    #latex
+    texliveMedium
     
   ];
 
