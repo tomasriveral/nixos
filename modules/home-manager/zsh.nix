@@ -32,6 +32,8 @@
       mplayer = "mplayer -volume 5";
       snrt = "git add -A && sudo nixos-rebuild test --flake ~/nixos/#laptop";
       snrs = "git add -A && sudo nixos-rebuild switch --flake ~/nixos/#laptop";
+      # these are to create the developpement shell
+      cenv = "nix-shell -p zsh gcc raylib libx11 libGL";
     };
   };
 }

@@ -16,7 +16,7 @@ writeShellApplication {
 
     if rclone listremotes | rg "^''${REMOTE_NAME}:"; then
         echo "Mounting ''${REMOTE_NAME}..."
-        rclone mount "''${REMOTE_NAME}:" "$MOUNT_POINT" --vfs-cache-mode writes &
+        rclone mount "''${REMOTE_NAME}:" "$MOUNT_POINT" --vfs-cache-mode writes --allow-non-empty &
     else
         notify-send "rclone mount failed" \
             "Remote ''${REMOTE_NAME} not found.\nConfigure rclone and create the dir ~/kdrive/ or comment out the exec line in hyprland.nix."

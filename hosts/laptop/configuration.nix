@@ -23,6 +23,9 @@
     ../../modules/nixos/udevsimple.nix
   ];
 
+
+  programs.nix-ld.enable=true; #Run unpatched dynamic binaries on NixOS. For example lets run ./a.out from gcc
+
   documentation.man.generateCaches = true; # used for the man script
   
   hardware.bluetooth.enable = true;
@@ -219,6 +222,7 @@
       networkx
       scipy
     ]))
+    raylib glfw # raylib and some dependecies
     #some nix tools
     manix
     deadnix
