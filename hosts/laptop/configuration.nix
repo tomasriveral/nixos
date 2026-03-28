@@ -150,8 +150,6 @@
     options = "--delete-older-than 7d"; # every week delete generations older than a month
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true; # Nonfree packages: Obsidian
@@ -180,7 +178,6 @@
     cliphist # Wayland clipboard manager
     wl-clipboard # cli copy/past utilities for Wayland
     jp # lightweight and flexible cli JSON parser
-    notepad-next
     libnotify # Library that sends desktop notifications to a notification daemon
     hyprkeys # keybind helper
     cowsay
