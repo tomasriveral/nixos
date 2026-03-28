@@ -203,6 +203,7 @@ in {
       "custom-mountkdrive"
       #"waybar"
       "custom-gitnotify"
+      "custom-obsidianbackup" # backups the obsidian notes to kdrive and to a timed hidden dir (~/.Notes.backup/)
       "QS-notifycache" # builds the cache that will be used for the notification history
 
       #########################
@@ -353,8 +354,8 @@ in {
       "2, layout:scrolling, layoutopt:direction:right"
       "name:special, layout:scrolling"
       # used for smart gaps along some windowrules
-      "w[tv1], gapsout:0, gapsin:0"
-      "f[1], gapsout:0, gapsin:0"
+      "w[tv1], gapsout:1, gapsin:1"
+      "f[1], gapsout:1, gapsin:1"
     ];
 
     # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
@@ -415,10 +416,10 @@ in {
       "float on, size 400 175, match:class ^(custom-librewolfprofiles)$"
       "float on, size 600 600, match:initial_class ^(custom-pomodoro)$"
       "float on, size 1500 800, match:initial_class ^(custom-bottom)$"
-      "border_size 0, match:float 0, match:workspace w[tv1]"
-      "rounding 0, match:float 0, match:workspace w[tv1]"
-      "border_size 0, match:float 0, match:workspace f[1]"
-      "rounding 0, match:float 0, match:workspace f[1]"
+      "border_size 2, match:float 0, match:workspace w[tv1]"
+      "rounding 1, match:float 0, match:workspace w[tv1]"
+      "border_size 2, match:float 0, match:workspace f[1]"
+      "rounding 1, match:float 0, match:workspace f[1]"
     ];
     # add a float for tomato when in kitty
     #"plugin:imgborders:noimgborders, tag:noborder"

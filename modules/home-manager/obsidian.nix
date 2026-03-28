@@ -7,7 +7,14 @@
     enable = true;
     vaults.miscellanious = {
       enable = true;
-      #target = "/kdrive/Notes/miscellanious"; #not directly to kdrive. It causes problems
-      };
+      target = "/Documents/Notes/miscellanious"; # target is relative to ~ #not directly to kdrive. It causes problems
+    };
+    vaults.work = {
+      enable = true;
+      target = "/Documents/Notes/work";
+    };
+    defaultSettings = {
+      
+    };
   };
 }

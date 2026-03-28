@@ -78,6 +78,7 @@
     (pkgs.callPackage ../../modules/scripts/manix.nix {})
     (pkgs.callPackage ../../modules/scripts/man.nix {})
     (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
+    (pkgs.callPackage ../../modules/scripts/obsidianbackup.nix {}) # periodically syncs obsidian's note to kdrive
     (pkgs.callPackage ../../modules/scripts/QSsysinfo.nix {})
     (pkgs.callPackage ../../modules/scripts/QSnotifycache.nix {})
     (pkgs.callPackage ../../modules/scripts/QSnotifyhistory.nix {})

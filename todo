@@ -1,20 +1,12 @@
 audacity.x86_64       
-biber.noarch                                       
 dolphin.x86_64   may be customized or nautilus cust
 ollama.x86_64                                      
 plymouth.x86_64                                    
-python3.x86_64                                     
-qt6-qtwebsockets.x86_64 maybe copy from rivendel hy
 quickshell.x86_64                                  
 raylib-devel.x86_64                                
 some notification daemon 0.12-32.fc43              
-texlive.noarch     
-texlive-biblatex.noarch
-texlive-bibtex.x86_64
-thunderbird.x86_64    
 tor.x86_64               
 torbrowser-launcher.noarch
-replace sddm by ly
 maybe configure a bit ripgrep? majuscules
 
 
@@ -60,6 +52,8 @@ with quickshell:
   make the connection tray prettier? Maybe with a full rewrite
 
   maybe some kind of overview?
+
+  show battery percentage
 
   see what people did with quickshell and take inspiration
 
