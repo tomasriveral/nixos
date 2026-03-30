@@ -31,7 +31,7 @@
     ../../modules/home-manager/librewolf.nix # privacy browser
     ../../modules/home-manager/cursor.nix # cursor (the icon not the app)
     ../../modules/home-manager/ripgrep.nix # better grep
-    ../../modules/home-manager/obsidian.nix
+    #../../modules/home-manager/obsidian.nix obsidian was replaced with a custom solution
     ../../modules/home-manager/thunderbird.nix # email client
   ];
 
@@ -78,8 +78,8 @@
     (pkgs.callPackage ../../modules/scripts/manix.nix {})
     (pkgs.callPackage ../../modules/scripts/man.nix {})
     (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
-    (pkgs.callPackage ../../modules/scripts/obsidianbackup.nix {}) # periodically syncs obsidian's note to kdrive
-    (pkgs.callPackage ../../modules/scripts/obsidianprofiles.nix {}) # fzf vault selector
+    #(pkgs.callPackage ../../modules/scripts/obsidianbackup.nix {}) # periodically syncs obsidian's note to kdrive
+    #(pkgs.callPackage ../../modules/scripts/obsidianprofiles.nix {}) # fzf vault selector # obsidian was replaced with a custom solution
     (pkgs.callPackage ../../modules/scripts/QSsysinfo.nix {})
     (pkgs.callPackage ../../modules/scripts/QSnotifycache.nix {})
     (pkgs.callPackage ../../modules/scripts/QSnotifyhistory.nix {})

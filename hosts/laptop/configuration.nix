@@ -222,6 +222,11 @@
       networkx
       scipy
     ]))
+    direnv
+    vivify # for nvimnotes
+    # utils for dev
+    pkg-config
+    gdb
     raylib glfw # raylib and some dependecies
     #some nix tools
     manix

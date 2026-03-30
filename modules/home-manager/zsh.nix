@@ -15,7 +15,7 @@
           command cat "$@"
         fi
       }
-
+      eval "$(direnv hook zsh)"
           fastfetch''\n'';
     shellAliases = {
       ".." = "z ..";

@@ -9,6 +9,7 @@ tor.x86_64
 torbrowser-launcher.noarch
 maybe configure a bit ripgrep? majuscules
 
+organize packages in pkgs list
 
 why frameworktooltui settings dont apply?
 
@@ -20,7 +21,6 @@ Review windowrules when only one window
 setup lsp in neovim
 
 Setup obsidian (plugsins, etc.)
-  fzf vault select?
 
 setup kdrive as a git remote
 
