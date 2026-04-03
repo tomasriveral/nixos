@@ -234,7 +234,8 @@
     manix
     deadnix
     alejandra
-    # libs or apps for quickshell
+    cling # c interpreter used for coding
+# libs or apps for quickshell
     libsForQt5.qt5.qtgraphicaleffects
     mprisence
     kdePackages.qt5compat

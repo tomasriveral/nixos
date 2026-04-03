@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       # Core animation
-      animation = "gameoflife"; # none or doom or matrix or gameoflife or a dur file
+      animation = "none"; # none or doom or matrix or gameoflife or a dur file
       # Ly supports 24-bit true color with styling, which means each color is a 32-bit value.
       # The format is 0xSSRRGGBB, where SS is the styling, RR is red, GG is green, and BB is blue.
       # Here are the possible styling options:

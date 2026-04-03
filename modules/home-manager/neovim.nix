@@ -6,7 +6,7 @@
 }: {
   programs.neovim = {
     enable = true;
-    vimAlias = true;
+    vimAlias = false;
     viAlias = true;
     package = pkgs-unstable.neovim-unwrapped; # for some reason you must use the unwrapped version
     plugins = [
