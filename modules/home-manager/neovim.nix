@@ -9,38 +9,56 @@
     enable = true;
     vimAlias = false;
     viAlias = true;
-    package = pkgs-unstable.neovim-unwrapped; # required for unwrapped version
+    package = pkgs-unstable.neovim-unwrapped; # required for unwrapped version 
     plugins = [
       pkgs-unstable.vimPlugins.vivify-vim
-      pkgs.vimPlugins.vimtex
-      pkgs.vimPlugins.zoxide-vim
-      pkgs.vimPlugins.gruvbox
-      pkgs.vimPlugins.neovim-sensible
-      pkgs.vimPlugins.nvim-web-devicons
-      pkgs.vimPlugins.nvim-tree-lua
-      pkgs.vimPlugins.nvim-surround
-      pkgs.vimPlugins.floaterm
-      pkgs.vimPlugins.nvim-lspconfig
-      pkgs.vimPlugins.cmp-nvim-lsp
-      pkgs.vimPlugins.cmp-buffer
-      pkgs.vimPlugins.cmp-path
-      pkgs.vimPlugins.cmp-cmdline
-      pkgs.vimPlugins.nvim-cmp
-      pkgs.vimPlugins.cmp-vsnip
-      pkgs.vimPlugins.vim-vsnip
-      pkgs.vimPlugins.dashboard-nvim
-      pkgs.vimPlugins.lualine-nvim
-      pkgs.vimPlugins.vim-nix
-      pkgs.vimPlugins.plenary-nvim
-      pkgs.vimPlugins.blink-ripgrep-nvim
-      pkgs.vimPlugins.nvim-treesitter
-      pkgs.vimPlugins.telescope-nvim
-      pkgs.vimPlugins.nvim-scrollbar
-      pkgs.vimPlugins.promise-async
-      pkgs.vimPlugins.nvim-ufo
-      pkgs.vimPlugins.cheatsheet-nvim
-      pkgs.vimPlugins.popup-nvim
-      pkgs.vimPlugins.vim-visual-multi
+      pkgs-unstable.vimPlugins.vimtex
+      pkgs-unstable.vimPlugins.zoxide-vim
+      pkgs-unstable.vimPlugins.gruvbox
+      pkgs-unstable.vimPlugins.neovim-sensible
+      pkgs-unstable.vimPlugins.nvim-web-devicons
+      pkgs-unstable.vimPlugins.nvim-tree-lua
+      pkgs-unstable.vimPlugins.nvim-surround
+      pkgs-unstable.vimPlugins.floaterm
+      pkgs-unstable.vimPlugins.nvim-lspconfig
+      pkgs-unstable.vimPlugins.cmp-nvim-lsp
+      pkgs-unstable.vimPlugins.cmp-buffer
+      pkgs-unstable.vimPlugins.cmp-path
+      pkgs-unstable.vimPlugins.cmp-cmdline
+      pkgs-unstable.vimPlugins.nvim-cmp
+      pkgs-unstable.vimPlugins.cmp-vsnip
+      pkgs-unstable.vimPlugins.vim-vsnip
+      pkgs-unstable.vimPlugins.dashboard-nvim
+      pkgs-unstable.vimPlugins.lualine-nvim
+      pkgs-unstable.vimPlugins.vim-nix
+      pkgs-unstable.vimPlugins.plenary-nvim
+      pkgs-unstable.vimPlugins.blink-ripgrep-nvim
+      pkgs-unstable.vimPlugins.nvim-treesitter
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.rasi
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.regex
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.udev
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.zsh
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.c
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.bibtex
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.bash
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.gitignore
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.comment
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.json
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.hyprlang
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.lua
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.latex
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.kitty
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.markdown
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.nix
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.printf
+      pkgs-unstable.vimPlugins.nvim-treesitter-parsers.python
+      pkgs-unstable.vimPlugins.telescope-nvim
+      pkgs-unstable.vimPlugins.nvim-scrollbar
+      pkgs-unstable.vimPlugins.promise-async
+      pkgs-unstable.vimPlugins.nvim-ufo
+      pkgs-unstable.vimPlugins.cheatsheet-nvim
+      pkgs-unstable.vimPlugins.popup-nvim
+      pkgs-unstable.vimPlugins.vim-visual-multi
     ];
     extraLuaConfig = ''
       local vim = vim
@@ -50,8 +68,30 @@
       -- =========================
       vim.g.mapleader = ' '
       vim.g.maplocalleader = ' '
+      vim.keymap.set({'n', 'v'}, '<Space>', '<Nop>', { desc = 'Leader key, disable default behavior' })
       vim.keymap.set('n', 'q', '<Nop>', { desc = 'Disable macro recording' })
-
+vim.keymap.set('n', 'gg', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gG', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g0', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g^', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g$', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gj', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gk', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g~', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gu', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gU', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g=', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gq', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g@', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g?', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gC', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gD', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gx', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'gr', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g[', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g]', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g;', '<Nop>', { desc = 'Disable g motion' })
+vim.keymap.set('n', 'g,', '<Nop>', { desc = 'Disable g motion' })
       -- =========================
       -- GENERAL OPTIONS
       -- =========================
@@ -79,17 +119,12 @@
       vim.opt.tabstop = 4
       vim.opt.shiftwidth = 4
       vim.opt.inccommand = 'split'
-      vim.opt.cursorline = true
-      vim.opt.scrolloff = 10
-      vim.opt.termguicolors = true
-      vim.o.background = "dark"
-      vim.cmd("colorscheme gruvbox")
+      vim.opt.cursorline = true vim.opt.scrolloff = 10 vim.opt.termguicolors = true vim.o.background = "dark" vim.cmd("colorscheme gruvbox")
 
       -- =========================
       -- BASIC KEYMAPS
       -- =========================
       vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-      vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
       vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
       -- Disable arrow keys in normal mode
@@ -103,11 +138,6 @@
       vim.keymap.set('n', '<C-Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
       vim.keymap.set('n', '<C-Down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
       vim.keymap.set('n', '<C-Up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-      -- Diagnostic navigation
-      vim.keymap.set("n", "t", vim.diagnostic.goto_prev, { desc = "Previous diagnostic" })
-      vim.keymap.set("n", "z", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-      vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Show diagnostic" })
 
       -- Cheatsheet
       vim.keymap.set("n","§", "<cmd>Cheatsheet<CR>")
@@ -135,12 +165,23 @@
       vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
-      vim.keymap.set('n', '1', "<cmd>foldopen<CR>")
-      vim.keymap.set('n', '2', "<cmd>foldclose<CR>")
+      vim.keymap.set('n', '<leader>1', "<cmd>foldopen<CR>")
+      vim.keymap.set('n', '<leader>2', "<cmd>foldclose<CR>")
       require('ufo').setup({
           provider_selector = function() return {'treesitter', 'indent'} end
       })
 
+      -- =========================
+      -- treesitter
+      -- ========================
+      require('nvim-treesitter').setup({
+  ensure_installed = {},
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  indent = { enable = true },
+})
       -- =========================
       -- NVIM-TREE
       -- =========================
@@ -172,36 +213,67 @@
       cmp.setup.cmdline({ '/', '?' }, { mapping = cmp.mapping.preset.cmdline(), sources = { { name = 'buffer' } } })
       cmp.setup.cmdline(':', { mapping = cmp.mapping.preset.cmdline(), sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }), matching = { disallow_symbol_nonprefix_matching = false } })
 
-      -- =========================
-      -- LSP CONFIGURATION
-      -- =========================
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- =========================
+-- LSP CONFIGURATION
+-- =========================
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      local function on_attach(client, bufnr)
-          local map = function(mode, lhs, rhs, desc)
-              vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-          end
-          map("n", "t", vim.diagnostic.goto_prev, "Previous diagnostic")
-          map("n", "z", vim.diagnostic.goto_next, "Next diagnostic")
-          map("n", "<leader>e", vim.diagnostic.open_float, "Show diagnostic")
-          map("n", "<leader>q", vim.diagnostic.setloclist, "Diagnostic list")
-          map("n", "gd", vim.lsp.buf.definition, "Go to definition")
-          map("n", "K", vim.lsp.buf.hover, "Hover documentation")
-      end
+    -- Diagnostics
+    vim.keymap.set("n", "<leader>e1", function() vim.diagnostic.jump({ prev=true, count = 1 }) end, { desc = "Previous diagnostic" })
+    vim.keymap.set("n", "<leader>e2", function() vim.diagnostic.jump({ prev=false, count = 1 }) end, { desc = "Next diagnostic" })
+    vim.keymap.set("n", "<leader>e3", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+    vim.keymap.set("n", "<leader>e4", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
 
-      vim.lsp.config("lua_ls", { cmd = { "lua-language-server" }, filetypes = { "lua" }, root_dir = vim.fs.dirname, on_attach = on_attach })
-      vim.lsp.config("clangd", { cmd = { "clangd" }, filetypes = { "c","cpp","objc","objcpp" }, on_attach = on_attach })
-      vim.lsp.config("pylsp", { cmd = { "pylsp" }, filetypes = { "python" }, on_attach = on_attach, settings = { pylsp = { plugins = { pylsp_mypy = { enabled = true }, jedi_completion = { fuzzy = true } } } } })
-      vim.lsp.config("texlab", { cmd = { "texlab" }, filetypes = { "tex" }, on_attach = on_attach })
-      vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab" })
+    -- LSP functionality
+    vim.keymap.set("n", "<leader>g1", vim.lsp.buf.hover, { desc = "Hover documentation" })
+    vim.keymap.set("n", "<leader>g2", vim.lsp.buf.definition, { desc = "Go to definition" })
+    vim.keymap.set("n", "<leader>g3", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+    vim.keymap.set("n", "<leader>g4", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+    vim.keymap.set("n", "<leader>g5", vim.lsp.buf.references, { desc = "Show references" })
 
+-- LSP server setup
+vim.lsp.config("lua_ls", { cmd = { "lua-language-server" }, filetypes = { "lua" }, root_dir = vim.fs.dirname, on_attach = on_attach })
+vim.lsp.config("clangd", { cmd = { "clangd" }, filetypes = { "c","cpp","objc","objcpp" }, on_attach = on_attach })
+vim.lsp.config("pylsp", {
+    cmd = { "pylsp" },
+    filetypes = { "python" },
+    on_attach = on_attach,
+    settings = {
+        pylsp = {
+            plugins = {
+                pylsp_mypy = { enabled = true },
+                jedi_completion = { fuzzy = true }
+            }
+        }
+    }
+})
+vim.lsp.config("texlab", { cmd = { "texlab" }, filetypes = { "tex" }, on_attach = on_attach })
+
+vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab" })
       -- =========================
       -- DASHBOARD
       -- =========================
       require('dashboard').setup {
         theme = 'hyper',
         config = {
-          header = { "  ...  ASCII ART ...  " },
+        header = {
+      	"     ...     ...                                                    .                        ",
+      	"  .=*8888n..\"%888:                                                 @88>                      ",
+              " X    ?8888f '8888                     u.        ...     ..        %8P      ..    .     :    ",
+      	" 88x. '8888X  8888>       .u     ...ue888b    :~\"\"888h.:^\"888:      .     .888: x888  x888.  ",
+      	"'8888k 8888X  '\"*8h.   ud8888.   888R Y888r  8X   `8888X  8888>   .@88u  ~`8888~'888X`?888f` ",
+      	" \"8888 X888X .xH8    :888'8888.  888R I888> X888n. 8888X  ?888>  '\"888E`   X888  888X '888>  ",
+              "   `8\" X888!:888X    d888 '88%\"  888R I888> '88888 8888X   ?**h.   888E    X888  888X '888>  ",
+      	"  =~`  X888 X888X    8888.+\"     888R I888>   `*88 8888~ x88x.     888E    X888  888X '888>  ",
+      	"   :h. X8*` !888X    8888L      u8888cJ888   ..<\"  88*`  88888X    888E    X888  888X '888>  ",
+      	"  X888xX\"   '8888..: '8888c. .+  \"*888*P\"       ..XC.    `*8888k   888&   \"*88%\"\"*88\" '888!` ",
+              ":~`888f     '*888*\"   \"88888%      'Y\"        :888888H.    `%88>   R888\"    `~    \"    `\"`   ",
+      	"    \"\"        `\"`       \"YP'                 <  `\"888888:    X\"     \"\"                       ",
+      	"                                                   %888888x.-`                               ",
+      	"                                                     \"\"**\"\"                                  ",
+              "",
+      	""
+      },
           shortcut = { { desc = "  Open File Tree", group = "", key = 't', action = 'NvimTreeOpen' } },
           packages = { enable = false },
           project = { enable = true, limit = 8, icon = '  New file', action = 'Telescope find_files cwd=' },
@@ -219,10 +291,10 @@
       -- TELESCOPE
       -- =========================
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+      vim.keymap.set('n', '<leader>f1', builtin.find_files, { desc = 'Telescope find files' })
+      vim.keymap.set('n', '<leader>f2', builtin.live_grep, { desc = 'Telescope live grep' })
+      vim.keymap.set('n', '<leader>f3', builtin.buffers, { desc = 'Telescope buffers' })
+      vim.keymap.set('n', '<leader>f4', builtin.help_tags, { desc = 'Telescope help tags' })
 
       -- Disable relative numbers even if plugins override
       vim.api.nvim_create_autocmd("VimEnter", { callback = function() vim.opt.colorcolumn = ""; vim.opt.relativenumber = false end })
