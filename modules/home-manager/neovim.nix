@@ -22,6 +22,8 @@
       pkgs-unstable.vimPlugins.floaterm
       pkgs-unstable.vimPlugins.nvim-lspconfig
       pkgs-unstable.vimPlugins.cmp-nvim-lsp
+      pkgs-unstable.vimPlugins.cmp-nvim-lsp-signature-help
+      pkgs-unstable.vimPlugins.cmp-under-comparator
       pkgs-unstable.vimPlugins.cmp-buffer
       pkgs-unstable.vimPlugins.cmp-path
       pkgs-unstable.vimPlugins.cmp-cmdline
@@ -59,8 +61,19 @@
       pkgs-unstable.vimPlugins.cheatsheet-nvim
       pkgs-unstable.vimPlugins.popup-nvim
       pkgs-unstable.vimPlugins.vim-visual-multi
+      pkgs-unstable.vimPlugins.fugit2-nvim
+      pkgs-unstable.vimPlugins.nvim-lastplace
     ];
     extraLuaConfig = ''
+
+      -- Notes about keybinds
+      -- § -> cheatsheet
+      -- <leader>[1-2] -> folding
+      -- <leader>e[1-4] -> error handling (1-2 move to prev and next error; 3 see error definiton; 4 list of error)
+      -- <leader>f[1-4] -> telescope ()
+      -- <leader>g[1-5] -> lsp info (show definition, 
+      --  
+      --
       local vim = vim
 
       -- =========================
@@ -296,14 +309,51 @@ vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab", "nixd"})
         }
       }
 
+      -- jumps cursor when was last cursor last time
+      require("nvim-lastplace").setup({
+        -- Filetypes to ignore
+        ignore_filetypes = {
+          "gitcommit", "gitrebase", "svn", "hgcommit", "xxd", "COMMIT_EDITMSG"
+        },
+        
+        -- Buffer types to ignore  
+        ignore_buftypes = {
+          "quickfix", "nofile", "help", "terminal"
+        },
+        
+        -- Center cursor after jumping
+        center_on_jump = true,
+        
+        -- Only jump if target line is not visible
+        jump_only_if_not_visible = false,
+        
+        -- Minimum lines required to enable jumping
+        min_lines = 10,
+        
+        -- Maximum line to jump to (0 = no limit)
+        max_line = 0,
+        
+        -- Open folds after jumping
+        open_folds = true,
+        
+        -- Enable debug messages
+        debug = false,
+      })
+
       -- =========================
       -- LUALINE
       -- =========================
       require('lualine').setup { options = { theme  = "gruvbox_dark" } }
 
+
+      --==================0
+      -- Some utils
+      --==================
+      vim.keymap.set('n', '<leader>r1', '<cmd>Fugit2<CR>', { desc = 'Open git helper' })
+
       -- =========================
-      -- TELESCOPE
-      -- =========================
+      -- telescope
+      -- =======================
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>f1', builtin.find_files, { desc = 'Telescope find files' })
       vim.keymap.set('n', '<leader>f2', builtin.live_grep, { desc = 'Telescope live grep' })
