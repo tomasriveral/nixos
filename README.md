@@ -134,9 +134,11 @@ nixos/
 | `$mod + F` | Browser |
 | `$mod + N` | Notes |
 | `$mod + Shift + A` | App launcher |
+| `$mod + Alt + A` | Toggle sidebar | 
 | `$mod + Q` | Kill apps (Steam/Pomodoro to special workspace) |
 | `$mod + L` | Lock screen |
-| `$mod + Shift + S` | Screenshot |
+| `$mod + Shift + S` | Screenshot a window|
+| `F11` | Screenshot the whole screen|
 
 ### Multimedia & System
 | Key | Action |

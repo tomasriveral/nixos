@@ -10,6 +10,10 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    caelestia-shell = { # based on quickshell. See https://github.com/caelestia-dots/shell
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   # never got nixvim to wokrs. ):
   #   nixvim = {
@@ -22,6 +26,7 @@
     nixpkgs-unstable,
     home-manager,
     nixos-grub-themes,
+    caelestia-shell,
     ...
   } @ inputs: let
     system = "x86_64-linux";

@@ -15,14 +15,16 @@
     ../../modules/home-manager/ssh.nix
     ../../modules/home-manager/fastfetch.nix
     ../../modules/home-manager/hyprland.nix
-    ../../modules/home-manager/wlogout.nix # logout utility
-    ../../modules/home-manager/rofi.nix # launcher and keybindings helper
+    #../../modules/home-manager/wlogout.nix # logout utility
+    ../../modules/home-manager/rofi.nix # used for keybinds and for clipboard
     #notifications are now manager with quickshell../../modules/home-manager/swaync.nix # notification daemon 
     ../../modules/home-manager/neovim.nix # dont use nixvim. broken
     #../../modules/home-manager/neovim2.nix # ./neovim2.nix uses vim plug instead of the nix repository as with ./neovim.nix see the begining of neovim2 for an explanation
     ../../modules/home-manager/rclone.nix
     #../../modules/home-manager/waybar.nix
-    ../../modules/home-manager/quickshell.nix # used for widgets, waybar and notifications
+    #../../modules/home-manager/quickshell.nix # used for widgets, waybar and notifications # i migrated to caelestia-shell
+    inputs.caelestia-shell.homeManagerModules.default
+    ../../modules/home-manager/caelestia.nix # caelestia shell is based on quickshell
 #../../modules/home-manager/oh-my-posh.nix # zsh customizer
     ../../modules/home-manager/oh-my-zsh.nix # another zsh customizer
     ../../modules/home-manager/hypridle.nix
@@ -80,9 +82,10 @@
     (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
     #(pkgs.callPackage ../../modules/scripts/obsidianbackup.nix {}) # periodically syncs obsidian's note to kdrive
     #(pkgs.callPackage ../../modules/scripts/obsidianprofiles.nix {}) # fzf vault selector # obsidian was replaced with a custom solution
-    (pkgs.callPackage ../../modules/scripts/QSsysinfo.nix {})
-    (pkgs.callPackage ../../modules/scripts/QSnotifycache.nix {})
-    (pkgs.callPackage ../../modules/scripts/QSnotifyhistory.nix {})
+    # no longer used scripts for quickshell. see caelestia-shell
+    #(pkgs.callPackage ../../modules/scripts/QSsysinfo.nix {})
+    #(pkgs.callPackage ../../modules/scripts/QSnotifycache.nix {})
+    #(pkgs.callPackage ../../modules/scripts/QSnotifyhistory.nix {})
 #pkgs
     pkgs.gruvbox-gtk-theme
     pkgs.biber

@@ -48,7 +48,7 @@
     users = {
       tomasr = ./home.nix;
     };
-    extraSpecialArgs = {inherit pkgs-unstable;};
+    extraSpecialArgs = {inherit inputs pkgs-unstable;};
   };
 
   environment.pathsToLink = [
@@ -201,7 +201,6 @@
     tomato-c # pomodoro timer
     pavucontrol # PulseAudio Volume Control
     #hyprshot
-    grim # Grab images from a Wayland compositor Used for quickshell screenshot tool
     xdg-utils
     mailcap
     pkgs-unstable.vimPluginsUpdater # used for building plugins
@@ -235,10 +234,7 @@
     deadnix
     alejandra
     cling # c interpreter used for coding
-# libs or apps for quickshell
-    libsForQt5.qt5.qtgraphicaleffects
     mprisence
-    kdePackages.qt5compat
     gif-for-cli
     # lsp
     texlab

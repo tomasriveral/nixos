@@ -72,7 +72,8 @@ in {
 
     # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
     # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
-    # binds to do
+    # caelestia shell drawers toggle dashboard
+    # caelestia shell drawers toggle utilities
 
     bind = [
       #hyprland/utility keybindings
@@ -109,7 +110,8 @@ in {
       "$mod+Shift, 0, movetoworkspace, 10"
       "$mod+Ctrl+Alt, Right, movetoworkspace, r+1"
       "$mod+Ctrl+Alt, Left, movetoworkspace, r-1"
-      "$mod, Backspace, exec, wlogout -b 4 -T 600 -B 600"
+      #"$mod, Backspace, exec, wlogout -b 4 -T 600 -B 600"
+      "$mod, Backspace, exec, caelestia shell drawers toggle session"
       "$mod+Shift+Ctrl, Left, movewindow, l"
       "$mod+Shift+Ctrl, Right, movewindow, r"
       "$mod+Shift+Ctrl, Up, movewindow, u"
@@ -129,25 +131,30 @@ in {
       "$mod, E, exec, $file"
       "$mod, F, exec, $browser"
       "$mod, N, exec, $notes"
-      "$mod+Shift, A, exec, rofi -show drun"
+      #"$mod+Shift, A, exec, rofi -show drun"
+      "$mod+Shift, A, exec, caelestia shell drawers toggle launcher"
       "$mod, Q, exec, custom-dontkillsteam"
       #"Ctrl+Alt, W, exec, pkill waybar || waybar"
-      "$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
+      "Ctrl+Alt, W, exec, caelestia shell drawers toggle sidebar"
+      #"$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
+      "$mod, L, exec, caelestia shell lock lock"
       #"$mod, F11, exec, hyprshot -m  window"
-      #", F11, exec, hyprshot -m output"
+      ", F11, exec, caelestia screenshot"
       #"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
-      "$mod_SHIFT, S, exec, qs ipc call screenshot toggle"
+      # "$mod_SHIFT, S, exec, qs ipc call screenshot toggle"
+      "$mod_SHIFT, S, exec, caelestia shell picker open"
       # framework 16 rgb macropad
       "Ctrl+$mod, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
       "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
       # reloads the autostart programs # pos 3 1
-      "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=16 -e sh -c 'custom-weather'"
+      # we passed to caelestia-shell and stoped using that
+      /*"Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=16 -e sh -c 'custom-weather'"
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=11 -e sh -c 'custom-cowsay'"
       "Ctrl+$mod, 4, exec, kitty -e 'custom-launch'"
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
       "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
-      #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
-      "Ctrl+Alt, 1, exec, qs ipc call notifications toggle"
+      #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center 
+      "Ctrl+Alt, 1, exec, qs ipc call notifications toggle" */
       "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
       "Ctrl+$mod, 5, exec, gnome-characters" # pos 2 2 special chars
       "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 3 2 colorpicker
