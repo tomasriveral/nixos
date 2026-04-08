@@ -12,8 +12,8 @@ in {
   #hint Electron apps to use on wayland;
   home.sessionVariables.NIXOS_OZONE_WL = "1";
   wayland.windowManager.hyprland.plugins = [
-    pkgs.hyprlandPlugins.hyprspace # currently broken
-    pkgs.hyprlandPlugins.hypr-dynamic-cursors # currently broken
+    #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
+    #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
   ];
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
