@@ -171,6 +171,30 @@ If you **don’t have the physical macropad**, the table below shows which keybi
 > Positions are labeled as `[row, column]` starting from top-left `[1,1]`.  
 > Each macro calls a script or application from this configuration.
 
+### Neovim keybinds
+
+| Key         | Action                |
+|-------------|-----------------------|
+| `<Space>`     | `<leader>`              |
+| `§`           | Cheatsheet            |
+| `<leader>1`   | Open fold             |
+| `<leader>2`   | Close fold            |
+| `<leader>e1`  | Previous error        |
+| `<leader>e2`  | Next error            |
+| `<leader>e3`  | See error message     |
+| `<leader>e4`  | See list of errors    |
+| `<leader>f1`  | Telescope files       |
+| `<leader>f2`  | Telescope grep        |
+| `<leader>f3`  | Telescope buffers     |
+| `<leader>f4`  | Telescope help        |
+| `<leader>g1`  | Hover documentation   |
+| `<leader>g2`  | Go to definition      |
+| `<leader>g3`  | Go to declaration     |
+| `<leader>g4`  | Go to implementation  |
+| `<leader>g5`  | Show references       |
+| `<leader><leader>` | Launch runner (terminal) |
+
+All moving macros with `<Space>`, `g`, and the recording with `q` are disabled.
 ---
 
 ## Aliases

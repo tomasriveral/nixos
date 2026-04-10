@@ -64,11 +64,17 @@
       pkgs-unstable.vimPlugins.fugit2-nvim
       pkgs-unstable.vimPlugins.nvim-lastplace
       pkgs-unstable.vimPlugins.runner-nvim # terminal
-      pkgs-unstable.vimPlugins.better-diagnostic-virtual-text
-      pkgs-unstable.vimPlugins.garbage-day-nvim
     ];
     extraLuaConfig = ''
 
+      -- Notes about keybinds
+      -- § -> cheatsheet
+      -- <leader>[1-2] -> folding
+      -- <leader>e[1-4] -> error handling (1-2 move to prev and next error; 3 see error definiton; 4 list of error)
+      -- <leader>f[1-4] -> telescope ()
+      -- <leader>g[1-5] -> lsp info (show definition, 
+      --  
+      --
       local vim = vim
 
       -- =========================
@@ -164,23 +170,8 @@ vim.keymap.set('n', 'g,', '<Nop>', { desc = 'Disable g motion' })
       -- ========================
       -- terminal
       -- =======================
-      require("runner-nvim").setup({
-        position = 'right', -- position of the terminal window when using the shell_handler
-                      -- can be: top, left, right, bottom
-                      -- will be overwritten when using the telescope mapping to open horizontally or vertically
-
-        width = 80,         -- width of window when position is left or right
-        height = 10,        -- height of window when position is top or bottom
-
-        handlers = {
-          lua = function(bufnr)
-            vim.print('Running lua file in buffer ' .. bufnr)
-            -- Run the file here
-          end
-      }
-      })
-
-      vim.keymap.set("n", "<leader><leader>", function() require("runner-nvim").run() end)
+      require("runner-nvim").setup()
+      vim.keymap.set("n", "<leader><leader>", "<cmd>Runnver<CR>")
       -- =========================
       -- SCROLLBAR
       -- =========================
@@ -251,22 +242,6 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
     vim.keymap.set("n", "<leader>e2", function() vim.diagnostic.jump({ prev=false, count = 1 }) end, { desc = "Next diagnostic" })
     vim.keymap.set("n", "<leader>e3", vim.diagnostic.open_float, { desc = "Show diagnostic" })
     vim.keymap.set("n", "<leader>e4", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
-
-      require("better-diagnostic-virtual-text").setup({
-    ui = {
-        wrap_line_after = false, -- wrap the line after this length to avoid the virtual text is too long
-        left_kept_space = 3, --- the number of spaces kept on the left side of the virtual text, make sure it enough to custom for each line
-        right_kept_space = 3, --- the number of spaces kept on the right side of the virtual text, make sure it enough to custom for each line
-        arrow = "  ",
-        up_arrow = "  ",
-        down_arrow = "  ",
-        above = false, -- the virtual text will be displayed above the line
-    },
-    priority = 2003, -- the priority of virtual text
-    inline = false,
-
-      })
-
 
     -- LSP functionality
     vim.keymap.set("n", "<leader>g1", vim.lsp.buf.hover, { desc = "Hover documentation" })
