@@ -14,7 +14,8 @@
       pkgs-unstable.vimPlugins.vivify-vim
       pkgs-unstable.vimPlugins.vimtex
       pkgs-unstable.vimPlugins.zoxide-vim
-      pkgs-unstable.vimPlugins.gruvbox
+      #pkgs-unstable.vimPlugins.gruvbox
+      pkgs-unstable.vimPlugins.gruvbox-nvim
       pkgs-unstable.vimPlugins.neovim-sensible
       pkgs-unstable.vimPlugins.nvim-web-devicons
       pkgs-unstable.vimPlugins.nvim-tree-lua
@@ -127,7 +128,9 @@ vim.keymap.set('n', 'g,', '<Nop>', { desc = 'Disable g motion' })
       vim.opt.tabstop = 4
       vim.opt.shiftwidth = 4
       vim.opt.inccommand = 'split'
-      vim.opt.cursorline = true vim.opt.scrolloff = 10 vim.opt.termguicolors = true vim.o.background = "dark" vim.cmd("colorscheme gruvbox")
+      vim.opt.cursorline = true
+      vim.opt.scrolloff = 10
+      
 
       -- =========================
       -- BASIC KEYMAPS
@@ -370,7 +373,41 @@ vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab", "nixd"})
         -- Enable debug messages
         debug = false,
       })
+      -- ======================
+      -- gruvbox
+      -- ======================
 
+      require("gruvbox").setup({
+        terminal_colors = false, -- add neovim terminal colors
+        undercurl = true,
+        underline = true,
+        bold = true,
+        italic = {
+          strings = false,
+          emphasis = true,
+          comments = true,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = true,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = true, -- invert background for search, diffs, statuslines and errors
+        contrast = "hard", -- can be "hard", "soft" or empty string
+        palette_overrides = {  -- for overrides see https://github.com/ellisonleao/gruvbox.nvim/blob/main/lua/gruvbox.lua
+          dark0_hard = "#241F17"
+        },
+        overrides = {
+          String = {fg = "#FFB878", italic = false},
+          FoldColumn = {fg = faded_orange, bg = dark0_hard}
+        },
+        dim_inactive = false,
+        transparent_mode = false,
+      })
+      vim.opt.termguicolors = false
+      vim.o.background = "dark"
+      vim.cmd("colorscheme gruvbox")
       -- =========================
       -- LUALINE
       -- =========================

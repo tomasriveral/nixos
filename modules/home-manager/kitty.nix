@@ -7,7 +7,65 @@
     enable = true;
     #font.name = nerd-fonts._0xproto;
     #font.size = "10";
+    ## new config (matches with caelestia
+    ## old condfig
     extraConfig = ''
+      font_size 14
+bold_font auto
+italic_font auto
+bold_italic_font auto
+
+window_padding_width 25
+
+# --- Core ---
+foreground #ece0d9
+background #18120e
+
+selection_foreground #18120e
+selection_background #ece0d9
+
+cursor #ffb878
+cursor_text_color #18120e
+
+# --- Tabs ---
+active_tab_foreground #18120e
+active_tab_background #5c412a
+inactive_tab_foreground #d6c3b5
+inactive_tab_background #241e1a
+
+# --- Black / Gray ---
+color0  #353433
+color8  #b29f91
+
+# --- Red ---
+color1  #e17300
+color9  #ff8a20
+
+# --- Green ---
+color2  #ffc071
+color10 #ffd6a8
+
+# --- Yellow ---
+color3  #ffe0c6
+color11 #fff2e8
+
+# --- Blue ---
+color4  #b9ab66
+color12 #d7be91
+
+# --- Magenta ---
+color5  #ed9562
+color13 #fcad7e
+
+# --- Cyan ---
+color6  #f4c16d
+color14 #ffd497
+
+# --- White ---
+color7  #ebd4c1
+color15 #FFFFFF
+      '';
+    /*extraConfig = ''
       # font	nerd-fonts._0xproto # this key dont work and causes errors
       font_size	14
       bold_font        auto
@@ -60,6 +118,6 @@
       # white
       color7      #FFF0CC
       color15     #F0DBAA
-    '';
+    '';*/
   };
 }

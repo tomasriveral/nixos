@@ -405,7 +405,7 @@
       useFahrenheit = false;
       useFahrenheitPerformance = false;
       useTwelveHourClock = false;
-      smartScheme = true;
+      smartScheme = false; # default true
       visualisersBars = 45;
     };
     session = {
@@ -498,10 +498,10 @@
         extraArgs = [];
       };
       wallpaper = {
-        postHook = ""; # default "echo $WALLPAPER_PATH"
+        postHook = "caelestia scheme set -n gruvbox -f soft -m dark"; # sets the theme
       };
       theme = {
-        enableTerm = true;
+        enableTerm = false; # we do it manually by adapting our kitty config
         enableHypr = true;
         enableDiscord = true;
         enableSpicetify = true;
