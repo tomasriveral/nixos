@@ -401,7 +401,7 @@
       defaultPlayer = "Spotify";
       gpuType = "";
       #playerAliases: [ { "from": "com.github.th_ch.youtube_music", "to": "YT Music" } ]; # how to put this into nix language?
-      weatherLocation = "";
+      weatherLocation = "Lausanne";
       useFahrenheit = false;
       useFahrenheitPerformance = false;
       useTwelveHourClock = false;
