@@ -35,6 +35,7 @@
     ../../modules/home-manager/ripgrep.nix # better grep
     #../../modules/home-manager/obsidian.nix obsidian was replaced with a custom solution
     ../../modules/home-manager/thunderbird.nix # email client
+    ../../modules/home-manager/eza.nix # ls replacement
   ];
 
   #programs.nixvim = {

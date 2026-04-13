@@ -86,7 +86,8 @@ nixos/
 - [`krita`](https://krita.org/) and [`inkscape`](https://inkscape.org/) for image editing  and drawing
 - [`anki`](https://apps.ankiweb.net/) flashcards for learning  
 - [`texlive`](https://www.tug.org/texlive/) LaTeX distribution  
-- [`biber`](https://ctan.org/pkg/biber) bibliography for LaTeX  
+- [`biber`](https://ctan.org/pkg/biber) bibliography for LaTeX 
+- [`eza`](https://github.com/eza-community/eza) replacement for `ls`
 
 ### System & Hardware
 - [`bottom`](https://github.com/ClementTsang/bottom) system monitor  
@@ -210,7 +211,7 @@ All moving macros with `<Space>`, `g`, and the recording with `q` are disabled.
 ---
 
 ## Useful Information
-
+- `ls` is an alias for `eza`. If you want more info than the normal `ls` run `eza`, `l`, `ll` or `la`
 - `qtbatticon` is a custom battery icon tray, because `cbatticon` and `batticonplus` did not work. Click on it to get more info about the battery.
 - `man` and `manix` use `fzf` for fuzzy search of pages.  
 - `pkgs-unstable` can be used for unstable nixpkgs packages.  
