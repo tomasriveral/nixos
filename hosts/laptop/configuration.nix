@@ -250,6 +250,8 @@
     black
     nixd
     # for caelestia
+    kdePackages.qtdeclarative # provides qmlls and other things
+    quickshell # we have it but adding it there solves "WARN qt.qpa.services: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")"
     gpu-screen-recorder
     fuzzel
     papirus-icon-theme

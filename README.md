@@ -211,6 +211,7 @@ All moving macros with `<Space>`, `g`, and the recording with `q` are disabled.
 ---
 
 ## Useful Information
+- If you have an error similar to `Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")` see `./modules/other/desktopEntries.nix`
 - `ls` is an alias for `eza`. If you want more info than the normal `ls` run `eza`, `l`, `ll` or `la`
 - `qtbatticon` is a custom battery icon tray, because `cbatticon` and `batticonplus` did not work. Click on it to get more info about the battery.
 - `man` and `manix` use `fzf` for fuzzy search of pages.  

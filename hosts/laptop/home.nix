@@ -36,6 +36,8 @@
     #../../modules/home-manager/obsidian.nix obsidian was replaced with a custom solution
     ../../modules/home-manager/thunderbird.nix # email client
     ../../modules/home-manager/eza.nix # ls replacement
+
+    ../../modules/other/desktopEntries.nix # creates .desktop files
   ];
 
   #programs.nixvim = {
