@@ -36,7 +36,7 @@
     #../../modules/home-manager/obsidian.nix obsidian was replaced with a custom solution
     ../../modules/home-manager/thunderbird.nix # email client
     ../../modules/home-manager/eza.nix # ls replacement
-
+    ../../modules/home-manager/vivify.nix # neovim markdown viewer (has also config for qutebrowser
     ../../modules/other/desktopEntries.nix # creates .desktop files
   ];
 
@@ -84,6 +84,7 @@
     (pkgs.callPackage ../../modules/scripts/man.nix {})
     (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
     (pkgs.callPackage ../../modules/qt/qtbatticon.nix {})
+
     #(pkgs.callPackage ../../modules/scripts/obsidianbackup.nix {}) # periodically syncs obsidian's note to kdrive
     #(pkgs.callPackage ../../modules/scripts/obsidianprofiles.nix {}) # fzf vault selector # obsidian was replaced with a custom solution
     # no longer used scripts for quickshell. see caelestia-shell

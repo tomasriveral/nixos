@@ -432,7 +432,7 @@ in {
           reboot = "cached";
         };
         commands = {
-          logout = ["loginctl" "terminate-user"];
+          logout = ["hyprctl" "dispatch exit"];
           shutdown = ["systemctl" "poweroff"];
           hibernate = ["systemctl" "hibernate"];
           reboot = ["systemctl" "reboot"];
