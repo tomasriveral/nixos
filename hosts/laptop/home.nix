@@ -37,6 +37,8 @@
     ../../modules/home-manager/thunderbird.nix # email client
     ../../modules/home-manager/eza.nix # ls replacement
     ../../modules/home-manager/vivify.nix # neovim markdown viewer (has also config for qutebrowser
+    #../../modules/home-manager/micro.nix # micro text editor. Not main editor (used for testing for notewrapper)
+
     ../../modules/other/desktopEntries.nix # creates .desktop files
   ];
 

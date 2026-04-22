@@ -67,6 +67,22 @@
         "type": "github"
       }
     },
+    "microPlugins-vivify": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1770382657,
+        "narHash": "sha256-yWmIgT90mC9PhzyH/itDbRMmRTiZiwW+Yo0dsHW7ni8=",
+        "ref": "refs/heads/main",
+        "rev": "3c5cb25facf3fc4143bfea9323a60eda65ef8485",
+        "revCount": 8,
+        "type": "git",
+        "url": "https://codeberg.org/gibbert/micro-vivify"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://codeberg.org/gibbert/micro-vivify"
+      }
+    },
     "nixos-grub-themes": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -158,6 +174,7 @@
       "inputs": {
         "caelestia-shell": "caelestia-shell",
         "home-manager": "home-manager",
+        "microPlugins-vivify": "microPlugins-vivify",
         "nixos-grub-themes": "nixos-grub-themes",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable"
