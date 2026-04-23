@@ -5,7 +5,7 @@
   brightnessctl,
   ...
 }: let
-  NotifySound = ../../assets/battery_notify.mp3;
+  NotifySound = ../../../assets/battery_notify.mp3;
 in
   writeShellApplication {
     name = "custom-batterynotify";

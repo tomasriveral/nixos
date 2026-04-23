@@ -13,11 +13,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
-    ../../modules/nixos/battery.nix
+    ../../hostsModules/laptop/nixos/battery.nix
     #../../modules/nixos/ly.nix
-    ../../modules/nixos/lyminimal.nix
+    ../../modules/nixos/ly.nix
     ../../modules/nixos/anki.nix
-    ../../modules/nixos/udevsimple.nix
+    ../../hostsModules/laptop/nixos/udev.nix
   ];
 
   # this 4 settings should make nixpkgs-review not crash my laptop

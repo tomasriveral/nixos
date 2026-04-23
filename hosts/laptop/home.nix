@@ -11,10 +11,12 @@
     ../../modules/home-manager/kitty.nix # terminal # use absolute path with --impure flag or go back to /etc/nixos and use relative
     ../../modules/home-manager/zoxide.nix # better cd
     ../../modules/home-manager/zsh.nix # better bash
+    ../../hostsModules/laptop/home-manager/zsh.nix # some things are hosts dependant.
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/ssh.nix
     ../../modules/home-manager/fastfetch.nix
     ../../modules/home-manager/hyprland.nix
+    ../../hostsModules/laptop/home-manager/hyprland.nix
     #../../modules/home-manager/wlogout.nix # logout utility
     ../../modules/home-manager/rofi.nix # used for keybinds and for clipboard
     #notifications are now manager with quickshell../../modules/home-manager/swaync.nix # notification daemon
@@ -67,8 +69,8 @@
   home.packages = [
     #scritps
     (pkgs.callPackage ../../modules/scripts/dontkillsteam.nix {}) # kill app (if it is steam put it in some background
-    (pkgs.callPackage ../../modules/scripts/batterynotify.nix {})
-    (pkgs.callPackage ../../modules/scripts/batterywarning.nix {})
+    (pkgs.callPackage ../../hostsModules/laptop/scripts/batterynotify.nix {})
+    (pkgs.callPackage ../../hostsModules/laptop/scripts/batterywarning.nix {})
     (pkgs.callPackage ../../modules/scripts/weather.nix {})
     (pkgs.callPackage ../../modules/scripts/cowsay.nix {})
     (pkgs.callPackage ../../modules/scripts/wallpaper.nix {})
@@ -85,7 +87,7 @@
     (pkgs.callPackage ../../modules/scripts/manix.nix {})
     (pkgs.callPackage ../../modules/scripts/man.nix {})
     (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
-    (pkgs.callPackage ../../modules/qt/qtbatticon.nix {})
+    (pkgs.callPackage ../../hostsModules/laptop/qt/qtbatticon.nix {})
 
     #(pkgs.callPackage ../../modules/scripts/obsidianbackup.nix {}) # periodically syncs obsidian's note to kdrive
     #(pkgs.callPackage ../../modules/scripts/obsidianprofiles.nix {}) # fzf vault selector # obsidian was replaced with a custom solution
