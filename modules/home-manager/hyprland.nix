@@ -210,7 +210,6 @@ in {
       "wl-paste --type image --watch cliphist store" # clipboard store image data
       "custom-batterynotify"
       "custom-batterywarning"
-      "qtbatticon" # custom battery tray
       "birdtray" # thunderbird tray app
       #wallpapers/b
       "swww img ${wallpaper}"
@@ -268,7 +267,6 @@ in {
     # █░▀░█ █▄█ █#░▀█ █ ░█░ █▄█ █▀▄
     monitor = [
       #",preferred, auto, auto"
-      "eDP-1, highres@highrr, 0x0, 1"
       "HDMI-A-1, highres2highrr, auto-left, 1"
     ];
     # _______  ___      __   __  _______  ___   __    _  _______

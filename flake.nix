@@ -15,6 +15,10 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    microPlugins-vivify = {
+	  url = "git+https://codeberg.org/gibbert/micro-vivify";
+	  flake = false;
+    };
   };
   # never got nixvim to wokrs. ):
   #   nixvim = {

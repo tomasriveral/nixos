@@ -13,12 +13,15 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
-    ../../modules/nixos/battery.nix
+    ../../hostsModules/laptop/nixos/battery.nix
     #../../modules/nixos/ly.nix
-    ../../modules/nixos/lyminimal.nix
+    ../../modules/nixos/ly.nix
     ../../modules/nixos/anki.nix
-    ../../modules/nixos/udevsimple.nix
+    ../../modules/nixos/nixUtils.nix
+    ../../hostsModules/laptop/nixos/udev.nix
+    ../../hostsModules/laptop/nixos/disk.nix
   ];
+
 
   programs.nix-ld.enable = true; #Run unpatched dynamic binaries on NixOS. For example lets run ./a.out from gcc
 
@@ -150,12 +153,7 @@
   #adds nixos experimental features:
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Garbage collector of generations
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d"; # every week delete generations older than a month
-  };
+  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true; # Nonfree packages: Obsidian
@@ -173,7 +171,7 @@
     kdePackages.dolphin
     gnome-font-viewer
     wget
-    tree # shows dir in tree
+    #tree # shows dir in tree # we use eza now
     zsh # better bash
     brightnessctl # control brightness
     pulseaudio # sound server
@@ -260,6 +258,11 @@
     #vivify # for NoteWrapper
     # this is more up to date
     (callPackage ../../modules/packages/vivify.nix {})
+    #(callPackage ../../modules/packages/sbb-tui.nix {})
+    pkgs-unstable.nixpkgs-review
+    pkgs-unstable.nixfmt-tree
+    pkgs-unstable.treefmt
+    kakoune
   ];
 
   # fonts

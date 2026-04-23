@@ -7,7 +7,7 @@
   programs.neovim = {
     enable = true;
     vimAlias = false;
-    viAlias = true;
+    viAlias = false;
     package = pkgs-unstable.neovim-unwrapped; # required for unwrapped version
     plugins = [
       pkgs-unstable.vimPlugins.vivify-vim
