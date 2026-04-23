@@ -17,18 +17,11 @@
     #../../modules/nixos/ly.nix
     ../../modules/nixos/ly.nix
     ../../modules/nixos/anki.nix
+    ../../modules/nixos/nixUtils.nix
     ../../hostsModules/laptop/nixos/udev.nix
+    ../../hostsModules/laptop/nixos/disk.nix
   ];
 
-  # this 4 settings should make nixpkgs-review not crash my laptop
-  swapDevices = [{
-      device = "/swapfile";
-      size = 16384; # 16 GB
-    }
-  ];
-  nix.settings.max-jobs = 2;
-  nix.settings.cores = 2;
-  boot.kernel.sysctl."vm.swappiness" = 10;
 
   programs.nix-ld.enable = true; #Run unpatched dynamic binaries on NixOS. For example lets run ./a.out from gcc
 
@@ -160,12 +153,7 @@
   #adds nixos experimental features:
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  # Garbage collector of generations
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d"; # every week delete generations older than a month
-  };
+  
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true; # Nonfree packages: Obsidian
