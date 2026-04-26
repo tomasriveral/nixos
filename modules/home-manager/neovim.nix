@@ -290,6 +290,8 @@
           clangdFileStatus = true,
           usePlaceholders = true,
           completeUnimported = false, -- this adds a bunch of #include even thought they are #included in another header file
+          headerInsertion = false,
+          headerInsertionDecorators = false,
           semanticHighlighting = true}
             })
             vim.lsp.config("nixd", {
