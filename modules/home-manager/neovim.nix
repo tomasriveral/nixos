@@ -287,14 +287,16 @@
             filetypes = { "c","cpp","objc","objcpp" },
             on_attach = on_attach ,
               init_options = {
+
           clangdFileStatus = true,
           usePlaceholders = true,
           completeUnimported = false, -- this adds a bunch of #include even thought they are #included in another header file
           headerInsertion = false,
           headerInsertionDecorators = false,
+          addDependencyHeaders = false,
           semanticHighlighting = true}
             })
-            vim.lsp.config("nixd", {
+      vim.lsp.config("nixd", {
               cmd = { "nixd" },
               filetyypes = { "nix" },
               on_attach = on_attach,
