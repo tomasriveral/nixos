@@ -38,7 +38,7 @@
       #  "https://metrics.internal.contre.io/d/cUITC74Vksd/podman-revamped?orgId=1&from=2026-02-23T19:29:26.304Z&to=2026-02-23T19:59:26.304Z&timezone=browser&var-Filters=&var-namespace=alloy&var-level=error&var-level=debug&var-level=info&var-level=warn&refresh=5s&kiosk=true"; # disable welcome page
       "browser.newtabpage.enabled" = true; # disable new tab page
       "full-screen-api.ignore-widgets" = true; # fullscreen within window
-      "browser.toolbars.bookmarks.visibility" = "always"; # hide bookmarks toolbar
+      "browser.toolbars.bookmarks.visibility" = "never"; # hide bookmarks toolbar
       "browser.aboutConfig.showWarning" = false; # disable warning about about:config
       "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # disable picture in picture button
 
@@ -296,7 +296,13 @@
             name = "Nixos Config";
             tags = ["github"];
             keyword = "github";
-            url = "https://github.com/Totorile1/nixos";
+            url = "https://github.com/tomasriveral/nixos";
+          }
+          {
+            name = "Public AI";
+            tags = ["ai" "chatgpt" "apertus"];
+            keyword = "apertus";
+            url = "https://chat.publicai.co/";
           }
         ];
       };
