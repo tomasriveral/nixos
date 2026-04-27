@@ -20,6 +20,7 @@
     ../../modules/nixos/nixUtils.nix
     ../../hostsModules/laptop/nixos/udev.nix
     ../../hostsModules/laptop/nixos/disk.nix
+    ../../modules/nixos/printer.nix
   ];
 
 
@@ -49,6 +50,9 @@
     };
     extraSpecialArgs = {inherit inputs pkgs-unstable;};
   };
+
+  services.dbus.enable = true;
+  security.polkit.enable = true;
 
   environment.pathsToLink = [
     "/share/applications"
@@ -120,8 +124,6 @@
   # Configure console keymap
   console.keyMap = "fr_CH";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -156,7 +158,7 @@
   
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true; # Nonfree packages: Obsidian
+  nixpkgs.config.allowUnfree = true; # Nonfree packages: hplipWithPlugin
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

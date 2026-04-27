@@ -38,7 +38,7 @@
     pkgs = nixpkgs.legacyPackages.${system};
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      config.allowUnfree = false;
+      config.allowUnfree = true; #hplipWithPlugins is unfree...
     };
   in {
     nixosConfigurations = {

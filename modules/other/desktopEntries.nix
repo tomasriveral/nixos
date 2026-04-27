@@ -1,9 +1,7 @@
 {
   ...
 }:
-# add a desktop entry here if you have an error like
-# Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")
-
+# see ../../docs/printing.md
 {
   home.file.".local/share/applications/org.quickshell.desktop" = {
     enable = true;
@@ -18,5 +16,17 @@
       StartupNotify=true
       X-DBUS-ServiceName=org.quickshell
     '';
+  };
+  home.file.".local/share/applications/org.kde.PrintQueue.desktop" = {
+    enable = true;
+    text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Print Queue
+      Exec=print-queue
+      Icon=printer
+      Categories=Utility;
+      StartupNotify=true
+      '';
   };
 }
