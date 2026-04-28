@@ -1,5 +1,8 @@
 # https://discourse.nixos.org/t/what-is-the-best-option-for-power-management/63406/2
-{...}:
+{
+  lib,
+  config,
+  ...}:
 # we just activate tlp unconditonally
 #let
 #  cfg = config.custom;
@@ -18,6 +21,14 @@
 
   #  config = lib.mkIf cfg.battery.enable {
   powerManagement.powertop.enable = true; # enable powertop auto tuning on startup.
+  # Acording to https://community.frame.work/t/solved-keys-stick-and-repeat-after-being-released/51153/12
+  # Some powertop bug is responsable for the problem of the random keypress being stuck
+  # fix: from https://git.gabbie.blue/blue/nixconf/src/commit/2d1bc6dad4684c019b6b3e894408e76e2734806c/hosts/gabbielaptop/configuration.nix#L68
+  powerManagement.powertop.postStart = ''
+    ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0018
+    # Retrigger macropad udev rules
+    ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0013
+  '';
   services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
   services.thermald.enable = true; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
   services.power-profiles-daemon.enable = false; # Disable GNOMEs power management

@@ -12,5 +12,13 @@
     # taken from here
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0013", TAG+="uaccess"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0018", TAG+="uaccess"
+
+    # acording to https://community.frame.work/t/solved-keys-stick-and-repeat-after-being-released/51153/12
+    # the random keypress stuck comes from conflict between powertop and udev
+    # fix from: https://git.gabbie.blue/blue/nixconf/src/commit/2d1bc6dad4684c019b6b3e894408e76e2734806c/hosts/gabbielaptop/configuration.nix#L68
+    # disable USB auto suspend for framework keyboard
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0018", TEST=="power/control", ATTR{power/control}="on"
+    # disable USB auto suspend for framework macropad
+    ACTION=="bind", SUBSYSTEM=="usb", ATTR{idVendor}=="32ac", ATTR{idProduct}=="0013", TEST=="power/control", ATTR{power/control}="on"
   '';
 }
