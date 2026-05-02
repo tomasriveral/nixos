@@ -266,7 +266,7 @@
     pkgs-unstable.nixpkgs-review
     pkgs-unstable.nixfmt-tree
     pkgs-unstable.treefmt
-    kakoune
+    pkgs-unstable.tor-browser
   ];
 
   # fonts
