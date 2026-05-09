@@ -308,6 +308,12 @@
             keyword = "apertus";
             url = "https://chat.publicai.co/";
           }
+          {
+            name = "Signs of AI writing";
+            tags = [ "ai" "write"];
+            keyword = "AI writing";
+            url = "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing";
+          }
         ];
       };
       search = {

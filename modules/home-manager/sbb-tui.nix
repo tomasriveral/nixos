@@ -3,7 +3,7 @@
   ...
 }: {
   home.packages = [
-    pkgs-unstable.sbb-tui
+    #pkgs-unstable.sbb-tui
   ];  
   home.file.".config/sbb-tui/config.yaml" = {
     enable = true;

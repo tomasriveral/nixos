@@ -8,13 +8,13 @@
 
 buildGoModule (finalAttrs: {
   pname = "sbb-tui";
-  version = "1.13.4";
+  version = "1.14.1";
   __structuredAttrs = true;
   src = fetchFromGitHub {
     owner = "Necrom4";
     repo = "sbb-tui";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-JLjAhs5UbqgNYqpA3cDucrAS6ell+0JiDJNf7G33Nhs=";
+    hash = "sha256-nXkzy5PDR3MRrA0Hsh6/icjAbYyBR2q7oBn74ir1O3E=";
   };
 
   vendorHash = "sha256-K4DOu3rfSlKAa5JNKCzWWpnWZlXXxtN5Po7p1Spqe1w=";
@@ -24,6 +24,8 @@ buildGoModule (finalAttrs: {
     "-w"
     "-X main.version=${finalAttrs.version}"
   ];
+  
+  allowGoReference = true;
 
   doCheck = true;
 

@@ -271,7 +271,7 @@
     #vivify # for NoteWrapper
     # this is more up to date
     (callPackage ../../modules/packages/vivify.nix {})
-    #(callPackage ../../modules/packages/sbb-tui.nix {})
+    (callPackage ../../modules/packages/sbb-tui.nix {})
     pkgs-unstable.nixpkgs-review
     pkgs-unstable.nixfmt-tree
     pkgs-unstable.treefmt
