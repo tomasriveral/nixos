@@ -1,6 +1,5 @@
 {
-  config,
-  pkgs,
+  pkgs-unstable,
   ...
 }: {
   home.file.".config/vivify/config.json" = {
@@ -13,6 +12,9 @@
       }
   }'';
 };
+home.packages = [
+  pkgs-unstable.vivify
+];
 programs.qutebrowser = {
   enable = true;
   settings = {
