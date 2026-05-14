@@ -235,7 +235,7 @@
         networkx
         scipy
       ]))
-    iamb # matrix client
+    fluffychat # matrix client
     direnv
     # utils for dev
     pkg-config
