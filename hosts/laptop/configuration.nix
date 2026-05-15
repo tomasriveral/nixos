@@ -97,6 +97,11 @@
   # zsh dont want to work if it is not initialzed here.
   programs.zsh.enable = true;
 
+  # removes rclone error
+  programs.fuse.userAllowOther =  true;
+  programs.fuse.enable = true;
+
+
   security.wrappers.gsr-kms-server = {
     # to remove the password prompt when using gpu-screen-recorder
     owner = "root";
@@ -160,7 +165,7 @@
   users.users.tomasr = {
     isNormalUser = true;
     description = "Tomas Rivera";
-    extraGroups = ["networkmanager" "wheel"]; #wheel allow to use sudo
+    extraGroups = ["networkmanager" "wheel" "fuse"]; #wheel allow to use sudo / fuse -> rclone
     shell = pkgs.zsh;
   };
 
