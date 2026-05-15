@@ -15,7 +15,7 @@ writeShellApplication {
   text = ''
 set +e
 
-output=$(rclone ls kdrive: 2>&1)
+output=$(rclone lsd kdrive: 2>&1)
 status=$?
 
 set -e
