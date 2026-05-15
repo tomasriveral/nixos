@@ -25,12 +25,13 @@ pkgs.writeShellApplication {
     nix flake update --flake "$FLAKE_DIR"
 
     if sudo nixos-rebuild switch --flake "$FLAKE"; then
+      git -C "$FLAKE_DIR" restore .
       git -C "$FLAKE_DIR" add flake.lock
       git -C "$FLAKE_DIR" commit -m "flake: autoupdate $TIME"
       git -C "$FLAKE_DIR" push
 
       notify-send "Flake autoupdate" "Rebuild OK"
-      matrix-commander-rs -m "Flake rebuild OK"
+      matrix-commander-rs -m "Flake rebuild succesfull.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" --html -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
     else
       notify-send -u critical "Flake autoupdate" "FAILED"
       matrix-commander-rs -m "Flake rebuild FAILED"
