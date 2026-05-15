@@ -37,7 +37,7 @@ pkgs.writeShellApplication {
 
       notify-send "Flake autoupdate" "Rebuild OK"
 
-      matrix-commander-rs -m "Flake rebuild succesfull.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
+      matrix-commander-rs --verbose -m "Flake rebuild succesfull.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
         --html \
         -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
 
@@ -46,7 +46,7 @@ pkgs.writeShellApplication {
 
       notify-send -u critical "Flake autoupdate" "FAILED"
 
-      matrix-commander-rs -m "Flake rebuild failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
+      matrix-commander-rs --verbose -m "Flake rebuild failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
         --html \
         -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
 
