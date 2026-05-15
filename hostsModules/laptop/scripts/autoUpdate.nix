@@ -21,10 +21,18 @@ pkgs.writeShellApplication {
 
     ERROR_FILE=$(mktemp)
 
+    # snapshot current state
+    git -C "$FLAKE_DIR" add -A
+    git -C "$FLAKE_DIR" commit --allow-empty -m "snapshot pre-autoupdate-$TIME"
+    git -C "$FLAKE_DIR" tag "pre-autoupdate-$TIME" HEAD
+
+    # update lock only
+    nix flake update --flake "$FLAKE_DIR"
+
     if sudo nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then
-      git -C "$FLAKE_DIR" restore .
+
       git -C "$FLAKE_DIR" add flake.lock
-      git -C "$FLAKE_DIR" commit -m "flake: autoupdate $TIME"
+      git -C "$FLAKE_DIR" commit -m "flake.lock: autoupdate-$TIME"
       git -C "$FLAKE_DIR" push
 
       notify-send "Flake autoupdate" "Rebuild OK"
