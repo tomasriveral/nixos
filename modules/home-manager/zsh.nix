@@ -43,6 +43,12 @@
       mplayer = "mplayer -volume 5";
       # these are to create the developpement shell
       cenv = "nix-shell -p zsh gcc raylib libx11 libGL";
+      # i always write nvim wrong :(
+      nbim = "nvim";
+      nivm = "nvim";
+      bivm = "nvim";
+      nibm = "nvim";
+      vikm = "nvim";
     };
   };
 }
