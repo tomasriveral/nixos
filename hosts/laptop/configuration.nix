@@ -28,6 +28,7 @@
     ../../hostsModules/laptop/nixos/networking.nix # firewall, ssh, networkmanager, etc.
     ../../modules/nixos/bluetooth.nix
     ../../modules/nixos/audioAndMedia.nix
+    ../../modules/nixos/windowManager.nix
   ];
 
 
@@ -53,25 +54,12 @@
     "/share/applications"
     "/share/xdg-desktop-portal"
   ];
-  xdg.portal = {
-    enable = true;
-
-    extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gtk
-    ];
-  };
-  # removes uxterm
-  services.xserver.excludePackages = [pkgs.xterm];
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
   # zsh dont want to work if it is not initialzed here.
   programs.zsh.enable = true;
@@ -80,33 +68,12 @@
   programs.fuse.userAllowOther =  true;
   programs.fuse.enable = true;
 
-
   security.wrappers.gsr-kms-server = {
     # to remove the password prompt when using gpu-screen-recorder
     owner = "root";
     group = "root";
     capabilities = "cap_sys_admin+ep";
     source = "${pkgs.gpu-screen-recorder}/bin/gsr-kms-server";
-  };
-
-
-  # Enable the GNOME Desktop Environment.
-  #  services.displayManager.gdm.enable = true;
-  #  services.desktopManager.gnome.enable = true;
-  # we dont use gnome but some utils yes -> see pckgs
-  #enable sddm
-  #services.displayManager.sddm = {
-  #	enable = true;
-  #	wayland.enable = true;
-  #};
-  # we use ly as the displayManager. see ../../modules/nixos/ly.nix
-
-  # enable hyprland WM
-  programs.hyprland = {
-    enable = true;
-    package = pkgs-unstable.hyprland; # we use the unstable branch to get the latest features
-    withUWSM = true;
-    xwayland.enable = true;
   };
 
   services.upower.enable = true;
@@ -186,7 +153,6 @@
     cmatrix
     tomato-c # pomodoro timer
     #hyprshot
-    xdg-utils
     mailcap
     pkgs-unstable.vimPluginsUpdater # used for building plugins
     hyprcursor
