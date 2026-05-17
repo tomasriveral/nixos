@@ -27,6 +27,7 @@
     ../../hostsModules/laptop/nixos/bootloader.nix
     ../../hostsModules/laptop/nixos/networking.nix # firewall, ssh, networkmanager, etc.
     ../../modules/nixos/bluetooth.nix
+    ../../modules/nixos/audioAndMedia.nix
   ];
 
 
@@ -119,23 +120,6 @@
   # Configure console keymap
   console.keyMap = "fr_CH";
 
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -176,14 +160,10 @@
     snapshot
     gnome-characters
     gnome-disk-utility
-    kdePackages.okular
-    kdePackages.dolphin
     gnome-font-viewer
     #tree # shows dir in tree # we use eza now
     zsh # better bash
     brightnessctl # control brightness
-    pulseaudio # sound server
-    playerctl # controls media player
     udiskie # removable disk automounter for udisks
     cliphist # Wayland clipboard manager
     wl-clipboard # cli copy/past utilities for Wayland
@@ -205,23 +185,18 @@
     bottom # Cross-platform graphical process/system monitor with a customizable interface
     cmatrix
     tomato-c # pomodoro timer
-    pavucontrol # PulseAudio Volume Control
     #hyprshot
     xdg-utils
     mailcap
     pkgs-unstable.vimPluginsUpdater # used for building plugins
     hyprcursor
     vial # Open-source GUI and QMK fork for configuring your keyboard in real time
-    mplayer # Movie player that supports many video formats
     chromium # used only to flash the firmware on my framework laptop 16 (keyboard.frame.work) as only chromium based browser support webHID.
     capitaine-cursors-themed # cursor theme
     usbutils # used for lsusb
     # used for the framework 16 laptop
     framework-tool
     framework-tool-tui
-    krita # image edition
-    yt-dlp # some youtube downloader
-    vlc
     (pkgs-unstable.python314.withPackages (ps:
       with ps; [
         matplotlib
@@ -235,10 +210,7 @@
     gdb
     raylib
     glfw # raylib and some dependecies
-    rembg # background remover
     cling # c interpreter used for coding
-    mprisence
-    gif-for-cli
     # lsp
     texlab
     clang-tools
@@ -250,11 +222,9 @@
     # for caelestia
     kdePackages.qtdeclarative # provides qmlls and other things
     quickshell # we have it but adding it there solves "WARN qt.qpa.services: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")"
-    gpu-screen-recorder
     fuzzel
     papirus-icon-theme
     papirus-folders
-    inkscape
     birdtray # thunderbird tray app
     # this is more up to date
     #(callPackage ../../modules/packages/vivify.nix {})
