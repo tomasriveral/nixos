@@ -5,6 +5,7 @@
 }: {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false; # will be removed in the futur. Removes evaluation warning
     matchBlocks."*" = {
       # equivalent to the default config
       forwardAgent = false;
