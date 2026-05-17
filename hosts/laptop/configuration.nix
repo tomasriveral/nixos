@@ -37,9 +37,8 @@
     ../../modules/nixos/user.nix ../../hostsModules/laptop/nixos/user.nix
     ../../modules/nixos/notifications.nix
     ../../modules/nixos/browser.nix
+    ../../modules/nixos/theme.nix # install theming packages and some quickshell stuff
   ];
-
-  qt.enable = true;
 
   # removes rclone error
   programs.fuse.userAllowOther =  true;
@@ -62,9 +61,7 @@
     udiskie # removable disk automounter for udisks
     cowsay
     cmatrix
-    swww #wallpaper daemon
     libreoffice
-    gruvbox-gtk-theme
     powertop
     fzf
     bottom # Cross-platform graphical process/system monitor with a customizable interface
@@ -73,21 +70,13 @@
     #hyprshot
     mailcap
     pkgs-unstable.vimPluginsUpdater # used for building plugins
-    hyprcursor
     vial # Open-source GUI and QMK fork for configuring your keyboard in real time
-    capitaine-cursors-themed # cursor theme
     usbutils # used for lsusb
     # used for the framework 16 laptop
     framework-tool
     framework-tool-tui
     fluffychat # matrix client
-    # utils for dev
-    # for caelestia
-    kdePackages.qtdeclarative # provides qmlls and other things
-    quickshell # we have it but adding it there solves "WARN qt.qpa.services: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")"
     fuzzel
-    papirus-icon-theme
-    papirus-folders
     birdtray # thunderbird tray app
     # this is more up to date
     #(callPackage ../../modules/packages/vivify.nix {})
