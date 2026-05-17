@@ -29,12 +29,11 @@
     ../../modules/nixos/bluetooth.nix
     ../../modules/nixos/audioAndMedia.nix
     ../../modules/nixos/windowManager.nix
+    ../../modules/nixos/documentation.nix
   ];
 
 
   programs.nix-ld.enable = true; #Run unpatched dynamic binaries on NixOS. For example lets run ./a.out from gcc
-
-  documentation.man.generateCaches = true; # used for the man script
 
   qt.enable = true;
 
@@ -49,11 +48,6 @@
 
   services.dbus.enable = true;
   security.polkit.enable = true;
-
-  environment.pathsToLink = [
-    "/share/applications"
-    "/share/xdg-desktop-portal"
-  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Zurich";

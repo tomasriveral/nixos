@@ -27,7 +27,6 @@
   nixfmt-tree
   treefmt
   nixd
-  manix
   deadnix
   alejandra
   ];
