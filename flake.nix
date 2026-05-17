@@ -1,4 +1,3 @@
-# ~/nixos/flake.nix
 {
   description = "Nixos config flake";
 
@@ -20,11 +19,6 @@
 	  flake = false;
     };
   };
-  # never got nixvim to wokrs. ):
-  #   nixvim = {
-  #	url = "github:nix-community/nixvim/nixos-25.11";
-  # };
-
   outputs = {
     self,
     nixpkgs,
@@ -35,38 +29,43 @@
     ...
   } @ inputs: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+
+    unfreePkgs = [
+      "hplip"
+      "vivify.vim"
+      "cheatsheet.nvim"
+    ];
+
+    mkUnfreePredicate = pkg:
+      builtins.elem (nixpkgs.lib.getName pkg) unfreePkgs;
+
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      config.allowUnfree = true; #hplipWithPlugins is unfree...
+      
+      config.allowUnfreePredicate = mkUnfreePredicate;
     };
+
   in {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs pkgs-unstable;};
         modules = [
           ./hosts/laptop/configuration.nix
+          # solves evaluation warning
+          /*
+          You have set specialArgs.pkgs, which means that options like nixpkgs.config
+          and nixpkgs.overlays will be ignored. If you wish to reuse an already created
+          pkgs, which you know is configured correctly for this NixOS configuration,
+          please import the `nixosModules.readOnlyPkgs` module from the nixpkgs flake or
+          `(modulesPath + "/misc/nixpkgs/read-only.nix"), and set `{ nixpkgs.pkgs = <your pkgs>; }`.
+          This properly disables the ignored options to prevent future surprises.
+          */
+          {
+            nixpkgs.config.allowUnfreePredicate = mkUnfreePredicate;
+          }
         ];
       };
     };
     # we use home-manager directly inside of configuration.nix
-    # last time i tried to use flake i broke everything ):
-    #    homeManagerConfigurations = {
-    #      tomasr = home-manager.lib.homeManagerConfiguration {
-    #        pkgs = pkgs;
-    #        system = "x86_64-linux";
-    #        username = "tomasr";
-    #        homeDirectory = "/home/tomasr";
-    #	modules = [
-    #		./hosts/laptop/home.nix
-    #		#nixvim.homeModules.default
-    #];
-    # Import your Home Manager module
-    # configuration = ./hosts/laptop/home.nix;
-
-    # extraSpecialArgs = { inherit inputs; };
-    # };
-    #};
-    #};
   };
 }

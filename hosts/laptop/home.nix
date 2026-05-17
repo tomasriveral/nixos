@@ -44,15 +44,12 @@
     ../../modules/home-manager/sbb-tui.nix # cff TUI app
     ../../modules/home-manager/mullvad.nix # mullvad vpn
 
-    ../../modules/other/desktopEntries.nix # creates .desktop files
+    ../../modules/home-manager/other/desktopEntries.nix # creates .desktop files
+    ../../modules/home-manager/other/user.nix
   ];
 
-
   # Required for Home Manager
-  home.username = "tomasr";
-  home.homeDirectory = "/home/tomasr";
   home.stateVersion = "25.11"; # match your Home Manager release
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -60,81 +57,6 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = [
-    #scritps
-    (pkgs.callPackage ../../modules/scripts/dontkillsteam.nix {}) # kill app (if it is steam put it in some background
-    (pkgs.callPackage ../../hostsModules/laptop/scripts/batterynotify.nix {})
-    (pkgs.callPackage ../../hostsModules/laptop/scripts/batterywarning.nix {})
-    
-    # checks if matrix-commander-rs is installed and logged in
-    (pkgs.callPackage ../../hostsModules/laptop/scripts/checkMatrix.nix {})
-
-    (pkgs.callPackage ../../modules/scripts/weather.nix {})
-    (pkgs.callPackage ../../modules/scripts/wallpaper.nix {})
-    (pkgs.callPackage ../../modules/scripts/mountkdrive.nix {})
-    (pkgs.callPackage ../../modules/scripts/colorpicker.nix {})
-    (pkgs.callPackage ../../modules/scripts/killall.nix {}) # kill all windows except focused window
-    (pkgs.callPackage ../../modules/scripts/gitnotify.nix {})
-    (pkgs.callPackage ../../modules/scripts/tomato.nix {})
-    (pkgs.callPackage ../../modules/scripts/librewolfprofiles.nix {})
-    (pkgs.callPackage ../../modules/scripts/btm.nix {})
-    (pkgs.callPackage ../../modules/scripts/manix.nix {})
-    (pkgs.callPackage ../../modules/scripts/man.nix {})
-    (pkgs.callPackage ../../modules/scripts/trimmer.nix {})
-    (pkgs.callPackage ../../modules/scripts/syllabes.nix {}) # python script to get number of syllabes in french
-    (pkgs.callPackage ../../hostsModules/laptop/qt/qtbatticon.nix {})
-    #pkgs
-    pkgs.gruvbox-gtk-theme
-    pkgs.biber
-    (pkgs.texliveMedium.withPackages (
-      ps:
-        with ps; [
-          # these few pkgs are used in the CV template
-          titlesec # allows creating custom \section
-          marvosym # some symboles
-          ebgaramond # Use the EB Garamond font
-          microtype # To enable letterspacing
-          fontaxes
-          # these few pkgs were used for my TM
-          svg
-          catchfile
-          caption
-          transparent
-          cfr-lm
-          svn-prov
-          nfssext-cfr
-          hyphenat
-          csquotes
-          enumitem
-          chngcntr
-          tcolorbox
-          pdfcol
-          wrapfig
-          tocloft
-          lastpage
-          biblatex
-          biblatex-iso690
-          libertine
-          minted
-          upquote
-          lipsum
-          footmisc
-          #(setq org-latex-compiler "lualatex")
-          #(setq org-preview-latex-default-process 'dvisvgm)
-        ]
-    ))
-  ];
-
-
-  home.sessionVariables = {
-    EDITOR = "neovim";
-    # Git update function
-    # Prompts for commit message; defaults if empty
-    TERMINAL = "kitty";
-  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -206,8 +206,10 @@ in {
       "blueman-applet" # systray app for Bluetooth
       "udiskie --no-automount --smart-tray" # front-end that allows to manage removable media
       "nm-applet --indicator" # systray app for Network/wifi
-      "wl-paste --type text --watch cliphist store" # clipboard store text data
-      "wl-paste --type image --watch cliphist store" # clipboard store image data
+      #setups clipboard
+      "rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store"
+      #"wl-paste --type text --watch cliphist store" # clipboard store text data
+      #"wl-paste --type image --watch cliphist store" # clipboard store image data
       "custom-batterynotify"
       "custom-batterywarning"
       "birdtray" # thunderbird tray app
@@ -215,7 +217,7 @@ in {
       "swww img ${wallpaper}"
       "swww-daemon"
       "sleep 1 && custom-wallpaper"
-      "custom-mountkdrive"
+      "sleep 5 && custom-checkKdrive && custom-mountkdrive" # checks if the remote works and mount it
       #"waybar"
       "custom-gitnotify"
       "custom-checkMatrix" # checks if matrix-commander-rs is connected which is important for other stuff
@@ -246,7 +248,6 @@ in {
     # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
 
     dwindle = {
-      pseudotile = true;
       preserve_split = true;
     };
     scrolling = {
