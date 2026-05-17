@@ -42,22 +42,12 @@
     ../../modules/nixos/otherUtils.nix
   ];
   
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     libreoffice
     pkgs-unstable.vimPluginsUpdater # used for building plugins
     vial # Open-source GUI and QMK fork for configuring your keyboard in real time
     birdtray # thunderbird tray app
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # to resolve this https://wiki.nixos.org/wiki/Home_Manager#I_cannot_set_GNOME_or_Gtk_themes_via_Home_Manager
   programs.dconf.enable = true;

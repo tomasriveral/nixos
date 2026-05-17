@@ -63,8 +63,6 @@
 
   home.sessionVariables = {
     EDITOR = "neovim";
-    # Git update function
-    # Prompts for commit message; defaults if empty
     TERMINAL = "kitty";
   };
 
