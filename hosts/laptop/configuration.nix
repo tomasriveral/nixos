@@ -17,7 +17,7 @@
     #../../modules/nixos/ly.nix
     ../../modules/nixos/ly.nix
     ../../modules/nixos/anki.nix
-    ../../modules/nixos/nixUtils.nix
+    ../../modules/nixos/nixUtils.nix ../../hostsModules/laptop/nixos/nixUtils.nix
     ../../hostsModules/laptop/nixos/udev.nix
     ../../hostsModules/laptop/nixos/disk.nix
     ../../modules/nixos/printer.nix

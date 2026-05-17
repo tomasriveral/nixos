@@ -1,3 +1,4 @@
+# some options are in ../../hostsModules/laptop/nixos/nixUtils.nix
 {
   pkgs-unstable,
   inputs,
@@ -9,9 +10,6 @@
     dates = "weekly";
     options = "--delete-older-than 7d"; # every week delete generations older than a month
   };
-  # nixpkgs-review crashed my laptop multiple times.
-  nix.settings.max-jobs = 2;
-  nix.settings.cores = 2;
 
   #manix is unhappy without this
   nix.nixPath = [
