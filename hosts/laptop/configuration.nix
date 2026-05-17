@@ -40,13 +40,11 @@
     ../../modules/nixos/theme.nix # install theming packages and some quickshell stuff
     ../../hostsModules/laptop/nixos/hardwareUtils.nix
     ../../modules/nixos/otherUtils.nix
+    ../../modules/nixos/office.nix
   ];
   
   environment.systemPackages = with pkgs; [
-    libreoffice
-    pkgs-unstable.vimPluginsUpdater # used for building plugins
     vial # Open-source GUI and QMK fork for configuring your keyboard in real time
-    birdtray # thunderbird tray app
   ];
 
   # to resolve this https://wiki.nixos.org/wiki/Home_Manager#I_cannot_set_GNOME_or_Gtk_themes_via_Home_Manager
