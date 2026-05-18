@@ -28,7 +28,7 @@ pkgs.writeShellApplication {
 
     # the echos are to separate what each one is doing. Just for curiosity
     echo "deadnix scans your Nix code and removes or reports unused (dead) variables and bindings"
-    deadnix -vv --edit "$FLAKE_DIR" # removes unused code
+    deadnix --edit "$FLAKE_DIR" # removes unused code
     echo "--------------------------------------------------------------"
     echo "statix lints your Nix code to find stylistic issues, bad patterns, and potential mistakes."
     statix fix "$FLAKE_DIR" --verbose # check other linting issues
