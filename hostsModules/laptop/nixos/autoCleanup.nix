@@ -7,7 +7,7 @@
     linger = true; # lingering is required
   };
 
-  systemd.user.services.custom-autoupdate = {
+  systemd.user.services.custom-cleanNix = {
     description = "NixOS configuration auto cleanup";
 
     serviceConfig = {
@@ -30,7 +30,7 @@
   };
 
   # Systemd USER timer
-  systemd.user.timers.custom-autoupdate = {
+  systemd.user.timers.custom-cleanNix = {
     wantedBy = ["timers.target"];
 
     timerConfig = {

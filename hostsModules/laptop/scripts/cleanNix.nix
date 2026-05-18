@@ -1,4 +1,5 @@
-{pkgs, ...}:
+{pkgs,
+...}:
 pkgs.writeShellApplication {
   name = "custom-cleanNix";
 
@@ -25,10 +26,16 @@ pkgs.writeShellApplication {
     git -C "$FLAKE_DIR" commit --allow-empty -m "snapshot pre-cleanup-$TIME"
     git -C "$FLAKE_DIR" tag "pre-cleanup-$TIME" HEAD
 
-    # removes dead code
-    deadnix --edit "$FLAKE_DIR" # removes unused code
-    statix fix "$FLAKE_DIR" # check other linting issues
-    alejandra "$FLAKE_DIR" # formats the config
+    # the echos are to separate what each one is doing. Just for curiosity
+    echo "deadnix scans your Nix code and removes or reports unused (dead) variables and bindings"
+    deadnix -vv --edit "$FLAKE_DIR" # removes unused code
+    echo "--------------------------------------------------------------"
+    echo "statix lints your Nix code to find stylistic issues, bad patterns, and potential mistakes."
+    statix fix "$FLAKE_DIR" --verbose # check other linting issues
+    echo "--------------------------------------------------------------"
+    echo "alejandra formats your Nix code consistently according to a strict, opinionated style."
+    alejandra -v "$FLAKE_DIR" # formats the config
+    echo "--------------------------------------------------------------"
 
     if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 

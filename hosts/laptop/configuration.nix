@@ -23,7 +23,7 @@
     ../../hostsModules/laptop/nixos/ollama.nix # llm config
     ../../modules/nixos/mullvad.nix # vpn config
     ../../hostsModules/laptop/nixos/autoUpdate.nix # auto update the flakes. Handles notification via libnotify and matrix-commander-rs
-    ../../hostsModules/laptop/nixos/cleanNix.nix # uses alexandra deadnix and statix to clean the whole config
+    ../../hostsModules/laptop/nixos/autoCleanup.nix # uses alexandra deadnix and statix to clean the whole config
     ../../hostsModules/laptop/nixos/bootloader.nix
     ../../hostsModules/laptop/nixos/networking.nix # firewall, ssh, networkmanager, etc.
     ../../modules/nixos/bluetooth.nix
