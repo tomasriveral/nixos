@@ -29,7 +29,7 @@ pkgs.writeShellApplication {
     # update lock only
     nix flake update --flake "$FLAKE_DIR"
 
-    if sudo /run/current/system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+    if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
     
       if ! git -C "$FLAKE_DIR" diff --quiet -- flake.lock; then
         git -C "$FLAKE_DIR" add flake.lock
