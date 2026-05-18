@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  ...
-}: let
+{pkgs-unstable, ...}: let
   wallpaper = ../../assets/wallpaper1.jpg;
 in {
   #refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
@@ -161,8 +156,9 @@ in {
       "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
       "Ctrl+$mod, 4, exec, caelestia shell notifs toggleDnd"
       "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
-      "Ctrl+$mod, 5, exec, gnome-characters" # pos 2 2 special chars
-      "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 3 2 colorpicker
+      "Ctrl+Shift+Alt, 0, exec, kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"" # pos 2 2 change audio output fzf
+      "Ctrl+$mod, 5, exec, gnome-characters" # pos 3 2 special chars
+      "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 4 2 colorpicker
       "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
       "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
       "Ctrl+Alt, 9, exec, anki"
@@ -212,12 +208,12 @@ in {
       #"wl-paste --type image --watch cliphist store" # clipboard store image data
       "custom-batterynotify"
       "custom-batterywarning"
-      "birdtray" # thunderbird tray app
+      #"birdtray" # thunderbird tray app # curently broken
       #wallpapers/b
       "swww img ${wallpaper}"
       "swww-daemon"
       "sleep 1 && custom-wallpaper"
-      "sleep 5 && custom-checkKdrive && custom-mountkdrive" # checks if the remote works and mount it
+      "custom-checkKdrive && custom-mountkdrive" # checks if the remote works and mount it
       #"waybar"
       "custom-gitnotify"
       "custom-checkMatrix" # checks if matrix-commander-rs is connected which is important for other stuff
@@ -328,6 +324,7 @@ in {
     # theme
     decoration = {
       dim_special = 0.3;
+      rounding = 18;
       blur = {
         special = true;
         enabled = true;
@@ -338,8 +335,8 @@ in {
       };
     };
     general = {
-      gaps_in = 3;
-      gaps_out = 8;
+      gaps_in = 5;
+      gaps_out = 15;
       border_size = 4;
       "col.active_border" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
       "col.inactive_border" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
@@ -372,8 +369,8 @@ in {
       "2, layout:scrolling, layoutopt:direction:right"
       "name:special, layout:scrolling"
       # used for smart gaps along some windowrules
-      "w[tv1], gapsout:1, gapsin:1"
-      "f[1], gapsout:1, gapsin:1"
+      #"w[tv1], gapsout:1, gapsin:1"
+      #"f[1], gapsout:1, gapsin:1"
     ];
 
     # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
@@ -432,13 +429,15 @@ in {
       "float on, match:class ^(vlc)$"
       "float on, match:class ^(eog)$"
       "float on, size 400 175, match:class ^(custom-librewolfprofiles)$"
+      "float on, size 1050 200, match:class ^(custom-changeAudioOutput)$"
       "float on, size 400 175, match:class ^(custom-obsidianvaults)$"
       "float on, size 600 600, match:initial_class ^(custom-pomodoro)$"
       "float on, size 1500 800, match:initial_class ^(custom-bottom)$"
-      "border_size 2, match:float 0, match:workspace w[tv1]"
-      "rounding 1, match:float 0, match:workspace w[tv1]"
-      "border_size 2, match:float 0, match:workspace f[1]"
-      "rounding 1, match:float 0, match:workspace f[1]"
+      # smart gaps/border is ugly with caelestia-shell
+      #"border_size 2, match:float 0, match:workspace w[tv1]"
+      #"rounding 1, match:float 0, match:workspace w[tv1]"
+      #"border_size 2, match:float 0, match:workspace f[1]"
+      #"rounding 1, match:float 0, match:workspace f[1]"
     ];
     # add a float for tomato when in kitty
     #"plugin:imgborders:noimgborders, tag:noborder"

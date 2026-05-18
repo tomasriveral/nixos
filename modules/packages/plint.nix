@@ -1,10 +1,10 @@
-{ lib
-, python3Packages
-, fetchFromGitLab
-, frhyme
-, haspirater
+{
+  lib,
+  python3Packages,
+  fetchFromGitLab,
+  frhyme,
+  haspirater,
 }:
-
 python3Packages.buildPythonApplication rec {
   pname = "plint";
 

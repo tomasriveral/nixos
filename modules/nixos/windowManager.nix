@@ -3,8 +3,7 @@
   pkgs-unstable,
   pkgs,
   ...
-}:
-{
+}: {
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -27,7 +26,7 @@
     xwayland.enable = true;
   };
 
-    xdg.portal = {
+  xdg.portal = {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-wlr

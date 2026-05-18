@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # will be removed in the futur. Removes evaluation warning

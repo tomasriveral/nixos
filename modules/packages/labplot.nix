@@ -7,9 +7,7 @@
   extra-cmake-modules,
   shared-mime-info,
   wrapQtAppsHook,
-
   qtbase,
-
   karchive,
   kcompletion,
   kconfig,
@@ -24,9 +22,7 @@
   ktextwidgets,
   kxmlgui,
   syntax-highlighting,
-
   gsl,
-
   poppler,
   fftw,
   hdf5,
@@ -41,7 +37,6 @@
   qtserialport,
   discount,
 }:
-
 stdenv.mkDerivation rec {
   pname = "labplot";
   version = "2.10.1";
@@ -121,7 +116,7 @@ stdenv.mkDerivation rec {
       lgpl3Plus
       mit
     ];
-    maintainers = [ "tomasriveral" ];
+    maintainers = ["tomasriveral"];
     mainProgram = "labplot2";
     platforms = lib.platforms.unix;
   };

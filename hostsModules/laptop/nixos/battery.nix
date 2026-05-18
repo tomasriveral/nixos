@@ -2,7 +2,8 @@
 {
   lib,
   config,
-  ...}:
+  ...
+}:
 # we just activate tlp unconditonally
 #let
 #  cfg = config.custom;

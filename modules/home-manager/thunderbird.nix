@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   programs.thunderbird = {
     enable = true;
     profiles.tomasr = {

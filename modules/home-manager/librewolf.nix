@@ -1,9 +1,5 @@
 # adapted from https://github.com/contre95/dotfiles/blob/main/dotfiles/nixos/programs/librewolf.nix
-{
-  pkgs,
-  config,
-  ...
-}: {
+_: {
   home.sessionVariables = {
     MOZ_ENABLE_WAYLAND = 1;
     MOZ_USE_XINPUT2 = 1;
@@ -138,7 +134,7 @@
         };
         "uBlock0@raymondhill.net" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "blocked";
+          installation_mode = "force_installed";
         };
         "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi";
@@ -310,19 +306,19 @@
           }
           {
             name = "Signs of AI writing";
-            tags = [ "ai" "write"];
+            tags = ["ai" "write"];
             keyword = "AI writing";
             url = "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing";
           }
           {
             name = "nixpkgs-review-gha";
-            tags = [ "nixpkgs-review" "gha" ];
+            tags = ["nixpkgs-review" "gha"];
             keyword = "nixpkgs-review";
             url = "https://github.com/tomasriveral/nixpkgs-review-gha/actions/workflows/review.yml";
           }
           {
             name = "nixpkgs tracker";
-            tags = [ "nixpkgs" "tracker" ];
+            tags = ["nixpkgs" "tracker"];
             keyword = "nixpkgs tracker";
             url = "https://nixpk.gs/pr-tracker.html";
           }

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   # udev with only the necessary rules. See udev.nix to get all the rules
   services.udev.extraRules = ''
     # adapted from here https://wiki.nixos.org/wiki/Keychron_M6

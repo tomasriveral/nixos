@@ -1,14 +1,9 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-  wget
-  networkmanagerapplet # NetworkManager control applet
-  inetutils # collections of network programs such as telnet
-
-];
+    wget
+    networkmanagerapplet # NetworkManager control applet
+    inetutils # collections of network programs such as telnet
+  ];
   #networking.Name = "nixos"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

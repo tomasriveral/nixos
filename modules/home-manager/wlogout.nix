@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+_: let
   wallpaper = ../../assets/wallpaper1.jpg;
   lock = ../../assets/lock.png;
   lock-hover = ../../assets/lock-hover.png;

@@ -1,11 +1,5 @@
 # used for the terminal autostart. Needs to get cleared and recall fastfetch so that the bar from oh-my-zsh get resized
-{
-  writeShellApplication,
-  hyprland,
-  gawk,
-  libnotify,
-  ...
-}:
+{writeShellApplication, ...}:
 writeShellApplication {
   name = "custom-performance";
   runtimeInputs = [

@@ -3,8 +3,7 @@
   pkgs-unstable,
   inputs,
   ...
-}:
-{
+}: {
   services.dbus.enable = true;
   security.polkit.enable = true;
   home-manager = {
@@ -42,13 +41,21 @@
   services.upower.enable = true;
 
   # removes need for password for nixos-rebuild
-    security.sudo.extraRules = [
+  security.sudo.extraRules = [
     {
-      users = [ "tomasr" ];
+      users = ["tomasr"];
       commands = [
         {
           command = "/run/current-system/sw/bin/nixos-rebuild";
-          options = [ "NOPASSWD" ];
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
+        {
+          command = "${pkgs-unstable.nixos-rebuild}/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
         }
       ];
     }

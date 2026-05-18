@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   programs.kitty = {
     enable = true;
     #font.name = nerd-fonts._0xproto;

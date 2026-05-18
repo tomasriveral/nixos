@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  ...
-}: {
+{pkgs-unstable, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = false;
@@ -257,7 +252,7 @@
 
           vim.keymap.set("n", "<leader>e<Tab>", function()
             local clients = vim.lsp.get_clients({ name = "ltex" })
-          
+
             if #clients > 0 then
               -- Stop LTeX
               for _, client in ipairs(clients) do
@@ -336,26 +331,26 @@
         cmd = { "ltex-ls-plus" },
         filetypes = { "markdown", "text", "tex", "plaintex" },
         on_attach = on_attach,
-      
+
         settings = {
           ltex = {
             language = "fr",
-      
+
             enabled = {
               "markdown",
               "text",
               "tex",
               "plaintex",
             },
-      
+
             completionEnabled = true,
             diagnosticSeverity = "information",
-      
+
             additionalRules = {
               enablePickyRules = false,
               motherTongue = "fr",
             },
-      
+
             dictionary = {
               ["fr"] = {
                 "icelle",
@@ -483,9 +478,9 @@
 
             vim.keymap.set("n", "t", function()
               local line = vim.api.nvim_get_current_line()
-            
+
               local result = vim.fn.system({ "custom-syllabes" }, line)
-            
+
               print(vim.trim(result))
             end, { desc = "Count syllables (current line)" })
             -- =========================

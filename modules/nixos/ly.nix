@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # a minimal ly config as the big config (ly.nix) didnt worked
   services.displayManager.ly = {
     enable = true;

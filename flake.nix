@@ -15,17 +15,13 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     microPlugins-vivify = {
-	  url = "git+https://codeberg.org/gibbert/micro-vivify";
-	  flake = false;
+      url = "git+https://codeberg.org/gibbert/micro-vivify";
+      flake = false;
     };
   };
   outputs = {
-    self,
     nixpkgs,
     nixpkgs-unstable,
-    home-manager,
-    nixos-grub-themes,
-    caelestia-shell,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -41,10 +37,9 @@
 
     pkgs-unstable = import nixpkgs-unstable {
       inherit system;
-      
+
       config.allowUnfreePredicate = mkUnfreePredicate;
     };
-
   in {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {

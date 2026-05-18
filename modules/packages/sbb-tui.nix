@@ -3,9 +3,8 @@
   buildGoModule,
   fetchFromGitHub,
   nix-update-script,
-  versionCheckHook
+  versionCheckHook,
 }:
-
 buildGoModule (finalAttrs: {
   pname = "sbb-tui";
   version = "1.14.2";
@@ -24,21 +23,21 @@ buildGoModule (finalAttrs: {
     "-w"
     "-X main.version=${finalAttrs.version}"
   ];
-  
+
   allowGoReference = true;
 
   doCheck = true;
 
-  nativeCheckInputs = [ versionCheckHook ];
+  nativeCheckInputs = [versionCheckHook];
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     description = "TUI client for Switzerland's public transport timetables, inspired by SBB/CFF/FFS app";
     homepage = "https://github.com/Necrom4/sbb-tui";
     license = lib.licenses.mit;
     platforms = lib.platforms.unix;
-    maintainers = with lib.maintainers; [ tomasrivera ];
+    maintainers = with lib.maintainers; [tomasrivera];
     mainProgram = "sbb-tui";
   };
 })

@@ -164,15 +164,15 @@ If you **don’t have the physical macropad**, the table below shows which keybi
 | Macropad Key | Linked Action (Hyprland keybinding)          |
 | ------------ | -------------------------------------------- |
 | Row 1, Col 1 | Kill all apps except focused (`Ctrl+$mod+6`) |
-| Row 2, Col 1 | Performance mode (`Ctrl+Alt+7`)              |
-| Row 3, Col 1 | Do not disturb (`Ctrl+$mod+4`                |
-| Row 4, Col 1 | Notification center (`Ctrl+Alt+1`)           |
-| Row 3, Col 2 | Special characters (`Ctrl+$mod+3`)           |
-| Row 3, Col 3 | Color picker (`Ctrl+Alt+8`)                  |
-| Row 4, Col 1 | Notification center toggle (`Ctrl+Alt+1`)    |
-| Row 4, Col 2 | System monitor (`Ctrl+Alt+2`)                |
-| Row 4, Col 3 | Pomodoro timer (`Ctrl+Alt+0`)                |
-| Row 4, Col 6 | Launch Anki (`Ctrl+Alt+9`)                   |
+| Row 1, Col 2 | Performance mode (`Ctrl+Alt+7`)              |
+| Row 1, Col 3 | Do not disturb (`Ctrl+$mod+4`                |
+| Row 1, Col 4 | Notification center (`Ctrl+Alt+1`)           |
+| Row 2, Col 1 | Pulseaudio control (`Ctrl+$mod+3`)           |
+| Row 2, Col 2 | Change audio output (`Ctrl+Alt+Shift+0`)     |
+| Row 2, Col 3 | Special characters (`Ctrl+$mod+3`)           |
+| Row 2, Col 4 | Color picker (`Ctrl+Alt+8`)                  |
+| Row 3, Col 1 | Pomodoro timer (`Ctrl+Alt+0`)                |
+| Row 4, Col 1 | Launch Anki (`Ctrl+Alt+9`)                   |
 
 > Positions are labeled as `[row, column]` starting from top-left `[1,1]`.  
 > Each macro calls a script or application from this configuration.

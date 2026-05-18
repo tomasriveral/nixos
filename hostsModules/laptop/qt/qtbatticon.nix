@@ -4,7 +4,6 @@
 # at your risk and perils
 # click on the icon to get a notification with state, percentage and wattage
 {
-  lib,
   stdenv,
   qt6,
   pkg-config,

@@ -1,11 +1,8 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   documentation.man.generateCaches = true; # used for the man script
 
-  environment.pathsToLink = [ # see https://wiki.nixos.org/wiki/Documentation_Gaps#How_do_manpages_work?_Or:_environment.pathsToLink_and_buildEnv
+  environment.pathsToLink = [
+    # see https://wiki.nixos.org/wiki/Documentation_Gaps#How_do_manpages_work?_Or:_environment.pathsToLink_and_buildEnv
     "/share/applications"
     "/share/xdg-desktop-portal"
   ];

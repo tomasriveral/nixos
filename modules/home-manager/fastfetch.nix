@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   # Adapted from https://github.com/dacrab/fastfetch-config/blob/main/config.jsonc
   programs.fastfetch = {
     enable = true;

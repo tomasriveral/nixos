@@ -1,6 +1,4 @@
-{
-  ...
-}:
+_:
 # see ../../docs/printing.md
 {
   home.file.".local/share/applications/org.quickshell.desktop" = {
@@ -27,6 +25,6 @@
       Icon=printer
       Categories=Utility;
       StartupNotify=true
-      '';
+    '';
   };
 }

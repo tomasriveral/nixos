@@ -1,17 +1,11 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  caelestia-shell,
-  ...
-}: let
+_: let
   sisyphe = ../../assets/sisyphe.gif;
   pepe-music = ../../assets/pepe-music.gif;
 in {
-  home.file.".local/state/caelestia/wallpaper/path.txt" = { # dummy file. Does nothing. Prevent an error
+  home.file.".local/state/caelestia/wallpaper/path.txt" = {
+    # dummy file. Does nothing. Prevent an error
     enable = true;
     text = "${sisyphe}";
-
   };
   home.file.".face" = {
     # this is were caelestia will search for profiles pictures
@@ -516,7 +510,7 @@ in {
         };
         theme = {
           enableTerm = false; # we do it manually by adapting our kitty config
-          enableHypr = true;
+          enableHypr = false; # this seems to add the splash
           enableDiscord = true;
           enableSpicetify = true;
           enableFuzzel = true; #what's that?

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     gnome-disk-utility
     udiskie # removable disk automounter for udisks
@@ -10,6 +6,6 @@
   ];
 
   # removes rclone error
-  programs.fuse.userAllowOther =  true;
+  programs.fuse.userAllowOther = true;
   programs.fuse.enable = true;
 }

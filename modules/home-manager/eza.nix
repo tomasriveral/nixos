@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+_:
 # ls replacement
 # see ./zsh.nix for the alias (usefull to se default flags)
 {

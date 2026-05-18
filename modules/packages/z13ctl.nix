@@ -3,7 +3,6 @@
   buildGoModule,
   fetchFromGitHub,
 }:
-
 buildGoModule {
   pname = "z13ctl";
   version = "1.1.6";
@@ -17,7 +16,7 @@ buildGoModule {
 
   vendorHash = "sha256-ftkcianIR36PNAoMOVuk4lUr7goWUcHhjyNseUraJU0=";
 
-  subPackages = [ "." ];
+  subPackages = ["."];
 
   __structuredAttrs = true;
 
@@ -27,6 +26,6 @@ buildGoModule {
     license = licenses.asl20;
     platforms = platforms.linux;
     mainProgram = "z13ctl";
-    maintainers = with maintainers; [ badheuristic ];
+    maintainers = with maintainers; [badheuristic];
   };
 }

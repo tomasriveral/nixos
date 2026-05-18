@@ -1,9 +1,5 @@
 # pulled from https://codeberg.org/zacoons/rivendell-hyprdots
-{
-  config,
-  pkgs,
-  ...
-}: {
+_: {
   qt.enable = true;
   programs.quickshell = {
     systemd.enable = true;

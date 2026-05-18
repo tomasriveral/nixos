@@ -1,29 +1,33 @@
-{ pkgs, python3Packages, ... }:
-
+{
+  pkgs,
+  python3Packages,
+  ...
+}:
 pkgs.writers.writePython3Bin "custom-syllabes" {
   libraries = [
     python3Packages.pyphen
   ];
 } ''
-import sys
-import pyphen
+  import sys
+  import pyphen
 
-dic = pyphen.Pyphen(lang="fr")
+  dic = pyphen.Pyphen(lang="fr")
 
-text = sys.stdin.read().strip()
+  text = sys.stdin.read().strip()
 
-chunks = []
-total = 0
+  chunks = []
+  total = 0
 
-for w in text.split():
-    hyphenated = dic.inserted(w)
-    parts = hyphenated.split("-")
-    chunks.append("/".join(parts))
-    total += len(parts)
+  for w in text.split():
+      hyphenated = dic.inserted(w)
+      parts = hyphenated.split("-")
+      chunks.append("/".join(parts))
+      total += len(parts)
 
-print(f"{total} ({'/'.join(chunks)})")
+  print(f"{total} ({'/'.join(chunks)})")
 ''
-/* used IPA but had a deprecated dependency
+/*
+   used IPA but had a deprecated dependency
 { pkgs, python3Packages, ... }:
 
 pkgs.writers.writePython3Bin "custom-syllabes" {
@@ -56,8 +60,10 @@ for word in text.split():
     chunks.append(f"{word}/{ipa}")
 
 print(f"{total} ({' | '.join(chunks)})")
-''*/
-/*{ pkgs, ... }:
+''
+*/
+/*
+  { pkgs, ... }:
 
 let
   lexique = pkgs.fetchurl {
@@ -170,4 +176,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-''*/
+''
+*/
+

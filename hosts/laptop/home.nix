@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   # every import imports a specific module for an app. This module contains the enabling of this app and its settings.
   # So if you want to add an home-manager app create a module which enables it and configures it and import it.
   imports = [

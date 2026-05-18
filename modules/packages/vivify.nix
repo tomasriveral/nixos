@@ -10,7 +10,6 @@
   zip,
   file,
 }:
-
 stdenv.mkDerivation (finalAttrs: {
   pname = "vivify";
   version = "0.14.0";
@@ -49,11 +48,11 @@ stdenv.mkDerivation (finalAttrs: {
 
     wrapProgram $out/bin/viv \
       --prefix PATH : ${
-        lib.makeBinPath [
-          nodejs
-          file
-        ]
-      }
+      lib.makeBinPath [
+        nodejs
+        file
+      ]
+    }
   '';
 
   nativeBuildInputs = [
@@ -69,7 +68,7 @@ stdenv.mkDerivation (finalAttrs: {
   # (segmentation fault)
   dontStrip = true;
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     description = "Live Markdown viewer";
@@ -81,7 +80,7 @@ stdenv.mkDerivation (finalAttrs: {
     homepage = "https://github.com/jannis-baum/Vivify";
     changelog = "https://github.com/jannis-baum/Vivify/releases/tag/v${finalAttrs.src.tag}";
     license = lib.licenses.gpl3;
-    maintainers = with lib.maintainers; [ skohtv ];
+    maintainers = with lib.maintainers; [skohtv];
     platforms = lib.platforms.linux;
     mainProgram = "viv";
   };

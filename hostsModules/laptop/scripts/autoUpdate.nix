@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{pkgs, ...}:
 pkgs.writeShellApplication {
   name = "custom-autoupdate";
 
@@ -29,8 +26,8 @@ pkgs.writeShellApplication {
     # update lock only
     nix flake update --flake "$FLAKE_DIR"
 
-    if sudo nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then
-    
+    if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+
       if ! git -C "$FLAKE_DIR" diff --quiet -- flake.lock; then
         git -C "$FLAKE_DIR" add flake.lock
         git -C "$FLAKE_DIR" commit -m "flake.lock: autoupdate-$TIME"
@@ -57,7 +54,9 @@ pkgs.writeShellApplication {
 
       git -C "$FLAKE_DIR" reset --hard "pre-autoupdate-$TIME"
     fi
-    
+
+    git -C "$FLAKE_DIR" tag -d "pre-autoupdate-$TIME" # removes the tag
+
     rm -f "$ERROR_FILE"
   '';
 }

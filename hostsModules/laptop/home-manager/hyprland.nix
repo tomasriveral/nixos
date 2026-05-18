@@ -1,11 +1,4 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
-
-{
+_: {
   wayland.windowManager.hyprland.settings = {
     exec-once = [
       "qtbatticon" # custom battery tray

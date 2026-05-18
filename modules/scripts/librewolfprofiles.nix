@@ -1,7 +1,6 @@
 {
   writeShellApplication,
   zsh,
-  kitty,
   fzf,
   ...
 }:

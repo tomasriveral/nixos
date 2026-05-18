@@ -1,13 +1,7 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  libs,
-  inputs,
-  ...
-}: {
+_: {
   # i found swap necessary when running nixpkgs review
-  swapDevices = [{
+  swapDevices = [
+    {
       device = "/swapfile";
       size = 16384; # 16 GB
     }

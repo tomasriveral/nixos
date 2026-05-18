@@ -1,14 +1,10 @@
 # most of the themeing are in the home-manager modules. This just installs some packages needed
-{
-  pkgs,
-  ...
-}:
-{
+{pkgs, ...}: {
   qt.enable = true;
 
   # to resolve this https://wiki.nixos.org/wiki/Home_Manager#I_cannot_set_GNOME_or_Gtk_themes_via_Home_Manager
   programs.dconf.enable = true;
-  
+
   environment.systemPackages = with pkgs; [
     swww #wallpaper daemon
     gruvbox-gtk-theme
