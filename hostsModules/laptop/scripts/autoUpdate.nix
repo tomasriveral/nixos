@@ -55,6 +55,8 @@ pkgs.writeShellApplication {
       git -C "$FLAKE_DIR" reset --hard "pre-autoupdate-$TIME"
     fi
 
+    git -C "$FLAKE_DIR" tag -d "pre-autoupdate-$TIME" # removes the tag
+
     rm -f "$ERROR_FILE"
   '';
 }
