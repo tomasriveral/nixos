@@ -331,6 +331,8 @@ _: {
           {
             name = "cogito";
             tags = ["cogito" "esprit" "critique"];
+            keyword = "Cogito l'Esprit critique";
+            url = "https://app.cogito.fr";
           }
         ];
       };
