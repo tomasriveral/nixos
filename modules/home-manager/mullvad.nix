@@ -1,11 +1,7 @@
 # see also ../nixos/mullvad.nix
-_: {
-  programs.mullvad-vpn = {
+{pkgs-unstable,...}: {
+  programs.mullvad-vpn = { # gui
     enable = true;
-    # see https://github.com/mullvad/mullvadvpn-app/blob/main/desktop/packages/mullvad-vpn/src/main/gui-settings.ts for options
-    settings = {
-      autoConnect = true;
-      autoStart = true;
-    };
+    package = pkgs-unstable.mullvad-vpn;
   };
 }

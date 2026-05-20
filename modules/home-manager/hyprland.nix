@@ -428,7 +428,7 @@ in {
       "float on, match:class ^(kitty)$, match:title ^(htop)$"
       "float on, match:class ^(vlc)$"
       "float on, match:class ^(eog)$"
-      "float on, size 400 175, match:class ^(custom-librewolfprofiles)$"
+      "float on, size 400 225, match:class ^(custom-librewolfprofiles)$"
       "float on, size 1050 200, match:class ^(custom-changeAudioOutput)$"
       "float on, size 400 175, match:class ^(custom-obsidianvaults)$"
       "float on, size 600 600, match:initial_class ^(custom-pomodoro)$"
