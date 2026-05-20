@@ -42,6 +42,7 @@
     ../../hostsModules/laptop/nixos/hardwareUtils.nix
     ../../modules/nixos/otherUtils.nix
     ../../modules/nixos/office.nix
+    ../../modules/nixos/games.nix
   ];
 
   # This value determines the NixOS release from which the default
