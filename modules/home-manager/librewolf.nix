@@ -328,6 +328,12 @@ _: {
             keyword = "fahrlehrer24";
             url = "https://app.fahrlehrer24.ch/";
           }
+          {
+            name = "cogito";
+            tags = ["cogito" "esprit" "critique"];
+            keyword = "Cogito: l'Esprit critique";
+            url = "app.cogito.fr";
+          }
         ];
       };
       search = {
