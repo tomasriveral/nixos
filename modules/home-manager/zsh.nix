@@ -24,6 +24,7 @@
         fi
       }
       eval "$(direnv hook zsh)"
+      #eval "$(deja init)"
       export PATH="$PATH:$HOME/NoteWrapper" # some project im coding
             fastfetch''\n'';
     shellAliases = {
