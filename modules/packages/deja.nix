@@ -13,10 +13,10 @@ buildGoModule (finalAttrs: {
     owner = "Giammarco-Ferranti";
     repo = "deja";
     tag = "v${finalAttrs.version}";
-    hash = lib.fakeHash;
+    hash = "sha256-0eRXPtm+L1C4/fc/WLn9p2LV8uhJ4w+40hhA69+CEdw=";
   };
 
-  vendorHash = "sha256-K4DOu3rfSlKAa5JNKCzWWpnWZlXXxtN5Po7p1Spqe1w=";
+  vendorHash = "sha256-KmLdMK94cGOXMPJwWS6NgLB5OiNmJbszHdnLzauqJm8=";
 
   ldflags = [
     "-s"

@@ -1,4 +1,8 @@
-_: {
+{pkgs-unstable, ...}: {
+  home.packages = [
+    (pkgs-unstable.callPackage ../packages/deja.nix {})
+  ];
+
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
