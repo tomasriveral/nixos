@@ -19,7 +19,8 @@
     gdb
     raylib
     glfw # raylib and some dependecies
-
+    gnumake
+    go
     direnv
     cling # c interpreter used for coding
     # lsp
