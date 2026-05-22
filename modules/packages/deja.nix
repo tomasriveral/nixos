@@ -13,7 +13,7 @@ buildGoModule (finalAttrs: {
     owner = "Giammarco-Ferranti";
     repo = "deja";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-xxbClKhhSwo+jUjAZ2gS4yOS5sSI76dfPpDzA3qdV18=";
+    hash = "sha256-0eRXPtm+L1C4/fc/WLn9p2LV8uhJ4w+40hhA69+CEdw=";
   };
 
   vendorHash = "sha256-KmLdMK94cGOXMPJwWS6NgLB5OiNmJbszHdnLzauqJm8=";
