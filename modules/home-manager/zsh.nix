@@ -5,7 +5,7 @@
 
   programs.zsh = {
     enable = true;
-    autosuggestion.enable = true;
+    autosuggestion.enable = false; # zsh-autocomplete is replaced by deja
     initContent = ''
       # Safe cat that uses colorize plugin ccat
       custom-cat() {
@@ -24,7 +24,7 @@
         fi
       }
       eval "$(direnv hook zsh)"
-      #eval "$(deja init)"
+      eval "$(deja init zsh)"
       export PATH="$PATH:$HOME/NoteWrapper" # some project im coding
             fastfetch''\n'';
     shellAliases = {
