@@ -3,8 +3,7 @@
     environment.systemPackages = with pkgs; [
       chromium # used only to flash the firmware on my framework laptop 16 (keyboard.frame.work) as only chromium based browser support webHID.
       pkgs-unstable.tor-browser
-      self.packages.custom-librewolfprofiles
-      (pkgs.callPackage ../../modules/scripts/librewolfprofiles.nix {}) # fzf librewolf profile selector
+      self.packages.${pkgs.system}.custom-librewolfprofiles
     ];
   };
   flake.homeModules.librewolf = { ... }: {
@@ -644,36 +643,5 @@
         };
       };
     };
-  };
-  flake.packages.custom-librewolfprofiles = { pkgs, ... }:
-  # fzf librewolf profile selector
-  pkgs.writeShellApplication {
-    name = "custom-librewolfprofiles";
-    runtimeInputs = with pkgs; [
-      zsh
-      fzf
-    ];
-    text = ''
-      # List of profiles
-      profiles=("work" "other" "private window")
-  
-      # Use fzf to select
-      selected=$(printf "%s\n" "''${profiles[@]}" | fzf --height 6 --reverse --prompt="Select LibreWolf profile:")
-  
-      # If user cancels, exit
-      [[ -z "$selected" ]] && exit 0
-  
-      # Launch LibreWolf detached, keeping environment
-      if [[ "$selected" == "private window" ]]; then
-        setsid  librewolf --private-window --no-remote >/dev/null 2>&1 &
-            pkill -f "kitty.*Select LibreWolf profile"
-      else
-        setsid  librewolf -P "$selected" --no-remote >/dev/null 2>&1 &
-            pkill -f "kitty.*Select LibreWolf profile"
-      fi
-  
-      # Exit the kitty terminal after selection
-      exit
-    '';
   };
 }

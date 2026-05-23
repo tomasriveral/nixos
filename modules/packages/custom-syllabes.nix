@@ -1,10 +1,10 @@
 { ... }:
 {
-  flake.packages.custom-syllabes = { pkgs, ... }:
+  perSystem = { pkgs, ... }: {
   # counts how many syllabes in a string.
   # not perfect. Does not handle silents e in french
   # but that's what I use for writing poetry
-  pkgs.writers.writePython3Bin "custom-syllabes" {
+  packages.custom-syllabes = pkgs.writers.writePython3Bin "custom-syllabes" {
     libraries = with pkgs; [
       python3Packages.pyphen
     ];
@@ -27,4 +27,4 @@
   
     print(f"{total} ({'/'.join(chunks)})")
   '';
-}
+};}

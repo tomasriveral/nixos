@@ -41,8 +41,8 @@
       source = "${pkgs.gpu-screen-recorder}/bin/gsr-kms-server";
     };
   };
-    flake.packages.custom-changeAudioOutput = { pkgs, ...}:
-    pkgs.writeShellApplication {
+    perSystem = { pkgs, ...}: {
+    packages.custom-changeAudioOutput = pkgs.writeShellApplication {
       name = "custom-changeAudioOutput";
       runtimeInputs = with pkgs; [
         fzf
@@ -57,4 +57,4 @@
         pkill -f "kitty.*Select audio output"
       '';
   };
-}
+};}

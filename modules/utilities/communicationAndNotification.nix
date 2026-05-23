@@ -13,8 +13,8 @@
       self.packages.${pkgs.system}.custom-checkKdrive # check if kdrive is set up with rclone
     ];
   };
-  flake.packages.custom-checkMatrix = { pkgs, ...}:
-    pkgs.writeShellApplication {
+  perSystem = { pkgs, ...}: {
+    packages.custom-checkMatrix = pkgs.writeShellApplication {
       name = "custom-checkMatrix";
     
       runtimeInputs = with pkgs; [
@@ -33,8 +33,7 @@
         fi
       '';
   };
-  flake.packages.custom-gitnotify = { pkgs, ...}:
-  pkgs.writeShellApplication {
+  packages.custom-gitnotify = pkgs.writeShellApplication {
     name = "custom-gitnotify";
     runtimeInputs = with pkgs; [
       git
@@ -59,4 +58,4 @@
       fi
     '';
   };
-}
+};}

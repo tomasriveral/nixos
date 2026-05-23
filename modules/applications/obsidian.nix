@@ -26,8 +26,8 @@
       };
     };
   };
-  flake.packages.custom-obsidianbackup = {pkgs, ...}:
-  pkgs.writeShellApplication {
+  perSystem = {pkgs, ...}: {
+  packages.custom-obsidianbackup = pkgs.writeShellApplication {
     name = "custom-obsidianbackup";
     runtimeInputs = with pkgs; [
       rclone
@@ -84,8 +84,7 @@
     '';
   };
   # this might be broken after dendritic nix. As it searched for the obsidian.nix to get list of vaults
-  flake.packages.custom-obsidianvaults = {pkgs, ...}:
-  pkgs.writeShellApplication {
+  packages.custom-obsidianbvaults = pkgs.writeShellApplication {
     name = "custom-obsidianvaults";
     runtimeInputs = with pkgs; [
       zsh
@@ -123,4 +122,4 @@
       exit
     '';
   };
-}
+};}

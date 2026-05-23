@@ -11,8 +11,8 @@
       enable = true;
     };
   };
-  flake.packages.custom-checkKdrive = { pkgs, ... }:
-    pkgs.writeShellApplication {
+  perSystem = { pkgs, ... }: {
+    packages.custom-checkKdrive = pkgs.writeShellApplication {
       name = "custom-checkKdrive";
       runtimeInputs = with pkgs; [
         rclone
@@ -46,8 +46,7 @@
         fi
       '';
     };
-  flake.packages.custom-mountkdrive = { pkgs, ... }:
-    pkgs.writeShellApplication {
+    packages.custom-mountkdrive = pkgs.writeShellApplication {
     name = "custom-mountkdrive";
     runtimeInputs = with pkgs; [
       rclone
@@ -67,4 +66,4 @@
       fi
     '';
   };
-}
+};}

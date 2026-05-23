@@ -35,10 +35,10 @@
       statix
     ];
   };
-  flake.packages.custom-trimmer = { pkgs, ... }:
+  perSystem = { pkgs, ... }: {
   # https://gist.github.com/MaxwellDupre/3077cd229490cf93ecab08ef2a79c852
   # better garbage collector
-    pkgs.writeShellApplication {
+    packages.custom-trimmer = pkgs.writeShellApplication {
     name = "custom-trimmer";
     runtimeInputs = with pkgs; [
       nix
@@ -298,4 +298,4 @@
   
     '';
   };
-}
+};}

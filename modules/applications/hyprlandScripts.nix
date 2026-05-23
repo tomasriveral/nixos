@@ -1,11 +1,17 @@
-{ self, ...}: {
+{ pkgs-unstable, ...}: { # for some reason perSystem can't expose pkgs-unstable so we need to expose it here
 # -----------------------------------------------------
 # Here are a bunch of scripts that interact with hyprland
 # Some are still used. Some are broken. Some are deprecated. But I do still keep them in case I want to go back to old tools
 # -----------------------------------------------------
+  perSystem = { pkgs, ... }:   let
+    wallpaper1 = ../../assets/wallpaper1.jpg;
+    wallpaper2 = ../../assets/wallpaper2.jpg;
+    wallpaper3 = ../../assets/wallpaper3.jpg;
+    wallpaper4 = ../../assets/wallpaper4.jpg;
+    wallpaper5 = ../../assets/wallpaper5.jpg;
+  in {
   # kills the app, but when it's steam or custom-pomodoro
-  flake.packages.custom-dontkillsteam = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  packages.custom-dontkillsteam = pkgs.writeShellApplication {
     name = "custom-dontkillsteam";
     runtimeInputs = with pkgs; [
       hyprland
@@ -21,12 +27,11 @@
   
     '';
   };
-  flake.packages.custom-killall = { pkgs, pkgs-unstable, ...}:
-  pkgs.writeShellApplication {
+  packages.custom-killall = pkgs.writeShellApplication {
     name = "custom-killall";
-    runtimeInputs = with pkgs; [
-      pkgs-unstable.hyprland
-      jq
+    runtimeInputs = [
+      pkgs.hyprland # for some reason pkgs-unstable doesn't work here
+      pkgs.jq
     ];
     text = ''
       active_workspace_id=$(hyprctl activeworkspace -j | jq -r '.id')
@@ -39,15 +44,7 @@
         xargs -r kill
     '';
   };
-  flake.packages.custom-wallpaper = { pkgs, ... }: 
-  let
-    wallpaper1 = ../../assets/wallpaper1.jpg;
-    wallpaper2 = ../../assets/wallpaper2.jpg;
-    wallpaper3 = ../../assets/wallpaper3.jpg;
-    wallpaper4 = ../../assets/wallpaper4.jpg;
-    wallpaper5 = ../../assets/wallpaper5.jpg;
-  in
-    pkgs.writeShellApplication {
+  packages.custom-wallpaper = pkgs.writeShellApplication {
       name = "custom-wallpaper";
       runtimeInputs = with pkgs; [
         socat
@@ -84,8 +81,7 @@
         socat -U - UNIX-CONNECT:"$XDG_RUNTIME_DIR"/hypr/"$HYPRLAND_INSTANCE_SIGNATURE"/.socket2.sock | while read -r line; do handle "$line"; done
       '';
   };
-  flake.packages.custom-launch = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  packages.custom-launch = pkgs.writeShellApplication {
     # used for the terminal autostart. Needs to get cleared and recall fastfetch so that the bar from oh-my-zsh get resized
     # unused
     name = "custom-launch";
@@ -98,4 +94,4 @@
       zsh
     '';
   };
-}
+};}

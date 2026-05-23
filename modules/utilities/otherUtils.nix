@@ -1,4 +1,4 @@
-{ ... }: {
+{ self, ... }: {
   flake.nixosModules.otherUtils = # try to keep packages here at a minium. Preferably use a dedicated file
   {
     pkgs,
@@ -19,8 +19,8 @@
       mailcap
       fuzzel
       usbutils # used for lsusb
-      (pkgs.callPackage ../../modules/scripts/tomato.nix {})
-      (pkgs.callPackage ../../modules/scripts/syllabes.nix {}) # python script to get number of syllabes in french
+      self.packages.${pkgs.system}.custom-tomato
+      self.packages.${pkgs.system}.custom-syllabes
       pkgs-unstable.bitwarden-desktop
       fluffychat # matrix client
     ];

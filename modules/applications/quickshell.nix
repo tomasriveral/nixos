@@ -13,9 +13,9 @@
         recursive = true;
       };
   };
-  flake.packages.QS-notifycache = {writeShellApplication, ...}:
+  perSystem = {pkgs, ...}: {
   # creates and maintains cache file for the notification history
-  writeShellApplication {
+ packages.QS-notifycache = pkgs.writeShellApplication {
     name = "QS-notifycache";
     text = ''
       CACHE="$HOME/.cache/notify_history"
@@ -25,8 +25,7 @@
       echo "Notification history initialized at $(date)" >> "$CACHE"
     '';
   };
-  flake.packages.QS-notifyhistory = {writeShellApplication, ...}:
-  writeShellApplication {
+  packages.QS-notifyhistory = pkgs.writeShellApplication {
     name = "QS-notifyhistory";
     text = ''
       app="$1"
@@ -51,8 +50,7 @@
       } >> "$HOME/.cache/notify_history"
     '';
   };
-  flake.packages.QS-sysinfo = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  packages.QS-sysinfo = pkgs.writeShellApplication {
     name = "QS-sysinfo";
     runtimeInputs = with pkgs; [
       ripgrep
@@ -122,4 +120,4 @@
       echo "{\"cpu\":\"$cpu\",\"temp\":\"$temp\",\"fan\":\"$fan\",\"mem\":\"$mem\",\"disk\":\"$disk\",\"power\":\"$power\",\"down\":\"$down_speed\",\"up\":\"$up_speed\"}"
     '';
   };
-}
+};}

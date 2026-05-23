@@ -1,28 +1,17 @@
 { ... }: {
-  flake.packages.vivifyManuallyDerived = {
-    lib,
-    stdenv,
-    nix-update-script,
-    fetchYarnDeps,
-    fetchFromGitHub,
-    yarnConfigHook,
-    npmHooks,
-    nodejs,
-    zip,
-    file,
-  }:
-  stdenv.mkDerivation (finalAttrs: {
+  perSystem = { pkgs, nodejs, ... }: {
+  packages.vivifyManuallyDerived = pkgs.stdenv.mkDerivation (finalAttrs: {
     pname = "vivify";
     version = "0.14.0";
   
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "jannis-baum";
       repo = "Vivify";
       tag = "v${finalAttrs.version}";
       hash = "sha256-CszMG+c0bNHfXWqcI3b4iGpeFJ+FmzHDzxflPS+wEe0=";
     };
   
-    yarnOfflineCache = fetchYarnDeps {
+    yarnOfflineCache = pkgs.fetchYarnDeps {
       yarnLock = "${finalAttrs.src}/yarn.lock";
       hash = "sha256-svgEanFiBSQn0TdTuB0CnLR71lkANABEaDiKB+Vc0Rc=";
     };
@@ -33,13 +22,13 @@
       yarn install
   
       substituteInPlace node_modules/.bin/tsc \
-        --replace-fail '/usr/bin/env node' '${lib.getExe nodejs}'
+        --replace-fail '/usr/bin/env node' '${pkgs.lib.getExe nodejs}'
   
       substituteInPlace node_modules/.bin/webpack \
-        --replace-fail '/usr/bin/env node' '${lib.getExe nodejs}'
+        --replace-fail '/usr/bin/env node' '${pkgs.lib.getExe nodejs}'
   
       substituteInPlace node_modules/.bin/postject \
-        --replace-fail '/usr/bin/env node' '${lib.getExe nodejs}'
+        --replace-fail '/usr/bin/env node' '${pkgs.lib.getExe nodejs}'
   
       make VIV_VERSION=${finalAttrs.version} linux
   
@@ -49,14 +38,14 @@
   
       wrapProgram $out/bin/viv \
         --prefix PATH : ${
-        lib.makeBinPath [
-          nodejs
-          file
+        pkgs.lib.makeBinPath [
+          pkgs.nodejs
+          pkgs.file
         ]
       }
     '';
   
-    nativeBuildInputs = [
+    nativeBuildInputs = with pkgs; [
       yarnConfigHook
       npmHooks.npmInstallHook
       zip
@@ -69,7 +58,7 @@
     # (segmentation fault)
     dontStrip = true;
   
-    passthru.updateScript = nix-update-script {};
+    passthru.updateScript = pkgs.nix-update-script {};
   
     meta = {
       description = "Live Markdown viewer";
@@ -80,10 +69,10 @@
       '';
       homepage = "https://github.com/jannis-baum/Vivify";
       changelog = "https://github.com/jannis-baum/Vivify/releases/tag/v${finalAttrs.src.tag}";
-      license = lib.licenses.gpl3;
-      maintainers = with lib.maintainers; [skohtv];
-      platforms = lib.platforms.linux;
+      license = pkgs.lib.licenses.gpl3;
+      maintainers = with pkgs.lib.maintainers; [skohtv];
+      platforms = pkgs.lib.platforms.linux;
       mainProgram = "viv";
     };
   });
-}
+};}

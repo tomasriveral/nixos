@@ -1,11 +1,11 @@
 { ... }: {
-  flake.nixosModule.disk = { pkgs, ... }: {
+  flake.nixosModules.disk = { pkgs, ... }: {
     environment.systemPackages = with pkgs; [
       gnome-disk-utility
       udiskie
     ];
   };
-  flake.nixosModule.disk-laptop = { ... }: {
+  flake.nixosModules.disk-laptop = { ... }: {
     # i found swap necessary when running nixpkgs review
     swapDevices = [
       {

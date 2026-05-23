@@ -53,10 +53,10 @@
     };
     #  };
   };
-  flake.packages.batteryNotify = { pkgs, ... }: let
+  perSystem = { pkgs, ... }: let
     NotifySound = ../../assets/battery_notify.mp3;
-  in
-    pkgs.writeShellApplication {
+  in {
+    packages.custom-batterynotify = pkgs.writeShellApplication {
       # taken and adapted https://github.com/miniMinn24/Battery_Notify with MIT License
 
       name = "custom-batterynotify";
@@ -122,10 +122,7 @@
         done
       '';
     };
-  flake.packages.batteryWarning = { pkgs, ...}: let
-    NotifySound = ../../assets/battery_notify.mp3;
-  in
-    pkgs.writeShellApplication {
+    packages.custom-batterywarning = pkgs.writeShellApplication {
       # taken and adapted https://github.com/miniMinn24/Battery_Notify with MIT License
       name = "custom-batterywarning";
       runtimeInputs = with pkgs; [
@@ -165,13 +162,12 @@
         done
       '';
     };
-  flake.packages.qtbatticon = { pkgs, ... }:
     # because cbatticon, batticonplus  and other things didn't work.
     # chatGpt did this.
     # https://chatgpt.com/c/69da11b3-ba24-8331-b7b0-a58a72e69d42
     # at your risk and perils
     # click on the icon to get a notification with state, percentage and wattage
-    pkgs.stdenv.mkDerivation {
+    packages.qtbatticon = pkgs.stdenv.mkDerivation {
       pname = "qtbatticon";
       version = "1.0";
     
@@ -336,8 +332,7 @@
       '';
     };
   # This was replaced by caelestia shell's Game Mode
-  flake.packages.custom-performance = { pkgs, ...}:
-  pkgs.writeShellApplication {
+  packages.custom-performance = pkgs.writeShellApplication {
     name = "custom-performance";
     runtimeInputs = with pkgs; [
       hyprland
@@ -367,8 +362,7 @@
     '';
   };
   # Old script that was used for the battery. Might not work.
-  flake.packages.custom-olddeprecatedbatterynotify = { pkgs, ... }:
-    pkgs.writeShellApplication {
+    packages.custom-olddeprecatedbatterynotify = pkgs.writeShellApplication {
     name = "custom-olddeprecatedbatterynotify";
   
     runtimeInputs = with pkgs; [
@@ -433,7 +427,7 @@
         sleep "$INTERVAL"
       done
     '';
-  };
+  };};
   flake.homeModules.cbatticon = { ... }: {
     # don't works. some GTK error. I let it here if someday, someone is interest in this shit.
     # ChatGPT half baked a replacement that works on my system.

@@ -1,16 +1,10 @@
 { ... }: {
-  flake.packages.dejaManuallyDerived = {
-    lib,
-    buildGoModule,
-    fetchFromGitHub,
-    nix-update-script,
-    versionCheckHook,
-  }:
-  buildGoModule (finalAttrs: {
+  perSystem = { pkgs, pkgs-unstable, ...}: {
+  packages.dejaManuallyDerived = pkgs-unstable.buildGoModule (finalAttrs: {
     pname = "deja";
     version = "0.2.6";
     __structuredAttrs = true;
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "Giammarco-Ferranti";
       repo = "deja";
       tag = "v${finalAttrs.version}";
@@ -27,17 +21,17 @@
   
     doCheck = true;
   
-    nativeCheckInputs = [versionCheckHook];
+    nativeCheckInputs = [pkgs.versionCheckHook];
   
-    passthru.updateScript = nix-update-script {};
+    passthru.updateScript = pkgs.nix-update-script {};
   
     meta = {
       description = "Predictive inline shell autosuggestions for zsh";
       homepage = "https://github.com/Giammarco-Ferranti/deja";
-      license = lib.licenses.mit;
-      platforms = lib.platforms.unix;
-      maintainers = with lib.maintainers; [tomasrivera];
+      license = pkgs.lib.licenses.mit;
+      platforms = pkgs.lib.platforms.unix;
+      maintainers = with pkgs.lib.maintainers; [tomasrivera];
       mainProgram = "deja";
     };
   });
-}
+};}

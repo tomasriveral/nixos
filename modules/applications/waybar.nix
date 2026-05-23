@@ -694,8 +694,8 @@
       '';
     };
   };
-  flake.packages.custom-weatherwaybar = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  perSystem = { pkgs, ... }: {
+  packages.custom-weatherwaybar = pkgs.writeShellApplication {
     name = "custom-weatherwaybar";
     runtimeInputs = with pkgs; [
       curl
@@ -713,4 +713,4 @@
         "$TEXT1" "$TEXT2" "$TEXT3"
     '';
   };
-}
+};}

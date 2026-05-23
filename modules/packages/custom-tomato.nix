@@ -1,7 +1,7 @@
 { ... }:
 {
-  flake.packages.custom-tomato = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  perSystem = { pkgs, ...}: {
+  packages.custom-tomato = pkgs.writeShellApplication {
     name = "custom-tomato";
     runtimeInputs = with pkgs; [
       kitty
@@ -11,4 +11,5 @@
       kitty --class "custom-pomodoro" --name "custom-pomodoro" -e tomato
     '';
   };
+};
 }

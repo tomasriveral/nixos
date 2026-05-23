@@ -1,7 +1,7 @@
 { ... }:
 {
-  flake.packages.custom-weather = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  perSystem = { pkgs, ... }: {
+  packages.custom-weather = pkgs.writeShellApplication {
     name = "custom-weather";
     runtimeInputs = with pkgs; [
       curl
@@ -13,4 +13,4 @@
       done
     '';
   };
-}
+};}

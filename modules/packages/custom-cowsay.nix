@@ -1,6 +1,6 @@
 { ... }: {
-  flake.packages.custom-cowsay = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  perSystem = { pkgs, ... }: {
+  packages.custom-cowsay = pkgs.writeShellApplication {
     name = "custom-cowsay";
     runtimeInputs = with pkgs; [
       cowsay
@@ -80,4 +80,4 @@
     '';
     # reduce terminal size for actually
   };
-}
+};}

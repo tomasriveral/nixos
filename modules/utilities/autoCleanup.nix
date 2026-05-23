@@ -44,8 +44,8 @@
       };
     };
   };
-  flake.packages.custom-cleanNix-laptop = {pkgs, ...}:
-    pkgs.writeShellApplication {
+  perSystem = { pkgs, ... }: {
+    packages.custom-cleanNix-laptop = pkgs.writeShellApplication {
       name = "custom-cleanNix";
     
       runtimeInputs = with pkgs; [
@@ -115,4 +115,4 @@
         rm -f "$ERROR_FILE"
       '';
     };
-}
+};}

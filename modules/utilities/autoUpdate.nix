@@ -44,8 +44,8 @@
       };
     };
   };
-  flake.packages.custom-autoupdate-laptop = {pkgs, ...}:
-    pkgs.writeShellApplication {
+  perSystem = {pkgs, ...}: {
+    packages.custom-autoupdate-laptop = pkgs.writeShellApplication {
       name = "custom-autoupdate";
     
       runtimeInputs = with pkgs; [
@@ -106,4 +106,4 @@
         rm -f "$ERROR_FILE"
       '';
     };
-}
+};}

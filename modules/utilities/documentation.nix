@@ -14,8 +14,8 @@
       self.packages.${pkgs.system}.custom-manix
     ];
   };
-  flake.packages.custom-man = { pkgs, ... }:
-    pkgs.writeShellApplication {
+  perSystem =  { pkgs, ... }: {
+    packages.custom-man = pkgs.writeShellApplication {
       name = "custom-man";
       runtimeInputs = with pkgs; [
         man
@@ -52,8 +52,7 @@
           | xargs man
       '';
     };
-  flake.packages.custom-manix = { pkgs, ... }:
-  pkgs.writeShellApplication {
+  packages.custom-manix = pkgs.writeShellApplication {
     name = "custom-manix";
     runtimeInputs = with pkgs; [
       manix
@@ -90,4 +89,4 @@
         | xargs manix
     '';
   };
-}
+};}

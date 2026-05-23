@@ -1,13 +1,11 @@
-{ inputs, self, ...}: {
+}[[{ inputs, self, ...}: {
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     specialArgs = {
       inherit (self) pkgs pkgs-unstable;
     };
     modules = with self.nixosModules; [
-#inputs.home-manager.nixosModules.home-manager      
-inputs.home-manager.nixosModules.default
-# keep this alphabetically organised
+      # keep this alphabetically organised
       anki
       audioAndMedia
       autoCleanup-laptop
@@ -41,20 +39,12 @@ inputs.home-manager.nixosModules.default
       printer
       udev
       user
-    ];};
-  flake.homeConfigurations.tomasr = inputs.home-manager.lib.homeManagerConfiguration {
-    pkgs = import inputs.nixpkgs { system = "x86_64-linux"; };
-
-#    system = "x86_64-linux";
-    #specialArgs = {
-    #  inherit (self) pkgs pkgs-unstable;
-    #};
-    extraSpecialArgs = {
-      pkgs-unstable =
-        import inputs.nixpkgs-unstable {
-          system = "x86_64-linux";
-        };
-      };
+    ];
+  flake.homeConfiguration.tomasr = inputs.home-manager.lib.homeManagerConfiguration {
+    system = "x86_64-linux";
+    specialArgs = {
+      inherit (self) pkgs pkgs-unstable;
+    };
     modules = with self.homeModules; [
       anki
       cursor
@@ -90,21 +80,13 @@ inputs.home-manager.nixosModules.default
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "25.11"; # Did you read the comment?
 
-    #home-manager.users.tomasr = self.home.Configurations.tomasr;
-    #home-manager.nixosModule.home-manager.users.tomasr = self.homeConfigurations.tomasr;
-    home-manager.users.tomasr = {
-  imports = [
-    self.homeModules.tomasr
-  ];
-};
+    home-manager.users.tomasr = self.homeModules.tomasr;
   };
-  flake.nixosModules.home-manager-laptop = { pkgs, ... }: {
+  flake.nixosModules.home-manager-laptop = { ... }: {
     imports = [
       inputs.home-manager.nixosModules.default # import official home-manager NixOS module
     ];
-    
-    # Warning. Git is used in case I break everything up. It already saved me once
-    environment.systemPackages = [ pkgs.git ];
+
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;

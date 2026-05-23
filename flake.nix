@@ -24,22 +24,27 @@
     import-tree.url = "github:vic/import-tree"; # imports ./modules recursively
   };
   outputs = inputs @ { flake-parts, ... }:
-  /*@ inputs: let
-    unfreePkgs = [
-      "hplip"
-      "vivify.vim"
-      "cheatsheet.nvim"
-    ];
-
-    mkUnfreePredicate = pkg:
-      builtins.elem (nixpkgs.lib.getName pkg) unfreePkgs;
-
-    pkgs-unstable = import nixpkgs-unstable {
-      inherit system;
-
-      config.allowUnfreePredicate = mkUnfreePredicate;
-    };
-    in */
     flake-parts.lib.mkFlake { inherit inputs; }
-      (inputs.import-tree ./modules);
+    ({
+      flake = let
+        system = "x86_64-linux";
+        unfreePkgs = [
+          "hplip"
+          "vivify.vim"
+          "cheatsheet.nvim"
+        ];
+        mkUnfreePredicate = pkg:
+          builtins.elem (inputs.nixpkgs.lib.getName pkg) unfreePkgs;
+        mkPkgs = nixpkgsInput:
+          import nixpkgsInput {
+            inherit system;
+            config.allowUnfreePredicate = mkUnfreePredicate;
+          };
+          pkgs = mkPkgs inputs.nixpkgs;
+          pkgs-unstable = mkPkgs inputs.nixpkgs-unstable;
+      in {
+        inherit pkgs pkgs-unstable;
+      };
+    }
+    // (inputs.import-tree ./modules));
   }

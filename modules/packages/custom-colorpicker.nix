@@ -1,6 +1,7 @@
 { ... }: {
-  flake.packages.custom-colorpicker = { pkgs, ... }:
-  pkgs.writeShellApplication {
+
+  perSystem = { pkgs, ... }: {
+  packages.custom-colorpicker = pkgs.writeShellApplication {
     # useless. Just use hyprpicker
     name = "custom-colorpicker";
     runtimeInputs = with pkgs; [
@@ -70,4 +71,5 @@
       pkill -RTMIN+1 waybar
     '';
   };
+};
 }

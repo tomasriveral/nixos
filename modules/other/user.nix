@@ -1,5 +1,5 @@
 { ... }: {
-  flake.nixModules.user = {
+  flake.nixosModules.user = {
   pkgs,
   pkgs-unstable,
   ...
