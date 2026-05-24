@@ -1,0 +1,128 @@
+{
+  "relay_settings": {
+    "normal": {
+      "location": {
+        "only": {
+          "location": {
+            "country": "al"
+          }
+        }
+      },
+      "providers": "any",
+      "ownership": "any",
+      "wireguard_constraints": {
+        "ip_version": "any",
+        "allowed_ips": {
+          "only": [
+            "0.0.0.0/0",
+            "::/0"
+          ]
+        },
+        "use_multihop": false,
+        "entry_location": {
+          "only": {
+            "location": {
+              "country": "se"
+            }
+          }
+        },
+        "entry_providers": "any",
+        "entry_ownership": "any"
+      }
+    }
+  },
+  "obfuscation_settings": {
+    "selected_obfuscation": "auto",
+    "udp2tcp": {
+      "port": "any"
+    },
+    "shadowsocks": {
+      "port": "any"
+    },
+    "wireguard_port": {
+      "port": "any"
+    }
+  },
+  "custom_lists": {
+    "custom_lists": []
+  },
+  "api_access_methods": {
+    "direct": {
+      "id": "7b900dac-9beb-4178-96ce-33c31ad8fcd2",
+      "name": "Direct",
+      "enabled": true,
+      "access_method": {
+        "built_in": "direct"
+      }
+    },
+    "mullvad_bridges": {
+      "id": "9faf32e5-8b61-47ab-a414-96ec82c7eaed",
+      "name": "Mullvad Bridges",
+      "enabled": true,
+      "access_method": {
+        "built_in": "bridge"
+      }
+    },
+    "encrypted_dns_proxy": {
+      "id": "f5940813-424c-4d49-a9a3-01e7aefc13b2",
+      "name": "Encrypted DNS proxy",
+      "enabled": true,
+      "access_method": {
+        "built_in": "encrypted_dns_proxy"
+      }
+    },
+    "custom": []
+  },
+  "update_default_location": false,
+  "allow_lan": true,
+  "lockdown_mode": false,
+  "auto_connect": true,
+  "tunnel_options": {
+    "wireguard": {
+      "mtu": null,
+      "quantum_resistant": "on",
+      "daita": {
+        "enabled": true,
+        "use_multihop_if_necessary": true
+      },
+      "rotation_interval": null
+    },
+    "generic": {
+      "enable_ipv6": false
+    },
+    "dns_options": {
+      "state": "default",
+      "default_options": {
+        "block_ads": false,
+        "block_trackers": false,
+        "block_malware": true,
+        "block_adult_content": false,
+        "block_gambling": false,
+        "block_social_media": false
+      },
+      "custom_options": {
+        "addresses": []
+      }
+    }
+  },
+  "relay_overrides": [],
+  "show_beta_releases": false,
+  "settings_version": 15,
+  "recents": [
+    {
+      "Singlehop": {
+        "location": {
+          "country": "al"
+        }
+      }
+    },
+    {
+      "Singlehop": {
+        "location": {
+          "country": "se"
+        }
+      }
+    }
+  ],
+  "rollout_threshold_seed": null
+}
