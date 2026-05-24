@@ -24,7 +24,6 @@
     import-tree.url = "github:vic/import-tree"; # imports ./modules recursively
   };
   outputs = inputs @ { flake-parts, ... }:
-  #outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
     flake-parts.lib.mkFlake { inherit inputs; }
     ({
       flake = let
@@ -37,7 +36,7 @@
         mkUnfreePredicate = pkg:
           builtins.elem (inputs.nixpkgs.lib.getName pkg) unfreePkgs;
         mkPkgs = nixpkgsInput:
-          import nixpkgsInput {
+        import nixpkgsInput {
             inherit system;
             config.allowUnfreePredicate = mkUnfreePredicate;
         };

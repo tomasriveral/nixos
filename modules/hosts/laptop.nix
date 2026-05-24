@@ -1,19 +1,16 @@
 { inputs, self, ...}: {
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
-    system = "x86_64-linux";
+    #system = "x86_64-linux";
     specialArgs = {
-      inherit (self) pkgs pkgs-unstable;
+      inherit (self) pkgs-unstable;
     };
     modules = with self.nixosModules; [
-#inputs.home-manager.nixosModules.home-manager      
-#inputs.home-manager.nixosModules.default
-# keep this alphabetically organised
 
-
-home-manager-laptop
+      # important do not remove
+      home-manager-laptop
       laptop
       { nixpkgs.pkgs = self.pkgs; }
-
+# keep this alphabetically organised
       anki
       audioAndMedia
       autoCleanup-laptop
@@ -45,50 +42,9 @@ home-manager-laptop
       printer
       udev
       user
-    ];};
-  flake.nixosModules.laptop = { ... }: {
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "25.11"; # Did you read the comment?
-
-    /*#home-manager.users.tomasr = self.home.Configurations.tomasr;
-    #home-manager.nixosModule.home-manager.users.tomasr = self.homeConfigurations.tomasr;
-    home-manager.users.tomasr = {
-  imports = [
-      self.homeModules.tomasr
-  ];
-};*/
-  };
-  flake.nixosModules.home-manager-laptop = { pkgs, ... }: {
-    imports = [
-      inputs.home-manager.nixosModules.default # import official home-manager NixOS module
     ];
-    
-    # Warning. Git is used in case I break everything up. It already saved me once
-    environment.systemPackages = [ pkgs.git ];
-    home-manager = {
-      useGlobalPkgs = true;
-      useUserPackages = true;
-
-      extraSpecialArgs = {
-         #inherit (self) pkgs-unstable;
-         pkgs-unstable = self.pkgs-unstable;
-         inherit self;
-      };
-    };
-
-    users.users.tomasr = {
-      isNormalUser = true;
-      #shell = pkgs.zsh;
-    };
-    home-manager.users.tomasr = self.homeModules.tomasrModule;
   };
-  # we shouldn't use homeConfigurations as it makes a standalone home-manager config
-  flake.homeModules.tomasrModule = { ... }: {
+  flake.homeModules.laptop = { ... }: {
     imports = with self.homeModules; [
       inputs.caelestia-shell.homeManagerModules.default
       anki
@@ -110,12 +66,50 @@ home-manager-laptop
       sbb-tui
       ssh
       thunderbird
-      #tomasr
+      tomasr
      vivify
       zoxide
       zsh
       zsh-laptop
     ];
+  };
+  flake.nixosModules.laptop = { ... }: {
+    # This value determines the NixOS release from which the default
+    # settings for stateful data, like file locations and database versions
+    # on your system were taken. It‘s perfectly fine and recommended to leave
+    # this value at the release version of the first install of this system.
+    # Before changing this value read the documentation for this option
+    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+    system.stateVersion = "25.11"; # Did you read the comment?
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  };
+  flake.nixosModules.home-manager-laptop = { pkgs, ... }: {
+    imports = [
+      inputs.home-manager.nixosModules.default # import official home-manager NixOS module
+    ];
+    
+    # Warning. Git is used in case I break everything up. It already saved me once
+    environment.systemPackages = [ pkgs.git ];
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+
+      extraSpecialArgs = {
+         pkgs-unstable = self.pkgs-unstable;
+         inherit self;
+      };
+    };
+
+    users.users.tomasr = {
+      isNormalUser = true;
+    };
+    home-manager.users.tomasr = self.homeModules.laptop;
+  };
+  flake.homeModules.tomasr = { ... }: {
+
     home.username = "tomasr";
     home.homeDirectory = "/home/tomasr";
   

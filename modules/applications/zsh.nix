@@ -7,9 +7,10 @@
       };
     };
   };
-  flake.homeModules.zsh = {pkgs, ...}: {
+  flake.homeModules.zsh = {pkgs, pkgs-unstable,...}: {
     home.packages = [
       self.packages.${pkgs.system}.dejaManuallyDerived
+      #pkgs-unstable.deja
     ];
   
     programs.zsh = {
