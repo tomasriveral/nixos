@@ -1,4 +1,4 @@
-⚠️ Documentation outdated.
+⚠️ Documentation outdated. I recently rewrote the entire config using the [dendritic pattern](https://github.com/mightyiam/dendritic/). One of these days, I will update the README.
 
 # NixOS Configuration
 ![NixOS configuration](/assets/example.png)
