@@ -1,8 +1,9 @@
 { self, ... }: {
-  flake.nixosModules.autoCleanup-laptop = {pkgs, ...}: {
+  flake.nixosModules.autoCleanup-laptop = {pkgs, pkgs-unstable, ...}: {
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-cleanNix-laptop
+      pkgs-unstable.statix
     ];
     users.users.tomasr = {
       linger = true; # lingering is required

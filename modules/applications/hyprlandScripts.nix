@@ -1,4 +1,4 @@
-{ pkgs-unstable, ...}: { # for some reason perSystem can't expose pkgs-unstable so we need to expose it here
+{ ...}: { # for some reason perSystem can't expose pkgs-unstable so we need to expose it here
 # -----------------------------------------------------
 # Here are a bunch of scripts that interact with hyprland
 # Some are still used. Some are broken. Some are deprecated. But I do still keep them in case I want to go back to old tools
