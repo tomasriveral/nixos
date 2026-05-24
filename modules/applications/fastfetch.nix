@@ -1,42 +1,42 @@
-{ ... }: {
-  flake.homeModules.fastfetch = { ... }: {
+_: {
+  flake.homeModules.fastfetch = _: {
     # Adapted from https://github.com/dacrab/fastfetch-config/blob/main/config.jsonc
     programs.fastfetch = {
       enable = true;
-  
+
       settings = {
         logo = {
           type = "none";
           #source = "nixos";
         };
-  
+
         modules = [
           # ───────────── Hardware ─────────────
-  
+
           {
             type = "custom";
             format = "╭───────────────────────── Hardware ──────────────────────────╮";
             outputColor = "blue";
           }
-  
+
           {
             type = "title";
             key = " PC";
             keyColor = "green";
           }
-  
+
           {
             type = "host";
             key = "│ ├󰇅 Laptop";
             keyColor = "green";
           }
-  
+
           {
             type = "display";
             key = "│ ├󰍹 Display";
             keyColor = "green";
           }
-  
+
           {
             type = "cpu";
             key = "│ ├󰍛 CPU";
@@ -44,63 +44,63 @@
             format = "{1}";
             keyColor = "green";
           }
-  
+
           {
             type = "gpu";
             key = "│ ├󰍛 GPU";
             keyColor = "green";
           }
-  
+
           {
             type = "memory";
             key = "└ └󰍛 Memory";
             keyColor = "green";
           }
-  
+
           {
             type = "custom";
             format = "╰─────────────────────────────────────────────────────────────╯";
             outputColor = "blue";
           }
-  
+
           # ───────────── Software ─────────────
-  
+
           {
             type = "custom";
             format = "╭───────────────────────── Software ──────────────────────────╮";
             outputColor = "blue";
           }
-  
+
           {
             type = "os";
             key = " OS";
             keyColor = "cyan";
           }
-  
+
           {
             type = "kernel";
             key = "│ ├ Kernel";
             keyColor = "cyan";
           }
-  
+
           {
             type = "packages";
             key = "│ ├󰏖 Packages";
             keyColor = "cyan";
           }
-  
+
           {
             type = "shell";
             key = "│ ├ Shell";
             keyColor = "cyan";
           }
-  
+
           {
             type = "terminal";
             key = "│ ├ Terminal";
             keyColor = "cyan";
           }
-  
+
           {
             type = "command";
             key = "│ ├ OS Age";
@@ -113,50 +113,50 @@
               echo $days_difference days
             '';
           }
-  
+
           {
             type = "uptime";
             key = "└ └ Uptime";
             keyColor = "cyan";
           }
-  
+
           {
             type = "de";
             key = " DE";
             keyColor = "blue";
           }
-  
+
           {
             type = "wm";
             key = " WM";
             keyColor = "magenta";
           }
-  
+
           {
             type = "gpu";
             key = "│ ├󰍛 GPU Driver";
             format = "{3}";
             keyColor = "magenta";
           }
-  
+
           {
             type = "brightness";
             key = "│ ├󰃟 Brightness";
             keyColor = "magenta";
           }
-  
+
           {
             type = "version";
             key = "└ └ FastFetch";
             keyColor = "magenta";
           }
-  
+
           {
             type = "custom";
             format = "╰────────────────────────────────────────────────────────────╯";
             outputColor = "blue";
           }
-  
+
           #{
           #  type = "custom";
           #  format = ''
@@ -167,7 +167,7 @@
             type = "colors";
             symbol = "diamond";
           }
-  
+
           "break"
         ];
       };

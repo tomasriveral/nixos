@@ -1,16 +1,19 @@
-{ inputs, self, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     #system = "x86_64-linux";
     specialArgs = {
       inherit (self) pkgs-unstable;
     };
     modules = with self.nixosModules; [
-
       # important do not remove
       home-manager-laptop
       laptop
-      { nixpkgs.pkgs = self.pkgs; }
-# keep this alphabetically organised
+      {nixpkgs.pkgs = self.pkgs;}
+      # keep this alphabetically organised
       anki
       audioAndMedia
       autoCleanup-laptop
@@ -44,7 +47,7 @@
       user
     ];
   };
-  flake.homeModules.laptop = { ... }: {
+  flake.homeModules.laptop = {...}: {
     imports = with self.homeModules; [
       inputs.caelestia-shell.homeManagerModules.default
       anki
@@ -67,13 +70,13 @@
       ssh
       thunderbird
       tomasr
-     vivify
+      vivify
       zoxide
       zsh
       zsh-laptop
     ];
   };
-  flake.nixosModules.laptop = { ... }: {
+  flake.nixosModules.laptop = _: {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
     # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -81,25 +84,25 @@
     # Before changing this value read the documentation for this option
     # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "25.11"; # Did you read the comment?
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
-  flake.nixosModules.home-manager-laptop = { pkgs, ... }: {
+  flake.nixosModules.home-manager-laptop = {pkgs, ...}: {
     imports = [
       inputs.home-manager.nixosModules.default # import official home-manager NixOS module
     ];
-    
+
     # Warning. Git is used in case I break everything up. It already saved me once
-    environment.systemPackages = [ pkgs.git ];
+    environment.systemPackages = [pkgs.git];
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
 
       extraSpecialArgs = {
-         pkgs-unstable = self.pkgs-unstable;
-         inherit self;
+        inherit (self) pkgs-unstable;
+        inherit self;
       };
     };
 
@@ -108,11 +111,10 @@
     };
     home-manager.users.tomasr = self.homeModules.laptop;
   };
-  flake.homeModules.tomasr = { ... }: {
-
+  flake.homeModules.tomasr = _: {
     home.username = "tomasr";
     home.homeDirectory = "/home/tomasr";
-  
+
     home.sessionVariables = {
       EDITOR = "neovim";
       TERMINAL = "kitty";
@@ -127,7 +129,7 @@
     # You should not change this value, even if you update Home Manager. If you do
     # want to update the value, then make sure to first check the Home Manager
     # release notes.
-  
+
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
   };

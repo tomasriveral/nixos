@@ -1,11 +1,11 @@
-{ ... }: {
+_: {
   # replaced by caelestia
-  flake.homeModules.swaync = { ... }: {
+  flake.homeModules.swaync = _: {
     services.swaync = {
       enable = true;
     };
   };
-  flake.homeModules.swaylock = { ... }: {
+  flake.homeModules.swaylock = _: {
     programs.swaylock = {
       enable = true;
       settings = {

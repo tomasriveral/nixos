@@ -1,6 +1,6 @@
-{ ... }: {
-  flake.homeModules.desktopEntries = { ... }: {
-    # for when the system lacks of a .desktop file 
+_: {
+  flake.homeModules.desktopEntries = _: {
+    # for when the system lacks of a .desktop file
     home.file.".local/share/applications/org.quickshell.desktop" = {
       enable = true;
       text = ''

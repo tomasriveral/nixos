@@ -1,4 +1,4 @@
-{ self, ... }: {
+{self, ...}: {
   flake.nixosModules.audioAndMedia = {pkgs, ...}: {
     # Enable sound with pipewire.
     services.pulseaudio.enable = false;
@@ -10,7 +10,7 @@
       pulse.enable = true;
       # If you want to use JACK applications, uncomment this
       #jack.enable = true;
-  
+
       # use the example session manager (no others are packaged yet so this is enabled by default,
       # no need to redefine it in your config for now)
       #media-session.enable = true;
@@ -32,7 +32,7 @@
       gpu-screen-recorder
       inkscape
     ];
-    
+
     security.wrappers.gsr-kms-server = {
       # to remove the password prompt when using gpu-screen-recorder
       owner = "root";
@@ -41,7 +41,7 @@
       source = "${pkgs.gpu-screen-recorder}/bin/gsr-kms-server";
     };
   };
-    perSystem = { pkgs, ...}: {
+  perSystem = {pkgs, ...}: {
     packages.custom-changeAudioOutput = pkgs.writeShellApplication {
       name = "custom-changeAudioOutput";
       runtimeInputs = with pkgs; [
@@ -56,5 +56,6 @@
         fi
         pkill -f "kitty.*Select audio output"
       '';
+    };
   };
-};}
+}

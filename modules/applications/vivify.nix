@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.homeModules.vivify = {pkgs-unstable, ...}: {
     home.file.".config/vivify/config.json" = {
       enable = true;

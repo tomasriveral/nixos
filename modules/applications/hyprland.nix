@@ -1,5 +1,9 @@
-{ self, ... }: {
-  flake.nixosModules.hyprland = { pkgs, pkgs-unstable, ... }: {
+{self, ...}: {
+  flake.nixosModules.hyprland = {
+    pkgs,
+    pkgs-unstable,
+    ...
+  }: {
     environment.systemPackages = with pkgs; [
       swww #wallpaper daemon
       gruvbox-gtk-theme
@@ -31,10 +35,10 @@
     # removes uxterm
     services.xserver.excludePackages = [pkgs.xterm];
 
-      # Enable the X11 windowing system.
+    # Enable the X11 windowing system.
     services.xserver.enable = true;
   };
-  flake.homeModules.hyprland-laptop = { ... }: {
+  flake.homeModules.hyprland-laptop = _: {
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "qtbatticon" # custom battery tray
@@ -84,10 +88,10 @@
           "workspaces, 1, 5, wind"
         ];
       };
-  
+
       # █▀▀ █▄░█ █░█
       # ██▄ █░▀█ ▀▄▀
-  
+
       # See https://wiki.hyprland.org/Configuring/Environment-variables/
       env = [
         "PATH, $PATH:$scrPath"
@@ -100,22 +104,22 @@
         "MOZ_ENABLE_WAYLAND,1"
         "GDK_SCALE,1"
       ];
-  
+
       # █ █▄░█ █▀█ █░█ ▀█▀
       # █ █░▀█ █▀▀ █▄█ ░█░
-  
+
       input = {
         kb_layout = ["ch"];
         follow_mouse = 1;
         sensitivity = 0;
         force_no_accel = 1;
       };
-  
+
       # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
       # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
       # caelestia shell drawers toggle dashboard
       # caelestia shell drawers toggle utilities
-  
+
       bind = [
         #hyprland/utility keybindings
         "$mod, W, togglefloating"
@@ -210,7 +214,7 @@
         "Ctrl+Alt, 9, exec, anki"
         # if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
         # maybe exec sudo framework-tools-tui
-  
+
         #plugins keybindings
         #"$mod, SPACE, overview:toggle, "
       ];
@@ -285,20 +289,20 @@
         "3, right, move, +col"
         "3, left, move, -col"
       ];
-  
+
       # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
       # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
-  
+
       dwindle = {
         preserve_split = true;
       };
       scrolling = {
         column_width = 0.45;
       };
-  
+
       # █▀▄▀█ █ █▀ █▀▀
       # █░▀░█ █ ▄█ █▄▄
-  
+
       misc = {
         vrr = 0;
         force_default_wallpaper = 0;
@@ -306,7 +310,7 @@
       xwayland = {
         force_zero_scaling = true;
       };
-  
+
       # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
       # █░▀░█ █▄█ █#░▀█ █ ░█░ █▄█ █▀▄
       monitor = [
@@ -343,17 +347,17 @@
           speed = 4.0;
           # how much the speed is influenced by the current shake intensitiy
           influence = 0.0;
-  
+
           # maximal magnification the cursor can reach
           # values below 1 disable the limit (e.g. 0)
           limit = 0.0;
-  
+
           # time in millseconds the cursor will stay magnified after a shake has ended
           timeout = 2000;
-  
+
           # show cursor behaviour `tilt`, `rotate`, etc. while shaking
           effects = true;
-  
+
           # enable ipc events for shake
           ipc = false;
         };
@@ -364,7 +368,7 @@
         workspaceActiveBorder = "rgb(ab7746)";
         disableBlur = true;
       };
-  
+
       #####################################################
       #####################################################
       # theme
@@ -397,7 +401,7 @@
       };
       ####################################################
       ##################################################
-  
+
       # /$$      /$$                     /$$
       #| $$  /$ | $$                    | $$
       #| $$ /$$$| $$  /$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$
@@ -418,7 +422,7 @@
         #"w[tv1], gapsout:1, gapsin:1"
         #"f[1], gapsout:1, gapsin:1"
       ];
-  
+
       # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
       # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
       windowrule = [

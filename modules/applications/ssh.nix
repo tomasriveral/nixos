@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.homeModules.ssh = { ... }: {
+_: {
+  flake.homeModules.ssh = _: {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false; # will be removed in the futur. Removes evaluation warning

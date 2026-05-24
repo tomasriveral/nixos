@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.homeModules.thunderbird = { ... }: {
+_: {
+  flake.homeModules.thunderbird = _: {
     programs.thunderbird = {
       enable = true;
       profiles.tomasr = {

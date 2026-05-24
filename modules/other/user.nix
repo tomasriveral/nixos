@@ -1,21 +1,21 @@
-{ ... }: {
+_: {
   flake.nixosModules.user = {
-  pkgs,
-  pkgs-unstable,
-  ...
+    pkgs,
+    pkgs-unstable,
+    ...
   }: {
     services.dbus.enable = true;
     security.polkit.enable = true;
-  
+
     # Set your time zone.
     time.timeZone = "Europe/Zurich";
-  
+
     # Select internationalisation properties.
     i18n.defaultLocale = "en_US.UTF-8";
-  
+
     # zsh dont want to work if it is not initialzed here.
     programs.zsh.enable = true;
-  
+
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.tomasr = {
       isNormalUser = true;
@@ -23,9 +23,9 @@
       extraGroups = ["networkmanager" "wheel" "fuse"]; #wheel allow to use sudo / fuse -> rclone
       shell = pkgs.zsh;
     };
-  
+
     services.upower.enable = true;
-  
+
     # removes need for password for nixos-rebuild
     security.sudo.extraRules = [
       {

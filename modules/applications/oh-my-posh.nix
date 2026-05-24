@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.homeModules.oh-my-posh = { ... }: {
+_: {
+  flake.homeModules.oh-my-posh = _: {
     programs.oh-my-posh = {
       enable = true;
       enableZshIntegration = true;

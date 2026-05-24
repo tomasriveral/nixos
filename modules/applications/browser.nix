@@ -1,12 +1,16 @@
-{ self, ...}: {
-  flake.nixosModules.browsers = { pkgs, pkgs-unstable, ...}: {
+{self, ...}: {
+  flake.nixosModules.browsers = {
+    pkgs,
+    pkgs-unstable,
+    ...
+  }: {
     environment.systemPackages = with pkgs; [
       chromium # used only to flash the firmware on my framework laptop 16 (keyboard.frame.work) as only chromium based browser support webHID.
       pkgs-unstable.tor-browser
       self.packages.${pkgs.system}.custom-librewolfprofiles
     ];
   };
-  flake.homeModules.librewolf = { ... }: {
+  flake.homeModules.librewolf = _: {
     # adapted from https://github.com/contre95/dotfiles/blob/main/dotfiles/nixos/programs/librewolf.nix
     home.sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
@@ -45,7 +49,7 @@
         "browser.toolbars.bookmarks.visibility" = "newtab"; # hide bookmarks toolbar; always, never, newtab
         "browser.aboutConfig.showWarning" = false; # disable warning about about:config
         "media.videocontrols.picture-in-picture.video-toggle.enabled" = false; # disable picture in picture button
-  
+
         # Privacy
         "privacy.resistFingerprinting" = true;
         # "privacy.clearOnShutdown.cache" = false;
@@ -69,12 +73,12 @@
         "browser.contentblocking.category" = "standart"; # set tracking protection to standart to not interfer with adnauseam
         "dom.private-attribution.submission.enabled" = false; # stop doing dumb stuff mozilla
         "browser.protections_panel.infoMessage.seen" = true; # disable tracking protection info
-  
+
         # Theme
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "svg.context-properties.content.enabled" = true;
         "layout.css.color-mix.enabled" = true;
-  
+
         # Disable telemetry
         "toolkit.telemetry.enabled" = false;
         "toolkit.telemetry.unified" = false;
@@ -90,7 +94,7 @@
         "browser.newtabpage.activity-stream.telemetry" = false;
         "toolkit.telemetry.shutdownPingSender.enabled" = false;
         "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-  
+
         "browser.tabs.loadInBackground" = true; # open new tab in background
         "browser.tabs.loadBookmarksInTabs" = true; # open bookmarks in new tab
         "browser.tabs.warnOnOpen" = false; # don't warn when opening multiple tabs
@@ -99,7 +103,7 @@
         "browser.tabs.loadDivertedInBackground" = false; # open new tab in background
         "browser.tabs.warnOnCloseOtherTabs" = false; # don't warn when closing multiple tabs
         "browser.tabs.closeWindowWithLastTab" = false; # don't close window when last tab is closed
-  
+
         # other
         "media.autoplay.default" = 0; # enable autoplay on open
         "devtools.toolbox.host" = "right"; # move devtools to right
@@ -108,7 +112,7 @@
         "media.rdd-vpx.enabled" = true; # enable hardware acceleration
         "devtools.cache.disabled" = true; # disable caching in devtools
         "media.ffmpeg.vaapi.enabled" = true; # enable hardware acceleration
-  
+
         # Fonts
         "font.size.fixed.x-western" = 15;
         "font.minimum-size.x-western" = 13;
@@ -130,12 +134,12 @@
             installation_mode = "normal_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/enhancer-for-youtube/latest.xpi";
           };
-  
+
           "sponsorBlocker@ajay.app" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
             installation_mode = "force_installed";
           };
-  
+
           "adnauseam@rednoise.org" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/adnauseam/latest.xpi";
             installation_mode = "force_installed";
@@ -215,23 +219,23 @@
           #  };
           #    "trackmenot@mrl.nyu.edu".settings = {
           #      enabled = true;
-  
+
           #      # Query behavior
           #      runAtStartup = true;
           #      useTab = false;               # don't open visible tab
           #      showQueries = false;          # don't display fake queries
-  
+
           #      # Frequency (seconds between bursts)
           #      timeout = 600;                # 10 minutes
           #      burstEnabled = true;
           #      burstTimeout = 20;           # burst interval
           #      burstCount = 5;
-  
+
           #      # Query source
           #      useRssFeeds = true;           # use dynamic trending feeds
           #      useUserQueries = false;       # don't mix your real queries
           #      useBlackList = true;
-  
+
           #      # Search engines to generate noise for
           #      searchEngines = {
           #        google = true;
@@ -240,12 +244,12 @@
           #        baidu = false;
           #        duckduckgo = false;
           #      };
-  
+
           #      # Logging
           #      enableLogging = false;
           #    };
           #      "sponsorBlocker@ajay.app".settings = {
-  
+
           #        # Core behavior
           #        isEnabled = true;
           #        autoSkip = false;
@@ -282,15 +286,15 @@
           #            actionType = 0;
           #          };
           #        };
-  
+
           #        # Privacy
           #        disableTelemetry = true;
           #        showDonationLink = false;
-  
+
           #        # UX
           #        showUpsells = false;
           #        hideSkipButtonPlayerControls = false;
-  
+
           #        # Advanced
           #        useLocalCache = true;
           #        trackViewCount = false;
@@ -496,23 +500,23 @@
           #  };
           #    "trackmenot@mrl.nyu.edu".settings = {
           #      enabled = true;
-  
+
           #      # Query behavior
           #      runAtStartup = true;
           #      useTab = false;               # don't open visible tab
           #      showQueries = false;          # don't display fake queries
-  
+
           #      # Frequency (seconds between bursts)
           #      timeout = 600;                # 10 minutes
           #      burstEnabled = true;
           #      burstTimeout = 20;           # burst interval
           #      burstCount = 5;
-  
+
           #      # Query source
           #      useRssFeeds = true;           # use dynamic trending feeds
           #      useUserQueries = false;       # don't mix your real queries
           #      useBlackList = true;
-  
+
           #      # Search engines to generate noise for
           #      searchEngines = {
           #        google = true;
@@ -521,12 +525,12 @@
           #        baidu = false;
           #        duckduckgo = false;
           #      };
-  
+
           #      # Logging
           #      enableLogging = false;
           #    };
           #      "sponsorBlocker@ajay.app".settings = {
-  
+
           #        # Core behavior
           #        isEnabled = true;
           #        autoSkip = false;
@@ -563,15 +567,15 @@
           #            actionType = 0;
           #          };
           #        };
-  
+
           #        # Privacy
           #        disableTelemetry = true;
           #        showDonationLink = false;
-  
+
           #        # UX
           #        showUpsells = false;
           #        hideSkipButtonPlayerControls = false;
-  
+
           #        # Advanced
           #        useLocalCache = true;
           #        trackViewCount = false;

@@ -1,9 +1,8 @@
-{ self, ... }: {
-  flake.nixosModules.caelestia = { pkgs, ... }: {
+{self, ...}: {
+  flake.nixosModules.caelestia = {pkgs, ...}: {
     qt.enable = true;
     # to resolve this https://wiki.nixos.org/wiki/Home_Manager#I_cannot_set_GNOME_or_Gtk_themes_via_Home_Manager
     programs.dconf.enable = true;
-
 
     environment.systemPackages = with pkgs; [
       self.packages.${pkgs.system}.qtbatticon
@@ -11,7 +10,7 @@
       quickshell # we have it but adding it there solves "WARN qt.qpa.services: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")"
     ];
   };
-  flake.homeModules.caelestia = { ... }: let
+  flake.homeModules.caelestia = _: let
     sisyphe = ../../assets/sisyphe.gif;
     pepe-music = ../../assets/pepe-music.gif;
   in {

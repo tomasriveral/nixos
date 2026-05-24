@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.nixosModules.ollama = {pkgs-unstable, ...}: {
     services.ollama = {
       enable = true;

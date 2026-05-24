@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.nixosModules.fonts = { pkgs, ... }: {
+_: {
+  flake.nixosModules.fonts = {pkgs, ...}: {
     # fonts
     fonts.packages = with pkgs; [
       nerd-fonts._0xproto

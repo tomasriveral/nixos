@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.homeModules.cursor = {pkgs, ...}: {
     home.pointerCursor = {
       hyprcursor.enable = true;

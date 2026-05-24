@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.nixosModules.games = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       supertux # fuck mario

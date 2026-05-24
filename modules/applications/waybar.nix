@@ -1,6 +1,5 @@
-{ ... }:
-{
-  flake.homeModules.waybar = { ... }: {
+_: {
+  flake.homeModules.waybar = _: {
     # replaced by caelestia
     programs.waybar = {
       enable = true;
@@ -372,7 +371,7 @@
         @define-color foreground #c5c5c5;
         @define-color background #191919;
         @define-color cursor #c5c5c5;
-  
+
         @define-color color0 #191919;
         @define-color color1 #3a3632;
         @define-color color2 #582c1e;
@@ -389,9 +388,9 @@
         @define-color color13 #855f2f;
         @define-color color14 #796d62;
         @define-color color15 #c5c5c5;
-  
+
         @define-color active @color6;
-  
+
         * {
           font-size: 23px;
           font-family: "0xProto Nerd Font";
@@ -403,9 +402,9 @@
           text-shadow: none;
           padding: 0px;
           margin: 0px;
-  
+
         }
-  
+
         window#waybar {
           transition-property: background-color;
           transition-duration: 0.5s;
@@ -415,23 +414,23 @@
           background: alpha(@background, 0.7);
           color: lighter(@active);
         }
-  
+
         menu,
         tooltip {
           border-radius: 8px;
           padding: 2px;
           border: 1px solid lighter(@active);
           background: alpha(@background, 0.6);
-  
+
           color: lighter(@active);
         }
-  
+
         menu label,
         tooltip label {
           font-size: 20px;
           color: lighter(@active);
         }
-  
+
         #submap,
         #tray>.needs-attention {
           animation-name: blink-active;
@@ -440,14 +439,14 @@
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
-  
+
         .modules-right {
           margin: 0px 6px 6px 6px;
           border-radius: 4px;
           background: alpha(@background, 0.4);
           color: lighter(@active);
         }
-  
+
         .modules-left {
           transition-property: background-color;
           transition-duration: 0.5s;
@@ -456,7 +455,7 @@
           background: alpha(@background, 0.4);
           color: lighter(@active);
         }
-  
+
         #gcpu,
         #custom-github,
         #memory,
@@ -466,7 +465,7 @@
         #custom-weather {
         	font-size: 17px;
         }
-  
+
         #custom-recorder,
         #connection,
         #cnoti,
@@ -481,38 +480,38 @@
           margin: 2px 2px 4px 2px;
           background: alpha(darker(@active), 0.3);
         }
-  
+
         #custom-notifications {
           padding-left: 4px;
         }
-  
+
         #custom-hotspot,
         #custom-github,
         #custom-notifications {
           font-size: 20px;
         }
-  
+
         #custom-hotspot {
           padding-right: 2px;
         }
-  
+
         #custom-vpn,
         #custom-hotspot {
           background: alpha(darker(@active), 0.3);
         }
-  
+
         #privacy-item {
           padding: 6px 0px 6px 6px;
         }
-  
+
         #gcpu {
           padding: 8px 0px 8px 0px;
         }
-  
+
         #custom-cpu-icon {
           font-size: 36px;
         }
-  
+
         #custom-cputemp,
         #temperature {
         	font-size: 17px;
@@ -523,30 +522,30 @@
           font-size: 20px;
           font-weight: bold;
         }
-  
+
         #custom-github {
           padding-top: 2px;
           padding-right: 4px;
         }
-  
+
         #custom-dmark {
           color: alpha(@foreground, 0.3);
         }
-  
+
         #submap {
           margin-bottom: 0px;
         }
-  
+
         #hyprland.window {
         	margin-left: 20px;
         }
-  
+
         #workspaces {
           margin: 0px 2px;
           padding: 4px 0px 0px 0px;
           border-radius: 8px;
         }
-  
+
         #workspaces button {
           transition-property: background-color;
           transition-duration: 0.5s;
@@ -555,49 +554,49 @@
           border-radius: 4px;
           color: alpha(@foreground, 0.3);
         }
-  
+
         #workspaces button.urgent {
           font-weight: bold;
           color: @foreground;
         }
-  
+
         #workspaces button.active {
           padding: 4px 2px;
           background: alpha(@active, 0.4);
           color: lighter(@active);
           border-radius: 4px;
         }
-  
+
         #network.wifi {
           padding-right: 4px;
         }
-  
+
         #submap {
           min-width: 0px;
           margin: 4px 6px 4px 6px;
         }
-  
+
         #tray {
           padding: 0px 0px 0px 0px;
         }
-  
+
         #bluetooth {
           padding-top: 2px;
         }
-  
+
         #window {
             border-radius: 8px;
             padding: 4px 14px;
             margin: 4px 2px 4px 2px;
         }
-  
+
         #battery {
           font-size: 17px;
           border-radius: 8px;
           padding: 4px 0px;
           margin: 4px 2px 4px 2px;
         }
-  
+
         #battery.discharging.warning {
           animation-name: blink-yellow;
           animation-duration: 1s;
@@ -605,7 +604,7 @@
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
-  
+
         #battery.discharging.critical {
           animation-name: blink-red;
           animation-duration: 1s;
@@ -613,7 +612,7 @@
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
-  
+
         #battery.powerdraw {
         	font-size: 17px;
         	padding: 0;
@@ -626,25 +625,25 @@
         	margin-left: -20px;
         	margin-right: -20px;
         }
-  
+
         #clock {
           font-weight: bold;
           padding: 4px 2px 2px 2px;
         }
-  
+
         #pulseaudio.mic {
           border-radius: 4px;
           color: @background;
           background: alpha(darker(@foreground), 0.6);
           padding-left: 4px;
         }
-  
+
         #backlight-slider slider,
         #pulseaudio-slider slider {
           background-color: transparent;
           box-shadow: none;
         }
-  
+
         #backlight-slider trough,
         #pulseaudio-slider trough {
           margin-top: 4px;
@@ -653,13 +652,13 @@
           border-radius: 8px;
           background-color: alpha(@background, 0.6);
         }
-  
+
         #backlight-slider highlight,
         #pulseaudio-slider highlight {
           border-radius: 8px;
           background-color: lighter(@active);
         }
-  
+
         #bluetooth.discoverable,
         #bluetooth.discovering,
         #bluetooth.pairable {
@@ -670,21 +669,21 @@
           animation-iteration-count: infinite;
           animation-direction: alternate;
         }
-  
+
         @keyframes blink-active {
           to {
             background-color: @active;
             color: @foreground;
           }
         }
-  
+
         @keyframes blink-red {
           to {
             background-color: #c64d4f;
             color: @foreground;
           }
         }
-  
+
         @keyframes blink-yellow {
           to {
             background-color: #cf9022;
@@ -694,23 +693,24 @@
       '';
     };
   };
-  perSystem = { pkgs, ... }: {
-  packages.custom-weatherwaybar = pkgs.writeShellApplication {
-    name = "custom-weatherwaybar";
-    runtimeInputs = with pkgs; [
-      curl
-    ];
-    text = ''
-      PATTERN="C"
-      PATTERN2=" "
-      TEXT1="''$(curl -s "https://wttr.in/?format=%c")"
-      TEXT1=''${TEXT1/$PATTERN2/}
-      TEXT2="''$(curl -s "https://wttr.in/?format=%t")"
-      TEXT2=''${TEXT2/$PATTERN/}
-      TEXT3="''$(curl -s "https://wttr.in/?format=%f")"
-      TEXT3=''${TEXT3/$PATTERN/}
-      printf '{"text":" %s\\n %s\\n %s", "tooltip": false, "class": "weather"}\\n' \
-        "$TEXT1" "$TEXT2" "$TEXT3"
-    '';
+  perSystem = {pkgs, ...}: {
+    packages.custom-weatherwaybar = pkgs.writeShellApplication {
+      name = "custom-weatherwaybar";
+      runtimeInputs = with pkgs; [
+        curl
+      ];
+      text = ''
+        PATTERN="C"
+        PATTERN2=" "
+        TEXT1="''$(curl -s "https://wttr.in/?format=%c")"
+        TEXT1=''${TEXT1/$PATTERN2/}
+        TEXT2="''$(curl -s "https://wttr.in/?format=%t")"
+        TEXT2=''${TEXT2/$PATTERN/}
+        TEXT3="''$(curl -s "https://wttr.in/?format=%f")"
+        TEXT3=''${TEXT3/$PATTERN/}
+        printf '{"text":" %s\\n %s\\n %s", "tooltip": false, "class": "weather"}\\n' \
+          "$TEXT1" "$TEXT2" "$TEXT3"
+      '';
+    };
   };
-};}
+}

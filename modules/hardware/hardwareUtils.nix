@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.nixosModules.hardwareUtils-laptop = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       # used for the framework 16 laptop

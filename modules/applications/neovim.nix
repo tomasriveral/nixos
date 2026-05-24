@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.homeModules.neovim = {pkgs-unstable, ...}: {
     programs.neovim = {
       enable = true;
@@ -64,9 +64,9 @@
         pkgs-unstable.vimPlugins.garbage-day-nvim
       ];
       extraLuaConfig = ''
-  
+
               local vim = vim
-  
+
               -- =========================
               -- LEADER & KEY DISABLE
               -- =========================
@@ -125,40 +125,40 @@
               vim.opt.inccommand = 'split'
               vim.opt.cursorline = true
               vim.opt.scrolloff = 10
-  
-  
+
+
               -- =========================
               -- BASIC KEYMAPS
               -- =========================
               vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
               vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-  
+
               -- Disable arrow keys in normal mode
               vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
               vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
               vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
               vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-  
+
               -- Window navigation
               vim.keymap.set('n', '<C-Left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
               vim.keymap.set('n', '<C-Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
               vim.keymap.set('n', '<C-Down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
               vim.keymap.set('n', '<C-Up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-  
+
               -- Cheatsheet
               vim.keymap.set("n","§", "<cmd>Cheatsheet<CR>")
               require("cheatsheet").setup({
                   bundled_cheatsheets = { enabled = { "default" } },
                   bundled_plugin_cheatsheets = { disabled = { "gitsigns.nvim" } }
               })
-  
+
               -- Highlight yanked text
               vim.api.nvim_create_autocmd('TextYankPost', {
                   desc = 'Highlight on yank',
                   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
                   callback = function() vim.highlight.on_yank() end,
               })
-  
+
               -- ========================
               -- terminal
               -- =======================
@@ -166,10 +166,10 @@
                 position = 'right', -- position of the terminal window when using the shell_handler
                               -- can be: top, left, right, bottom
                               -- will be overwritten when using the telescope mapping to open horizontally or vertically
-  
+
                 width = 80,         -- width of window when position is left or right
                 height = 10,        -- height of window when position is top or bottom
-  
+
                 handlers = {
                   lua = function(bufnr)
                     vim.print('Running lua file in buffer ' .. bufnr)
@@ -177,13 +177,13 @@
                   end
               }
               })
-  
+
               vim.keymap.set("n", "<leader><leader>", function() require("runner-nvim").run() end)
               -- =========================
               -- SCROLLBAR
               -- =========================
               require("scrollbar").setup()
-  
+
               -- =========================
               -- UFO FOLDING
               -- =========================
@@ -196,7 +196,7 @@
               require('ufo').setup({
                   provider_selector = function() return {'treesitter', 'indent'} end
               })
-  
+
               -- =========================
               -- treesitter
               -- ========================
@@ -219,7 +219,7 @@
                   renderer = { group_empty = true },
                   filters = { dotfiles = true },
               })
-  
+
               -- =========================
               -- CMP CONFIGURATION
               -- =========================
@@ -235,25 +235,25 @@
                 }),
                 sources = cmp.config.sources({ { name = 'nvim_lsp' }, { name = 'vsnip' } }, { { name = 'buffer' } }),
               })
-  
+
               cmp.setup.cmdline({ '/', '?' }, { mapping = cmp.mapping.preset.cmdline(), sources = { { name = 'buffer' } } })
               cmp.setup.cmdline(':', { mapping = cmp.mapping.preset.cmdline(), sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }), matching = { disallow_symbol_nonprefix_matching = false } })
-  
+
         -- =========================
         -- LSP CONFIGURATION
         -- =========================
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  
+
             -- Diagnostics
             vim.keymap.set("n", "<leader>e4", function() vim.diagnostic.jump({ prev=true, count = 1 }) end, { desc = "Previous diagnostic" })
             vim.keymap.set("n", "<leader>e5", function() vim.diagnostic.jump({ prev=false, count = 1 }) end, { desc = "Next diagnostic" })
             vim.keymap.set("n", "<leader>e1", vim.diagnostic.open_float, { desc = "Show diagnostic" })
             vim.keymap.set("n", "<leader>e3", vim.diagnostic.setloclist, { desc = "Diagnostic list" })
             vim.keymap.set("n", "<leader>e2", vim.lsp.buf.code_action, { desc = "Show correction" })
-  
+
             vim.keymap.set("n", "<leader>e<Tab>", function()
               local clients = vim.lsp.get_clients({ name = "ltex" })
-  
+
               if #clients > 0 then
                 -- Stop LTeX
                 for _, client in ipairs(clients) do
@@ -266,7 +266,7 @@
                 print("LTeX ON")
               end
             end, { desc = "Toggle LTeX" })
-  
+
               vim.diagnostic.config({
           update_in_insert = false, -- i don't get any new error when in insert
             })
@@ -282,17 +282,17 @@
             },
             priority = 2003, -- the priority of virtual text
             inline = false,
-  
+
               })
-  
-  
+
+
             -- LSP functionality
             vim.keymap.set("n", "<leader>g1", vim.lsp.buf.hover, { desc = "Hover documentation" })
             vim.keymap.set("n", "<leader>g2", vim.lsp.buf.definition, { desc = "Go to definition" })
             vim.keymap.set("n", "<leader>g3", vim.lsp.buf.declaration, { desc = "Go to declaration" })
             vim.keymap.set("n", "<leader>g4", vim.lsp.buf.implementation, { desc = "Go to implementation" })
             vim.keymap.set("n", "<leader>g5", vim.lsp.buf.references, { desc = "Show references" })
-  
+
         -- LSP server setup
         vim.lsp.config("lua_ls", { cmd = { "lua-language-server" }, filetypes = { "lua" }, root_dir = vim.fs.dirname, on_attach = on_attach })
             vim.lsp.config("clangd", {
@@ -300,7 +300,7 @@
               filetypes = { "c","cpp","objc","objcpp" },
               on_attach = on_attach ,
                 init_options = {
-  
+
             clangdFileStatus = true,
             usePlaceholders = true,
             completeUnimported = false, -- this adds a bunch of #include even thought they are #included in another header file
@@ -332,26 +332,26 @@
           cmd = { "ltex-ls-plus" },
           filetypes = { "markdown", "text", "tex", "plaintex" },
           on_attach = on_attach,
-  
+
           settings = {
             ltex = {
               language = "fr",
-  
+
               enabled = {
                 "markdown",
                 "text",
                 "tex",
                 "plaintex",
               },
-  
+
               completionEnabled = true,
               diagnosticSeverity = "information",
-  
+
               additionalRules = {
                 enablePickyRules = false,
                 motherTongue = "fr",
               },
-  
+
               dictionary = {
                 ["fr"] = {
                   "icelle",
@@ -367,7 +367,7 @@
             },
           },
         })
-  
+
         vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab", "nixd", "ltex"})
               -- =========================
               -- DASHBOARD
@@ -400,41 +400,41 @@
                   footer = {},
                 }
               }
-  
+
               -- jumps cursor when was last cursor last time
               require("nvim-lastplace").setup({
                 -- Filetypes to ignore
                 ignore_filetypes = {
                   "gitcommit", "gitrebase", "svn", "hgcommit", "xxd", "COMMIT_EDITMSG"
                 },
-  
+
                 -- Buffer types to ignore
                 ignore_buftypes = {
                   "quickfix", "nofile", "help", "terminal"
                 },
-  
+
                 -- Center cursor after jumping
                 center_on_jump = true,
-  
+
                 -- Only jump if target line is not visible
                 jump_only_if_not_visible = false,
-  
+
                 -- Minimum lines required to enable jumping
                 min_lines = 10,
-  
+
                 -- Maximum line to jump to (0 = no limit)
                 max_line = 0,
-  
+
                 -- Open folds after jumping
                 open_folds = true,
-  
+
                 -- Enable debug messages
                 debug = false,
               })
               -- ======================
               -- gruvbox
               -- ======================
-  
+
               require("gruvbox").setup({
                 terminal_colors = false, -- add neovim terminal colors
                 undercurl = true,
@@ -470,18 +470,18 @@
               -- LUALINE
               -- =========================
               require('lualine').setup { options = { theme  = "gruvbox_dark" } }
-  
-  
+
+
               --==================0
               -- Some utils
               --==================
               vim.keymap.set('n', '<leader>r1', '<cmd>Fugit2<CR>', { desc = 'Open git helper' })
-  
+
               vim.keymap.set("n", "t", function()
                 local line = vim.api.nvim_get_current_line()
-  
+
                 local result = vim.fn.system({ "custom-syllabes" }, line)
-  
+
                 print(vim.trim(result))
               end, { desc = "Count syllables (current line)" })
               -- =========================
@@ -492,7 +492,7 @@
               vim.keymap.set('n', '<leader>f2', builtin.live_grep, { desc = 'Telescope live grep' })
               vim.keymap.set('n', '<leader>f3', builtin.buffers, { desc = 'Telescope buffers' })
               vim.keymap.set('n', '<leader>f4', builtin.help_tags, { desc = 'Telescope help tags' })
-  
+
               -- Disable relative numbers even if plugins override
               vim.api.nvim_create_autocmd("VimEnter", { callback = function() vim.opt.colorcolumn = ""; vim.opt.relativenumber = false end })
       '';

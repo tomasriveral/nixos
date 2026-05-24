@@ -1,5 +1,5 @@
-{ ... }: {
-  flake.homeModules.eza = { ... }: {
+_: {
+  flake.homeModules.eza = _: {
     # ls replacement
     # see ./zsh.nix for the alias (usefull to se default flags)
     programs.eza = {
@@ -8,7 +8,7 @@
       theme = {
         # from https://github.com/eza-community/eza-themes/blob/main/themes/gruvbox-dark.yml
         colourful = true;
-  
+
         filekinds = {
           normal = {foreground = "#ebdbb2";};
           directory = {foreground = "#83a598";};
@@ -103,7 +103,7 @@
           header = {foreground = "#ebdbb2";};
           octal = {foreground = "#8ec07c";};
           flags = {foreground = "#d3869b";};
-  
+
           symlink_path = {foreground = "#8ec07c";};
           control_char = {foreground = "#83a598";};
           broken_symlink = {foreground = "#fb4934";};

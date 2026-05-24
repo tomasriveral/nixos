@@ -1,6 +1,6 @@
-{ ... }: {
+_: {
   # unused at the moment see ../hardware/battery.nix
-  flake.homeModules.batsignal = { ... }: {
+  flake.homeModules.batsignal = _: {
     services.batsignal.enable = true;
   };
 }

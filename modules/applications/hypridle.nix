@@ -1,6 +1,6 @@
-{ ... }: {
-  # this was in my home-manager config, but looks like more 
-  flake.nixosModules.hypridle = { ... }: {
+_: {
+  # this was in my home-manager config, but looks like more
+  flake.nixosModules.hypridle = _: {
     services.hypridle = {
       enable = true;
       settings = {

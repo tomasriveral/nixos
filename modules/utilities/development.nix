@@ -1,6 +1,9 @@
-{ ... }:
-{
-  flake.nixosModules.development = { pkgs, pkgs-unstable, ... }: {
+_: {
+  flake.nixosModules.development = {
+    pkgs,
+    pkgs-unstable,
+    ...
+  }: {
     programs.nix-ld.enable = true; #Run unpatched dynamic binaries on NixOS. For example lets run ./a.out from gcc
     environment.systemPackages = with pkgs; [
       gcc

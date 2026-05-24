@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.homeModules.gtk = {pkgs, ...}: {
     # gtk config
     gtk.theme = {

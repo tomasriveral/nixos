@@ -1,5 +1,5 @@
-{ self, ... }: {
-  flake.homeModules.zsh-laptop = { ... }: {
+{self, ...}: {
+  flake.homeModules.zsh-laptop = _: {
     programs.zsh = {
       shellAliases = {
         snrt = "git -C ~/nixos add -A && time sudo nixos-rebuild test --flake ~/nixos/#laptop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
@@ -7,12 +7,12 @@
       };
     };
   };
-  flake.homeModules.zsh = {pkgs,...}: {
+  flake.homeModules.zsh = {pkgs, ...}: {
     home.packages = [
       self.packages.${pkgs.system}.dejaManuallyDerived
       #pkgs-unstable.deja
     ];
-  
+
     programs.zsh = {
       enable = true;
       autosuggestion.enable = false; # zsh-autocomplete is replaced by deja
@@ -25,7 +25,7 @@
             command cat "$@"
           fi
         }
-  
+        
         custom-eza() { # behaves differently if we just call it or if we pipe initContent
           if [[ -t 1 ]]; then
             eza -hlF -aa --color=always --hyperlink --group-directories-first --show-symlinks --icons=always --git --no-permissions "$@"
@@ -67,7 +67,7 @@
       };
     };
   };
-  flake.homeModules.oh-my-zsh = { ... }: {
+  flake.homeModules.oh-my-zsh = _: {
     programs.zsh.oh-my-zsh = {
       enable = true;
       theme = "jonathan";

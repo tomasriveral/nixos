@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.nixosModules.printer = {pkgs, ...}: {
     #https://wiki.nixos.org/wiki/Printing
     services.avahi = {
@@ -6,7 +6,7 @@
       nssmdns4 = true;
       openFirewall = true;
     };
-  
+
     # Enable CUPS to print documents.
     services.printing = {
       enable = true;
@@ -34,7 +34,7 @@
           model = "drv:///hp/hpcups.drv/hp-officejet_pro_7740_series.ppd";
         }
       ];
-  
+
       ensureDefaultPrinter = "HP_OfficeJet_Pro_7740";
     };
   };

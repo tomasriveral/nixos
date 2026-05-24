@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   flake.nixosModules.mullvad = {pkgs-unstable, ...}: {
     services.mullvad-vpn = {
       enable = true;

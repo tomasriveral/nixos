@@ -1,7 +1,7 @@
-{ ... }: {
-  flake.homeModules.sbb-tui = { pkgs-unstable, ... }: { 
-      home.packages = [
-        pkgs-unstable.sbb-tui
+_: {
+  flake.homeModules.sbb-tui = {pkgs-unstable, ...}: {
+    home.packages = [
+      pkgs-unstable.sbb-tui
     ];
     home.file.".config/sbb-tui/config.yaml" = {
       enable = true;
