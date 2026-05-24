@@ -1,5 +1,9 @@
-{ ... }: {
-  perSystem = { pkgs, pkgs-unstable, ...}: {
+{ self, ... }: {
+  perSystem = { pkgs, ...}:
+  let
+    pkgs-unstable = self.pkgs-unstable;
+  in
+  { # perSystem doesnt like pkgs-unstable we must input it globally  
   packages.dejaManuallyDerived = pkgs-unstable.buildGoModule (finalAttrs: {
     pname = "deja";
     version = "0.2.6";
