@@ -1,4 +1,4 @@
-{self, ...}: {
+{self, inputs, ...}: {
   flake.nixosModules.otherUtils =
     # try to keep packages here at a minium. Preferably use a dedicated file
     {
@@ -24,6 +24,7 @@
         self.packages.${pkgs.system}.custom-syllabes
         pkgs-unstable.bitwarden-desktop
         fluffychat # matrix client
+        inputs.notewrapper.packages.${pkgs.system}.default
       ];
     };
 }
