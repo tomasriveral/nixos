@@ -17,6 +17,7 @@ _: {
         ]))
       python313Packages.pygments # used for ccat (comment of colorize plugin from oh-my-zsh)
       pkg-config
+      nixpkgs-review
       gdb
       raylib
       glfw # raylib and some dependecies
