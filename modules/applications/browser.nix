@@ -146,7 +146,7 @@
           };
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "blocked";
           };
           "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi";
