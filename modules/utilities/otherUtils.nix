@@ -24,7 +24,6 @@
         self.packages.${pkgs.system}.custom-syllabes
         pkgs-unstable.bitwarden-desktop
         fluffychat # matrix client
-        inputs.notewrapper.packages.${pkgs.system}.default
       ];
     };
 }

@@ -63,6 +63,7 @@
       librewolf
       mullvad
       neovim
+      notewrapper
       oh-my-zsh
       ripgrep
       rofi
