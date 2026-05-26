@@ -43,6 +43,7 @@
       #ollama
       otherUtils
       printer
+      rss
       udev
       user
     ];
