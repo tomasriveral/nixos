@@ -346,6 +346,12 @@
               keyword = "Cogito l'Esprit critique";
               url = "https://app.cogito.fr";
             }
+            {
+              name = "EPFL email";
+              tags = ["mail" "outlook" "epfl"];
+              keyword = "EPFL email";
+              url = "https://outlook.office.com/mail";
+            }
           ];
         };
         search = {
