@@ -352,6 +352,12 @@
               keyword = "EPFL email";
               url = "https://outlook.office.com/mail";
             }
+            {
+              name = "nixpkgs' failing and orphan packages";
+              tags = [ "nixpkgs" "fail" "orphan" "ZH" "zero hydra failure"];
+              keyword = "Zero hydra failure orphan packages";
+              url = "https://zh.fail/failed/by-maintainer/_.html";
+            }
           ];
         };
         search = {
