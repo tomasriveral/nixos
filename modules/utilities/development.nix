@@ -27,7 +27,7 @@ _: {
       cling # c interpreter used for coding
       # lsp
       clang-tools
-      python311Packages.python-lsp-server
+      python314Packages.python-lsp-server
       ltex-ls-plus
       pylint
       black
