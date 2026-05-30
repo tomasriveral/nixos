@@ -309,6 +309,12 @@
           force = true;
           settings = [
             {
+              name = "Nixpkgs PRs";
+              tags = ["nixpkgs" "PR" "github"];
+              keyword = "nixpkgs prs";
+              url = "https://github.com/NixOS/nixpkgs/pulls";
+            }
+            {
               name = "Nixos Config";
               tags = ["github"];
               keyword = "github";
