@@ -146,7 +146,7 @@
           };
           "uBlock0@raymondhill.net" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "blocked";
           };
           "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi";
@@ -345,6 +345,36 @@
               tags = ["cogito" "esprit" "critique"];
               keyword = "Cogito l'Esprit critique";
               url = "https://app.cogito.fr";
+            }
+            {
+              name = "EPFL email";
+              tags = ["mail" "outlook" "epfl"];
+              keyword = "EPFL email";
+              url = "https://outlook.office.com/mail";
+            }
+            {
+              name = "nixpkgs' failing and orphan packages";
+              tags = [ "nixpkgs" "fail" "orphan" "ZH" "zero hydra failure"];
+              keyword = "Zero hydra failure orphan packages";
+              url = "https://zh.fail/failed/by-maintainer/_.html";
+            }
+            {
+              name = "NixOS Manual - Unstable";
+              tags = [ "nixos" "manual" "unstable"];
+              keyword = "NixOS manual";
+              url = "https://nixos.org/manual/nixos/unstable/";
+            }
+            {
+              name = "Nixpgks Reference Manual - Unstable";
+              tags = [ "nixpkgs" "manual" "reference" "unstable" ];
+              keyword = "nixpkgs reference manual";
+              url = "https://nixos.org/manual/nixpkgs/unstable/";
+            }
+            {
+              name = "Nix Reference Manual - 2.34.";
+              tags = [ "nix" "manual" "reference" "2.34"];
+              keyword = "nix reference manual";
+              url = "https://nix.dev/manual/nix/2.34/nix-2.34.html";
             }
           ];
         };

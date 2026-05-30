@@ -18,7 +18,7 @@
       audioAndMedia
       autoCleanup-laptop
       autoUpdate-laptop
-      battery-laptop
+      #battery-laptop
       bluetooth
       bootloader-laptop
       browsers
@@ -43,6 +43,7 @@
       #ollama
       otherUtils
       printer
+      rss
       udev
       user
     ];
@@ -63,6 +64,7 @@
       librewolf
       mullvad
       neovim
+      notewrapper
       oh-my-zsh
       ripgrep
       rofi
