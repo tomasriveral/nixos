@@ -49,7 +49,7 @@ _: {
       name = "custom-wallpaper";
       runtimeInputs = with pkgs; [
         socat
-        swww
+        awww
       ];
       text = ''
         handle() {
@@ -60,19 +60,19 @@ _: {
               workspace="''${str:$i:1}"
               case $workspace in
                 1 | 6)
-                  swww img -t none ${wallpaper1}
+                  awww img -t none ${wallpaper1}
                   ;;
                 2 | 7)
-                  swww img  -t none ${wallpaper2}
+                  awww img  -t none ${wallpaper2}
                   ;;
                 3 | 8)
-                  swww img  -t none ${wallpaper3}
+                  awww img  -t none ${wallpaper3}
                   ;;
                 4 | 9)
-                  swww img  -t none ${wallpaper4}
+                  awww img  -t none ${wallpaper4}
                   ;;
                 5 | 10 | 0)
-                  swww img  -t none ${wallpaper5}
+                  awww img  -t none ${wallpaper5}
                   ;;
               esac
               ;;

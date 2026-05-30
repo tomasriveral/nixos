@@ -2,7 +2,7 @@
   flake.nixosModules.notifications = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       libnotify # Library that sends desktop notifications to a notification daemon
-      socat # Utility for bidirectional data transfer between two independent data channels (used to communicate between hyprland and swww to change wallpapers dinamically)
+      socat # Utility for bidirectional data transfer between two independent data channels (used to communicate between hyprland and awww to change wallpapers dinamically)
       matrix-commander-rs # matrix client used to send notifications from scripts to my phone
       # battery notifications
       self.packages.${pkgs.system}.custom-batterynotify

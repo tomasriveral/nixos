@@ -5,7 +5,7 @@
     ...
   }: {
     environment.systemPackages = with pkgs; [
-      swww #wallpaper daemon
+      awww #wallpaper daemon
       gruvbox-gtk-theme
       hyprcursor
       capitaine-cursors-themed # cursor theme
@@ -60,6 +60,7 @@
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
       #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
     ];
+      wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
       "$mod" = "SUPER";
       "$term" = "kitty";
@@ -260,8 +261,8 @@
         "custom-batterywarning"
         #"birdtray" # thunderbird tray app # curently broken
         #wallpapers/b
-        "swww img ${wallpaper}"
-        "swww-daemon"
+        "awww img ${wallpaper}"
+        "awww-daemon"
         "sleep 1 && custom-wallpaper"
         "custom-checkKdrive && custom-mountkdrive" # checks if the remote works and mount it
         #"waybar"

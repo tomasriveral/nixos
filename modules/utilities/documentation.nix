@@ -3,7 +3,7 @@
 in {
   flake.nixosModules.documentation = {pkgs, ...}: {
     # unfortunatly this adds a lot of computation when nix rebuilds
-    documentation.man.generateCaches = true; # used for the man script
+    documentation.man.cache.enable = true; # used for the man script
 
     environment.pathsToLink = [
       # see https://wiki.nixos.org/wiki/Documentation_Gaps#How_do_manpages_work?_Or:_environment.pathsToLink_and_buildEnv

@@ -1,6 +1,8 @@
 _: {
   flake.homeModules.neovim = {pkgs-unstable, ...}: {
     programs.neovim = {
+      withRuby = false;
+      withPython3 = false;
       enable = true;
       vimAlias = false;
       viAlias = false;
@@ -63,7 +65,7 @@ _: {
         pkgs-unstable.vimPlugins.better-diagnostic-virtual-text
         pkgs-unstable.vimPlugins.garbage-day-nvim
       ];
-      extraLuaConfig = ''
+      initLua = ''
 
               local vim = vim
 

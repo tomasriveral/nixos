@@ -57,7 +57,7 @@ _: {
       # we enable system wide with nixpkgs because it offers some addon configuration. We just use this for some config
       #enable = true;
       theme = "dark";
-      sync = {
+      profiles."User 1".sync = {
         autoSync = true;
         autoSyncMediaMinutes = 10;
         syncMedia = true;
