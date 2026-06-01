@@ -22,7 +22,8 @@
         usbutils # used for lsusb
         self.packages.${pkgs.system}.custom-tomato
         self.packages.${pkgs.system}.custom-syllabes
-        pkgs-unstable.bitwarden-desktop
+        # Electron 39 EOL. https://github.com/bitwarden/clients/pull/20448 should move it to 41. For the moment use the browser extension
+        #pkgs-unstable.bitwarden-desktop
         fluffychat # matrix client
       ];
     };
