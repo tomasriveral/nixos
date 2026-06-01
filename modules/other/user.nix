@@ -48,7 +48,7 @@ _: {
         }
       ];
       extraConfig = ''
-        Default pwfeedback
+        Defaults pwfeedback
       '';
   };
   };
