@@ -28,12 +28,11 @@
       disk
       disk-laptop
       fonts
-      games
       hardware-configuration-laptop
       hardwareUtils-laptop
       hyprland
       IO
-      kdrive
+      kdrive-laptop
       latex
       ly
       mullvad

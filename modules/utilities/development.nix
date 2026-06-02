@@ -1,4 +1,4 @@
-_: {
+{self, ...}: {
   flake.nixosModules.development = {
     pkgs,
     pkgs-unstable,
@@ -31,6 +31,7 @@ _: {
       ltex-ls-plus
       pylint
       black
+      self.packages.${pkgs.system}.patent
     ];
   };
 }

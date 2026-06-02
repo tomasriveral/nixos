@@ -15,7 +15,6 @@
       self.packages.${pkgs.system}.custom-dontkillsteam # kill app (if not steam or tomato-c
       self.packages.${pkgs.system}.custom-killall # kill all windows except focused window
       xdg-utils
-      home-manager
     ];
     # enable hyprland WM
     programs.hyprland = {

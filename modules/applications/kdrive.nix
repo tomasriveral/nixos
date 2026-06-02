@@ -1,9 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.kdrive = {pkgs-unstable, ...}: {
+  flake.nixosModules.kdrive-laptop = {pkgs-unstable, ...}: {
     environment.systemPackages = with pkgs-unstable; [
       rclone
       self.packages.${pkgs.system}.custom-checkKdrive
-      self.packages.${pkgs.system}.custom-mountkdrive
+      self.packages.${pkgs.system}.custom-mountkdrive-laptop
     ];
     # removes rclone error
     programs.fuse = {
@@ -46,7 +46,7 @@
         fi
       '';
     };
-    packages.custom-mountkdrive = pkgs.writeShellApplication {
+    packages.custom-mountkdrive-laptop = pkgs.writeShellApplication {
       name = "custom-mountkdrive";
       runtimeInputs = with pkgs; [
         rclone
