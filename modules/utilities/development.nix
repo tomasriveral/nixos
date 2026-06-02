@@ -31,7 +31,6 @@
       ltex-ls-plus
       pylint
       black
-      self.packages.${pkgs.system}.patent
     ];
   };
 }
