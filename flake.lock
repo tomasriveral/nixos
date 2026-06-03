@@ -183,6 +183,29 @@
         "type": "github"
       }
     },
+    "nixpkgs-notifier": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780484508,
+        "narHash": "sha256-tpGRft5UXH92gtfrjWWHWovBUtpnSIDvPzJGfNnEVPM=",
+        "owner": "tomasriveral",
+        "repo": "nixpkgs-notifier",
+        "rev": "f028797e06324a46dca87101f99e7679871aa741",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasriveral",
+        "repo": "nixpkgs-notifier",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1780336545,
@@ -217,7 +240,9 @@
     },
     "notewrapper": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": [
+          "flake-utils"
+        ],
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
@@ -261,11 +286,13 @@
       "inputs": {
         "caelestia-shell": "caelestia-shell",
         "flake-parts": "flake-parts",
+        "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "microPlugins-vivify": "microPlugins-vivify",
         "nixos-grub-themes": "nixos-grub-themes",
         "nixpkgs": "nixpkgs_2",
+        "nixpkgs-notifier": "nixpkgs-notifier",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "notewrapper": "notewrapper"
       }

@@ -41,6 +41,7 @@
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "qtbatticon" # custom battery tray
+        "nixpkgs-notifier"
       ];
       monitor = [
         "eDP-1, highres@highrr, 0x0, 1"

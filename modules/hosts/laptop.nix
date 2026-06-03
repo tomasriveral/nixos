@@ -24,6 +24,7 @@
       browsers
       caelestia
       development
+      development
       documentation
       disk
       disk-laptop
