@@ -41,7 +41,7 @@
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "qtbatticon" # custom battery tray
-        "nixpkgs-notifier"
+        "nixpkgs-notifier listen" # tracks PR merge in nixos-unstable
       ];
       monitor = [
         "eDP-1, highres@highrr, 0x0, 1"
