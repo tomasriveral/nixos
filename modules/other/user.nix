@@ -50,6 +50,6 @@ _: {
       extraConfig = ''
         Defaults pwfeedback
       '';
-  };
+    };
   };
 }

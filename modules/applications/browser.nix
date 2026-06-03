@@ -364,25 +364,25 @@
             }
             {
               name = "nixpkgs' failing and orphan packages";
-              tags = [ "nixpkgs" "fail" "orphan" "ZH" "zero hydra failure"];
+              tags = ["nixpkgs" "fail" "orphan" "ZH" "zero hydra failure"];
               keyword = "Zero hydra failure orphan packages";
               url = "https://zh.fail/failed/by-maintainer/_.html";
             }
             {
               name = "NixOS Manual - Unstable";
-              tags = [ "nixos" "manual" "unstable"];
+              tags = ["nixos" "manual" "unstable"];
               keyword = "NixOS manual";
               url = "https://nixos.org/manual/nixos/unstable/";
             }
             {
               name = "Nixpgks Reference Manual - Unstable";
-              tags = [ "nixpkgs" "manual" "reference" "unstable" ];
+              tags = ["nixpkgs" "manual" "reference" "unstable"];
               keyword = "nixpkgs reference manual";
               url = "https://nixos.org/manual/nixpkgs/unstable/";
             }
             {
               name = "Nix Reference Manual - 2.34.";
-              tags = [ "nix" "manual" "reference" "2.34"];
+              tags = ["nix" "manual" "reference" "2.34"];
               keyword = "nix reference manual";
               url = "https://nix.dev/manual/nix/2.34/nix-2.34.html";
             }

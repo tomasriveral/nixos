@@ -1,11 +1,7 @@
-{self, inputs, ...}: {
+{self, ...}: {
   flake.nixosModules.otherUtils =
     # try to keep packages here at a minium. Preferably use a dedicated file
-    {
-      pkgs,
-      pkgs-unstable,
-      ...
-    }: {
+    {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         gnome-calculator
         snapshot

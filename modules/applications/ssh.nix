@@ -3,7 +3,8 @@ _: {
     programs.ssh = {
       enable = true;
       enableDefaultConfig = false; # will be removed in the futur. Removes evaluation warning
-      /*settings = {
+      /*
+        settings = {
         # equivalent to the default config
         #forwardAgent = false;
         # give errors in home-manager 26.05
@@ -16,7 +17,8 @@ _: {
         #controlMaster = "no";
         #controlPath = "~/.ssh/master-%r@%n:%p";
         #controlPersist = "no";
-      };*/
+      };
+      */
     };
     services.ssh-agent.enable = true;
     home.file.".ssh/config".text = ''

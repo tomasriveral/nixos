@@ -1,4 +1,4 @@
-{self, ...}: {
+_: {
   flake.nixosModules.development = {
     pkgs,
     pkgs-unstable,

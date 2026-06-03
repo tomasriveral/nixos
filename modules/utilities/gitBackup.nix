@@ -35,7 +35,6 @@
         RandomizedDelaySec = "20min";
       };
     };
-
   };
   perSystem = {pkgs, ...}: {
     packages.custom-gitBackup = pkgs.writeShellApplication {
@@ -56,14 +55,14 @@
             "https://github.com/tomasriveral/fractal-cli.git"
             "https://github.com/tomasriveral/boids.git"
         )
-        
+
         LOCAL_BACKUP_DIR="$HOME/.gitBackups"
         CLOUD_DIR="$HOME/kdrive/Code/gitBackups"
-        
+
         # Create backup directories if they don't exist
         mkdir -p "$LOCAL_BACKUP_DIR"
         mkdir -p "$CLOUD_DIR"
-        
+
         notify_error() {
             local message="$1"
             notify-send "Git Backup Failed" "$message"
@@ -72,12 +71,12 @@
             -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
 
         }
-        
+
         for REPO in "''${REPOS[@]}"; do
             # Extract repo name (without .git)
             REPO_NAME=$(basename "$REPO" .git)
             LOCAL_REPO_PATH="$LOCAL_BACKUP_DIR/$REPO_NAME.git"
-        
+
             if [ ! -d "$LOCAL_REPO_PATH" ]; then
                 # Clone mirror if it doesn't exist
                 echo "Cloning $REPO..."
@@ -88,13 +87,13 @@
                 cd "$LOCAL_REPO_PATH" || { notify_error "Cannot enter $LOCAL_REPO_PATH"; continue; }
                 git remote update || { notify_error "Failed to update $REPO"; continue; }
             fi
-        
+
             # Rsync to cloud directory (only changes, preserve permissions)
             echo "Syncing $REPO_NAME to cloud..."
             rsync -a --delete "$LOCAL_REPO_PATH/" "$CLOUD_DIR/$REPO_NAME/" || { notify_error "Failed to rsync $REPO_NAME"; continue; }
-        
+
         done
-        
+
         echo "All backups completed."
       '';
     };

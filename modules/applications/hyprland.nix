@@ -60,7 +60,7 @@
       #self.packages.${pkgs-unstable.system}.hypr-dynamic-cursors-manual
       #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
     ];
-      wayland.windowManager.hyprland.configType = "hyprlang";
+    wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
       "$mod" = "SUPER";
       "$term" = "kitty";
