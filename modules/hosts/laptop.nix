@@ -28,6 +28,7 @@
       disk
       disk-laptop
       fonts
+      gitBackup
       hardware-configuration-laptop
       hardwareUtils-laptop
       hyprland
