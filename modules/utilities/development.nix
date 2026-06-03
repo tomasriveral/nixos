@@ -1,4 +1,4 @@
-_: {
+{inputs, ...}: {
   flake.nixosModules.development = {
     pkgs,
     pkgs-unstable,
@@ -31,6 +31,7 @@ _: {
       ltex-ls-plus
       pylint
       black
+      inputs.nixpkgs-notifier.packages.${pkgs.system}.default
     ];
   };
 }

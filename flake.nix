@@ -9,10 +9,19 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+    };
     notewrapper = {
       url = "github:tomasriveral/notewrapper";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.flake-utils.follows = "flake-utils";
     };
+    nixpkgs-notifier = {
+      url = "github:tomasriveral/nixpkgs-notifier";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    }; 
     caelestia-shell = {
       # based on quickshell. See https://github.com/caelestia-dots/shell
       url = "github:caelestia-dots/shell";
