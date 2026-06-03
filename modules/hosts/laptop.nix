@@ -24,7 +24,6 @@
       browsers
       caelestia
       development
-      development
       documentation
       disk
       disk-laptop
@@ -55,6 +54,7 @@
       anki
       caelestia
       cursor
+      development
       eza
       fastfetch
       git
