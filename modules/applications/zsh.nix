@@ -1,4 +1,4 @@
-{self, ...}: {
+_: {
   flake.homeModules.zsh-laptop = _: {
     programs.zsh = {
       shellAliases = {
@@ -7,10 +7,18 @@
       };
     };
   };
-  flake.homeModules.zsh = {pkgs, ...}: {
+  flake.homeModules.zsh-desktop = _: {
+    programs.zsh = {
+      shellAliases = {
+        snrt = "git -C ~/nixos add -A && time sudo nixos-rebuild test --flake ~/nixos/#desktop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
+        snrs = "git -C ~/nixos add -A && time sudo nixos-rebuild switch --flake ~/nixos/#desktop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
+      };
+    };
+  };
+  flake.homeModules.zsh = {pkgs-unstable, ...}: {
     home.packages = [
-      self.packages.${pkgs.system}.dejaManuallyDerived
-      #pkgs-unstable.deja
+      #self.packages.${pkgs.system}.dejaManuallyDerived
+      pkgs-unstable.deja
     ];
 
     programs.zsh = {
@@ -25,7 +33,7 @@
             command cat "$@"
           fi
         }
-              
+        
         custom-eza() { # behaves differently if we just call it or if we pipe initContent
           if [[ -t 1 ]]; then
             eza -hlF -aa --color=always --hyperlink --group-directories-first --show-symlinks --icons=always --git --no-permissions "$@"
