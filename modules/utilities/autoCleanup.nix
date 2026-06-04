@@ -122,8 +122,8 @@
     };
   };
 
-## Desktop
-flake.nixosModules.autoCleanup-desktop = {
+  ## Desktop
+  flake.nixosModules.autoCleanup-desktop = {
     pkgs,
     pkgs-unstable,
     ...

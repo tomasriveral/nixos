@@ -13,7 +13,7 @@ _: {
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
   };
-    flake.nixosModules.bootloader-desktop = {
+  flake.nixosModules.bootloader-desktop = {
     inputs,
     pkgs,
     ...

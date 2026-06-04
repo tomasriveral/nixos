@@ -1,4 +1,4 @@
-{self, ...}: {
+_: {
   flake.homeModules.zsh-laptop = _: {
     programs.zsh = {
       shellAliases = {
@@ -15,7 +15,7 @@
       };
     };
   };
-  flake.homeModules.zsh = {pkgs, pkgs-unstable, ...}: {
+  flake.homeModules.zsh = {pkgs-unstable, ...}: {
     home.packages = [
       #self.packages.${pkgs.system}.dejaManuallyDerived
       pkgs-unstable.deja
@@ -33,7 +33,7 @@
             command cat "$@"
           fi
         }
-              
+            
         custom-eza() { # behaves differently if we just call it or if we pipe initContent
           if [[ -t 1 ]]; then
             eza -hlF -aa --color=always --hyperlink --group-directories-first --show-symlinks --icons=always --git --no-permissions "$@"

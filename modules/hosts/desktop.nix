@@ -112,7 +112,8 @@
     home-manager.users.tomasr = self.homeModules.desktop;
   };
   # this is a copy of what is in laptop.nix
-  /*flake.homeModules.tomasr = _: {
+  /*
+    flake.homeModules.tomasr = _: {
     home.username = "tomasr";
     home.homeDirectory = "/home/tomasr";
 
@@ -133,5 +134,6 @@
 
     # Let Home Manager install and manage itself.
     programs.home-manager.enable = true;
-  };*/
+  };
+  */
 }
