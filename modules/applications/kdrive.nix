@@ -11,6 +11,37 @@
       enable = true;
     };
   };
+  flake.nixosModules.kdrive-desktop = {pkgs-unstable, ...}: {
+    environment.systemPackages = with pkgs-unstable; [
+      rclone
+      self.packages.${pkgs.system}.custom-checkKdrive
+      self.packages.${pkgs.system}.custom-synckdrive-desktop
+    ];
+    # removes rclone error
+    programs.fuse = {
+      userAllowOther = true;
+      enable = true;
+    };
+    systemd.user.services.kdrive-sync = {
+      serviceConfig = {
+        ExecStart = "${pkgs.rclone}/bin/rclone bisync ...";
+    
+        Nice = 19;          # lowest CPU scheduling priority
+        IOSchedulingClass = "idle";
+        IOSchedulingPriority = 7;
+    
+        # Optional:
+        CPUWeight = 1;      # minimum relative CPU share
+      };
+    };
+    /*systemd.user.timers.kdrive-sync = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "1m";
+        OnUnitActiveSec = "5m";
+      };
+    };*/
+  };
   perSystem = {pkgs, ...}: {
     packages.custom-checkKdrive = pkgs.writeShellApplication {
       name = "custom-checkKdrive";
@@ -63,6 +94,26 @@
             notify-send "rclone mount failed" \
                 "Remote ''${REMOTE_NAME} not found.\nConfigure rclone and create the dir ~/kdrive/ or comment out the exec line in hyprland.nix."
         echo        "Remote ''${REMOTE_NAME} not found. Configure rclone or comment out the exec line in hyprland.nix."
+        fi
+      '';
+    };
+    packages.custom-synckdrive-desktop = pkgs.writeShellApplication {
+      name = "custom-synckdrive";
+      runtimeInputs = with pkgs; [
+        rclone
+        libnotify
+      ];
+      text = ''
+        REMOTE_NAME="kdrive"
+        MOUNT_POINT="/data/kdrive"
+
+        if rclone listremotes | rg "^''${REMOVE_NAME}:"; then
+          echo "Syncing ''${Syncing} ''${REMOVE_NAME}..."
+          rclone sync "''${REMOVE_NAME}:" "$MOUNT_POINT" --allow-non-empty &
+        else
+            notify-send "rclone sync failed" \
+                "Remote ''${REMOTE_NAME} not found.\nConfigure rclone and create the dir ~/kdrive/ or comment out the exec line in hyprland.nix."
+            echo        "Remote ''${REMOTE_NAME} not found. Configure rclone or comment out the exec line in hyprland.nix."
         fi
       '';
     };
