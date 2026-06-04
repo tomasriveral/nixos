@@ -48,6 +48,13 @@
       ];
     };
   };
+  flake.homeModules.hyprland-desktop = _: {
+    wayland.windowManager.hyprland.settings = {
+      monitor = [
+        ", highres@highrr, auto, 1"
+      ];
+    };
+  };
   flake.homeModules.hyprland = {pkgs-unstable, ...}: let
     wallpaper = ../../assets/wallpaper1.jpg;
   in {

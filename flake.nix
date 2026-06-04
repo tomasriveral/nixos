@@ -27,6 +27,10 @@
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     microPlugins-vivify = {
       url = "git+https://codeberg.org/gibbert/micro-vivify";
       flake = false;

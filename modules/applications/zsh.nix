@@ -7,10 +7,18 @@
       };
     };
   };
-  flake.homeModules.zsh = {pkgs, ...}: {
+  flake.homeModules.zsh-desktop = _: {
+    programs.zsh = {
+      shellAliases = {
+        snrt = "git -C ~/nixos add -A && time sudo nixos-rebuild test --flake ~/nixos/#desktop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
+        snrs = "git -C ~/nixos add -A && time sudo nixos-rebuild switch --flake ~/nixos/#desktop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
+      };
+    };
+  };
+  flake.homeModules.zsh = {pkgs, pkgs-unstable, ...}: {
     home.packages = [
-      self.packages.${pkgs.system}.dejaManuallyDerived
-      #pkgs-unstable.deja
+      #self.packages.${pkgs.system}.dejaManuallyDerived
+      pkgs-unstable.deja
     ];
 
     programs.zsh = {
