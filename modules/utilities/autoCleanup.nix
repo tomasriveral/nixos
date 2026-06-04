@@ -49,7 +49,6 @@
       };
     };
   };
-  
 
   ## Desktop
   flake.nixosModules.autoCleanup-desktop = {
@@ -102,7 +101,7 @@
       };
     };
   };
-perSystem = {pkgs, ...}: {
+  perSystem = {pkgs, ...}: {
     packages.custom-cleanNix-laptop = pkgs.writeShellApplication {
       name = "custom-cleanNix";
 

@@ -44,7 +44,7 @@
       };
     };
   };
-  
+
   ## desktop
   flake.nixosModules.autoUpdate-desktop = {pkgs, ...}: {
     # Ensure your script is available system-wide
@@ -91,7 +91,7 @@
       };
     };
   };
-perSystem = {pkgs, ...}: {
+  perSystem = {pkgs, ...}: {
     packages.custom-autoupdate-laptop = pkgs.writeShellApplication {
       name = "custom-autoupdate";
 
