@@ -318,7 +318,7 @@ _: {
               })
         vim.lsp.config("pylsp", {
             cmd = { "pylsp" },
-            filetypes = { "python" },
+            filetypes = { "python", "py" },
             on_attach = on_attach,
             settings = {
                 pylsp = {

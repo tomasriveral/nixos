@@ -1,4 +1,4 @@
-_: {
+{inputs, ...}: {
   flake.nixosModules.development = {
     pkgs,
     pkgs-unstable,
@@ -31,6 +31,26 @@ _: {
       ltex-ls-plus
       pylint
       black
+      inputs.nixpkgs-notifier.packages.${pkgs.system}.default
     ];
+  };
+  flake.homeModules.development = _: {
+    home.file.".config/nixpkgs-notifier/config.json" = {
+      enable = true;
+      text = ''
+        {
+          "configTime": 3600,
+          "configFetchTime": 1,
+          "localNotify": true,
+          "matrix": {
+            "enable": true,
+            "room": "!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU",
+            "ping": true,
+            "userPing": "@notificationbot_0000",
+            "userPingServer": "matrix.org"
+          }
+        }
+      '';
+    };
   };
 }

@@ -15,7 +15,6 @@
       self.packages.${pkgs.system}.custom-dontkillsteam # kill app (if not steam or tomato-c
       self.packages.${pkgs.system}.custom-killall # kill all windows except focused window
       xdg-utils
-      home-manager
     ];
     # enable hyprland WM
     programs.hyprland = {
@@ -42,6 +41,7 @@
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "qtbatticon" # custom battery tray
+        "nixpkgs-notifier listen" # tracks PR merge in nixos-unstable
       ];
       monitor = [
         "eDP-1, highres@highrr, 0x0, 1"
@@ -58,9 +58,10 @@
     home.sessionVariables.NIXOS_OZONE_WL = "1";
     wayland.windowManager.hyprland.plugins = [
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
+      #self.packages.${pkgs-unstable.system}.hypr-dynamic-cursors-manual
       #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
     ];
-      wayland.windowManager.hyprland.configType = "hyprlang";
+    wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
       "$mod" = "SUPER";
       "$term" = "kitty";

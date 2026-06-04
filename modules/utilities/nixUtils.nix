@@ -6,10 +6,18 @@
     nix.settings.cores = 6;
   };
   flake.nixosModules.nixUtils = {pkgs-unstable, ...}: {
+    # Optimise the nix store
+    nix.optimise = {
+      automatic = true;
+      persistent = true;
+      randomDelaySec = "30min";
+      dates = "Thu *-*-* 16:00:00";
+    };
     # Garbage collector of generations
     nix.gc = {
       automatic = true;
-      dates = "weekly";
+      dates = "Wed *-*-* 16:00:00";
+      persistent = true;
       options = "--delete-older-than 7d"; # every week delete generations older than a month
     };
 

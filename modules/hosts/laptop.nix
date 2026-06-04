@@ -28,12 +28,12 @@
       disk
       disk-laptop
       fonts
-      games
+      gitBackup
       hardware-configuration-laptop
       hardwareUtils-laptop
       hyprland
       IO
-      kdrive
+      kdrive-laptop
       latex
       ly
       mullvad
@@ -54,6 +54,7 @@
       anki
       caelestia
       cursor
+      development
       eza
       fastfetch
       git

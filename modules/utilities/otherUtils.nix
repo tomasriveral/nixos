@@ -1,11 +1,7 @@
-{self, inputs, ...}: {
+{self, ...}: {
   flake.nixosModules.otherUtils =
     # try to keep packages here at a minium. Preferably use a dedicated file
-    {
-      pkgs,
-      pkgs-unstable,
-      ...
-    }: {
+    {pkgs, ...}: {
       environment.systemPackages = with pkgs; [
         gnome-calculator
         snapshot
@@ -22,7 +18,8 @@
         usbutils # used for lsusb
         self.packages.${pkgs.system}.custom-tomato
         self.packages.${pkgs.system}.custom-syllabes
-        pkgs-unstable.bitwarden-desktop
+        # Electron 39 EOL. https://github.com/bitwarden/clients/pull/20448 should move it to 41. For the moment use the browser extension
+        #pkgs-unstable.bitwarden-desktop
         fluffychat # matrix client
       ];
     };
