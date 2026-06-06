@@ -24,56 +24,41 @@ _: {
                 };
               };
 
-              luks = {
+              root = {
                 size = "100%";
 
                 content = {
-                  type = "luks";
-                  name = "cryptroot";
+                  type = "btrfs";
 
-                  # You will type this password at boot.
-                  settings.allowDiscards = true;
+                  extraArgs = [ "-f" ];
 
-                  content = {
-                    type = "btrfs";
+                  subvolumes = {
+                    "@root" = {
+                      mountpoint = "/";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
 
-                    extraArgs = ["-f"];
+                    "@home" = {
+                      mountpoint = "/home";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
 
-                    subvolumes = {
-                      "@root" = {
-                        mountpoint = "/";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
+                    "@nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
 
-                      "@home" = {
-                        mountpoint = "/home";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-
-                      "@nix" = {
-                        mountpoint = "/nix";
-                        mountOptions = [
-                          "compress=zstd"
-                          "noatime"
-                        ];
-                      };
-
-                      "@snapshots" = {
-                        mountpoint = "/.snapshots";
-                      };
-
-                      # Keyfile storage.
-                      # This subvolume will contain the key used
-                      # to unlock the HDD automatically.
-                      "@keys" = {
-                        mountpoint = "/keys";
-                      };
+                    "@snapshots" = {
+                      mountpoint = "/.snapshots";
                     };
                   };
                 };
@@ -92,27 +77,13 @@ _: {
             type = "gpt";
 
             partitions = {
-              luks = {
+              data = {
                 size = "100%";
 
                 content = {
-                  type = "luks";
-
-                  name = "cryptdata";
-
-                  # IMPORTANT:
-                  # This keyfile will be created after installation.
-                  # The SSD unlocks first.
-                  # Then this keyfile unlocks the HDD automatically.
-                  settings = {
-                    keyFile = "/keys/hdd.key";
-                  };
-
-                  content = {
-                    type = "filesystem";
-                    format = "ext4";
-                    mountpoint = "/data";
-                  };
+                  type = "filesystem";
+                  format = "ext4";
+                  mountpoint = "/data";
                 };
               };
             };

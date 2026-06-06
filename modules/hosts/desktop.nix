@@ -7,7 +7,7 @@
   flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
     #system = "x86_64-linux";
     specialArgs = {
-      inherit (self) pkgs-unstable pkgs-local;
+      inherit (self) pkgs-unstable;
     };
     modules = with self.nixosModules; [
       # important do not remove
@@ -30,7 +30,7 @@
       #hardware-configuration-desktop
       hyprland
       IO
-      kdrive-desktop # we will setup this later
+      #kdrive-desktop # we will setup this later
       latex
       ly
       mullvad
