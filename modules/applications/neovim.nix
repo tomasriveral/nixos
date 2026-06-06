@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.neovim = {pkgs-unstable, ...}: {
+  flake.homeModules.neovim = {pkgs-unstable, pkgs-local,...}: {
     programs.neovim = {
       withRuby = false;
       withPython3 = false;
@@ -59,7 +59,7 @@ _: {
         pkgs-unstable.vimPlugins.cheatsheet-nvim
         pkgs-unstable.vimPlugins.popup-nvim
         pkgs-unstable.vimPlugins.vim-visual-multi
-        pkgs-unstable.vimPlugins.fugit2-nvim
+        pkgs-local.vimPlugins.fugit2-nvim
         pkgs-unstable.vimPlugins.nvim-lastplace
         pkgs-unstable.vimPlugins.runner-nvim # terminal
         pkgs-unstable.vimPlugins.better-diagnostic-virtual-text

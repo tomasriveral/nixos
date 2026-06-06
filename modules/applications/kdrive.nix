@@ -11,9 +11,9 @@
       enable = true;
     };
   };
-  flake.nixosModules.kdrive-desktop = {pkgs-unstable, ...}: {
-    environment.systemPackages = with pkgs-unstable; [
-      rclone
+  flake.nixosModules.kdrive-desktop = {pkgs, ...}: {
+    environment.systemPackages = [
+      pkgs.rclone
       self.packages.${pkgs.system}.custom-checkKdrive
       self.packages.${pkgs.system}.custom-synckdrive-desktop
     ];

@@ -31,6 +31,8 @@
       ltex-ls-plus
       pylint
       black
+      gnupg
+      pinentry-curses
       inputs.nixpkgs-notifier.packages.${pkgs.system}.default
     ];
   };
