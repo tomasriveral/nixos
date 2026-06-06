@@ -7,7 +7,7 @@
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
 
     # This one is only used when testing some packaging. You must change the path to the correct nixpkgs clone
-    nixpkgs-local.url = "path:/home/tomasr/devel/fugit2-gpgme";
+    #nixpkgs-local.url = "path:/home/tomasr/devel/fugit2-gpgme";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +62,8 @@
             };
           pkgs = mkPkgs inputs.nixpkgs;
           pkgs-unstable = mkPkgs inputs.nixpkgs-unstable;
-          pkgs-local =  mkPkgs inputs.nixpkgs-local;
+          pkgs-local = mkPkgs inputs.nixpkgs-unstable;
+          #pkgs-local =  mkPkgs inputs.nixpkgs-local;
         in {
           inherit pkgs pkgs-unstable pkgs-local;
         };
