@@ -1,5 +1,5 @@
 _: {
-  flake.homeModules.neovim = {pkgs-unstable, pkgs-local,...}: {
+  flake.homeModules.neovim = {pkgs-unstable, ...}: {
     programs.neovim = {
       withRuby = false;
       withPython3 = false;
