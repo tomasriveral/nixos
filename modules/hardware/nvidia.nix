@@ -1,0 +1,7 @@
+_: {
+  flake.nixosModules.nvidia = _: {
+    hardware.graphics.enable = true;
+    services.xserver.videoDrivers = [ "nvidia" ];
+    hardware.nvidia.open = true;
+  };
+}

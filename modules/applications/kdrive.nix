@@ -24,7 +24,7 @@
     };
     systemd.user.services.kdrive-sync = {
       serviceConfig = {
-        ExecStart = "${pkgs.rclone}/bin/rclone bisync ...";
+        ExecStart = "${self.packages.${pkgs.system}.custom-synckdrive-desktop}/bin/custom-synckdrive";
     
         Nice = 19;          # lowest CPU scheduling priority
         IOSchedulingClass = "idle";
@@ -97,6 +97,17 @@
         fi
       '';
     };
+    /*
+    Before setting up we must:
+    * setup the rclone remote
+      `rclone config` choose Webdaw and see login information in bitwarden.
+    * give the good permissions for the hdd
+      `sudo chown -R tomasr:users /home/tomasr/hdd`
+    * Run the bisync once completly
+    `rclone bisync ~/hdd/kdrive/ kdrive: --resync`
+
+    Note : only use the --resync flag once
+    */
     packages.custom-synckdrive-desktop = pkgs.writeShellApplication {
       name = "custom-synckdrive";
       runtimeInputs = with pkgs; [
@@ -105,11 +116,11 @@
       ];
       text = ''
         REMOTE_NAME="kdrive"
-        MOUNT_POINT="/data/kdrive"
+        MOUNT_POINT="/home/tomasr/hdd/kdrive"
 
-        if rclone listremotes | rg "^''${REMOVE_NAME}:"; then
-          echo "Syncing ''${Syncing} ''${REMOVE_NAME}..."
-          rclone sync "''${REMOVE_NAME}:" "$MOUNT_POINT" --allow-non-empty &
+        if rclone listremotes | rg "^''${REMOTE_NAME}:"; then
+          echo "Syncing ''${REMOTE_NAME}..."
+          rclone bisync "''${REMOTE_NAME}:" "$MOUNT_POINT"  &
         else
             notify-send "rclone sync failed" \
                 "Remote ''${REMOTE_NAME} not found.\nConfigure rclone and create the dir ~/kdrive/ or comment out the exec line in hyprland.nix."

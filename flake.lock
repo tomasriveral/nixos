@@ -203,18 +203,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-local": {
-      "locked": {
-        "lastModified": 1780728942,
-        "narHash": "sha256-NjXPlIssFzJ8vazKaihsW773r/Kq2TTby7FKBlbWIg4=",
-        "path": "/home/tomasr/devel/fugit2-gpgme",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/tomasr/devel/fugit2-gpgme",
-        "type": "path"
-      }
-    },
     "nixpkgs-notifier": {
       "inputs": {
         "flake-utils": [
@@ -325,7 +313,6 @@
         "microPlugins-vivify": "microPlugins-vivify",
         "nixos-grub-themes": "nixos-grub-themes",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-local": "nixpkgs-local",
         "nixpkgs-notifier": "nixpkgs-notifier",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "notewrapper": "notewrapper"

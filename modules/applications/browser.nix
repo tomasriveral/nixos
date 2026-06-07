@@ -683,6 +683,14 @@
               ];
               definedAliases = ["on"];
             };
+            "ProtonDB" = {
+              urls = [
+                {
+                  template = "https://www.protondb.com/search?q={searchTerms}";
+                }
+              ];
+              definedAliases = ["pr"];
+            };
           };
         };
       };

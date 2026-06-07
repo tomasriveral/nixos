@@ -27,15 +27,17 @@
       documentation
       disk # this only installs some disk utilities. disko will format the drives
       fonts
-      #hardware-configuration-desktop
+      hardware-configuration-desktop
+      hdd
       hyprland
       IO
-      #kdrive-desktop # we will setup this later
+      kdrive-desktop # we will setup this later
       latex
       ly
       mullvad
       networking
       notifications
+      nvidia
       office
       #ollama
       otherUtils
@@ -54,7 +56,6 @@
       development
       eza
       fastfetch
-      git
       gtk
       hyprland
       hyprland-desktop
