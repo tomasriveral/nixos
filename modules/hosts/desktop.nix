@@ -27,7 +27,7 @@
       documentation
       disk # this only installs some disk utilities. disko will format the drives
       fonts
-      #hardware-configuration-desktop
+      hardware-configuration-desktop
       hyprland
       IO
       #kdrive-desktop # we will setup this later
@@ -54,7 +54,6 @@
       development
       eza
       fastfetch
-      git
       gtk
       hyprland
       hyprland-desktop

@@ -24,6 +24,7 @@
       gnumake
       go
       direnv
+      git gh
       cling # c interpreter used for coding
       # lsp
       clang-tools
