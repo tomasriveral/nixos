@@ -53,6 +53,7 @@
       inputs.caelestia-shell.homeManagerModules.default
       anki
       caelestia
+      caelestia-desktop
       cursor
       development
       eza
