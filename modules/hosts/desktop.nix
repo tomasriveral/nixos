@@ -28,6 +28,7 @@
       disk # this only installs some disk utilities. disko will format the drives
       fonts
       hardware-configuration-desktop
+      hdd
       hyprland
       IO
       #kdrive-desktop # we will setup this later
