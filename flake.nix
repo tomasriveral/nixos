@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # used for some packages
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
+    nixpkgs-master.url = "github:nixos/nixpkgs/master"; # used with precaution as they are untested and not cached
 
     # This one is only used when testing some packaging. You must change the path to the correct nixpkgs clone
     #nixpkgs-local.url = "path:/home/tomasr/devel/fugit2-gpgme";
@@ -67,8 +68,9 @@
           pkgs-unstable = mkPkgs inputs.nixpkgs-unstable;
           pkgs-local = mkPkgs inputs.nixpkgs-unstable;
           #pkgs-local =  mkPkgs inputs.nixpkgs-local;
+          pkgs-master = mkPkgs inputs.nixpkgs-master;
         in {
-          inherit pkgs pkgs-unstable pkgs-local;
+          inherit pkgs pkgs-unstable pkgs-local pkgs-master;
         };
       }
       // (inputs.import-tree ./modules));
