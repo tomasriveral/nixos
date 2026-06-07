@@ -31,7 +31,7 @@
       hdd
       hyprland
       IO
-      #kdrive-desktop # we will setup this later
+      kdrive-desktop # we will setup this later
       latex
       ly
       mullvad
