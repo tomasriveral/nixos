@@ -55,7 +55,7 @@
       ];
     };
   };
-  flake.homeModules.hyprland = {pkgs-unstable, ...}: let
+  flake.homeModules.hyprland = {pkgs-unstable, pkgs-master, ...}: let
     wallpaper = ../../assets/wallpaper1.jpg;
   in {
     #refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
@@ -66,7 +66,7 @@
     wayland.windowManager.hyprland.plugins = [
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
       #self.packages.${pkgs-unstable.system}.hypr-dynamic-cursors-manual
-      #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
+      pkgs-master.hyprlandPlugins.hypr-dynamic-cursors # currently broken
     ];
     wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
