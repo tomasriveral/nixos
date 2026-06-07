@@ -36,6 +36,7 @@
       mullvad
       networking
       notifications
+      nvidia
       office
       #ollama
       otherUtils
