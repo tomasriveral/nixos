@@ -6,7 +6,7 @@
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     #system = "x86_64-linux";
     specialArgs = {
-      inherit (self) pkgs-unstable pkgs-local;
+      inherit (self) pkgs-unstable pkgs-local pkgs-master;
     };
     modules = with self.nixosModules; [
       # important do not remove
