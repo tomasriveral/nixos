@@ -52,6 +52,8 @@
             "hplip"
             "nvidia-x11"
             "nvidia-settings"
+            "steam"
+            "steam-unwrapped"
             "cheatsheet.nvim"
           ];
           mkUnfreePredicate = pkg:

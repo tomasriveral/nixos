@@ -27,6 +27,7 @@
       documentation
       disk # this only installs some disk utilities. disko will format the drives
       fonts
+      games
       hardware-configuration-desktop
       hdd
       hyprland
