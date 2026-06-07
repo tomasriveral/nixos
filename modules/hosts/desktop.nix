@@ -101,7 +101,7 @@
       useUserPackages = true;
 
       extraSpecialArgs = {
-        inherit (self) pkgs-unstable;
+        inherit (self) pkgs-unstable pkgs-master;
         inherit self;
       };
     };
