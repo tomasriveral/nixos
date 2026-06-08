@@ -10,12 +10,33 @@
       quickshell # we have it but adding it there solves "WARN qt.qpa.services: Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")"
     ];
   };
-  flake.homeModules.caelestia-desktop = {lib, ...}: {
+  flake.homeModules.caelestia-desktop = _: {
     # for some reason nvidia drivers or I don't know what break the lock. (activate even when use, crash, etc.)
     programs.caelestia.settings.general.idle = {
-      lockBeforeSleep = lib.mkForce false;
+      lockBeforeSleep = false;
       inhibitWhenAudio = true;
-      timeouts = lib.mkForce [];
+      timeouts = [];
+    };
+  };
+  flake.homeModules.caelestia-laptop = _: {
+    programs.caelestia.settings.general.idle = {
+      lockBeforeSleep = true;
+      inhibitWhenAudio = true;
+      timeouts = [
+        {
+          timeout = 180;
+          idleAction = "lock";
+        }
+        {
+          timeout = 300;
+          idleAction = "dpms off"; # what's that?
+          returnAction = "dpms on";
+        }
+        {
+          timeout = 600;
+          idleAction = ["systemctl" "suspend-then-hibernate"];
+        }
+      ];
     };
   };
   flake.homeModules.caelestia = _: let
@@ -108,25 +129,6 @@
               }
             ];
             criticalLevel = 3;
-          };
-          idle = {
-            lockBeforeSleep = true;
-            inhibitWhenAudio = true;
-            timeouts = [
-              {
-                timeout = 180;
-                idleAction = "lock";
-              }
-              {
-                timeout = 300;
-                idleAction = "dpms off"; # what's that?
-                returnAction = "dpms on";
-              }
-              {
-                timeout = 600;
-                idleAction = ["systemctl" "suspend-then-hibernate"];
-              }
-            ];
           };
         };
         background = {
