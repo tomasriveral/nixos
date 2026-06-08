@@ -278,6 +278,7 @@
         #"custom-obsidianbackup" # backups the obsidian notes to kdrive and to a timed hidden dir (~/.Notes.backup/)
         #"QS-notifycache" # builds the cache that will be used for the notification history
         "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
+        "sleep 20 && ngcp pull --automatic" # see github.com/tomasriveral/nix-git-cherry-picker
         /*
            We stopped using that ######################### maybe we should desactivate those scripts
         # login autostart
