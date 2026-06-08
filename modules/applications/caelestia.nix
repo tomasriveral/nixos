@@ -15,21 +15,7 @@
     programs.caelestia.settings.general.idle = {
       lockBeforeSleep = lib.mkForce false;
       inhibitWhenAudio = true;
-      timeouts = lib.mkForce [
-        {
-          timeout = 180000;
-          idleAction = "lock";
-        }
-        {
-          timeout = 300;
-          idleAction = "dpms off"; # what's that?
-          returnAction = "dpms on";
-        }
-        {
-          timeout = 600;
-          idleAction = ["systemctl" "suspend-then-hibernate"];
-        }
-      ];
+      timeouts = lib.mkForce [];
     };
   };
   flake.homeModules.caelestia = _: let
