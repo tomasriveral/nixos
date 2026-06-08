@@ -10,7 +10,7 @@ _: {
       ];
       text = ''
         # List of profiles
-        profiles=("work" "other" "private window" "tor-browser)
+        profiles=("work" "other" "private window" "tor-browser")
 
         # Use fzf to select
         selected=$(printf "%s\n" "''${profiles[@]}" | fzf --height 6 --reverse --prompt="Select browser profile:")
