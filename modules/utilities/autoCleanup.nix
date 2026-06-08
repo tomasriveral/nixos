@@ -150,7 +150,7 @@
 
             matrix-commander-rs --verbose -m "Nix auto cleanup. Everything OK.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
               --html \
-              -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
             else
               notify-send "Nix auto cleanup" "No changes"
               git -C "$FLAKE_DIR" push
@@ -163,7 +163,7 @@
 
           matrix-commander-rs --verbose -m "Nix auto cleanup failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
             --html \
-            -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
 
           git -C "$FLAKE_DIR" reset --hard "pre-cleanup-$TIME"
         fi
@@ -220,7 +220,7 @@
 
             matrix-commander-rs --verbose -m "Nix auto cleanup. Everything OK.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
               --html \
-              -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
             else
               notify-send "Nix auto cleanup" "No changes"
               git -C "$FLAKE_DIR" push
@@ -233,7 +233,7 @@
 
           matrix-commander-rs --verbose -m "Nix auto cleanup failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
             --html \
-            -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
 
           git -C "$FLAKE_DIR" reset --hard "pre-cleanup-$TIME"
         fi

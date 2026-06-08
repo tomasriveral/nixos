@@ -7,7 +7,7 @@
   flake.nixosConfigurations.desktop = inputs.nixpkgs.lib.nixosSystem {
     #system = "x86_64-linux";
     specialArgs = {
-      inherit (self) pkgs-unstable;
+      inherit (self) pkgs-unstable pkgs-master;
     };
     modules = with self.nixosModules; [
       # important do not remove
@@ -27,6 +27,7 @@
       documentation
       disk # this only installs some disk utilities. disko will format the drives
       fonts
+      games
       hardware-configuration-desktop
       hdd
       hyprland
@@ -52,6 +53,7 @@
       inputs.caelestia-shell.homeManagerModules.default
       anki
       caelestia
+      caelestia-desktop
       cursor
       development
       eza
@@ -63,6 +65,7 @@
       librewolf
       mullvad
       neovim
+      nix-git-cherry-picker-desktop
       notewrapper
       oh-my-zsh
       ripgrep
@@ -102,7 +105,7 @@
       useUserPackages = true;
 
       extraSpecialArgs = {
-        inherit (self) pkgs-unstable;
+        inherit (self) pkgs-unstable pkgs-master;
         inherit self;
       };
     };

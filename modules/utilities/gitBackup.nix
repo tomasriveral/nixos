@@ -69,7 +69,7 @@
             notify-send "Git Backup Failed" "$message"
             matrix-commander-rs --verbose -m "Git Backup Failed: $message <br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
             --html \
-            -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
 
         }
 

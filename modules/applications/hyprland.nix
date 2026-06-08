@@ -51,7 +51,7 @@
   flake.homeModules.hyprland-desktop = _: {
     wayland.windowManager.hyprland.settings = {
       monitor = [
-        ", highres@highrr, auto, 1"
+        ", highres@highrr, auto, 0.75"
       ];
     };
   };
@@ -65,8 +65,7 @@
     home.sessionVariables.NIXOS_OZONE_WL = "1";
     wayland.windowManager.hyprland.plugins = [
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
-      #self.packages.${pkgs-unstable.system}.hypr-dynamic-cursors-manual
-      #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors # currently broken
+      pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
     ];
     wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
@@ -279,6 +278,7 @@
         #"custom-obsidianbackup" # backups the obsidian notes to kdrive and to a timed hidden dir (~/.Notes.backup/)
         #"QS-notifycache" # builds the cache that will be used for the notification history
         "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
+        "sleep 20 && ngcp pull --automatic" # see github.com/tomasriveral/nix-git-cherry-picker
         /*
            We stopped using that ######################### maybe we should desactivate those scripts
         # login autostart
