@@ -182,11 +182,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780918439,
-        "narHash": "sha256-DRWxjChA9dgxnl+hwP45mNqAlFs93p8GGKi5fK5mS3Q=",
+        "lastModified": 1780927444,
+        "narHash": "sha256-VZnepj4G15sfpjM+CNgcPXMUpVkQ/cV7sKwP0ylgNfo=",
         "owner": "tomasriveral",
         "repo": "nix-git-cherry-picker",
-        "rev": "2830e324980f129e762fb1a3806c8b2361b379aa",
+        "rev": "8e68a8473c04ae99650ab19408589628ee583290",
         "type": "github"
       },
       "original": {
@@ -246,11 +246,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1780918212,
-        "narHash": "sha256-BhmvQG/PYXHq90emIiO3LShOKccarKfiEIY3h35iljE=",
+        "lastModified": 1780926862,
+        "narHash": "sha256-NvealBhVt7NWU9T7ad0kgStkuex0ebX9UeXoieTZkLA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "815e8f98dfe4a7958a29577110a32dc8a42ec8bb",
+        "rev": "76b2cdf22fd6fa83c0a21b830e5a40fe9ad6f180",
         "type": "github"
       },
       "original": {
