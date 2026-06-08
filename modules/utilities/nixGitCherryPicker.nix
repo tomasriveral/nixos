@@ -20,7 +20,7 @@
       inputs.nix-git-cherry-picker.packages.${pkgs.system}.default
     ];
   };
-  home.file-".config/nix-git-cherry-picker/config.json" = {
+  home.file.".config/nix-git-cherry-picker/config.json" = {
     enable = true;
     text = ''
       {
