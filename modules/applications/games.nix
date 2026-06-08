@@ -5,5 +5,9 @@ _: {
       supertuxkart # fuck mariokart
       # my favorite italian plumber is free software
     ];
+    programs.steam = {
+      enable = true;
+      protontricks.enable = true;
+    };
   };
 }

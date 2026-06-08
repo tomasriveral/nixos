@@ -27,15 +27,18 @@
       documentation
       disk # this only installs some disk utilities. disko will format the drives
       fonts
-      #hardware-configuration-desktop
+      games
+      hardware-configuration-desktop
+      hdd
       hyprland
       IO
-      #kdrive-desktop # we will setup this later
+      kdrive-desktop # we will setup this later
       latex
       ly
       mullvad
       networking
       notifications
+      nvidia
       office
       #ollama
       otherUtils
@@ -50,11 +53,11 @@
       inputs.caelestia-shell.homeManagerModules.default
       anki
       caelestia
+      caelestia-desktop
       cursor
       development
       eza
       fastfetch
-      git
       gtk
       hyprland
       hyprland-desktop
@@ -62,6 +65,7 @@
       librewolf
       mullvad
       neovim
+      nix-git-cherry-picker-desktop
       notewrapper
       oh-my-zsh
       ripgrep

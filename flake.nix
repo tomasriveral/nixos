@@ -56,7 +56,10 @@
           system = "x86_64-linux";
           unfreePkgs = [
             "hplip"
-            "vivify.vim"
+            "nvidia-x11"
+            "nvidia-settings"
+            "steam"
+            "steam-unwrapped"
             "cheatsheet.nvim"
           ];
           mkUnfreePredicate = pkg:

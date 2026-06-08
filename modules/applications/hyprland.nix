@@ -51,7 +51,7 @@
   flake.homeModules.hyprland-desktop = _: {
     wayland.windowManager.hyprland.settings = {
       monitor = [
-        ", highres@highrr, auto, 1"
+        ", highres@highrr, auto, 0.75"
       ];
     };
   };
