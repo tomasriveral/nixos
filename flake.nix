@@ -26,6 +26,11 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    nix-git-cherry-picker = {
+      url = "github:tomasriveral/nix-git-cherry-picker";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     caelestia-shell = {
       # based on quickshell. See https://github.com/caelestia-dots/shell
       url = "github:caelestia-dots/shell";

@@ -154,6 +154,29 @@
         "url": "https://codeberg.org/gibbert/micro-vivify"
       }
     },
+    "nix-git-cherry-picker": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780916435,
+        "narHash": "sha256-fVqBAaQroqNEDovWRSILm1GuRhssnd5G+IbZLjlsdUI=",
+        "owner": "tomasriveral",
+        "repo": "nix-git-cherry-picker",
+        "rev": "5ceff7e0a376c45278ad667c97a4dd3e6834eec0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tomasriveral",
+        "repo": "nix-git-cherry-picker",
+        "type": "github"
+      }
+    },
     "nixos-grub-themes": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -327,6 +350,7 @@
         "home-manager": "home-manager",
         "import-tree": "import-tree",
         "microPlugins-vivify": "microPlugins-vivify",
+        "nix-git-cherry-picker": "nix-git-cherry-picker",
         "nixos-grub-themes": "nixos-grub-themes",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",

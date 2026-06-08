@@ -65,6 +65,7 @@
       librewolf
       mullvad
       neovim
+      nixGitCherryPicker-laptop
       notewrapper
       oh-my-zsh
       ripgrep
