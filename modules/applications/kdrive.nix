@@ -73,7 +73,7 @@
           notify-send "rclone kdrive failed" "$output"
           matrix-commander-rs --verbose -m "rclone kdrive failed.<br>Error: <pre>$output</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
           --html \
-          -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+          -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
         fi
       '';
     };

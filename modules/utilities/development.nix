@@ -47,7 +47,7 @@
           "localNotify": true,
           "matrix": {
             "enable": true,
-            "room": "!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU",
+            "room": "!BXRRokBmEdNOyYdfOF:matrix.org",
             "ping": true,
             "userPing": "@notificationbot_0000",
             "userPingServer": "matrix.org"
