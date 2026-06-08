@@ -54,7 +54,7 @@
                 "Set your identity\n or remove this warning by removing the custom-gitnotify line in\n ~/nixos/modules/applications/hyprland.nix"
             matrix-commander-rs --verbose -m "Git not configured.<br>Set your identify or remove this warning by removing the custom-gitnotify in ~/nixos/modules/applications/hyprland.nix<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
             --html \
-            -r "\!7j-78_02dHROeLj4Ns8F12eo4IiZGv4zNsQ_1-WlyIU"
+            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
         fi
       '';
     };
