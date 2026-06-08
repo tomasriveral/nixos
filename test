@@ -1,0 +1,8 @@
+I am testing the tool ngcp i created. If this file disapears. It means I coded it wrong.
+
+
+The problem before was that it did:
+1. cherry pick
+2. push
+
+I didn't pulled changed before cherry picking
