@@ -9,7 +9,7 @@
         {
           "localBranch": "laptop",
           "remoteBranch": "desktop",
-          "nixConfigPath": "~/nixos/"
+          "nixConfigPath": "/home/tomasr/nixos/"
         }
       '';
       force = true;
