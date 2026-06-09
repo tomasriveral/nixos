@@ -25,22 +25,24 @@
     systemd.user.services.kdrive-sync = {
       serviceConfig = {
         ExecStart = "${self.packages.${pkgs.system}.custom-synckdrive-desktop}/bin/custom-synckdrive";
-    
-        Nice = 19;          # lowest CPU scheduling priority
+
+        Nice = 19; # lowest CPU scheduling priority
         IOSchedulingClass = "idle";
         IOSchedulingPriority = 7;
-    
+
         # Optional:
-        CPUWeight = 1;      # minimum relative CPU share
+        CPUWeight = 1; # minimum relative CPU share
       };
     };
-    /*systemd.user.timers.kdrive-sync = {
+    /*
+      systemd.user.timers.kdrive-sync = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnBootSec = "1m";
         OnUnitActiveSec = "5m";
       };
-    };*/
+    };
+    */
   };
   perSystem = {pkgs, ...}: {
     packages.custom-checkKdrive = pkgs.writeShellApplication {
