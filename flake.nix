@@ -31,6 +31,11 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    patent = {
+      url = "github:r14dd/patent";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     caelestia-shell = {
       # based on quickshell. See https://github.com/caelestia-dots/shell
       url = "github:caelestia-dots/shell";
