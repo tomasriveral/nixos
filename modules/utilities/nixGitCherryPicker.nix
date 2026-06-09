@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.homeModules.nix-git-cherry-picker-desktop = {pkgs, ...}: {
+  flake.homeModules.nix-git-cherry-picker-laptop = {pkgs, ...}: {
     home.packages = [
       inputs.nix-git-cherry-picker.packages.${pkgs.system}.default
     ];
@@ -7,8 +7,8 @@
       enable = true;
       text = ''
         {
-          "localBranch": "desktop",
-          "remoteBranch": "laptop",
+          "localBranch": "laptop",
+          "remoteBranch": "desktop",
           "nixConfigPath": "/home/tomasr/nixos/"
         }
       '';
