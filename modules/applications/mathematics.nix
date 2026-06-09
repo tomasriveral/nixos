@@ -1,7 +1,7 @@
 _: {
   flake.nixosModules.mathematics = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
-      lean4
+      elan
     ];
   }; 
 }
