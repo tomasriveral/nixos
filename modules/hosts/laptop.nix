@@ -36,6 +36,7 @@
       kdrive-laptop
       latex
       ly
+      mathematics
       mullvad
       networking
       notifications
