@@ -35,6 +35,7 @@
       gnupg
       pinentry-curses
       inputs.nixpkgs-notifier.packages.${pkgs.system}.default
+      inputs.patent.packages.${pkgs.system}.default
     ];
   };
   flake.homeModules.development = _: {
