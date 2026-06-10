@@ -35,6 +35,7 @@
       kdrive-desktop # we will setup this later
       latex
       ly
+      mathematics
       mullvad
       networking
       notifications

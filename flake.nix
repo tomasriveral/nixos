@@ -45,10 +45,12 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    microPlugins-vivify = {
+    /*
+      microPlugins-vivify = {
       url = "git+https://codeberg.org/gibbert/micro-vivify";
       flake = false;
     };
+    */
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
     };
