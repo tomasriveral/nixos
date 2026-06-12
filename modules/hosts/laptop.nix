@@ -39,6 +39,8 @@
       mathematics
       mullvad
       networking
+      nixUtils-laptop
+      nixUtils
       notifications
       office
       #ollama

@@ -11,6 +11,8 @@ _: {
     boot.loader.limine = {
       enable = true;
       efiSupport = true;
+      extraConfig = ''
+      '';
     };
 
     boot.loader.efi.canTouchEfiVariables = true;

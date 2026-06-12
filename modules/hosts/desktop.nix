@@ -38,6 +38,7 @@
       mathematics
       mullvad
       networking
+      nixUtils
       notifications
       nvidia
       office
