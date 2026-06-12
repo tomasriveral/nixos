@@ -4,7 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # used for some packages
-    nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
     nixpkgs-master.url = "github:nixos/nixpkgs/master"; # used with precaution as they are untested and not cached
 
     # This one is only used when testing some packaging. You must change the path to the correct nixpkgs clone
