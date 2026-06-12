@@ -20,7 +20,7 @@
       autoUpdate-laptop
       #battery-laptop
       bluetooth
-      bootloader-laptop
+      bootloader
       browsers
       caelestia
       development
@@ -39,6 +39,8 @@
       mathematics
       mullvad
       networking
+      nixUtils-laptop
+      nixUtils
       notifications
       office
       #ollama

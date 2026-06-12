@@ -20,7 +20,7 @@
       autoCleanup-desktop
       autoUpdate-desktop
       bluetooth
-      bootloader-desktop
+      bootloader
       browsers
       caelestia
       development
@@ -38,6 +38,7 @@
       mathematics
       mullvad
       networking
+      nixUtils
       notifications
       nvidia
       office

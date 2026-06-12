@@ -1,30 +1,31 @@
-_: {
-  flake.nixosModules.bootloader-laptop = {
-    inputs,
-    pkgs,
-    ...
-  }: {
-    # grub theme
-    boot.loader.grub = {
-      theme = inputs.nixos-grub-themes.packages.${pkgs.system}.nixos; # if you want to use nixos grub theme
+_: let
+  wallpaper1 = ../../assets/wallpaper1.jpg;
+  wallpaper2 = ../../assets/wallpaper2.jpg;
+  wallpaper3 = ../../assets/wallpaper3.jpg;
+  wallpaper4 = ../../assets/wallpaper4.jpg;
+  wallpaper5 = ../../assets/wallpaper5.jpg;
+in {
+  flake.nixosModules.bootloader = _: {
+    # disable other bootloaders
+    boot.loader.systemd-boot.enable = false;
+    boot.loader.grub.enable = false;
+
+    boot.loader.limine = {
+      enable = true;
+      efiSupport = true;
+      maxGenerations = 128;
+      style = {
+        wallpaperStyle = "centered";
+        wallpapers = [
+          wallpaper1
+          wallpaper2
+          wallpaper3
+          wallpaper4
+          wallpaper5
+        ];
+      };
     };
 
-    # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-  };
-  flake.nixosModules.bootloader-desktop = {
-    inputs,
-    pkgs,
-    ...
-  }: {
-    # grub theme
-    boot.loader.grub = {
-      theme = inputs.nixos-grub-themes.packages.${pkgs.system}.nixos; # if you want to use nixos grub theme
-    };
-
-    # Bootloader.
-    boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
   };
 }
