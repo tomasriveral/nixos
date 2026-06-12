@@ -4,13 +4,15 @@ _: {
     pkgs,
     ...
   }: {
-    # grub theme
-    boot.loader.grub = {
-      theme = inputs.nixos-grub-themes.packages.${pkgs.system}.nixos; # if you want to use nixos grub theme
+    # disable other bootloaders
+    boot.loader.systemd-boot.enable = false;
+    boot.loader.grub.enable = false;
+
+    boot.loader.limine = {
+      enable = true;
+      efiSupport = true;
     };
 
-    # Bootloader.
-    boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
   };
 }
