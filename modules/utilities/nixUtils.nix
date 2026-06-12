@@ -10,7 +10,7 @@
     nix.optimise = {
       automatic = true;
       persistent = true;
-      randomDelaySec = "30min";
+      randomizedDelaySec = "30min";
       dates = "Thu *-*-* 16:00:00";
     };
     # Garbage collector of generations
