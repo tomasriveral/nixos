@@ -20,7 +20,7 @@
       autoCleanup-desktop
       autoUpdate-desktop
       bluetooth
-      bootloader-desktop
+      bootloader
       browsers
       caelestia
       development
