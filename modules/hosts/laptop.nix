@@ -20,7 +20,7 @@
       autoUpdate-laptop
       #battery-laptop
       bluetooth
-      bootloader-laptop
+      bootloader
       browsers
       caelestia
       development
