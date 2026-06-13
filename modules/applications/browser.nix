@@ -637,6 +637,12 @@
               keyword = "disposable temporary email";
               url = "https://temp-mail.org";
             }
+            {
+              name = "r/Piracy megathread";
+              tags = ["piracy" "megathread" "reddit"];
+              keyword = "piracy megathread";
+              url = "https://old.reddit.com/r/Piracy/wiki/megathread";
+            }
           ];
         };
         search = {
