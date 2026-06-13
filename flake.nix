@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils = {
-      url = "github:numtide/flake-utils";
+      url = "https://flakehub.com/f/numtide/flake-utils/*"; # flakehub caches results
     };
     notewrapper = {
       url = "github:tomasriveral/notewrapper";
