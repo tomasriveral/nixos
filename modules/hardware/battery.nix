@@ -1,7 +1,5 @@
 {self, inputs, ...}: {
   flake.nixosModules.battery-laptop = {
-    lib,
-    config,
     pkgs,
     ...
   }:
