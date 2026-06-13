@@ -386,6 +386,12 @@
               keyword = "nix reference manual";
               url = "https://nix.dev/manual/nix/2.34/nix-2.34.html";
             }
+            {
+              name = "Disposable temporary email";
+              tags = ["privacy" "email" "temporary"];
+              keyword = "disposable temporary email";
+              url = "https://temp-mail.org";
+            }
           ];
         };
         search = {
@@ -621,6 +627,17 @@
           #        trackViewCount = false;
           #  };
           #};
+        };
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "Disposable temporary email";
+              tags = ["privacy" "email" "temporary"];
+              keyword = "disposable temporary email";
+              url = "https://temp-mail.org";
+            }
+          ];
         };
         search = {
           force = true;
