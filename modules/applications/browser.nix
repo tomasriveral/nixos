@@ -386,6 +386,18 @@
               keyword = "nix reference manual";
               url = "https://nix.dev/manual/nix/2.34/nix-2.34.html";
             }
+            {
+              name = "Disposable temporary email";
+              tags = ["privacy" "email" "temporary"];
+              keyword = "disposable temporary email";
+              url = "https://temp-mail.org";
+            }
+            {
+              name = "nix-update-script Rryan-tm logs";
+              tags = ["nixpkgs" "nix" "log" "rryan-tm"];
+              keyword = "rryan-tm logs";
+              url = "https://nixpkgs-update-logs.nix-community.org";
+            }
           ];
         };
         search = {
@@ -621,6 +633,23 @@
           #        trackViewCount = false;
           #  };
           #};
+        };
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "Disposable temporary email";
+              tags = ["privacy" "email" "temporary"];
+              keyword = "disposable temporary email";
+              url = "https://temp-mail.org";
+            }
+            {
+              name = "r/Piracy megathread";
+              tags = ["piracy" "megathread" "reddit"];
+              keyword = "piracy megathread";
+              url = "https://old.reddit.com/r/Piracy/wiki/megathread";
+            }
+          ];
         };
         search = {
           force = true;

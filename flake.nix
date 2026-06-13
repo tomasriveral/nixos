@@ -4,7 +4,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # used for some packages
-    nixpkgs-master.url = "github:nixos/nixpkgs/master"; # used with precaution as they are untested and not cached
+    
+    # Only uncomment when needed. This uses a lot of space and compute ressources for sometimes not that much. If not used, make it follow unstable
+    nixpkgs-master.follows = "nixpkgs-unstable";
+    #nixpkgs-master.url = "github:nixos/nixpkgs/master"; # used with precaution as they are untested and not cached
 
     # This one is only used when testing some packaging. You must change the path to the correct nixpkgs clone
     #nixpkgs-local.url = "path:/home/tomasr/devel/fugit2-gpgme";
@@ -13,7 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils = {
-      url = "github:numtide/flake-utils";
+      url = "https://flakehub.com/f/numtide/flake-utils/*"; # flakehub caches results
     };
     notewrapper = {
       url = "github:tomasriveral/notewrapper";
@@ -51,7 +54,7 @@
     };
     */
     flake-parts = {
-      url = "github:hercules-ci/flake-parts";
+      url = "https://flakehub.com/f/hercules-ci/flake-parts/*"; # flakehub caches results
     };
     import-tree.url = "github:vic/import-tree"; # imports ./modules recursively
   };
