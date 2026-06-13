@@ -208,22 +208,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1781334907,
-        "narHash": "sha256-UiFcXd+Qrb7oaNPhXqMty2lSRSFBNtz6LhQLNDuQ4w8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d34e9cd74d51daeadd9724178281ac380893f8ac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-notifier": {
       "inputs": {
         "flake-utils": [
@@ -341,7 +325,9 @@
         "import-tree": "import-tree",
         "nix-git-cherry-picker": "nix-git-cherry-picker",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-master": [
+          "nixpkgs-unstable"
+        ],
         "nixpkgs-notifier": "nixpkgs-notifier",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "notewrapper": "notewrapper",
