@@ -404,7 +404,7 @@
             # Restore Caelestia
             pkill swaync || true
             pkill waybar || true
-            caelestia shell >/dev/null 2>&1 &
+            caelestia shell -d >/dev/null 2>&1 &
             disown
 
         
