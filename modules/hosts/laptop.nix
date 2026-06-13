@@ -69,7 +69,7 @@
       librewolf
       mullvad
       neovim
-      nixGitCherryPicker-laptop
+      nix-git-cherry-picker-laptop
       notewrapper
       oh-my-zsh
       ripgrep
