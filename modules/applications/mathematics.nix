@@ -3,5 +3,5 @@ _: {
     environment.systemPackages = with pkgs; [
       elan
     ];
-  }; 
+  };
 }

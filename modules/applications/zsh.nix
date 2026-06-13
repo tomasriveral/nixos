@@ -11,7 +11,7 @@ _: {
             caelestia-shell -n > /dev/null 2>&1 & disown
           fi
         '';
-    
+
         snrs = ''
           git -C ~/nixos add -A &&
           time sudo nixos-rebuild switch --flake ~/nixos/#laptop &&
@@ -50,7 +50,7 @@ _: {
             command cat "$@"
           fi
         }
-              
+            
         custom-eza() { # behaves differently if we just call it or if we pipe initContent
           if [[ -t 1 ]]; then
             eza -hlF -aa --color=always --hyperlink --group-directories-first --show-symlinks --icons=always --git --no-permissions "$@"

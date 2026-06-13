@@ -211,8 +211,8 @@
         #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
         "Ctrl+Alt, 1, exec, qs ipc call notifications toggle"
         */
-        # pos 4 1 notification center. 
-        "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar" 
+        # pos 4 1 notification center.
+        "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
         "Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
         "Ctrl+$mod, 4, exec, caelestia shell notifs toggleDnd"
         "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol

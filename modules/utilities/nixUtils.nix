@@ -1,4 +1,8 @@
-{inputs, self, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   flake.nixosModules.nixUtils-laptop = _: {
     # nixpkgs-review crashed my laptop multiple times. We must reduce how much ressources it can take.
     # for reference, my laptop is a 12 core ryzen 7
