@@ -76,9 +76,11 @@
       rofi
       sbb-tui
       ssh
+      swaync # used in performance mode
       thunderbird
       tomasr
       vivify
+      waybar-minimal # used in performance mode
       zoxide
       zsh
       zsh-laptop

@@ -1,7 +1,8 @@
-_: {
+{self, inputs, ...}: {
   flake.nixosModules.battery-laptop = {
     lib,
     config,
+    pkgs,
     ...
   }:
   # https://discourse.nixos.org/t/what-is-the-best-option-for-power-management/63406/2
@@ -50,7 +51,9 @@ _: {
         STOP_CHARGE_THRESH_BAT1 = 80;
       };
     };
-    #  };
+      environment.systemPackages = [
+        self.packages.${pkgs.system}.custom-performance
+      ];
   };
   perSystem = {pkgs, ...}: let
     NotifySound = ../../assets/battery_notify.mp3;
@@ -335,28 +338,97 @@ _: {
       name = "custom-performance";
       runtimeInputs = with pkgs; [
         hyprland
-        gawk
+        brightnessctl
+        swaynotificationcenter
+        self.packages.${pkgs.system}.custom-wallpaper
         libnotify
+        inputs.caelestia-shell.packages.${pkgs.system}.default
       ];
       text = ''
-        HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
-        if [ "$HYPRGAMEMODE" = 1 ] ; then
+        STATE="$HOME/.cache/hypr-battery-saver"
+        
+        enable() {
+            mkdir -p "$(dirname "$STATE")"
+        
+            echo "Enabling battery saver mode..."
+        
+            # Save brightness
+            brightnessctl get > "''${STATE}.brightness" 2>/dev/null || true
+        
+            # Kill heavy UI components
+            pkill -f caelestia-shell || true
+            pkill -f caelestia || true
+            pkill shell || true
+            pkill -f custom-wallpaper || true
+        
+            # Start lightweight notifications
+            pkill swaync || true
+            swaync & disown
+
+            # Start lightweight waybar
+            pkill waybar || true
+            waybar & disown
+        
+            # Lower refresh rate (BIGGEST win)
+            hyprctl keyword monitor "eDP-1,2560x1600@60,0x0,1"
+        
+            # Core performance toggles
             hyprctl --batch "\
                 keyword animations:enabled 0;\
-                keyword animation borderangle,0; \
+                keyword animation borderangle,0;\
                 keyword decoration:shadow:enabled 0;\
                 keyword decoration:blur:enabled 0;\
-        	    keyword decoration:fullscreen_opacity 1;\
+                keyword decoration:rounding 0;\
+                keyword decoration:fullscreen_opacity 1;\
                 keyword general:gaps_in 0;\
                 keyword general:gaps_out 0;\
                 keyword general:border_size 1;\
-                keyword decoration:rounding 0"
-            notify-send -u critical -t 5000 "Performance mode [ON]"
-            exit
-        else
-            notify-send -u critical -t 5000 "Performance mode [OFF]"
+                keyword decoration:active_opacity 1;\
+                keyword decoration:inactive_opacity 1;\
+                keyword misc:vfr true"
+        
+            # Lower brightness
+            brightnessctl set 5% 2>/dev/null || true
+        
+            touch "$STATE"
+        
+            notify-send "Battery Saver" "Enabled"
+        }
+        
+        disable() {
+            echo "Disabling battery saver mode..."
+        
+            # Restore refresh rate
+            hyprctl keyword monitor "eDP-1,2560x1600@165,0x0,1"
+        
+            # Restore Caelestia
+            pkill swaync || true
+            pkill waybar || true
+            caelestia shell >/dev/null 2>&1 &
+            disown
+
+        
+            # Restart wallpaper
+            custom-wallpaper >/dev/null 2>&1 &
+            disown
+        
+            # Restore full UI via reload (safe here on exit)
             hyprctl reload
-            exit 0
+        
+            # Restore brightness
+            if [[ -f "''${STATE}.brightness" ]]; then
+                brightnessctl set "$(cat "''${STATE}.brightness")" 2>/dev/null || true
+            fi
+        
+            rm -f "$STATE" "''${STATE}.brightness"
+        
+            notify-send "Battery Saver" "Disabled"
+        }
+        
+        if [[ -f "$STATE" ]]; then
+            disable
+        else
+            enable
         fi
       '';
     };

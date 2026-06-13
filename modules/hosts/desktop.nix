@@ -74,15 +74,17 @@
       rofi
       sbb-tui
       ssh
+      swaync # used in performance mode
       thunderbird
       tomasr
       vivify
+      waybar-minimal # used in performance mode
       zoxide
       zsh
       zsh-desktop
     ];
   };
-  flake.nixosModules.desktop = _: {
+  flake.nixosModules.desktop = {pkgs, ...}: {
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
     # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -93,6 +95,9 @@
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
+    ];
+    environment.systemPackages = [
+      self.packages.${pkgs.system}.custom-performance
     ];
   };
   flake.nixosModules.home-manager-desktop = {pkgs, ...}: {
