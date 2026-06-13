@@ -1,4 +1,32 @@
 _: {
+  flake.homeModules.waybar-minimal = _: {
+    programs.waybar = {
+      enable = true;
+      settings = [
+        {
+          layer = "top";
+          modules-left = [];
+          modules-center = [];
+          modules-right = [
+            "battery"
+            "clock"
+          ];
+        
+          battery = {
+            format = "{capacity}% {icon}";
+            states = {
+              warning = 30;
+              critical = 15;
+            };
+          };
+        
+          clock = {
+            format = "{:%H:%M}";
+          };
+        }
+      ];
+    };
+  };
   flake.homeModules.waybar = _: {
     # replaced by caelestia
     programs.waybar = {
