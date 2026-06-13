@@ -392,6 +392,12 @@
               keyword = "disposable temporary email";
               url = "https://temp-mail.org";
             }
+            {
+              name = "nix-update-script Rryan-tm logs";
+              tags = ["nixpkgs" "nix" "log" "rryan-tm"];
+              keyword = "rryan-tm logs";
+              url = "https://nixpkgs-update-logs.nix-community.org";
+            }
           ];
         };
         search = {
