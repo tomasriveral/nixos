@@ -51,7 +51,7 @@
     };
     */
     flake-parts = {
-      url = "github:hercules-ci/flake-parts";
+      url = "https://flakehub.com/f/hercules-ci/flake-parts/*"; # flakehub caches results
     };
     import-tree.url = "github:vic/import-tree"; # imports ./modules recursively
   };
