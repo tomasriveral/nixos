@@ -11,7 +11,7 @@ _: {
             "battery"
             "clock"
           ];
-        
+
           battery = {
             format = "{capacity}% {icon}";
             states = {
@@ -19,7 +19,7 @@ _: {
               critical = 15;
             };
           };
-        
+
           clock = {
             format = "{:%H:%M}";
           };
