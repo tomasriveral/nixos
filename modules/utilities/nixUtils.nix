@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{inputs, self, ...}: {
   flake.nixosModules.nixUtils-laptop = _: {
     # nixpkgs-review crashed my laptop multiple times. We must reduce how much ressources it can take.
     # for reference, my laptop is a 12 core ryzen 7
@@ -10,7 +10,7 @@
     nix.optimise = {
       automatic = true;
       persistent = true;
-      randomDelaySec = "30min";
+      randomizedDelaySec = "30min";
       dates = "Thu *-*-* 16:00:00";
     };
     # Garbage collector of generations
@@ -40,6 +40,7 @@
       vimPluginsUpdater # used for building plugins
       nix-index
       statix
+      self.packages.${pkgs-unstable.system}.custom-trimmer
     ];
   };
   perSystem = {pkgs, ...}: {

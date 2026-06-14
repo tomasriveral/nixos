@@ -2,11 +2,18 @@ name: Sync branches into main
 
 on:
   schedule:
-    - cron: "0 14 * * 1"
-
-    - cron: "0 14 * * 3"
+    - cron: "0 14 * * 1" # Monday
+    - cron: "0 14 * * 3" # Wednesday
 
   workflow_dispatch:
+    inputs:
+      source:
+        description: Branch to sync into main
+        required: true
+        type: choice
+        options:
+          - laptop
+          - desktop
 
 permissions:
   contents: write
@@ -17,42 +24,82 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Determine source branch
         id: branch
         run: |
-          DOW=$(date -u +%u)
-
-          if [ "$DOW" = "1" ]; then
-            echo "source=laptop" >> "$GITHUB_OUTPUT"
-          elif [ "$DOW" = "3" ]; then
-            echo "source=desktop" >> "$GITHUB_OUTPUT"
-          else
-            echo "Not a scheduled sync day"
-            exit 1
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "source=${{ inputs.source }}" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
-      - name: Create pull request
-        id: cpr
-        uses: peter-evans/create-pull-request@v7
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          branch: ${{ steps.branch.outputs.source }}
-          title: "Weekly sync: ${{ steps.branch.outputs.source }} → main"
-          body: |
-            This pull request was created automatically by GitHub Actions.
+          DOW=$(date -u +%u)
 
-            If the branch can be merged cleanly, auto-merge will merge it automatically.
+          case "$DOW" in
+            1)
+              echo "source=laptop" >> "$GITHUB_OUTPUT"
+              ;;
+            3)
+              echo "source=desktop" >> "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "No sync scheduled today."
+              exit 1
+              ;;
+          esac
 
-            If there are merge conflicts, this PR will remain open until they are resolved.
-          draft: false
+      - name: Check for existing PR
+        id: existing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER=$(gh pr list \
+            --base main \
+            --head "${{ steps.branch.outputs.source }}" \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Create PR
+        id: create
+        if: steps.existing.outputs.number == ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --base main \
+            --head "${{ steps.branch.outputs.source }}" \
+            --title "Weekly sync: ${{ steps.branch.outputs.source }} → main" \
+            --body "This pull request was created automatically by GitHub Actions."
+
+          PR_NUMBER=$(gh pr list \
+            --base main \
+            --head "${{ steps.branch.outputs.source }}" \
+            --state open \
+            --json number \
+            --jq '.[0].number')
+
+          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+
+      - name: Determine PR number
+        id: pr
+        run: |
+          if [ -n "${{ steps.existing.outputs.number }}" ]; then
+            echo "number=${{ steps.existing.outputs.number }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "number=${{ steps.create.outputs.number }}" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Enable auto-merge
-        if: steps.cpr.outputs.pull-request-number
+        if: steps.pr.outputs.number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh pr merge \
-            ${{ steps.cpr.outputs.pull-request-number }} \
+            "${{ steps.pr.outputs.number }}" \
             --auto \
             --merge
