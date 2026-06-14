@@ -279,6 +279,8 @@
         #"QS-notifycache" # builds the cache that will be used for the notification history
         "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
         "sleep 20 && ngcp pull --automatic" # see github.com/tomasriveral/nix-git-cherry-picker
+        "rm ~/.cache/hypr-battery-saver"
+        "rm ~/.cache/hypr-battery-saver.brightness"
         /*
            We stopped using that ######################### maybe we should desactivate those scripts
         # login autostart
