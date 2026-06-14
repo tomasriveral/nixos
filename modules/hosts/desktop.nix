@@ -44,6 +44,7 @@
       office
       #ollama
       otherUtils
+      performance-desktop
       printer
       rss
       udev
