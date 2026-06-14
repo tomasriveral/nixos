@@ -35,8 +35,8 @@
     */
     services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
     services.thermald.enable = false; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
-    services.power-profiles-daemon.enable = false; # Disable GNOMEs power management
-    services.tlp = {
+    services.power-profiles-daemon.enable = true; # ppd is recommended over tlp for framework 16
+    /*services.tlp = {
       enable = true; # Enable TLP (better than gnomes internal power manager)
       settings = {
         CPU_BOOST_ON_AC = 1;
@@ -51,7 +51,7 @@
         PLATFORM_PROFILE_ON_BAT = "powersave";
         STOP_CHARGE_THRESH_BAT1 = 80;
       };
-    };
+    };*/
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-performance
     ];
