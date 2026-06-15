@@ -198,8 +198,8 @@
         "$mod_SHIFT, S, exec, caelestia shell picker open"
         # framework 16 rgb macropad
         "Ctrl+$mod, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
-        #"Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
-        "Ctrl+Alt, 7, exec, caelestia shell gameMode toggle"
+        "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
+        #"Ctrl+Alt, 7, exec, caelestia shell gameMode toggle"
         # reloads the autostart programs # pos 3 1
         # we passed to caelestia-shell and stoped using that
         /*
@@ -211,7 +211,9 @@
         #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
         "Ctrl+Alt, 1, exec, qs ipc call notifications toggle"
         */
+        # pos 4 1 notification center.
         "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
+        "Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
         "Ctrl+$mod, 4, exec, caelestia shell notifs toggleDnd"
         "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
         "Ctrl+Shift+Alt, 0, exec, kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"" # pos 2 2 change audio output fzf
@@ -279,6 +281,8 @@
         #"QS-notifycache" # builds the cache that will be used for the notification history
         "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
         "sleep 20 && ngcp pull --automatic" # see github.com/tomasriveral/nix-git-cherry-picker
+        "rm ~/.cache/hypr-battery-saver"
+        "rm ~/.cache/hypr-battery-saver.brightness"
         /*
            We stopped using that ######################### maybe we should desactivate those scripts
         # login autostart

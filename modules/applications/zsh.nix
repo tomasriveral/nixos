@@ -2,8 +2,25 @@ _: {
   flake.homeModules.zsh-laptop = _: {
     programs.zsh = {
       shellAliases = {
-        snrt = "git -C ~/nixos add -A && time sudo nixos-rebuild test --flake ~/nixos/#laptop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
-        snrs = "git -C ~/nixos add -A && time sudo nixos-rebuild switch --flake ~/nixos/#laptop && pkill shell || true && pkill caelestia-shell || true && caelestia-shell -n > /dev/null 2>&1 & disown";
+        snrt = ''
+          git -C ~/nixos add -A &&
+          time sudo nixos-rebuild test --flake ~/nixos/#laptop &&
+          pkill shell || true &&
+          if [ ! -f ~/.cache/hypr-battery-saver ]; then
+            pkill caelestia-shell || true &&
+            caelestia-shell -n > /dev/null 2>&1 & disown
+          fi
+        '';
+
+        snrs = ''
+          git -C ~/nixos add -A &&
+          time sudo nixos-rebuild switch --flake ~/nixos/#laptop &&
+          pkill shell || true &&
+          if [ ! -f ~/.cache/hypr-battery-saver ]; then
+            pkill caelestia-shell || true &&
+            caelestia-shell -n > /dev/null 2>&1 & disown
+          fi
+        '';
       };
     };
   };
@@ -33,7 +50,7 @@ _: {
             command cat "$@"
           fi
         }
-              
+            
         custom-eza() { # behaves differently if we just call it or if we pipe initContent
           if [[ -t 1 ]]; then
             eza -hlF -aa --color=always --hyperlink --group-directories-first --show-symlinks --icons=always --git --no-permissions "$@"

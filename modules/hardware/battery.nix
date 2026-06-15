@@ -1,9 +1,9 @@
-_: {
-  flake.nixosModules.battery-laptop = {
-    lib,
-    config,
-    ...
-  }:
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.battery-laptop = {pkgs, ...}:
   # https://discourse.nixos.org/t/what-is-the-best-option-for-power-management/63406/2
   # we just activate tlp unconditonally
   #let
@@ -22,7 +22,8 @@ _: {
     #  };
 
     #  config = lib.mkIf cfg.battery.enable {
-    powerManagement.powertop.enable = true; # enable powertop auto tuning on startup.
+    /*
+      powerManagement.powertop.enable = true; # enable powertop auto tuning on startup.
     # Acording to https://community.frame.work/t/solved-keys-stick-and-repeat-after-being-released/51153/12
     # Some powertop bug is responsable for the problem of the random keypress being stuck
     # fix: from https://git.gabbie.blue/blue/nixconf/src/commit/2d1bc6dad4684c019b6b3e894408e76e2734806c/hosts/gabbielaptop/configuration.nix#L68
@@ -31,10 +32,11 @@ _: {
       # Retrigger macropad udev rules
       ${lib.getExe' config.systemd.package "udevadm"} trigger -c bind -s usb -a idVendor=32ac -a idProduct=0013
     '';
+    */
     services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
-    services.thermald.enable = true; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
-    services.power-profiles-daemon.enable = false; # Disable GNOMEs power management
-    services.tlp = {
+    services.thermald.enable = false; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
+    services.power-profiles-daemon.enable = true; # ppd is recommended over tlp for framework 16
+    /*services.tlp = {
       enable = true; # Enable TLP (better than gnomes internal power manager)
       settings = {
         CPU_BOOST_ON_AC = 1;
@@ -47,11 +49,12 @@ _: {
         CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
         PLATFORM_PROFILE_ON_AC = "balanced";
         PLATFORM_PROFILE_ON_BAT = "powersave";
-        START_CHARGE_THRESH_BAT1 = 40;
         STOP_CHARGE_THRESH_BAT1 = 80;
       };
-    };
-    #  };
+    };*/
+    environment.systemPackages = [
+      self.packages.${pkgs.system}.custom-performance
+    ];
   };
   perSystem = {pkgs, ...}: let
     NotifySound = ../../assets/battery_notify.mp3;
@@ -336,28 +339,97 @@ _: {
       name = "custom-performance";
       runtimeInputs = with pkgs; [
         hyprland
-        gawk
+        brightnessctl
+        swaynotificationcenter
+        self.packages.${pkgs.system}.custom-wallpaper
         libnotify
+        inputs.caelestia-shell.packages.${pkgs.system}.default
       ];
       text = ''
-        HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
-        if [ "$HYPRGAMEMODE" = 1 ] ; then
+        STATE="$HOME/.cache/hypr-battery-saver"
+
+        enable() {
+            mkdir -p "$(dirname "$STATE")"
+
+            echo "Enabling battery saver mode..."
+
+            # Save brightness
+            brightnessctl get > "''${STATE}.brightness" 2>/dev/null || true
+
+            # Kill heavy UI components
+            pkill -f caelestia-shell || true
+            pkill -f caelestia || true
+            pkill shell || true
+            pkill -f custom-wallpaper || true
+
+            # Start lightweight notifications
+            pkill swaync || true
+            swaync & disown
+
+            # Start lightweight waybar
+            pkill waybar || true
+            waybar & disown
+
+            # Lower refresh rate (BIGGEST win)
+            hyprctl keyword monitor "eDP-1,2560x1600@60,0x0,1"
+
+            # Core performance toggles
             hyprctl --batch "\
                 keyword animations:enabled 0;\
-                keyword animation borderangle,0; \
+                keyword animation borderangle,0;\
                 keyword decoration:shadow:enabled 0;\
                 keyword decoration:blur:enabled 0;\
-        	    keyword decoration:fullscreen_opacity 1;\
+                keyword decoration:rounding 0;\
+                keyword decoration:fullscreen_opacity 1;\
                 keyword general:gaps_in 0;\
                 keyword general:gaps_out 0;\
                 keyword general:border_size 1;\
-                keyword decoration:rounding 0"
-            notify-send -u critical -t 5000 "Performance mode [ON]"
-            exit
-        else
-            notify-send -u critical -t 5000 "Performance mode [OFF]"
+                keyword decoration:active_opacity 1;\
+                keyword decoration:inactive_opacity 1;\
+                keyword misc:vfr true"
+
+            # Lower brightness
+            brightnessctl set 5% 2>/dev/null || true
+
+            touch "$STATE"
+
+            notify-send "Battery Saver" "Enabled"
+        }
+
+        disable() {
+            echo "Disabling battery saver mode..."
+
+            # Restore refresh rate
+            hyprctl keyword monitor "eDP-1,2560x1600@165,0x0,1"
+
+            # Restore Caelestia
+            pkill swaync || true
+            pkill waybar || true
+            caelestia shell -d >/dev/null 2>&1 &
+            disown
+
+
+            # Restart wallpaper
+            custom-wallpaper >/dev/null 2>&1 &
+            disown
+
+            # Restore full UI via reload (safe here on exit)
             hyprctl reload
-            exit 0
+
+            # Restore brightness
+            if [[ -f "''${STATE}.brightness" ]]; then
+                brightnessctl set "$(cat "''${STATE}.brightness")" 2>/dev/null || true
+            fi
+
+            rm -f "$STATE" "''${STATE}.brightness"
+
+            notify-send "Battery Saver" "Disabled"
+        }
+
+        if [[ -f "$STATE" ]]; then
+            disable
+        else
+            enable
         fi
       '';
     };

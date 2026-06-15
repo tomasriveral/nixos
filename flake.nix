@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # used for some packages
-    
+
     # Only uncomment when needed. This uses a lot of space and compute ressources for sometimes not that much. If not used, make it follow unstable
     nixpkgs-master.follows = "nixpkgs-unstable";
     #nixpkgs-master.url = "github:nixos/nixpkgs/master"; # used with precaution as they are untested and not cached
