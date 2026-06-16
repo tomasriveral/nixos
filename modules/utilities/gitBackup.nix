@@ -56,7 +56,7 @@
             "https://github.com/tomasriveral/boids.git"
             "https://github.com/tomasriveral/nixpkgs-notifier.git"
             "https://github.com/tomasriveral/Nix-Git-Cherry-Picker.git"
-            "https://github.com/tomasriveral/nixpkgs-notifier"
+            "https://github.com/tomasriveral/ReSSPublica.git"
         )
 
         LOCAL_BACKUP_DIR="$HOME/.gitBackups"
