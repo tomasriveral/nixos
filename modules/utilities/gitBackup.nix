@@ -54,7 +54,9 @@
             "https://github.com/tomasriveral/notewrapper.git"
             "https://github.com/tomasriveral/fractal-cli.git"
             "https://github.com/tomasriveral/boids.git"
-            "https://github.com/tomasriveral/Nixpkgs-tracker-notifier.git"
+            "https://github.com/tomasriveral/nixpkgs-notifier.git"
+            "https://github.com/tomasriveral/Nix-Git-Cherry-Picker.git"
+            "https://github.com/tomasriveral/ReSSPublica.git"
         )
 
         LOCAL_BACKUP_DIR="$HOME/.gitBackups"
