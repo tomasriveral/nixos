@@ -11,11 +11,12 @@
       enable = true;
     };
   };
-  flake.nixosModules.kdrive-desktop = {pkgs, ...}: {
-    environment.systemPackages = [
-      pkgs.rclone
-      self.packages.${pkgs.system}.custom-checkKdrive
-      self.packages.${pkgs.system}.custom-synckdrive-desktop
+  flake.nixosModules.kdrive-desktop = {pkgs-unstable, ...}: {
+    environment.systemPackages = with pkgs-unstable; [
+      rclone
+      icloudpd
+      self.packages.${pkgs-unstable.system}.custom-checkKdrive
+      self.packages.${pkgs-unstable.system}.custom-synckdrive-desktop
     ];
     # removes rclone error
     programs.fuse = {
@@ -24,7 +25,7 @@
     };
     systemd.user.services.kdrive-sync = {
       serviceConfig = {
-        ExecStart = "${self.packages.${pkgs.system}.custom-synckdrive-desktop}/bin/custom-synckdrive";
+        ExecStart = "${self.packages.${pkgs-unstable.system}.custom-synckdrive-desktop}/bin/custom-synckdrive";
 
         Nice = 19; # lowest CPU scheduling priority
         IOSchedulingClass = "idle";
@@ -34,15 +35,13 @@
         CPUWeight = 1; # minimum relative CPU share
       };
     };
-    /*
       systemd.user.timers.kdrive-sync = {
       wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnBootSec = "1m";
-        OnUnitActiveSec = "5m";
+        OnBootSec = "10m";
+        OnUnitActiveSec = "1h";
       };
     };
-    */
   };
   perSystem = {pkgs, ...}: {
     packages.custom-checkKdrive = pkgs.writeShellApplication {
@@ -115,18 +114,25 @@
       runtimeInputs = with pkgs; [
         rclone
         libnotify
+        ripgrep
       ];
       text = ''
         REMOTE_NAME="kdrive"
         MOUNT_POINT="/home/tomasr/hdd/kdrive"
-
-        if rclone listremotes | rg "^''${REMOTE_NAME}:"; then
+        LOGFILE="/tmp/rclone-bisync.log"
+        rm LOGFILE && touch LOGFILE
+        if rclone --config "$HOME/.config/rclone/rclone.conf" listremotes | rg "^''${REMOTE_NAME}:"; then
           echo "Syncing ''${REMOTE_NAME}..."
-          rclone bisync "''${REMOTE_NAME}:" "$MOUNT_POINT"  &
+          if ! rclone --config "$HOME/.config/rclone/rclone.conf" bisync "$MOUNT_POINT" "$REMOTE_NAME:" --recover > "$LOGFILE" 2>&1; then
+            notify-send "rclone bisync failed" "$(cat $LOGFILE)"
+            echo "rclone bisync failed"
+            cat $LOGFILE
+            cp $LOGFILE "$HOME/hdd/kdrive/logs/$(date +%Y-%m-%d-%H-%M-%S).log"
+          fi
         else
             notify-send "rclone sync failed" \
                 "Remote ''${REMOTE_NAME} not found.\nConfigure rclone and create the dir ~/kdrive/ or comment out the exec line in hyprland.nix."
-            echo        "Remote ''${REMOTE_NAME} not found. Configure rclone or comment out the exec line in hyprland.nix."
+            echo        "Remote ''${REMOTE_NAME} not found. Configure rclone or fix in ~/nixos/modules/applications/kdrive.nix"
         fi
       '';
     };
