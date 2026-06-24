@@ -42,7 +42,7 @@
       notifications
       nvidia
       office
-      #ollama
+      ollama
       otherUtils
       performance-desktop
       printer
