@@ -11,6 +11,7 @@
       self.packages.${pkgs.system}.custom-checkMatrix
       self.packages.${pkgs.system}.custom-gitnotify # checks if git is set up
       self.packages.${pkgs.system}.custom-checkKdrive # check if kdrive is set up with rclone
+      zoom-us
     ];
   };
   perSystem = {pkgs, ...}: {

@@ -36,25 +36,22 @@
     services.system76-scheduler.settings.cfsProfiles.enable = true; # Better scheduling for CPU cycles - thanks System76!!!
     services.thermald.enable = false; # Enable thermald, the temperature management daemon. (only necessary if on Intel CPUs)
     services.power-profiles-daemon.enable = true; # ppd is recommended over tlp for framework 16
-    /*
-          services.tlp = {
-          enable = true; # Enable TLP (better than gnomes internal power manager)
-          settings = {
-            CPU_BOOST_ON_AC = 1;
-            CPU_BOOST_ON_BAT = 1;
-            CPU_HWP_DYN_BOOST_ON_AC = 1;
-            CPU_HWP_DYN_BOOST_ON_BAT = 1;
-            CPU_SCALING_GOVERNOR_ON_AC = "balanced";
-            CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-            CPU_ENERGY_PERF_POLICY_ON_AC = "balanced";
-            CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
-            PLATFORM_PROFILE_ON_AC = "balanced";
-            PLATFORM_PROFILE_ON_BAT = "powersave";
-            STOP_CHARGE_THRESH_BAT1 = 80;
-          };
-    <<<<<<< HEAD
-        };
-    */
+    /*services.tlp = {
+      enable = true; # Enable TLP (better than gnomes internal power manager)
+      settings = {
+        CPU_BOOST_ON_AC = 1;
+        CPU_BOOST_ON_BAT = 1;
+        CPU_HWP_DYN_BOOST_ON_AC = 1;
+        CPU_HWP_DYN_BOOST_ON_BAT = 1;
+        CPU_SCALING_GOVERNOR_ON_AC = "balanced";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_ENERGY_PERF_POLICY_ON_AC = "balanced";
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
+        PLATFORM_PROFILE_ON_AC = "balanced";
+        PLATFORM_PROFILE_ON_BAT = "powersave";
+        STOP_CHARGE_THRESH_BAT1 = 80;
+      };
+    };*/
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-performance
     ];
