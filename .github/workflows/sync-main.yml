@@ -49,20 +49,30 @@ jobs:
               exit 1
               ;;
           esac
+      - name: Check for changes
+        run: |
+          git fetch origin main "${{ steps.branch.outputs.source }}"
+          HAS_CHANGES=true
+          if git diff --quiet \
+            "origin/main...origin/${{ steps.branch.outputs.source }}"; then
+            HAS_CHANGES=false
+          fi
 
       - name: Check for existing PR
         id: existing
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          PR_NUMBER=$(gh pr list \
-            --base main \
-            --head "${{ steps.branch.outputs.source }}" \
-            --state open \
-            --json number \
-            --jq '.[0].number // empty')
+          if $HAS_CHANGES; then
+            PR_NUMBER=$(gh pr list \
+              --base main \
+              --head "${{ steps.branch.outputs.source }}" \
+              --state open \
+              --json number \
+              --jq '.[0].number // empty')
 
-          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+            echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Create PR
         id: create
@@ -70,28 +80,31 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr create \
-            --base main \
-            --head "${{ steps.branch.outputs.source }}" \
-            --title "Weekly sync: ${{ steps.branch.outputs.source }} → main" \
-            --body "This pull request was created automatically by GitHub Actions."
+          if $HAS_CHANGES; then
+            gh pr create \
+              --base main \
+              --head "${{ steps.branch.outputs.source }}" \
+              --title "Weekly sync: ${{ steps.branch.outputs.source }} → main" \
+              --body "This pull request was created automatically by GitHub Actions."
 
-          PR_NUMBER=$(gh pr list \
-            --base main \
-            --head "${{ steps.branch.outputs.source }}" \
-            --state open \
-            --json number \
-            --jq '.[0].number')
+            PR_NUMBER=$(gh pr list \
+              --base main \
+              --head "${{ steps.branch.outputs.source }}" \
+              --state open \
+              --json number \
+              --jq '.[0].number')
 
-          echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
-
+            echo "number=$PR_NUMBER" >> "$GITHUB_OUTPUT"
+          fi
       - name: Determine PR number
         id: pr
         run: |
-          if [ -n "${{ steps.existing.outputs.number }}" ]; then
-            echo "number=${{ steps.existing.outputs.number }}" >> "$GITHUB_OUTPUT"
-          else
-            echo "number=${{ steps.create.outputs.number }}" >> "$GITHUB_OUTPUT"
+          if $HAS_CHANGES; then
+            if [ -n "${{ steps.existing.outputs.number }}" ]; then
+              echo "number=${{ steps.existing.outputs.number }}" >> "$GITHUB_OUTPUT"
+            else
+              echo "number=${{ steps.create.outputs.number }}" >> "$GITHUB_OUTPUT"
+            fi
           fi
 
       - name: Enable auto-merge
@@ -99,7 +112,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr merge \
-            "${{ steps.pr.outputs.number }}" \
-            --auto \
-            --merge
+          if $HAS_CHANGES; then
+            gh pr merge \
+              "${{ steps.pr.outputs.number }}" \
+              --auto \
+              --merge
+          fi
