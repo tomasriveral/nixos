@@ -54,6 +54,7 @@ _: {
         pkgs-unstable.vimPlugins.nvim-treesitter-parsers.python
         pkgs-unstable.vimPlugins.nvim-treesitter-parsers.sparql
         pkgs-unstable.vimPlugins.lean-nvim
+        pkgs-unstable.vimPlugins.vim-ledger
         pkgs-unstable.vimPlugins.telescope-nvim
         pkgs-unstable.vimPlugins.nvim-scrollbar
         pkgs-unstable.vimPlugins.promise-async
