@@ -53,6 +53,7 @@ _: {
         pkgs-unstable.vimPlugins.nvim-treesitter-parsers.printf
         pkgs-unstable.vimPlugins.nvim-treesitter-parsers.python
         pkgs-unstable.vimPlugins.nvim-treesitter-parsers.sparql
+        pkgs-unstable.vimPlugins.lean-nvim
         pkgs-unstable.vimPlugins.telescope-nvim
         pkgs-unstable.vimPlugins.nvim-scrollbar
         pkgs-unstable.vimPlugins.promise-async
@@ -371,7 +372,7 @@ _: {
           },
         })
 
-        vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab", "nixd", "ltex"})
+        vim.lsp.enable({ "lua_ls", "clangd", "pylsp", "texlab", "nixd", "ltex", "leanls"})
               -- =========================
               -- DASHBOARD
               -- =========================
@@ -474,7 +475,12 @@ _: {
               -- =========================
               require('lualine').setup { options = { theme  = "gruvbox_dark" } }
 
-
+              -- ==================
+              -- lean
+              -- ==================
+              require('lean').setup({
+                mappings = true,
+              })
               --==================0
               -- Some utils
               --==================
