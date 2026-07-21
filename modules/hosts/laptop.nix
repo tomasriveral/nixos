@@ -31,6 +31,8 @@
       gitBackup
       hardware-configuration-laptop
       hardwareUtils-laptop
+      hledger
+      hledger-laptop
       hyprland
       IO
       kdrive-laptop
