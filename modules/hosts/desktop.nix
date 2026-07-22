@@ -30,6 +30,8 @@
       games
       hardware-configuration-desktop
       hdd
+      hledger
+      hledger-desktop
       hyprland
       IO
       kdrive-desktop # we will setup this later
