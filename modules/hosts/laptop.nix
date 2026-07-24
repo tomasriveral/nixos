@@ -45,6 +45,7 @@
       nixUtils
       notifications
       office
+      onxyboox
       #ollama
       otherUtils
       printer
