@@ -72,7 +72,7 @@
       mullvad
       neovim
       nix-git-cherry-picker-laptop
-      notewrapper
+      laptop-notewrapper
       oh-my-zsh
       ripgrep
       rofi

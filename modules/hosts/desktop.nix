@@ -71,7 +71,7 @@
       mullvad
       neovim
       nix-git-cherry-picker-desktop
-      notewrapper
+      desktop-notewrapper
       oh-my-zsh
       ripgrep
       rofi
