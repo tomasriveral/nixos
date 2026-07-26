@@ -130,6 +130,8 @@
     home.sessionVariables = {
       EDITOR = "neovim";
       TERMINAL = "kitty";
+      SYSTEMD_PAGER = "cat";
+      PAGER = "cat";
     };
 
     # Required for Home Manager
