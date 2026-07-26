@@ -118,7 +118,7 @@
       text = ''
         # shellcheck disable=SC1090
         source "$NTFY_SECRET"
-        set -ex
+        set -e
 
         FLAKE_DIR="/home/tomasr/nixos"
         FLAKE="$FLAKE_DIR#laptop"
@@ -145,7 +145,7 @@
 
             curl \
               -u ":$NTFY_TOKEN" \
-              -d "Flake rebuild successful" \
+              -d "Laptop Flake rebuild successful" \
               -H "Title: Flake autoupdate" \
               "$NTFY_SERVER/Alerts"
             else
@@ -160,7 +160,7 @@
 
           curl \
             -u ":$NTFY_TOKEN" \
-            -d "Flake rebuild failed. Error: $ERROR_MSG" \
+            -d "Laptop Flake rebuild failed. Error: $ERROR_MSG" \
             -H "Title: Flake autoupdate FAILED" \
             -H "Priority: urgent" \
             "$NTFY_SERVER/Alerts"
@@ -215,7 +215,7 @@
             curl \
               -u ":$NTFY_TOKEN" \
               -d "Flake rebuild successful" \
-              -H "Title: Flake autoupdate" \
+              -H "Title: Desktop Flake autoupdate" \
               "$NTFY_SERVER/Alerts"
 
             else
@@ -231,7 +231,7 @@
           curl \
             -u ":$NTFY_TOKEN" \
             -d "Flake rebuild failed. Error: $ERROR_MSG" \
-            -H "Title: Flake autoupdate FAILED" \
+            -H "Title: Desktop Flake autoupdate FAILED" \
             -H "Priority: urgent" \
             "$NTFY_SERVER/Alerts"
 

@@ -2,8 +2,12 @@
   flake.nixosModules.autoCleanup-laptop = {
     pkgs,
     pkgs-unstable,
+    config,
     ...
   }: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-cleanNix-laptop
@@ -17,6 +21,9 @@
       description = "NixOS configuration auto cleanup";
 
       serviceConfig = {
+        Environment = [
+          "NTFY_SECRET=${config.age.secrets.ntfy.path}"
+        ];
         Type = "oneshot";
 
         ExecStart = "/run/current-system/sw/bin/custom-cleanNix";
@@ -54,8 +61,12 @@
   flake.nixosModules.autoCleanup-desktop = {
     pkgs,
     pkgs-unstable,
+    config,
     ...
   }: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-cleanNix-desktop
@@ -69,6 +80,9 @@
       description = "NixOS configuration auto cleanup";
 
       serviceConfig = {
+        Environment = [
+          "NTFY_SECRET=${config.age.secrets.ntfy.path}"
+        ];
         Type = "oneshot";
 
         ExecStart = "/run/current-system/sw/bin/custom-cleanNix";
@@ -108,7 +122,7 @@
       runtimeInputs = with pkgs; [
         git
         nixos-rebuild
-        matrix-commander-rs
+        curl
         libnotify
         alejandra
         deadnix
@@ -116,6 +130,9 @@
 
       text = ''
         set -e
+
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
 
         FLAKE_DIR="/home/tomasr/nixos"
         FLAKE="$FLAKE_DIR#laptop"
@@ -148,9 +165,11 @@
 
             notify-send "Nix auto cleanup" "Everything OK"
 
-            matrix-commander-rs --verbose -m "Nix auto cleanup. Everything OK.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Everything OK" \
+              -H "Title: Laptop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
             else
               notify-send "Nix auto cleanup" "No changes"
               git -C "$FLAKE_DIR" push
@@ -161,9 +180,11 @@
 
           notify-send -u critical "Nix auto cleanup" "FAILED"
 
-          matrix-commander-rs --verbose -m "Nix auto cleanup failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Nix auto cleanup failed. Error: $ERROR_MSG" \
+              -H "Title: Laptop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-cleanup-$TIME"
         fi
@@ -178,7 +199,7 @@
       runtimeInputs = with pkgs; [
         git
         nixos-rebuild
-        matrix-commander-rs
+        curl
         libnotify
         alejandra
         deadnix
@@ -186,6 +207,9 @@
 
       text = ''
         set -e
+
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
 
         FLAKE_DIR="/home/tomasr/nixos"
         FLAKE="$FLAKE_DIR#desktop"
@@ -218,9 +242,11 @@
 
             notify-send "Nix auto cleanup" "Everything OK"
 
-            matrix-commander-rs --verbose -m "Nix auto cleanup. Everything OK.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Everything OK" \
+              -H "Title: Desktop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
             else
               notify-send "Nix auto cleanup" "No changes"
               git -C "$FLAKE_DIR" push
@@ -231,9 +257,11 @@
 
           notify-send -u critical "Nix auto cleanup" "FAILED"
 
-          matrix-commander-rs --verbose -m "Nix auto cleanup failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Nix auto cleanup failed. Error: $ERROR_MSG" \
+              -H "Title: Desktop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-cleanup-$TIME"
         fi
