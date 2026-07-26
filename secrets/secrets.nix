@@ -1,8 +1,10 @@
 let
-  myKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC6WNm4YAQO85j0aNQkKSH7QnmhgzKA4hA2ggi6cDyKk tomasr@nixos";
+  backupAgeKey = "age1y4lhpk7awhjyu42p46ulg5q2c49r2lnwu8tyyk4ejj6jztd64uksfhd670";
+  laptopHostKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJCsewl8ZXXMjRyO20cBIiuW2gA4mGoMkxQ0dcMyNidR root@nixos";
 in
 {
   "ntfy.age".publicKeys = [
-    myKey
+    backupAgeKey
+    laptopHostKey
   ];
 }

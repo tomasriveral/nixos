@@ -106,6 +106,7 @@
         nixos-rebuild
         curl
         libnotify
+        nix
       ];
 
       text = ''
