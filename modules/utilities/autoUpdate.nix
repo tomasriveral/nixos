@@ -103,6 +103,8 @@
       ];
 
       text = ''
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
         set -e
 
         FLAKE_DIR="/home/tomasr/nixos"
@@ -128,9 +130,11 @@
 
             notify-send "Flake autoupdate" "Rebuild OK"
 
-            matrix-commander-rs --verbose -m "Flake rebuild succesfull.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Laptop Flake rebuild successful" \
+              -H "Title: Flake autoupdate" \
+              "$NTFY_SERVER/Alerts"
             else
               notify-send "Flake autoupdate" "No changes"
               git -C "$FLAKE_DIR" push
@@ -141,9 +145,12 @@
 
           notify-send -u critical "Flake autoupdate" "FAILED"
 
-          matrix-commander-rs --verbose -m "Flake rebuild failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+            -u ":$NTFY_TOKEN" \
+            -d "Laptop Flake rebuild failed. Error: $ERROR_MSG" \
+            -H "Title: Flake autoupdate FAILED" \
+            -H "Priority: urgent" \
+            "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-autoupdate-$TIME"
         fi
@@ -189,9 +196,12 @@
 
             notify-send "Flake autoupdate" "Rebuild OK"
 
-            matrix-commander-rs --verbose -m "Flake rebuild succesfull.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Flake rebuild successful" \
+              -H "Title: Desktop Flake autoupdate" \
+              "$NTFY_SERVER/Alerts"
+
             else
               notify-send "Flake autoupdate" "No changes"
               git -C "$FLAKE_DIR" push
@@ -202,9 +212,12 @@
 
           notify-send -u critical "Flake autoupdate" "FAILED"
 
-          matrix-commander-rs --verbose -m "Flake rebuild failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+            -u ":$NTFY_TOKEN" \
+            -d "Flake rebuild failed. Error: $ERROR_MSG" \
+            -H "Title: Desktop Flake autoupdate FAILED" \
+            -H "Priority: urgent" \
+            "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-autoupdate-$TIME"
         fi

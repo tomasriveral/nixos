@@ -1,5 +1,8 @@
 {self, ...}: {
-  flake.nixosModules.gitBackup = {pkgs, ...}: {
+  flake.nixosModules.gitBackup = {pkgs, config, ...}: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-gitBackup
     ];
@@ -9,6 +12,9 @@
 
       serviceConfig = {
         Type = "oneshot";
+        Environment = [
+          "NTFY_SECRET=${config.age.secrets.ntfy.path}"
+        ];
 
         ExecStart = "/run/current-system/sw/bin/custom-gitBackup";
 
@@ -41,11 +47,14 @@
       name = "custom-gitBackup";
       runtimeInputs = with pkgs; [
         rsync
-        matrix-commander-rs
+        curl
         libnotify
         self.packages.${pkgs.system}.custom-checkKdrive
       ];
       text = ''
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
+        
         # checks if kdrive is available
         custom-checkKdrive
 
@@ -69,9 +78,11 @@
         notify_error() {
             local message="$1"
             notify-send "Git Backup Failed" "$message"
-            matrix-commander-rs --verbose -m "Git Backup Failed: $message <br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Git backup failed. Error: $message" \
+              -H "Title: Git Backup" \
+              "$NTFY_SERVER/Alerts"
 
         }
 

@@ -289,7 +289,6 @@
         "custom-checkKdrive && custom-mountkdrive" # checks if the remote works and mount it
         #"waybar"
         "custom-gitnotify"
-        "custom-checkMatrix" # checks if matrix-commander-rs is connected which is important for other stuff
         #"custom-obsidianbackup" # backups the obsidian notes to kdrive and to a timed hidden dir (~/.Notes.backup/)
         #"QS-notifycache" # builds the cache that will be used for the notification history
         "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
