@@ -57,14 +57,13 @@
         "if [ -e  \"/home/tomasr/icloudSync.sh\" ]; then /home/tomasr/icloudSync.sh; else notify-send \"icloudSync.sh doesn't exist\" \"See ~/nixos/modules/applications/hyprland.nix for more information\"; fi"
         # my icloud account uses an email that I don't want to make public. So the script isnt pushed to github. The script looks like:
         /*
-          #!/etc/profiles/per-user/tomasr/bin/zsh
-          if ! icloudpd --auth-only --username tomas.rivera_2009@icloud.com --dry-run; then
-           notify-send "icloudpd is not logged in" "Please run icloudpd icloudpd --username my@email.address --password my_password --auth-only"
-           exit 1
-          fi
-          icloudpd --directory ~/hdd/kdrive/Photo/IPhone/icloudpd-backup --username tomas.rivera_2009@icloud.com --watch-with-interval 3600 --no-progress-bar
+        #!/etc/profiles/per-user/tomasr/bin/zsh
+        if ! icloudpd --auth-only --username tomas.rivera_2009@icloud.com --dry-run; then
+         notify-send "icloudpd is not logged in" "Please run icloudpd icloudpd --username my@email.address --password my_password --auth-only"
+         exit 1
+        fi
+        icloudpd --directory ~/hdd/kdrive/Photo/IPhone/icloudpd-backup --username tomas.rivera_2009@icloud.com --watch-with-interval 3600 --no-progress-bar
         */
-
       ];
     };
   };

@@ -1,5 +1,12 @@
 {self, ...}: {
-  flake.nixosModules.autoUpdate-laptop = {pkgs, ...}: {
+  flake.nixosModules.autoUpdate-laptop = {
+    pkgs,
+    config,
+    ...
+  }: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-autoupdate-laptop
@@ -46,7 +53,14 @@
   };
 
   ## desktop
-  flake.nixosModules.autoUpdate-desktop = {pkgs, ...}: {
+  flake.nixosModules.autoUpdate-desktop = {
+    pkgs,
+    config,
+    ...
+  }: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-autoupdate-desktop
