@@ -265,11 +265,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1781273662,
-        "narHash": "sha256-50dd7Cs1mUHq1srw7UojdzCYOB4TfrIXMv7XHHPU9zw=",
+        "lastModified": 1785077063,
+        "narHash": "sha256-rJxX9Mq16TOiIlf+nNR4SaLsWf1yII8xsQpJUNio3Yg=",
         "owner": "tomasriveral",
         "repo": "nixpkgs-notifier",
-        "rev": "12183f26e8b196d9906f82dc05f9672793c61038",
+        "rev": "39a89ffbdc49cc9ab6f67bc4be7ea2f7d3e2b38c",
         "type": "github"
       },
       "original": {
