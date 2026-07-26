@@ -6,8 +6,11 @@
   age.identityPaths = [
     "/home/tomasr/.ssh/id_ed25519"
   ];
-    age.secrets.my-secret = {
-      file = ../../secrets/my-secret.age;
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+      owner = "tomasr";
+      group = "users";
+      mode = "0400";
     };
   };
 }
