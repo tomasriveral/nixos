@@ -133,6 +133,8 @@
     home.sessionVariables = {
       EDITOR = "nvim";
       TERMINAL = "kitty";
+      SYSTEMD_PAGER = "cat";
+      PAGER = "cat";
     };
 
     # Required for Home Manager
