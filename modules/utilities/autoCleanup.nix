@@ -156,7 +156,7 @@
         alejandra "$FLAKE_DIR" # formats the config
         echo "--------------------------------------------------------------"
 
-        if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+        if /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 
           if ! git -C "$FLAKE_DIR" diff --quiet HEAD; then
             git -C "$FLAKE_DIR" add -A
@@ -233,7 +233,7 @@
         alejandra "$FLAKE_DIR" # formats the config
         echo "--------------------------------------------------------------"
 
-        if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+        if /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 
           if ! git -C "$FLAKE_DIR" diff --quiet HEAD; then
             git -C "$FLAKE_DIR" add -A
