@@ -128,7 +128,7 @@
         # update lock only
         nix flake update --flake "$FLAKE_DIR"
 
-        if sudo ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+        if /run/wrappers/bin/sudo ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 
           if ! git -C "$FLAKE_DIR" diff --quiet -- flake.lock; then
             git -C "$FLAKE_DIR" add flake.lock
@@ -194,7 +194,7 @@
         # update lock only
         nix flake update --flake "$FLAKE_DIR"
 
-        if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+        if /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 
           if ! git -C "$FLAKE_DIR" diff --quiet -- flake.lock; then
             git -C "$FLAKE_DIR" add flake.lock
