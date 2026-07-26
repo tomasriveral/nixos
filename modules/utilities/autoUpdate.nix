@@ -52,7 +52,10 @@
   };
 
   ## desktop
-  flake.nixosModules.autoUpdate-desktop = {pkgs, ...}: {
+  flake.nixosModules.autoUpdate-desktop = {pkgs, config,...}: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-autoupdate-desktop
@@ -65,6 +68,9 @@
       description = "NixOS flake auto update";
 
       serviceConfig = {
+        Environment = [
+          "NTFY_SECRET=${config.age.secrets.ntfy.path}"
+        ];
         Type = "oneshot";
 
         ExecStart = "/run/current-system/sw/bin/custom-autoupdate";
@@ -112,7 +118,7 @@
       text = ''
         # shellcheck disable=SC1090
         source "$NTFY_SECRET"
-        set -e
+        set -ex
 
         FLAKE_DIR="/home/tomasr/nixos"
         FLAKE="$FLAKE_DIR#laptop"
@@ -173,11 +179,14 @@
       runtimeInputs = with pkgs; [
         git
         nixos-rebuild
-        matrix-commander-rs
         libnotify
+        curl
+        nix
       ];
 
       text = ''
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
         set -e
 
         FLAKE_DIR="/home/tomasr/nixos"
@@ -203,9 +212,12 @@
 
             notify-send "Flake autoupdate" "Rebuild OK"
 
-            matrix-commander-rs --verbose -m "Flake rebuild succesfull.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Flake rebuild successful" \
+              -H "Title: Flake autoupdate" \
+              "$NTFY_SERVER/Alerts"
+
             else
               notify-send "Flake autoupdate" "No changes"
               git -C "$FLAKE_DIR" push
@@ -216,9 +228,12 @@
 
           notify-send -u critical "Flake autoupdate" "FAILED"
 
-          matrix-commander-rs --verbose -m "Flake rebuild failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+            -u ":$NTFY_TOKEN" \
+            -d "Flake rebuild failed. Error: $ERROR_MSG" \
+            -H "Title: Flake autoupdate FAILED" \
+            -H "Priority: urgent" \
+            "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-autoupdate-$TIME"
         fi

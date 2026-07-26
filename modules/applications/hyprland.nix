@@ -78,7 +78,7 @@
     home.sessionVariables.NIXOS_OZONE_WL = "1";
     wayland.windowManager.hyprland.plugins = [
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
-      pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
+      #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
     ];
     wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
