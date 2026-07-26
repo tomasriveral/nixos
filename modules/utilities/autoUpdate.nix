@@ -107,6 +107,7 @@
         curl
         libnotify
         nix
+        sudo
       ];
 
       text = ''
