@@ -48,11 +48,17 @@
           "configFetchTime": 1,
           "localNotify": true,
           "matrix": {
-            "enable": true,
+            "enable": false,
             "room": "!BXRRokBmEdNOyYdfOF:matrix.org",
             "ping": true,
             "userPing": "@notificationbot_0000",
             "userPingServer": "matrix.org"
+          },
+          "ntfy": {
+            "enable": true,
+            "auth": ":$NTFY_TOKEN",
+            "server": "$NTFY_SERVER",
+            "topic": "Alerts"
           }
         }
       '';
