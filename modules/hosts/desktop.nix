@@ -132,7 +132,7 @@
     home.homeDirectory = "/home/tomasr";
 
     home.sessionVariables = {
-      EDITOR = "neovim";
+      EDITOR = "nvim";
       TERMINAL = "kitty";
     };
 

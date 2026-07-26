@@ -9,6 +9,8 @@
       inherit (self) pkgs-unstable pkgs-local pkgs-master;
     };
     modules = with self.nixosModules; [
+      inputs.agenix.nixosModules.default
+      agenix
       # important do not remove
       home-manager-laptop
       laptop
@@ -129,7 +131,7 @@
     home.homeDirectory = "/home/tomasr";
 
     home.sessionVariables = {
-      EDITOR = "neovim";
+      EDITOR = "nvim";
       TERMINAL = "kitty";
     };
 
