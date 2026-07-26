@@ -75,7 +75,8 @@
             "steam"
             "steam-unwrapped"
             "cheatsheet.nvim"
-            "zoom-us" "zoom"
+            "zoom-us"
+            "zoom"
           ];
           mkUnfreePredicate = pkg:
             builtins.elem (inputs.nixpkgs.lib.getName pkg) unfreePkgs;

@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.gitBackup = {pkgs, config, ...}: {
+  flake.nixosModules.gitBackup = {
+    pkgs,
+    config,
+    ...
+  }: {
     age.secrets.ntfy = {
       file = ../../secrets/ntfy.age;
     };
@@ -54,7 +58,7 @@
       text = ''
         # shellcheck disable=SC1090
         source "$NTFY_SECRET"
-        
+
         # checks if kdrive is available
         custom-checkKdrive
 

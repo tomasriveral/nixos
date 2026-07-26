@@ -35,8 +35,8 @@
         CPUWeight = 1; # minimum relative CPU share
       };
     };
-      systemd.user.timers.kdrive-sync = {
-      wantedBy = [ "timers.target" ];
+    systemd.user.timers.kdrive-sync = {
+      wantedBy = ["timers.target"];
       timerConfig = {
         OnBootSec = "10m";
         OnUnitActiveSec = "1h";

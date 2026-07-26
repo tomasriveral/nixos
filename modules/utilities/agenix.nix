@@ -4,9 +4,9 @@
       inputs.agenix.packages.${pkgs.system}.default
       pkgs.age
     ];
-  age.identityPaths = [
-    "/etc/ssh/ssh_host_ed25519_key"
-  ];
+    age.identityPaths = [
+      "/etc/ssh/ssh_host_ed25519_key"
+    ];
     age.secrets.ntfy = {
       file = ../../secrets/ntfy.age;
       owner = "tomasr";

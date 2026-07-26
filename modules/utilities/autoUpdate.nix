@@ -1,5 +1,9 @@
 {self, ...}: {
-  flake.nixosModules.autoUpdate-laptop = {pkgs, config, ...}: {
+  flake.nixosModules.autoUpdate-laptop = {
+    pkgs,
+    config,
+    ...
+  }: {
     age.secrets.ntfy = {
       file = ../../secrets/ntfy.age;
     };
@@ -52,7 +56,11 @@
   };
 
   ## desktop
-  flake.nixosModules.autoUpdate-desktop = {pkgs, config,...}: {
+  flake.nixosModules.autoUpdate-desktop = {
+    pkgs,
+    config,
+    ...
+  }: {
     age.secrets.ntfy = {
       file = ../../secrets/ntfy.age;
     };
