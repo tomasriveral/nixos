@@ -126,6 +126,7 @@
         libnotify
         alejandra
         deadnix
+        statix
       ];
 
       text = ''
@@ -203,6 +204,7 @@
         libnotify
         alejandra
         deadnix
+        statix
       ];
 
       text = ''
