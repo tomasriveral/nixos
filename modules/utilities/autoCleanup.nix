@@ -2,8 +2,12 @@
   flake.nixosModules.autoCleanup-laptop = {
     pkgs,
     pkgs-unstable,
+    config,
     ...
   }: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-cleanNix-laptop
@@ -17,6 +21,9 @@
       description = "NixOS configuration auto cleanup";
 
       serviceConfig = {
+        Environment = [
+          "NTFY_SECRET=${config.age.secrets.ntfy.path}"
+        ];
         Type = "oneshot";
 
         ExecStart = "/run/current-system/sw/bin/custom-cleanNix";
@@ -54,8 +61,12 @@
   flake.nixosModules.autoCleanup-desktop = {
     pkgs,
     pkgs-unstable,
+    config,
     ...
   }: {
+    age.secrets.ntfy = {
+      file = ../../secrets/ntfy.age;
+    };
     # Ensure your script is available system-wide
     environment.systemPackages = [
       self.packages.${pkgs.system}.custom-cleanNix-desktop
@@ -69,6 +80,9 @@
       description = "NixOS configuration auto cleanup";
 
       serviceConfig = {
+        Environment = [
+          "NTFY_SECRET=${config.age.secrets.ntfy.path}"
+        ];
         Type = "oneshot";
 
         ExecStart = "/run/current-system/sw/bin/custom-cleanNix";
@@ -108,14 +122,18 @@
       runtimeInputs = with pkgs; [
         git
         nixos-rebuild
-        matrix-commander-rs
+        curl
         libnotify
         alejandra
         deadnix
+        statix
       ];
 
       text = ''
-        set -e
+        set -ex
+
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
 
         FLAKE_DIR="/home/tomasr/nixos"
         FLAKE="$FLAKE_DIR#laptop"
@@ -139,7 +157,7 @@
         alejandra "$FLAKE_DIR" # formats the config
         echo "--------------------------------------------------------------"
 
-        if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+        if /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 
           if ! git -C "$FLAKE_DIR" diff --quiet HEAD; then
             git -C "$FLAKE_DIR" add -A
@@ -148,9 +166,11 @@
 
             notify-send "Nix auto cleanup" "Everything OK"
 
-            matrix-commander-rs --verbose -m "Nix auto cleanup. Everything OK.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Everything OK" \
+              -H "Title: Laptop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
             else
               notify-send "Nix auto cleanup" "No changes"
               git -C "$FLAKE_DIR" push
@@ -161,9 +181,11 @@
 
           notify-send -u critical "Nix auto cleanup" "FAILED"
 
-          matrix-commander-rs --verbose -m "Nix auto cleanup failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Nix auto cleanup failed. Error: $ERROR_MSG" \
+              -H "Title: Laptop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-cleanup-$TIME"
         fi
@@ -178,14 +200,18 @@
       runtimeInputs = with pkgs; [
         git
         nixos-rebuild
-        matrix-commander-rs
+        curl
         libnotify
         alejandra
         deadnix
+        statix
       ];
 
       text = ''
-        set -e
+        set -ex
+
+        # shellcheck disable=SC1090
+        source "$NTFY_SECRET"
 
         FLAKE_DIR="/home/tomasr/nixos"
         FLAKE="$FLAKE_DIR#desktop"
@@ -209,7 +235,7 @@
         alejandra "$FLAKE_DIR" # formats the config
         echo "--------------------------------------------------------------"
 
-        if sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
+        if /run/wrappers/bin/sudo /run/current-system/sw/bin/nixos-rebuild switch --flake "$FLAKE" 2> "$ERROR_FILE"; then # use /run/.../bin/ uses the sudoless rule
 
           if ! git -C "$FLAKE_DIR" diff --quiet HEAD; then
             git -C "$FLAKE_DIR" add -A
@@ -218,9 +244,11 @@
 
             notify-send "Nix auto cleanup" "Everything OK"
 
-            matrix-commander-rs --verbose -m "Nix auto cleanup. Everything OK.<br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-              --html \
-              -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+            curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Everything OK" \
+              -H "Title: Desktop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
             else
               notify-send "Nix auto cleanup" "No changes"
               git -C "$FLAKE_DIR" push
@@ -231,9 +259,11 @@
 
           notify-send -u critical "Nix auto cleanup" "FAILED"
 
-          matrix-commander-rs --verbose -m "Nix auto cleanup failed.<br>Error: <pre>$ERROR_MSG</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-            --html \
-            -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+              -u ":$NTFY_TOKEN" \
+              -d "Nix auto cleanup failed. Error: $ERROR_MSG" \
+              -H "Title: Desktop Nix auto cleanup" \
+              "$NTFY_SERVER/Alerts"
 
           git -C "$FLAKE_DIR" reset --hard "pre-cleanup-$TIME"
         fi

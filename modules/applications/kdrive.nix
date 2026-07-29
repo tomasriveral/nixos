@@ -35,8 +35,8 @@
         CPUWeight = 1; # minimum relative CPU share
       };
     };
-      systemd.user.timers.kdrive-sync = {
-      wantedBy = [ "timers.target" ];
+    systemd.user.timers.kdrive-sync = {
+      wantedBy = ["timers.target"];
       timerConfig = {
         OnBootSec = "10m";
         OnUnitActiveSec = "1h";
@@ -48,11 +48,12 @@
       name = "custom-checkKdrive";
       runtimeInputs = with pkgs; [
         rclone
-        matrix-commander-rs
+        curl
         libnotify
       ];
       text = ''
-
+        # shellcheck disable=SC1091
+        source /run/agenix/ntfy
         # waits for an internet connection. It pings both Google DNS  and Cloudfare dns in case one of them is down
         until ping -c1 -W1 1.1.1.1 >/dev/null 2>&1 || \
           ping -c1 -W1 8.8.8.8 >/dev/null 2>&1
@@ -72,9 +73,11 @@
         else
           echo "kdrive rclone failed with error: $output"
           notify-send "rclone kdrive failed" "$output"
-          matrix-commander-rs --verbose -m "rclone kdrive failed.<br>Error: <pre>$output</pre><br><a href=\"https://matrix.to/#/@notificationbot_0000:matrix.org\">@notificationbot_0000</a>" \
-          --html \
-          -r "\!BXRRokBmEdNOyYdfOF:matrix.org"
+          curl \
+            -u ":$NTFY_TOKEN" \
+            -d "Rclone couldnt access kdrive (rclone lsd kdrive). Error: $output" \
+            -H "Title: Rclone kdrive" \
+            "$NTFY_SERVER/Alerts"
         fi
       '';
     };
