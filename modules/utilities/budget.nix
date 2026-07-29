@@ -2,9 +2,9 @@ _: {
   flake.nixosModules.hledger = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       hledger
-      hledger-ui
       hledger-web
       asciinema # used for some hledger demos
+      puffin
     ];
   };
   flake.nixosModules.hledger-laptop = _: {

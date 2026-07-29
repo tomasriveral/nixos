@@ -88,6 +88,7 @@ _: {
         nnvim = "nvim";
         nvvim = "nvim";
         nviim = "nvim";
+        hledger-ui = "puffin";
       };
     };
   };
