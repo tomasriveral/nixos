@@ -80,6 +80,7 @@
       swaync # used in performance mode
       thunderbird
       tomasr
+      tmux
       vivify
       waybar-minimal # used in performance mode
       zoxide
