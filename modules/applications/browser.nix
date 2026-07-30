@@ -345,12 +345,6 @@
               url = "https://nixpk.gs/pr-tracker.html";
             }
             {
-              name = "fahrlehrer";
-              tags = ["theorie" "fahrlehrer" "conduite"];
-              keyword = "fahrlehrer24";
-              url = "https://app.fahrlehrer24.ch/";
-            }
-            {
               name = "cogito";
               tags = ["cogito" "esprit" "critique"];
               keyword = "Cogito l'Esprit critique";
