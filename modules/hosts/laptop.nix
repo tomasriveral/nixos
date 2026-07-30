@@ -80,6 +80,7 @@
       ssh
       swaync # used in performance mode
       thunderbird
+      tmux
       tomasr
       vivify
       waybar-minimal # used in performance mode
