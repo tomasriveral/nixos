@@ -40,8 +40,8 @@
   flake.homeModules.hyprland-laptop = _: {
     wayland.windowManager.hyprland.settings = {
       exec-once = [
-        "qtbatticon" # custom battery tray
-        "source /run/agenix/ntfy && nixpkgs-notifier listen" # gets the necessary env vars and tracks PR merge in nixos-unstable
+        #"qtbatticon" # custom battery tray
+        "source /run/agenix/ntfy && nixpkgs-notifier listen" # tracks PR merge in nixos-unstable
       ];
       monitor = [
         "eDP-1, highres@highrr, 0x0, 1"
@@ -225,7 +225,7 @@
         */
         # pos 4 1 notification center.
         "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
-        "Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
+        #"Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
         "Ctrl+$mod, 4, exec, caelestia shell notifs toggleDnd"
         "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
         "Ctrl+Shift+Alt, 0, exec, kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"" # pos 2 2 change audio output fzf
@@ -278,8 +278,8 @@
         "rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store"
         #"wl-paste --type text --watch cliphist store" # clipboard store text data
         #"wl-paste --type image --watch cliphist store" # clipboard store image data
-        "custom-batterynotify"
-        "custom-batterywarning"
+        #"custom-batterynotify"
+        #"custom-batterywarning"
         #"birdtray" # thunderbird tray app # curently broken
         #wallpapers/b
         "awww img ${wallpaper}"
@@ -292,8 +292,8 @@
         #"QS-notifycache" # builds the cache that will be used for the notification history
         "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
         "sleep 20 && ngcp pull --automatic" # see github.com/tomasriveral/nix-git-cherry-picker
-        "rm ~/.cache/hypr-battery-saver"
-        "rm ~/.cache/hypr-battery-saver.brightness"
+        #"rm ~/.cache/hypr-battery-saver"
+        #"rm ~/.cache/hypr-battery-saver.brightness"
         /*
            We stopped using that ######################### maybe we should desactivate those scripts
         # login autostart
