@@ -3,6 +3,7 @@ _: {
     environment.systemPackages = with pkgs; [
       libreoffice
       birdtray
+      kdePackages.korganizer
     ];
   };
 }
