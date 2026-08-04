@@ -20,7 +20,7 @@
       audioAndMedia
       autoCleanup-laptop
       autoUpdate-laptop
-      battery-laptop
+      #battery-laptop
       bluetooth
       bootloader
       browsers
