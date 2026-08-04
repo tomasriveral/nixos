@@ -5,5 +5,6 @@ _: {
       birdtray
       kdePackages.korganizer
     ];
+    programs.kde-pim.kontact = true; # needed for korganizer
   };
 }
