@@ -80,6 +80,7 @@
       ssh
       swaync # used in performance mode
       thunderbird
+      tmux
       tomasr
       vivify
       waybar-minimal # used in performance mode
@@ -130,6 +131,8 @@
     home.sessionVariables = {
       EDITOR = "neovim";
       TERMINAL = "kitty";
+      SYSTEMD_PAGER = "cat";
+      PAGER = "cat";
     };
 
     # Required for Home Manager
