@@ -392,6 +392,12 @@
               keyword = "rryan-tm logs";
               url = "https://nixpkgs-update-logs.nix-community.org";
             }
+            {
+              name = "Nix function search";
+              tags = ["nixpkgs" "nix" "search"];
+              keyword = "nix function search";
+              url = "https://noogle.dev";
+            }
           ];
         };
         search = {
