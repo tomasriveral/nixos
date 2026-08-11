@@ -40,7 +40,7 @@
   flake.homeModules.hyprland-laptop = _: {
     wayland.windowManager.hyprland.settings = {
       exec-once = [
-        #"qtbatticon" # custom battery tray
+        "qtbatticon" # custom battery tray
         "source /run/agenix/ntfy && nixpkgs-notifier listen" # tracks PR merge in nixos-unstable
       ];
       monitor = [
