@@ -164,7 +164,7 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4790089/consumer_rights_wiki-latest.xpi";
             installation_mode = "force_installed";
           };
-          "archivebox" = {
+          "archivebox@tjhorner.dev" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4820668/archivebox_exporter-latest.xpi";
             installation_mode = "force_installed";
           };
