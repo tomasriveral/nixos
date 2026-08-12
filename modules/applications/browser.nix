@@ -164,6 +164,10 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4790089/consumer_rights_wiki-latest.xpi";
             installation_mode = "force_installed";
           };
+          "archivebox@tjhorner.dev" = {
+            install_url = "https://addons.mozilla.org/firefox/downloads/file/4820668/archivebox_exporter-latest.xpi";
+            installation_mode = "force_installed";
+          };
         };
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
@@ -391,6 +395,12 @@
               tags = ["nixpkgs" "nix" "log" "rryan-tm"];
               keyword = "rryan-tm logs";
               url = "https://nixpkgs-update-logs.nix-community.org";
+            }
+            {
+              name = "Nix function search";
+              tags = ["nixpkgs" "nix" "search"];
+              keyword = "nix function search";
+              url = "https://noogle.dev";
             }
           ];
         };

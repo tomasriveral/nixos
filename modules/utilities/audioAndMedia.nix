@@ -19,6 +19,8 @@
       self.packages.${pkgs.system}.custom-changeAudioOutput
       kdePackages.okular
       kdePackages.dolphin
+      kdePackages.dolphin-plugins
+      kdePackages.ark
       pulseaudio # sound server
       playerctl # controls media player
       pavucontrol # PulseAudio Volume Control
