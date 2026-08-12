@@ -38,7 +38,7 @@
       latex
       ly
       mathematics
-      #mullvad #temporarly broken
+      mullvad
       networking
       nixUtils
       notifications
@@ -68,7 +68,7 @@
       hyprland-desktop
       kitty
       librewolf
-      #mullvad #temporarly broken
+      mullvad
       neovim
       nix-git-cherry-picker-desktop
       desktop-notewrapper

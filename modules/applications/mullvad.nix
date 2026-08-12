@@ -1,15 +1,13 @@
 _: {
-  flake.nixosModules.mullvad = {pkgs-unstable, ...}: {
+  flake.nixosModules.mullvad = _: {
     services.mullvad-vpn = {
       enable = true;
-      package = pkgs-unstable.mullvad-vpn;
     };
   };
-  flake.homeModules.mullvad = {pkgs-unstable, ...}: {
+  flake.homeModules.mullvad = _: {
     programs.mullvad-vpn = {
       # gui
       enable = true;
-      package = pkgs-unstable.mullvad-vpn;
     };
   };
 }
