@@ -278,8 +278,8 @@
         "rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store"
         #"wl-paste --type text --watch cliphist store" # clipboard store text data
         #"wl-paste --type image --watch cliphist store" # clipboard store image data
-        #"custom-batterynotify"
-        #"custom-batterywarning"
+        "custom-batterynotify"
+        "custom-batterywarning"
         #"birdtray" # thunderbird tray app # curently broken
         #wallpapers/b
         "awww img ${wallpaper}"
