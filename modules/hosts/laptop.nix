@@ -68,8 +68,8 @@
       fastfetch
       git
       gtk
-      hyprland
-      hyprland-laptop
+      hyprland-old
+      #hyprland-laptop
       kitty
       librewolf
       mullvad

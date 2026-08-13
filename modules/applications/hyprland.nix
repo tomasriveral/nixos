@@ -38,7 +38,7 @@
     services.xserver.enable = true;
   };
   flake.homeModules.hyprland-laptop = {lib, ...}: {
-    wayland.windowManager.hyprland.settings = {
+    /*wayland.windowManager.hyprland.settings = {
       on = {
         _args = [
           "hyprland.start"
@@ -59,7 +59,7 @@
           scale = 1;
         }
       ];
-    };
+    };*/
   };
   flake.homeModules.hyprland-desktop = _: {
     wayland.windowManager.hyprland.settings = {
@@ -107,25 +107,25 @@
       config = {
         input = {
           kb_layout = "ch";
-          follow_mouse = 1;
-          sensitivity = 0;
-          force_no_accel = 1;
+          #follow_mouse = 1;
+          #sensitivity = 0;
+          #force_no_accel = 1;
         };
         
         # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
         # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
   
-        dwindle = {
+        /*dwindle = {
           preserve_split = true;
         };
         scrolling = {
           column_width = 0.45;
-        };
+        };*/
   
         # █▀▄▀█ █ █▀ █▀▀
         # █░▀░█ █ ▄█ █▄▄
   
-        misc = {
+        /*misc = {
           vrr = 0;
           force_default_wallpaper = 0;
         };
@@ -143,22 +143,22 @@
           new_optimizations = true;
           ignore_opacity = true;
         };
-      };
-      general = {
-        gaps_in = 5;
-        gaps_out = 15;
-        border_size = 4;
+      };*/
+      #general = {
+        #gaps_in = 5;
+        #gaps_out = 15;
+        #border_size = 4;
         #"col.active_border" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
         #"col.inactive_border" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
-        layout = "dwindle";
-        resize_on_border = true;
-      };
-      group = {
+        #layout = "dwindle";
+        #resize_on_border = true;
+      #};
+      /*group = {
         #"col.border_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
         #"col.border_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
         #"col.border_locked_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
         #"col.border_locked_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
-      };
+      };*/
 
       };
       /*animations = {
@@ -185,7 +185,7 @@
       # ██▄ █░▀█ ▀▄▀
 
       # See https://wiki.hyprland.org/Configuring/Environment-variables/
-      env = [
+      /*env = [
         {_args = ["PATH" "$PATH:$scrPath"];}
         {_args = ["XDG_CURRENT_DESKTOP" "Hyprland"];}
         {_args = ["XDG_SESSION_TYPE" "wayland"];}
@@ -195,7 +195,7 @@
         {_args = ["QT_WAYLAND_DISABLE_WINDOWDECORATION" "1"];}
         {_args = ["MOZ_ENABLE_WAYLAND" "1"];}
         {_args = ["GDK_SCALE" "1"];}
-      ];
+      ];*/
 
       # █ █▄░█ █▀█ █░█ ▀█▀
       # █ █░▀█ █▀▀ █▄█ ░█░
@@ -206,7 +206,14 @@
       # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
       # caelestia shell drawers toggle dashboard
       # caelestia shell drawers toggle utilities
-bind = [
+      bind = [
+# hl.bind("SUPER + MOUSE_DOWN", (hl.dsp.focus({ workspace = "e+1" })))
+# hl.bind("SUPER + MOUSE_UP", (hl.dsp.focus({ workspace = "e-1" })))
+# hl.bind("SUPER + S", "togglespecialworkspace")
+# hl.bind("ALT + SUPER + S", "movetoworkspace", "special")
+# hl.bind("SUPER + A", "layoutmsg", "move -col")
+# hl.bind("SUPER + D", "layoutmsg", "move +col")
+
   {
     _args = [
       "SUPER + W"
@@ -473,19 +480,19 @@ bind = [
     ];
   }
 
-#  {
-#    _args = [
-#      "SUPER + MOUSE_DOWN"
-#      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')
-#    ];
-#  }
-#
-#  {
-#    _args = [
-#      "SUPER + MOUSE_UP"
-#      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')
-#    ];
-#  }
+  /*{
+    _args = [
+      "SUPER + MOUSE_DOWN"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + MOUSE_UP"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')
+    ];
+  }*/
 
   {
     _args = [
@@ -500,39 +507,39 @@ bind = [
     ];
   }
 
-#  {
-#    _args = [
-#      "SUPER + S"
-#      "togglespecialworkspace"
-#    ];
-#  }
-#  {
-#    _args = [
-#      "ALT + SUPER + S"
-#      "movetoworkspace"
-#      "special"
-#    ];
-#  }
+  /*{
+    _args = [
+      "SUPER + S"
+      "togglespecialworkspace"
+    ];
+  }
+  {
+    _args = [
+      "ALT + SUPER + S"
+      "movetoworkspace"
+      "special"
+    ];
+  }
 
-#  {
-#    _args = [
-#      "SUPER + A"
-#      "layoutmsg"
-#      "move -col"
-#    ];
-#  }
-#  {
-#    _args = [
-#      "SUPER + D"
-#      "layoutmsg"
-#      "move +col"
-#    ];
-#  }
+  {
+    _args = [
+      "SUPER + A"
+      "layoutmsg"
+      "move -col"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + D"
+      "layoutmsg"
+      "move +col"
+    ];
+  }*/
 
   {
     _args = [
       "SUPER + T"
-      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'')
+      (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"${term}\")")
     ];
   }
   {
@@ -729,7 +736,7 @@ bind = [
       };
       #splash = true; # remove default background on startup
       # gestures (also keybindings)
-      gesture = [
+      /*gesture = [
         {
           fingers = 3;
           direction = "right";
@@ -755,7 +762,7 @@ bind = [
           zoom_level = -2;
 
         }
-      ];
+      ];*/
 
 
       # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
@@ -846,7 +853,7 @@ bind = [
       #                                                     | $$
       #                                                     |__/
       #     see https://wiki.hypr.land/Configuring/Workspace-Rules/
-      workspace_rule = [
+      /*workspace_rule = [
   {
     workspace = "1";
     layout = "master";
@@ -864,11 +871,11 @@ bind = [
     workspace = "name:special";
     layout = "scrolling";
   }
-];
+];*/
 
       # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
       # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
-      window_rule = [
+      /*window_rule = [
   {
     match = {
       class = "firefox";
@@ -1339,7 +1346,974 @@ bind = [
     };
     blur = true;
   }
+];*/
+    };
+  };
+  flake.homeModules.hyprland-simple = {lib, pkgs-unstable, ...}: {
+wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland.package = pkgs-unstable.hyprland;
+    #hint Electron apps to use on wayland;
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
+    wayland.windowManager.hyprland.plugins = [
+      #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
+      #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
+    ];
+    wayland.windowManager.hyprland.configType = "lua";
+    wayland.windowManager.hyprland.settings = {
+
+  mod = {
+    _var = "SUPER";
+  };
+
+  config = {
+    general = {
+      gaps_in = 5;
+      gaps_out = 20;
+      border_size = 2;
+    };
+
+    decoration = {
+      rounding = 10;
+    };
+  };
+
+  bind = [
+    {
+      _args = [
+        (lib.generators.mkLuaInline "mod .. \" + Q\"")
+        (lib.generators.mkLuaInline "hl.dsp.window.close()")
+        { locked = true; }
+      ];
+    }
+    {
+      _args = [
+        "SUPER + RETURN"
+        (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"kitty\")")
+      ];
+    }
+    {
+      _args = [
+        "ALT + R"
+        (lib.generators.mkLuaInline "hl.dsp.submap(\"resize\")")
+      ];
+    }
+  ];
+
+  define_submap = {
+    _args = [
+      "resize"
+      (lib.generators.mkLuaInline "function()\n  hl.bind(\"right\", hl.dsp.window.resize({ x = 10, y = 0, relative = true }), { repeating = true })\n  hl.bind(\"left\", hl.dsp.window.resize({ x = -10, y = 0, relative = true }), { repeating = true })\n  hl.bind(\"escape\", hl.dsp.submap(\"reset\"))\nend")
+    ];
+  };
+
+  window_rule = {
+    match.class = "kitty";
+    border_size = 2;
+  };
+
+  on = {
+    _args = [
+      "hyprland.start"
+      (lib.generators.mkLuaInline "function()\n  hl.exec_cmd(\"waybar\")\nend")
+    ];
+  };
+};
+};
+#==========================================
+#=========================================
+# old config from commit 8f919b6437768f367b21aa6357f3a7920242f41f
+  flake.homeModules.hyprland-old = {pkgs-unstable, lib, ...}: let
+    wallpaper = ../../assets/wallpaper1.jpg;
+    mod = "SUPER";
+    term = "kitty";
+    editor = "nvim";
+    notes = "kitty --class \\\"custom-obsidianvaults\\\" --name \\\"Select Obsidian vault\\\" --hold custom-obsidianvaults";
+    file = "dolphin";
+    browser = "kitty --class \\\"custom-browserprofiles\\\" --name \\\"Select browser profile\\\" --hold custom-browserprofiles";
+
+  in {
+    #refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
+    wayland.windowManager.hyprland.enable = true;
+    wayland.windowManager.hyprland.package = pkgs-unstable.hyprland;
+    #hint Electron apps to use on wayland;
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
+    wayland.windowManager.hyprland.plugins = [
+      #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
+      #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
+    ];
+    wayland.windowManager.hyprland.configType = "lua";
+    wayland.windowManager.hyprland.settings = {
+      # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
+      # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
+      /*animations = {
+        enabled = true;
+        bezier = [
+          "wind, 0.05, 0.9, 0.1, 1.05"
+          "winIn, 0.1, 1.1, 0.1, 1.1"
+          "winOut, 0.3, -0.3, 0, 1"
+          "liner, 1, 1, 1, 1"
+        ];
+        animation = [
+          "windows, 1, 6, wind, slide"
+          "windowsIn, 1, 6, winIn, slide"
+          "windowsOut, 1, 5, winOut, slide"
+          "windowsMove, 1, 5, wind, slide"
+          "border, 1, 1, liner"
+          "borderangle, 1, 30, liner, loop"
+          "fade, 1, 10, default"
+          "workspaces, 1, 5, wind"
+        ];
+      };*/
+
+      # █▀▀ █▄░█ █░█
+      # ██▄ █░▀█ ▀▄▀
+
+      # See https://wiki.hyprland.org/Configuring/Environment-variables/
+      env = [
+        "PATH, $PATH:$scrPath"
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_QPAPLATFORMTHEME,qt6ct"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "MOZ_ENABLE_WAYLAND,1"
+        "GDK_SCALE,1"
+      ];
+
+      # █ █▄░█ █▀█ █░█ ▀█▀
+      # █ █░▀█ █▀▀ █▄█ ░█░
+
+      input = {
+        kb_layout = ["ch"];
+        follow_mouse = 1;
+        sensitivity = 0;
+        force_no_accel = 1;
+      };
+
+      # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
+      # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
+      # caelestia shell drawers toggle dashboard
+      # caelestia shell drawers toggle utilities
+bind = [
+  {
+    _args = [
+      "SUPER + W"
+      (lib.generators.mkLuaInline "hl.dsp.window.float()")
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + G"
+      (lib.generators.mkLuaInline "hl.dsp.group.toggle()")
+    ];
+  }
+
+  {
+    _args = [
+      "ALT + RETURN"
+      (lib.generators.mkLuaInline "hl.dsp.window.fullscreen()")
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + LEFT"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "l" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + RIGHT"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "r" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + UP"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "u" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + DOWN"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "d" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "ALT + TAB"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "d" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 1"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 2"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "2" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 3"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "3" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 4"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "4" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 5"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "5" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 6"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "6" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 7"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "7" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 8"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "8" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 9"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "9" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + 0"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "10" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + RIGHT"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "r+1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + LEFT"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "r-1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + DOWN"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "empty" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 1"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 2"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "2" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 3"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "3" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 4"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "4" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 5"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "5" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 6"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "6" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 7"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "7" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 8"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "8" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 9"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "9" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 0"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "10" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + ALT + RIGHT"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "r+1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + ALT + LEFT"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "r-1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + BACKSPACE"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle session")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + LEFT"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "l" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + RIGHT"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "r" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + UP"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "u" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + DOWN"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "d" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + MOUSE_DOWN"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + MOUSE_UP"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + V"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + B"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprkeys -bkr | rofi -dmenu")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + S"
+      "togglespecialworkspace"
+    ];
+  }
+  {
+    _args = [
+      "ALT + SUPER + S"
+      "movetoworkspace"
+      "special"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + A"
+      "layoutmsg"
+      "move -col"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + D"
+      "layoutmsg"
+      "move +col"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + T"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + E"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${file}")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + F"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser}")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + N"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${notes}")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + A"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle launcher")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + Q"
+      #(lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-dontkillsteam")'')
+        (lib.generators.mkLuaInline ''hl.dsp.window.kill()'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + W"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle sidebar")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + L"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell lock lock")'')
+    ];
+  }
+
+  {
+    _args = [
+      "F11"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia screenshot")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + S"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell picker open")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 6"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-killall")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 7"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-performance")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 1"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle sidebar")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 4"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell notifs toggleDnd")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 3"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pavucontrol")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SHIFT + ALT + 0"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 5"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("gnome-characters")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 8"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprpicker | tee >(wl-copy) | cliphist store")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 0"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-tomato")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 2"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-bottom")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 9"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("anki")'')
+    ];
+  }
 ];
+      /*bind = [
+        #hyprland/utility keybindings
+        "${mod}, W, togglefloating"
+        "${mod}, G, togglegroup"
+        "Alt, Return, fullscreen"
+        "Alt, Tab, movefocus, d"
+        "${mod}, Left, movefocus, l"
+        "${mod}, Right, movefocus, r"
+        "${mod}, Up, movefocus, u"
+        "${mod}, Down, movefocus, d"
+        "${mod}, 1, workspace, 1"
+        "${mod}, 2, workspace, 2"
+        "${mod}, 3, workspace, 3"
+        "${mod}, 4, workspace, 4"
+        "${mod}, 5, workspace, 5"
+        "${mod}, 6, workspace, 6"
+        "${mod}, 7, workspace, 7"
+        "${mod}, 8, workspace, 8"
+        "${mod}, 9, workspace, 9"
+        "${mod}, 0, workspace, 10"
+        "${mod}+Ctrl, Right, workspace, r+1"
+        "${mod}+Ctrl, Left, workspace, r-1"
+        "${mod}+Ctrl, Doown, workspace, empty"
+        "${mod}+Shift, 1, movetoworkspace, 1"
+        "${mod}+Shift, 2, movetoworkspace, 2"
+        "${mod}+Shift, 3, movetoworkspace, 3"
+        "${mod}+Shift, 4, movetoworkspace, 4"
+        "${mod}+Shift, 5, movetoworkspace, 5"
+        "${mod}+Shift, 6, movetoworkspace, 6"
+        "${mod}+Shift, 7, movetoworkspace, 7"
+        "${mod}+Shift, 8, movetoworkspace, 8"
+        "${mod}+Shift, 9, movetoworkspace, 9"
+        "${mod}+Shift, 0, movetoworkspace, 10"
+        "${mod}+Ctrl+Alt, Right, movetoworkspace, r+1"
+        "${mod}+Ctrl+Alt, Left, movetoworkspace, r-1"
+        #"{$mo}d, Backspace, exec, wlogout -b 4 -T 600 -B 600"
+        "${mod}, Backspace, exec, caelestia shell drawers toggle session"
+        "${mod}+Shift+Ctrl, Left, movewindow, l"
+        "${mod}+Shift+Ctrl, Right, movewindow, r"
+        "${mod}+Shift+Ctrl, Up, movewindow, u"
+        "${mod}+Shift+Ctrl, Down, movewindow, d"
+        "${mod}, mouse_down, workspace, e+1"
+        "${mod}, mouse_up, workspace, e-1"
+        "${mod}, V, exec, cliphist list | rofi -dmenu| cliphist decode | wl-copy" # copy paste
+        "${mod}, B, exec, hyprkeys -bkr | rofi -dmenu"
+        #"$mod, A, tagwindow, noborder" # used to not apply image border
+        "${mod}, S, togglespecialworkspace,"
+        "Alt+${mod}, S, movetoworkspace, special"
+        # for the scrolling layout
+        "${mod}, A, layoutmsg, move -col"
+        "${mod}, D, layoutmsg, move +col"
+        #apps keybindings
+        "${mod}, T, exec, ${term}"
+        "${mod}, E, exec, ${file}"
+        "${mod}, F, exec, ${browser}"
+        "${mod}, N, exec, ${notes}"
+        #"$mod+Shift, A, exec, rofi -show drun"
+        "${mod}+Shift, A, exec, caelestia shell drawers toggle launcher"
+        "${mod}, Q, exec, custom-dontkillsteam"
+        #"Ctrl+Alt, W, exec, pkill waybar || waybar"
+        "Ctrl+Alt, W, exec, caelestia shell drawers toggle sidebar"
+        #"$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
+        "${mod}, L, exec, caelestia shell lock lock"
+        #"$mod, F11, exec, hyprshot -m  window"
+        ", F11, exec, caelestia screenshot"
+        #"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
+        # "$mod_SHIFT, S, exec, qs ipc call screenshot toggle"
+        "${mod}+Shift, S, exec, caelestia shell picker open"
+        # framework 16 rgb macropad
+        "Ctrl+${mod}, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
+        "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
+        # pos 4 1 notification center.
+        "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
+        #"Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
+        "Ctrl+${mod}, 4, exec, caelestia shell notifs toggleDnd"
+        "Ctrl+${mod}, 3, exec, pavucontrol" # pos 1 2 audiocontrol
+        "Ctrl+Shift+Alt, 0, exec, kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"" # pos 2 2 change audio output fzf
+        "Ctrl+${mod}, 5, exec, gnome-characters" # pos 3 2 special chars
+        "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 4 2 colorpicker
+        "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
+        "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
+        "Ctrl+Alt, 9, exec, anki"
+      ];*/
+      /*binde = [
+        "${mod}+Shift, Right, resizeactive, 30 0"
+        "${mod}+Shift, Left, resizeactive, -30, 0"
+        "${mod}+Shift, Up, resizeactive, 0 -30"
+        "${mod}+Shift, Down, resizeactive,m 0 30"
+      ];
+      bindl = [
+        ", F1, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle" #toggle audio mute
+        ", F5, exec, playerctl play-pause" # media F4-F6
+        ", F4, exec, playerctl previous"
+        ", F6, exec, playerctl next"
+      ];
+      bindel = [
+        ", F2, exec, pactl set-sink-volume @DEFAULT_SINK@ -10%" # decrease volume
+        ", F3, exec, pactl set-sink-volume @DEFAULT_SINK@ +10%" # increase volume
+        ", F7, exec, brightnessctl s 10%-" # decrease brightness
+        ", F8, exec, brightnessctl s +10%" # increase brightness
+      ];
+      bindm = [
+        "${mod}, mouse:272, movewindow"
+        "${mod}, mouse:273, resizewindow"
+        "${mod}, Z, movewindow"
+        "${mod}, X, resizewindow"
+      ];*/
+      # █░░ ▄▀█ █░█ █▄░█ █▀▀ █░█
+      # █▄▄ █▀█ █▄█ █░▀█ █▄▄ █▀█
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+            hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- for XDPH
+            hl.exec_cmd("dbus-update-activation-environment --systemd --all") -- for XDPH
+            hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- for XDPH
+            hl.exec_cmd("systemctl --user start xdg-desktop-portal-wlr.service")
+            hl.exec_cmd("blueman-applet") -- systray app for Bluetooth
+            hl.exec_cmd("udiskie --no-automount --smart-tray") -- front-end that allows to manage removable media
+            hl.exec_cmd("nm-applet --indicator") -- systray app for Network/wifi
+            hl.exec_cmd("rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store")
+            hl.exec_cmd("custom-batterynotify")
+            hl.exec_cmd("custom-batterywarning")
+            hl.exec_cmd("awww img ${wallpaper}")
+            hl.exec_cmd("awww-daemon")
+            hl.exec_cmd("sleep 1 && custom-wallpaper")
+            hl.exec_cmd("custom-checkKdrive && custom-mountkdrive") -- checks if the remote works and mount it
+            hl.exec_cmd("custom-gitnotify")
+            hl.exec_cmd("sleep 4 & caelestia-shell") -- works better if it sleeps a bit before
+            hl.exec_cmd("sleep 20 && ngcp pull --automatic") -- see github.com/tomasriveral/nix-git-cherry-picker
+            end
+            '')
+        ];
+      };
+      splash = true; # remove default background on startup
+      # gestures (also keybindings)
+      gesture = [
+        "3, right, move, +col"
+        "3, left, move, -col"
+      ];
+
+      # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
+      # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
+
+      dwindle = {
+        preserve_split = true;
+      };
+      scrolling = {
+        column_width = 0.45;
+      };
+
+      # █▀▄▀█ █ █▀ █▀▀
+      # █░▀░█ █ ▄█ █▄▄
+
+      misc = {
+        vrr = 0;
+        force_default_wallpaper = 0;
+      };
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
+      # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
+      # █░▀░█ █▄█ █#░▀█ █ ░█░ █▄█ █▀▄
+      monitor = [
+        #",preferred, auto, auto"
+        "HDMI-A-1, highres2highrr, auto-left, 1"
+      ];
+      # _______  ___      __   __  _______  ___   __    _  _______
+      #|       ||   |    |  | |  ||       ||   | |  |  | ||       |
+      #|    _  ||   |    |  | |  ||    ___||   | |   |_| ||  _____|
+      #|   |_| ||   |    |  |_|  ||   | __ |   | |       || |_____
+      #|    ___||   |___ |       ||   ||  ||   | |  _    ||_____  |
+      #|   |    |       ||       ||   |_| ||   | | | |   | _____| |
+      #|___|    |_______||_______||_______||___| |_|  |__||_______|
+      #
+      
+      /*"plugin:dynamic-cursors" = {
+        enabled = true;
+        threshold = 2;
+        mode = "rotate";
+        rotate = {
+          # length in px of the simulated stick used to rotate the cursor
+          # most realistic if this is your actual cursor size
+          length = 20;
+          offset = 0;
+        };
+        shake = {
+          enabled = true;
+          # use nearest-neighbour (pixelated) scaling when shaking
+          # may look weird when effects are enabled
+          nearest = true;
+          threshold = 4;
+          # magnification level immediately after shake start
+          base = 4.0;
+          # magnification increase per second when continuing to shake
+          speed = 4.0;
+          # how much the speed is influenced by the current shake intensitiy
+          influence = 0.0;
+
+          # maximal magnification the cursor can reach
+          # values below 1 disable the limit (e.g. 0)
+          limit = 0.0;
+
+          # time in millseconds the cursor will stay magnified after a shake has ended
+          timeout = 2000;
+
+          # show cursor behaviour `tilt`, `rotate`, etc. while shaking
+          effects = true;
+
+          # enable ipc events for shake
+          ipc = false;
+        };
+      };
+      "plugin:overview" = {
+        disableGestures = true;
+        showEmptyWorkspace = true;
+        workspaceActiveBorder = "rgb(ab7746)";
+        disableBlur = true;
+      };*/
+
+      #####################################################
+      #####################################################
+      # theme
+      decoration = {
+        dim_special = 0.3;
+        rounding = 18;
+        blur = {
+          special = true;
+          enabled = true;
+          size = 4;
+          passes = 2;
+          new_optimizations = true;
+          ignore_opacity = true;
+        };
+      };
+      general = {
+        gaps_in = 5;
+        gaps_out = 15;
+        border_size = 4;
+        "col.active_border" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+        "col.inactive_border" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+        layout = "dwindle";
+        resize_on_border = true;
+      };
+      group = {
+        "col.border_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+        "col.border_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+        "col.border_locked_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+        "col.border_locked_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+      };
+      ####################################################
+      ##################################################
+
+      # /$$      /$$                     /$$
+      #| $$  /$ | $$                    | $$
+      #| $$ /$$$| $$  /$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$$  /$$$$$$
+      #| $$/$$ $$ $$ /$$__  $$ /$$__  $$| $$  /$$/ /$$_____/ /$$__  $$ |____  $$ /$$_____/ /$$__  $$
+      #| $$$$_  $$$$| $$  \ $$| $$  \__/| $$$$$$/ |  $$$$$$ | $$  \ $$  /$$$$$$$| $$      | $$$$$$$$
+      #| $$$/ \  $$$| $$  | $$| $$      | $$_  $$  \____  $$| $$  | $$ /$$__  $$| $$      | $$_____/
+      #| $$/   \  $$|  $$$$$$/| $$      | $$ \  $$ /$$$$$$$/| $$$$$$$/|  $$$$$$$|  $$$$$$$|  $$$$$$$
+      #|__/     \__/ \______/ |__/      |__/  \__/|_______/ | $$____/  \_______/ \_______/ \_______/
+      #                                                     | $$
+      #                                                     | $$
+      #                                                     |__/
+      #     see https://wiki.hypr.land/Configuring/Workspace-Rules/
+      workspace = [
+        "1, layout:master"
+        "2, layout:scrolling, layoutopt:direction:right"
+        "name:special, layout:scrolling"
+        # used for smart gaps along some windowrules
+        #"w[tv1], gapsout:1, gapsin:1"
+        #"f[1], gapsout:1, gapsin:1"
+      ];
+
+      # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
+      # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
+      windowrule = [
+        "opacity 0.90 0.90, match:class ^(firefox)$"
+        "opacity 0.90 0.90, match:class ^(Brave-browser)$"
+        "opacity 0.80 0.80, match:class ^(code-oss)$"
+        "opacity 0.80 0.80, match:class ^(Code)$"
+        "opacity 0.80 0.80, match:class ^(code-url-handler)$"
+        "opacity 0.80 0.80, match:class ^(code-insiders-url-handler)$"
+        "opacity 0.75 0.75, match:class ^(kitty)$"
+        "opacity 0.80 0.80, match:class ^(org.kde.dolphin)$"
+        "opacity 0.80 0.80, float on, match:class ^(org.kde.ark)$"
+        "opacity 0.80 0.80, float on, match:class ^(nwg-look)$"
+        "opacity 0.80 0.80, float on, match:class ^(qt5ct)$"
+        "opacity 0.80 0.80, float on, match:class ^(qt6ct)$"
+        "opacity 0.80 0.80, float on, match:class ^(kvantummanager)$"
+        "opacity 0.80 0.70, float on, match:class ^(org.pulseaudio.pavucontrol)$"
+        "opacity 0.80 0.70, float on, match:class ^(blueman-manager)$"
+        "opacity 0.80 0.70, float on, match:class ^(nm-applet)$"
+        "opacity 0.80 0.70, float on, match:class ^(nm-connection-editor)$"
+        "opacity 0.80 0.70, float on, match:class ^(org.kde.polkit-kde-authentication-agent-1)$"
+        "opacity 0.80 0.70, match:class ^(polkit-gnome-authentication-agent-1)$"
+        "opacity 0.80 0.70, match:class ^(org.freedesktop.impl.portal.desktop.gtk)$"
+        "opacity 0.80 0.70, match:class ^(org.freedesktop.impl.portal.desktop.hyprland)$"
+        "opacity 0.70 0.70, match:class ^([Ss]team)$"
+        "opacity 0.70 0.70, match:class ^(steamwebhelper)$"
+        "opacity 0.70 0.70, match:class ^(Spotify)$"
+        "opacity 0.70 0.70, match:initial_title ^(Spotify Free)$"
+        "opacity 0.90 0.90, float on, match:class ^(com.github.rafostar.Clapper)$"
+        "opacity 0.80 0.80, match:class ^(com.github.tchx84.Flatseal)$"
+        "opacity 0.80 0.80, match:class ^(hu.kramo.Cartridges)$"
+        "opacity 0.80 0.80, match:class ^(com.obsproject.Studio)$"
+        "opacity 0.80 0.80, match:class ^(gnome-boxes)$"
+        "opacity 0.80 0.80, match:class ^(discord)$"
+        "opacity 0.80 0.80, match:class ^(WebCord)$"
+        "opacity 0.80 0.80, match:class ^(ArmCord)$"
+        "opacity 0.80 0.80, float on, match:class ^(app.drey.Warp)$"
+        "opacity 0.80 0.80, float on, match:class ^(net.davidotek.pupgui2)$"
+        "opacity 0.80 0.80, float on, match:class ^(yad)$"
+        "opacity 0.80 0.80, float on, match:class ^(Signal)$"
+        "opacity 0.80 0.80, float on, match:class ^(io.github.alainm23.planify)$"
+        "opacity 0.80 0.80, float on, match:class ^(io.gitlab.theevilskeleton.Upscaler)$"
+        "opacity 0.80 0.80, float on, match:class ^(com.github.unrud.VideoDownloader)$"
+        "opacity 0.80 0.80, float on, match:class ^(io.gitlab.adhami3310.Impression)$"
+        "opacity 0.80 0.80, float on, match:class ^(io.missioncenter.MissionCenter)$"
+        "opacity 0.80 0.80, match:class ^(io.github.flattool.Warehouse)$"
+        "float on, match:class ^(org.kde.dolphin)$, match:title ^(Progress Dialog — Dolphin)$"
+        "float on, match:class ^(org.kde.dolphin)$, match:title ^(Copying — Dolphin)$"
+        "float on, match:class ^(firefox)$, match:title ^(Picture-in-Picture)$"
+        "float on, match:class ^(firefox)$, match:title ^(Library)$"
+        "float on, match:class ^(kitty)$, match:title ^(top)$"
+        "float on, match:class ^(kitty)$, match:title ^(btop)$"
+        "float on, match:class ^(kitty)$, match:title ^(htop)$"
+        "float on, match:class ^(vlc)$"
+        "float on, match:class ^(eog)$"
+        "float on, size 400 225, match:class ^(custom-browserprofiles)$"
+        "float on, size 1050 200, match:class ^(custom-changeAudioOutput)$"
+        "float on, size 400 175, match:class ^(custom-obsidianvaults)$"
+        "float on, size 600 600, match:initial_class ^(custom-pomodoro)$"
+        "float on, size 1500 800, match:initial_class ^(custom-bottom)$"
+        # smart gaps/border is ugly with caelestia-shell
+        #"border_size 2, match:float 0, match:workspace w[tv1]"
+        #"rounding 1, match:float 0, match:workspace w[tv1]"
+        #"border_size 2, match:float 0, match:workspace f[1]"
+        #"rounding 1, match:float 0, match:workspace f[1]"
+      ];
+      # add a float for tomato when in kitty
+      #"plugin:imgborders:noimgborders, tag:noborder"
+      layerrule = [
+        "blur on, ignore_alpha 0, match:namespace rofi"
+        "blur on, ignore_alpha 0, match:namespace notifications"
+        "blur on, ignore_alpha 0, match:namespace swaync-notification-window"
+        "blur on, ignore_alpha 0, match:namespace swaync-control-center"
+        "blur on, match:namespace logout_dialog"
+      ];
     };
   };
 }
