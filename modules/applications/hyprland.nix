@@ -80,9 +80,9 @@
     mod = "SUPER";
     term = "kitty";
     editor = "nvim";
-    notes = "kitty --class \"custom-obsidianvaults\" --name \"Select Obsidian vault\" --hold custom-obsidianvaults";
+    notes = "kitty --class \\\"custom-obsidianvaults\\\" --name \\\"Select Obsidian vault\\\" --hold custom-obsidianvaults";
     file = "dolphin";
-    browser = "kitty --class \"custom-browserprofiles\" --name \"Select browser profile\" --hold custom-browserprofiles";
+    browser = "kitty --class \\\"custom-browserprofiles\\\" --name \\\"Select browser profile\\\" --hold custom-browserprofiles";
 
   in {
     #refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
@@ -580,7 +580,7 @@ bind = [
   {
     _args = [
       "CTRL + SHIFT + ALT + 0"
-      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty --hold --class \\"custom-changeAudioOutput\\" --name \\"Select audio output\\" zsh -c \\"custom-changeAudioOutput\\"")'')
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"")'')
     ];
   }
 
