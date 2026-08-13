@@ -69,6 +69,13 @@
   };
   flake.homeModules.hyprland = {pkgs-unstable, ...}: let
     wallpaper = ../../assets/wallpaper1.jpg;
+    mod = "SUPER";
+    term = "kitty";
+    editor = "nvim";
+    notes = "kitty --class \"custom-obsidianvaults\" --name \"Select Obsidian vault\" --hold custom-obsidianvaults";
+    file = "dolphin";
+    browser = "kitty --class \"custom-browserprofiles\" --name \"Select browser profile\" --hold custom-browserprofiles";
+
   in {
     #refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
     wayland.windowManager.hyprland.enable = true;
@@ -79,14 +86,8 @@
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
       #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
     ];
-    wayland.windowManager.hyprland.configType = "hyprlang";
+    wayland.windowManager.hyprland.configType = "lua";
     wayland.windowManager.hyprland.settings = {
-      "$mod" = "SUPER";
-      "$term" = "kitty";
-      "$editor" = "nvim";
-      "$notes" = "kitty --class \"custom-obsidianvaults\" --name \"Select Obsidian vault\" --hold custom-obsidianvaults";
-      "$file" = "dolphin";
-      "$browser" = "kitty --class \"custom-browserprofiles\" --name \"Select browser profile\" --hold custom-browserprofiles";
       # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
       # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
       animations = {
@@ -142,74 +143,74 @@
 
       bind = [
         #hyprland/utility keybindings
-        "$mod, W, togglefloating"
-        "$mod, G, togglegroup"
+        "${mod}, W, togglefloating"
+        "${mod}, G, togglegroup"
         "Alt, Return, fullscreen"
-        "$mod, Left, movefocus, l"
-        "$mod, Right, movefocus, r"
-        "$mod, Up, movefocus, u"
-        "$mod, Down, movefocus, d"
         "Alt, Tab, movefocus, d"
-        "$mod, 1, workspace, 1"
-        "$mod, 2, workspace, 2"
-        "$mod, 3, workspace, 3"
-        "$mod, 4, workspace, 4"
-        "$mod, 5, workspace, 5"
-        "$mod, 6, workspace, 6"
-        "$mod, 7, workspace, 7"
-        "$mod, 8, workspace, 8"
-        "$mod, 9, workspace, 9"
-        "$mod, 0, workspace, 10"
-        "$mod+Ctrl, Right, workspace, r+1"
-        "$mod+Ctrl, Left, workspace, r-1"
-        "$mod+Ctrl, Doown, workspace, empty"
-        "$mod+Shift, 1, movetoworkspace, 1"
-        "$mod+Shift, 2, movetoworkspace, 2"
-        "$mod+Shift, 3, movetoworkspace, 3"
-        "$mod+Shift, 4, movetoworkspace, 4"
-        "$mod+Shift, 5, movetoworkspace, 5"
-        "$mod+Shift, 6, movetoworkspace, 6"
-        "$mod+Shift, 7, movetoworkspace, 7"
-        "$mod+Shift, 8, movetoworkspace, 8"
-        "$mod+Shift, 9, movetoworkspace, 9"
-        "$mod+Shift, 0, movetoworkspace, 10"
-        "$mod+Ctrl+Alt, Right, movetoworkspace, r+1"
-        "$mod+Ctrl+Alt, Left, movetoworkspace, r-1"
-        #"$mod, Backspace, exec, wlogout -b 4 -T 600 -B 600"
-        "$mod, Backspace, exec, caelestia shell drawers toggle session"
-        "$mod+Shift+Ctrl, Left, movewindow, l"
-        "$mod+Shift+Ctrl, Right, movewindow, r"
-        "$mod+Shift+Ctrl, Up, movewindow, u"
-        "$mod+Shift+Ctrl, Down, movewindow, d"
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
-        "$mod, V, exec, cliphist list | rofi -dmenu| cliphist decode | wl-copy" # copy paste
-        "$mod, B, exec, hyprkeys -bkr | rofi -dmenu"
+        "${mod}, Left, movefocus, l"
+        "${mod}, Right, movefocus, r"
+        "${mod}, Up, movefocus, u"
+        "${mod}, Down, movefocus, d"
+        "${mod}, 1, workspace, 1"
+        "${mod}, 2, workspace, 2"
+        "${mod}, 3, workspace, 3"
+        "${mod}, 4, workspace, 4"
+        "${mod}, 5, workspace, 5"
+        "${mod}, 6, workspace, 6"
+        "${mod}, 7, workspace, 7"
+        "${mod}, 8, workspace, 8"
+        "${mod}, 9, workspace, 9"
+        "${mod}, 0, workspace, 10"
+        "${mod}+Ctrl, Right, workspace, r+1"
+        "${mod}+Ctrl, Left, workspace, r-1"
+        "${mod}+Ctrl, Doown, workspace, empty"
+        "${mod}+Shift, 1, movetoworkspace, 1"
+        "${mod}+Shift, 2, movetoworkspace, 2"
+        "${mod}+Shift, 3, movetoworkspace, 3"
+        "${mod}+Shift, 4, movetoworkspace, 4"
+        "${mod}+Shift, 5, movetoworkspace, 5"
+        "${mod}+Shift, 6, movetoworkspace, 6"
+        "${mod}+Shift, 7, movetoworkspace, 7"
+        "${mod}+Shift, 8, movetoworkspace, 8"
+        "${mod}+Shift, 9, movetoworkspace, 9"
+        "${mod}+Shift, 0, movetoworkspace, 10"
+        "${mod}+Ctrl+Alt, Right, movetoworkspace, r+1"
+        "${mod}+Ctrl+Alt, Left, movetoworkspace, r-1"
+        #"{$mo}d, Backspace, exec, wlogout -b 4 -T 600 -B 600"
+        "${mod}, Backspace, exec, caelestia shell drawers toggle session"
+        "${mod}+Shift+Ctrl, Left, movewindow, l"
+        "${mod}+Shift+Ctrl, Right, movewindow, r"
+        "${mod}+Shift+Ctrl, Up, movewindow, u"
+        "${mod}+Shift+Ctrl, Down, movewindow, d"
+        "${mod}, mouse_down, workspace, e+1"
+        "${mod}, mouse_up, workspace, e-1"
+        "${mod}, V, exec, cliphist list | rofi -dmenu| cliphist decode | wl-copy" # copy paste
+        "${mod}, B, exec, hyprkeys -bkr | rofi -dmenu"
         #"$mod, A, tagwindow, noborder" # used to not apply image border
-        "$mod, S, togglespecialworkspace,"
-        "Alt+$mod, S, movetoworkspace, special"
+        "${mod}, S, togglespecialworkspace,"
+        "Alt+${mod}, S, movetoworkspace, special"
         # for the scrolling layout
-        "$mod, A, layoutmsg, move -col"
-        "$mod, D, layoutmsg, move +col"
+        "${mod}, A, layoutmsg, move -col"
+        "${mod}, D, layoutmsg, move +col"
         #apps keybindings
-        "$mod, T, exec, $term"
-        "$mod, E, exec, $file"
-        "$mod, F, exec, $browser"
-        "$mod, N, exec, $notes"
+        "${mod}, T, exec, ${term}"
+        "${mod}, E, exec, ${file}"
+        "${mod}, F, exec, ${browser}"
+        "${mod}, N, exec, ${notes}"
         #"$mod+Shift, A, exec, rofi -show drun"
-        "$mod+Shift, A, exec, caelestia shell drawers toggle launcher"
-        "$mod, Q, exec, custom-dontkillsteam"
+        "${mod}+Shift, A, exec, caelestia shell drawers toggle launcher"
+        "${mod}, Q, exec, custom-dontkillsteam"
         #"Ctrl+Alt, W, exec, pkill waybar || waybar"
         "Ctrl+Alt, W, exec, caelestia shell drawers toggle sidebar"
         #"$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
-        "$mod, L, exec, caelestia shell lock lock"
+        "${mod}, L, exec, caelestia shell lock lock"
         #"$mod, F11, exec, hyprshot -m  window"
         ", F11, exec, caelestia screenshot"
         #"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
         # "$mod_SHIFT, S, exec, qs ipc call screenshot toggle"
-        "$mod_SHIFT, S, exec, caelestia shell picker open"
+        "${mod}+Shift, S, exec, caelestia shell picker open"
         # framework 16 rgb macropad
-        "Ctrl+$mod, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
+        "Ctrl+${mod}, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
         "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
         #"Ctrl+Alt, 7, exec, caelestia shell gameMode toggle"
         # reloads the autostart programs # pos 3 1
@@ -226,10 +227,10 @@
         # pos 4 1 notification center.
         "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
         #"Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
-        "Ctrl+$mod, 4, exec, caelestia shell notifs toggleDnd"
-        "Ctrl+$mod, 3, exec, pavucontrol" # pos 1 2 audiocontrol
+        "Ctrl+${mod}, 4, exec, caelestia shell notifs toggleDnd"
+        "Ctrl+${mod}, 3, exec, pavucontrol" # pos 1 2 audiocontrol
         "Ctrl+Shift+Alt, 0, exec, kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"" # pos 2 2 change audio output fzf
-        "Ctrl+$mod, 5, exec, gnome-characters" # pos 3 2 special chars
+        "Ctrl+${mod}, 5, exec, gnome-characters" # pos 3 2 special chars
         "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 4 2 colorpicker
         "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
         "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
@@ -241,10 +242,10 @@
         #"$mod, SPACE, overview:toggle, "
       ];
       binde = [
-        "$mod+Shift, Right, resizeactive, 30 0"
-        "$mod+Shift, Left, resizeactive, -30, 0"
-        "$mod+Shift, Up, resizeactive, 0 -30"
-        "$mod+Shift, Down, resizeactive,m 0 30"
+        "${mod}+Shift, Right, resizeactive, 30 0"
+        "${mod}+Shift, Left, resizeactive, -30, 0"
+        "${mod}+Shift, Up, resizeactive, 0 -30"
+        "${mod}+Shift, Down, resizeactive,m 0 30"
       ];
       bindl = [
         ", F1, exec, pactl set-sink-mute @DEFAULT_SINK@ toggle" #toggle audio mute
@@ -259,10 +260,10 @@
         ", F8, exec, brightnessctl s +10%" # increase brightness
       ];
       bindm = [
-        "$mod, mouse:272, movewindow"
-        "$mod, mouse:273, resizewindow"
-        "$mod, Z, movewindow"
-        "$mod, X, resizewindow"
+        "${mod}, mouse:272, movewindow"
+        "${mod}, mouse:273, resizewindow"
+        "${mod}, Z, movewindow"
+        "${mod}, X, resizewindow"
       ];
       # █░░ ▄▀█ █░█ █▄░█ █▀▀ █░█
       # █▄▄ █▀█ █▄█ █░▀█ █▄▄ █▀█
