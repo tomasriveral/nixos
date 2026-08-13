@@ -232,7 +232,7 @@
         "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
         "Ctrl+Alt, 9, exec, anki"
       ];
-      binde = [
+      /*binde = [
         "${mod}+Shift, Right, resizeactive, 30 0"
         "${mod}+Shift, Left, resizeactive, -30, 0"
         "${mod}+Shift, Up, resizeactive, 0 -30"
@@ -255,7 +255,7 @@
         "${mod}, mouse:273, resizewindow"
         "${mod}, Z, movewindow"
         "${mod}, X, resizewindow"
-      ];
+      ];*/
       # █░░ ▄▀█ █░█ █▄░█ █▀▀ █░█
       # █▄▄ █▀█ █▄█ █░▀█ █▄▄ █▀█
       on = {
