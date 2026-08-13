@@ -52,7 +52,12 @@
       };
 
       monitor = [
-        "eDP-1, highres@highrr, 0x0, 1"
+        {
+          output = "eDP-1";
+          mode = "highres@highrr";
+          position = "0x0";
+          scale = 1;
+        }
       ];
     };
   };
@@ -181,15 +186,15 @@
 
       # See https://wiki.hyprland.org/Configuring/Environment-variables/
       env = [
-        "PATH, $PATH:$scrPath"
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_QPA_PLATFORM,wayland;xcb"
-        "QT_QPAPLATFORMTHEME,qt6ct"
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "MOZ_ENABLE_WAYLAND,1"
-        "GDK_SCALE,1"
+        {_args = ["PATH" "$PATH:$scrPath"];}
+        {_args = ["XDG_CURRENT_DESKTOP" "Hyprland"];}
+        {_args = ["XDG_SESSION_TYPE" "wayland"];}
+        {_args = ["XDG_SESSION_DESKTOP" "Hyprland"];}
+        {_args = ["QT_QPA_PLATFORM" "wayland;xcb"];}
+        {_args = ["QT_QPAPLATFORMTHEME" "qt6ct"];}
+        {_args = ["QT_WAYLAND_DISABLE_WINDOWDECORATION" "1"];}
+        {_args = ["MOZ_ENABLE_WAYLAND" "1"];}
+        {_args = ["GDK_SCALE" "1"];}
       ];
 
       # █ █▄░█ █▀█ █░█ ▀█▀
@@ -669,89 +674,7 @@ bind = [
     ];
   }
 ];
-      /*bind = [
-        #hyprland/utility keybindings
-        "${mod}, W, togglefloating"
-        "${mod}, G, togglegroup"
-        "Alt, Return, fullscreen"
-        "Alt, Tab, movefocus, d"
-        "${mod}, Left, movefocus, l"
-        "${mod}, Right, movefocus, r"
-        "${mod}, Up, movefocus, u"
-        "${mod}, Down, movefocus, d"
-        "${mod}, 1, workspace, 1"
-        "${mod}, 2, workspace, 2"
-        "${mod}, 3, workspace, 3"
-        "${mod}, 4, workspace, 4"
-        "${mod}, 5, workspace, 5"
-        "${mod}, 6, workspace, 6"
-        "${mod}, 7, workspace, 7"
-        "${mod}, 8, workspace, 8"
-        "${mod}, 9, workspace, 9"
-        "${mod}, 0, workspace, 10"
-        "${mod}+Ctrl, Right, workspace, r+1"
-        "${mod}+Ctrl, Left, workspace, r-1"
-        "${mod}+Ctrl, Doown, workspace, empty"
-        "${mod}+Shift, 1, movetoworkspace, 1"
-        "${mod}+Shift, 2, movetoworkspace, 2"
-        "${mod}+Shift, 3, movetoworkspace, 3"
-        "${mod}+Shift, 4, movetoworkspace, 4"
-        "${mod}+Shift, 5, movetoworkspace, 5"
-        "${mod}+Shift, 6, movetoworkspace, 6"
-        "${mod}+Shift, 7, movetoworkspace, 7"
-        "${mod}+Shift, 8, movetoworkspace, 8"
-        "${mod}+Shift, 9, movetoworkspace, 9"
-        "${mod}+Shift, 0, movetoworkspace, 10"
-        "${mod}+Ctrl+Alt, Right, movetoworkspace, r+1"
-        "${mod}+Ctrl+Alt, Left, movetoworkspace, r-1"
-        #"{$mo}d, Backspace, exec, wlogout -b 4 -T 600 -B 600"
-        "${mod}, Backspace, exec, caelestia shell drawers toggle session"
-        "${mod}+Shift+Ctrl, Left, movewindow, l"
-        "${mod}+Shift+Ctrl, Right, movewindow, r"
-        "${mod}+Shift+Ctrl, Up, movewindow, u"
-        "${mod}+Shift+Ctrl, Down, movewindow, d"
-        "${mod}, mouse_down, workspace, e+1"
-        "${mod}, mouse_up, workspace, e-1"
-        "${mod}, V, exec, cliphist list | rofi -dmenu| cliphist decode | wl-copy" # copy paste
-        "${mod}, B, exec, hyprkeys -bkr | rofi -dmenu"
-        #"$mod, A, tagwindow, noborder" # used to not apply image border
-        "${mod}, S, togglespecialworkspace,"
-        "Alt+${mod}, S, movetoworkspace, special"
-        # for the scrolling layout
-        "${mod}, A, layoutmsg, move -col"
-        "${mod}, D, layoutmsg, move +col"
-        #apps keybindings
-        "${mod}, T, exec, ${term}"
-        "${mod}, E, exec, ${file}"
-        "${mod}, F, exec, ${browser}"
-        "${mod}, N, exec, ${notes}"
-        #"$mod+Shift, A, exec, rofi -show drun"
-        "${mod}+Shift, A, exec, caelestia shell drawers toggle launcher"
-        "${mod}, Q, exec, custom-dontkillsteam"
-        #"Ctrl+Alt, W, exec, pkill waybar || waybar"
-        "Ctrl+Alt, W, exec, caelestia shell drawers toggle sidebar"
-        #"$mod, L, exec, swaylock -eFLK -i ${wallpaper}"
-        "${mod}, L, exec, caelestia shell lock lock"
-        #"$mod, F11, exec, hyprshot -m  window"
-        ", F11, exec, caelestia screenshot"
-        #"$mod_SHIFT, S, exec, hyprshot -m region --clipboard only"
-        # "$mod_SHIFT, S, exec, qs ipc call screenshot toggle"
-        "${mod}+Shift, S, exec, caelestia shell picker open"
-        # framework 16 rgb macropad
-        "Ctrl+${mod}, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
-        "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
-        # pos 4 1 notification center.
-        "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
-        #"Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
-        "Ctrl+${mod}, 4, exec, caelestia shell notifs toggleDnd"
-        "Ctrl+${mod}, 3, exec, pavucontrol" # pos 1 2 audiocontrol
-        "Ctrl+Shift+Alt, 0, exec, kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\"" # pos 2 2 change audio output fzf
-        "Ctrl+${mod}, 5, exec, gnome-characters" # pos 3 2 special chars
-        "Ctrl+Alt, 8, exec, hyprpicker | tee >(wl-copy) | cliphist store" # pos 4 2 colorpicker
-        "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
-        "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
-        "Ctrl+Alt, 9, exec, anki"
-      ];*/
+
       /*binde = [
         "${mod}+Shift, Right, resizeactive, 30 0"
         "${mod}+Shift, Left, resizeactive, -30, 0"
@@ -804,20 +727,54 @@ bind = [
             '')
         ];
       };
-      splash = true; # remove default background on startup
+      #splash = true; # remove default background on startup
       # gestures (also keybindings)
       gesture = [
-        "3, right, move, +col"
-        "3, left, move, -col"
+        {
+          fingers = 3;
+          direction = "right";
+          action = "move";
+        }
+        {
+          fingers = 3;
+          direction = "left";
+          action = "move";
+        }
+        {
+          fingers = 2;
+          direction = "pinchin";
+          action = "cursor_zoom";
+          mode = "live";
+          zoom_level = 2;
+        }
+        {
+          fingers = 2;
+          direction = "pinchout";
+          action = "cursor_zoom";
+          mode = "live";
+          zoom_level = -2;
+
+        }
       ];
 
 
       # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
       # █░▀░█ █▄█ █#░▀█ █ ░█░ █▄█ █▀▄
       monitor = [
-        #",preferred, auto, auto"
-        "HDMI-A-1, highres2highrr, auto-left, 1"
-      ];
+  {
+    output = "";
+    mode = "preferred";
+    position = "auto";
+    scale = "auto";
+  }
+
+  {
+    output = "HDMI-A-1";
+    mode = "highres@highrr";
+    position = "auto-left";
+    scale = 1;
+  }
+];
       # _______  ___      __   __  _______  ___   __    _  _______
       #|       ||   |    |  | |  ||       ||   | |  |  | ||       |
       #|    _  ||   |    |  | |  ||    ___||   | |   |_| ||  _____|
@@ -889,90 +846,500 @@ bind = [
       #                                                     | $$
       #                                                     |__/
       #     see https://wiki.hypr.land/Configuring/Workspace-Rules/
-      workspace = [
-        "1, layout:master"
-        "2, layout:scrolling, layoutopt:direction:right"
-        "name:special, layout:scrolling"
-        # used for smart gaps along some windowrules
-        #"w[tv1], gapsout:1, gapsin:1"
-        #"f[1], gapsout:1, gapsin:1"
-      ];
+      workspace_rule = [
+  {
+    workspace = "1";
+    layout = "master";
+  }
+
+  {
+    workspace = "2";
+    layout = "scrolling";
+    layout_opts = {
+      direction = "right";
+    };
+  }
+
+  {
+    workspace = "name:special";
+    layout = "scrolling";
+  }
+];
 
       # █░█░█ █ █▄░█ █▀▄ █▀█ █░█░█   █▀█ █░█ █░░ █▀▀ █▀
       # ▀▄▀▄▀ █ █░▀█ █▄▀ █▄█ ▀▄▀▄▀   █▀▄ █▄█ █▄▄ ██▄ ▄█
-      windowrule = [
-        "opacity 0.90 0.90, match:class ^(firefox)$"
-        "opacity 0.90 0.90, match:class ^(Brave-browser)$"
-        "opacity 0.80 0.80, match:class ^(code-oss)$"
-        "opacity 0.80 0.80, match:class ^(Code)$"
-        "opacity 0.80 0.80, match:class ^(code-url-handler)$"
-        "opacity 0.80 0.80, match:class ^(code-insiders-url-handler)$"
-        "opacity 0.75 0.75, match:class ^(kitty)$"
-        "opacity 0.80 0.80, match:class ^(org.kde.dolphin)$"
-        "opacity 0.80 0.80, float on, match:class ^(org.kde.ark)$"
-        "opacity 0.80 0.80, float on, match:class ^(nwg-look)$"
-        "opacity 0.80 0.80, float on, match:class ^(qt5ct)$"
-        "opacity 0.80 0.80, float on, match:class ^(qt6ct)$"
-        "opacity 0.80 0.80, float on, match:class ^(kvantummanager)$"
-        "opacity 0.80 0.70, float on, match:class ^(org.pulseaudio.pavucontrol)$"
-        "opacity 0.80 0.70, float on, match:class ^(blueman-manager)$"
-        "opacity 0.80 0.70, float on, match:class ^(nm-applet)$"
-        "opacity 0.80 0.70, float on, match:class ^(nm-connection-editor)$"
-        "opacity 0.80 0.70, float on, match:class ^(org.kde.polkit-kde-authentication-agent-1)$"
-        "opacity 0.80 0.70, match:class ^(polkit-gnome-authentication-agent-1)$"
-        "opacity 0.80 0.70, match:class ^(org.freedesktop.impl.portal.desktop.gtk)$"
-        "opacity 0.80 0.70, match:class ^(org.freedesktop.impl.portal.desktop.hyprland)$"
-        "opacity 0.70 0.70, match:class ^([Ss]team)$"
-        "opacity 0.70 0.70, match:class ^(steamwebhelper)$"
-        "opacity 0.70 0.70, match:class ^(Spotify)$"
-        "opacity 0.70 0.70, match:initial_title ^(Spotify Free)$"
-        "opacity 0.90 0.90, float on, match:class ^(com.github.rafostar.Clapper)$"
-        "opacity 0.80 0.80, match:class ^(com.github.tchx84.Flatseal)$"
-        "opacity 0.80 0.80, match:class ^(hu.kramo.Cartridges)$"
-        "opacity 0.80 0.80, match:class ^(com.obsproject.Studio)$"
-        "opacity 0.80 0.80, match:class ^(gnome-boxes)$"
-        "opacity 0.80 0.80, match:class ^(discord)$"
-        "opacity 0.80 0.80, match:class ^(WebCord)$"
-        "opacity 0.80 0.80, match:class ^(ArmCord)$"
-        "opacity 0.80 0.80, float on, match:class ^(app.drey.Warp)$"
-        "opacity 0.80 0.80, float on, match:class ^(net.davidotek.pupgui2)$"
-        "opacity 0.80 0.80, float on, match:class ^(yad)$"
-        "opacity 0.80 0.80, float on, match:class ^(Signal)$"
-        "opacity 0.80 0.80, float on, match:class ^(io.github.alainm23.planify)$"
-        "opacity 0.80 0.80, float on, match:class ^(io.gitlab.theevilskeleton.Upscaler)$"
-        "opacity 0.80 0.80, float on, match:class ^(com.github.unrud.VideoDownloader)$"
-        "opacity 0.80 0.80, float on, match:class ^(io.gitlab.adhami3310.Impression)$"
-        "opacity 0.80 0.80, float on, match:class ^(io.missioncenter.MissionCenter)$"
-        "opacity 0.80 0.80, match:class ^(io.github.flattool.Warehouse)$"
-        "float on, match:class ^(org.kde.dolphin)$, match:title ^(Progress Dialog — Dolphin)$"
-        "float on, match:class ^(org.kde.dolphin)$, match:title ^(Copying — Dolphin)$"
-        "float on, match:class ^(firefox)$, match:title ^(Picture-in-Picture)$"
-        "float on, match:class ^(firefox)$, match:title ^(Library)$"
-        "float on, match:class ^(kitty)$, match:title ^(top)$"
-        "float on, match:class ^(kitty)$, match:title ^(btop)$"
-        "float on, match:class ^(kitty)$, match:title ^(htop)$"
-        "float on, match:class ^(vlc)$"
-        "float on, match:class ^(eog)$"
-        "float on, size 400 225, match:class ^(custom-browserprofiles)$"
-        "float on, size 1050 200, match:class ^(custom-changeAudioOutput)$"
-        "float on, size 400 175, match:class ^(custom-obsidianvaults)$"
-        "float on, size 600 600, match:initial_class ^(custom-pomodoro)$"
-        "float on, size 1500 800, match:initial_class ^(custom-bottom)$"
-        # smart gaps/border is ugly with caelestia-shell
-        #"border_size 2, match:float 0, match:workspace w[tv1]"
-        #"rounding 1, match:float 0, match:workspace w[tv1]"
-        #"border_size 2, match:float 0, match:workspace f[1]"
-        #"rounding 1, match:float 0, match:workspace f[1]"
-      ];
-      # add a float for tomato when in kitty
-      #"plugin:imgborders:noimgborders, tag:noborder"
-      layerrule = [
-        "blur on, ignore_alpha 0, match:namespace rofi"
-        "blur on, ignore_alpha 0, match:namespace notifications"
-        "blur on, ignore_alpha 0, match:namespace swaync-notification-window"
-        "blur on, ignore_alpha 0, match:namespace swaync-control-center"
-        "blur on, match:namespace logout_dialog"
-      ];
+      window_rule = [
+  {
+    match = {
+      class = "firefox";
+    };
+    opacity = "0.90 0.90";
+  }
+
+  {
+    match = {
+      class = "Brave-browser";
+    };
+    opacity = "0.90 0.90";
+  }
+
+  {
+    match = {
+      class = "code-oss";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "Code";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "code-url-handler";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "code-insiders-url-handler";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "kitty";
+    };
+    opacity = "0.75 0.75";
+  }
+
+  {
+    match = {
+      class = "org.kde.dolphin";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "org.kde.ark";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "nwg-look";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "qt5ct";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "qt6ct";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "kvantummanager";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "org.pulseaudio.pavucontrol";
+    };
+    opacity = "0.80 0.70";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "blueman-manager";
+    };
+    opacity = "0.80 0.70";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "nm-applet";
+    };
+    opacity = "0.80 0.70";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "nm-connection-editor";
+    };
+    opacity = "0.80 0.70";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "org.kde.polkit-kde-authentication-agent-1";
+    };
+    opacity = "0.80 0.70";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "polkit-gnome-authentication-agent-1";
+    };
+    opacity = "0.80 0.70";
+  }
+
+  {
+    match = {
+      class = "org.freedesktop.impl.portal.desktop.gtk";
+    };
+    opacity = "0.80 0.70";
+  }
+
+  {
+    match = {
+      class = "org.freedesktop.impl.portal.desktop.hyprland";
+    };
+    opacity = "0.80 0.70";
+  }
+
+  {
+    match = {
+      class = "[Ss]team";
+    };
+    opacity = "0.70 0.70";
+  }
+
+  {
+    match = {
+      class = "steamwebhelper";
+    };
+    opacity = "0.70 0.70";
+  }
+
+  {
+    match = {
+      class = "Spotify";
+    };
+    opacity = "0.70 0.70";
+  }
+
+  {
+    match = {
+      initial_title = "Spotify Free";
+    };
+    opacity = "0.70 0.70";
+  }
+
+  {
+    match = {
+      class = "com.github.rafostar.Clapper";
+    };
+    opacity = "0.90 0.90";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "com.github.tchx84.Flatseal";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "hu.kramo.Cartridges";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "com.obsproject.Studio";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "gnome-boxes";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "discord";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "WebCord";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "ArmCord";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "app.drey.Warp";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "net.davidotek.pupgui2";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "yad";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "Signal";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "io.github.alainm23.planify";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "io.gitlab.theevilskeleton.Upscaler";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "com.github.unrud.VideoDownloader";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "io.gitlab.adhami3310.Impression";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "io.missioncenter.MissionCenter";
+    };
+    opacity = "0.80 0.80";
+    float = true;
+  }
+
+  {
+    match = {
+      class = "io.github.flattool.Warehouse";
+    };
+    opacity = "0.80 0.80";
+  }
+
+  {
+    match = {
+      class = "org.kde.dolphin";
+      title = "Progress Dialog — Dolphin";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "org.kde.dolphin";
+      title = "Copying — Dolphin";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "firefox";
+      title = "Picture-in-Picture";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "firefox";
+      title = "Library";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "kitty";
+      title = "top";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "kitty";
+      title = "btop";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "kitty";
+      title = "htop";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "vlc";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "eog";
+    };
+    float = true;
+  }
+
+  {
+    match = {
+      class = "custom-browserprofiles";
+    };
+    float = true;
+    size = [400 225];
+  }
+
+  {
+    match = {
+      class = "custom-changeAudioOutput";
+    };
+    float = true;
+    size = [1050 200];
+  }
+
+  {
+    match = {
+      class = "custom-obsidianvaults";
+    };
+    float = true;
+    size = [400 175];
+  }
+
+  {
+    match = {
+      initial_class = "custom-pomodoro";
+    };
+    float = true;
+    size = [600 600];
+  }
+
+  {
+    match = {
+      initial_class = "custom-bottom";
+    };
+    float = true;
+    size = [1500 800];
+  }
+];
+      layer_rule = [
+  {
+    match = {
+      namespace = "rofi";
+    };
+    blur = true;
+    ignore_alpha = 0;
+  }
+
+  {
+    match = {
+      namespace = "notifications";
+    };
+    blur = true;
+    ignore_alpha = 0;
+  }
+
+  {
+    match = {
+      namespace = "swaync-notification-window";
+    };
+    blur = true;
+    ignore_alpha = 0;
+  }
+
+  {
+    match = {
+      namespace = "swaync-control-center";
+    };
+    blur = true;
+    ignore_alpha = 0;
+  }
+
+  {
+    match = {
+      namespace = "logout_dialog";
+    };
+    blur = true;
+  }
+];
     };
   };
 }
