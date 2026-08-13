@@ -152,233 +152,231 @@ bind = [
   {
     _args = [
       "SUPER + W"
-      "togglefloating"
+      (lib.generators.mkLuaInline "hl.dsp.window.float()")
     ];
   }
+
   {
     _args = [
       "SUPER + G"
-      "togglegroup"
+      (lib.generators.mkLuaInline "hl.dsp.group.toggle()")
     ];
   }
+
   {
     _args = [
       "ALT + RETURN"
-      "fullscreen"
+      (lib.generators.mkLuaInline "hl.dsp.window.fullscreen()")
     ];
   }
+
   {
     _args = [
       "SUPER + LEFT"
-      "movefocus"
-      "l"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "l" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + RIGHT"
-      "movefocus"
-      "r"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "r" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + UP"
-      "movefocus"
-      "u"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "u" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + DOWN"
-      "movefocus"
-      "d"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "d" })'')
     ];
   }
+
   {
     _args = [
       "ALT + TAB"
-      "movefocus"
-      "d"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ direction = "d" })'')
     ];
   }
 
   {
     _args = [
       "SUPER + 1"
-      "workspace"
-      "1"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "1" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 2"
-      "workspace"
-      "2"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "2" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 3"
-      "workspace"
-      "3"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "3" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 4"
-      "workspace"
-      "4"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "4" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 5"
-      "workspace"
-      "5"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "5" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 6"
-      "workspace"
-      "6"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "6" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 7"
-      "workspace"
-      "7"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "7" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 8"
-      "workspace"
-      "8"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "8" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 9"
-      "workspace"
-      "9"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "9" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + 0"
-      "workspace"
-      "10"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "10" })'')
     ];
   }
 
   {
     _args = [
       "SUPER + CTRL + RIGHT"
-      "workspace"
-      "r+1"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "r+1" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + CTRL + LEFT"
-      "workspace"
-      "r-1"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "r-1" })'')
     ];
   }
+
   {
     _args = [
-      "SUPER + CTRL + DOOWN"
-      "workspace"
-      "empty"
+      "SUPER + CTRL + DOWN"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "empty" })'')
     ];
   }
 
   {
     _args = [
       "SUPER + SHIFT + 1"
-      "movetoworkspace"
-      "1"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "1" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 2"
-      "movetoworkspace"
-      "2"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "2" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 3"
-      "movetoworkspace"
-      "3"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "3" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 4"
-      "movetoworkspace"
-      "4"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "4" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 5"
-      "movetoworkspace"
-      "5"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "5" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 6"
-      "movetoworkspace"
-      "6"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "6" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 7"
-      "movetoworkspace"
-      "7"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "7" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 8"
-      "movetoworkspace"
-      "8"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "8" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 9"
-      "movetoworkspace"
-      "9"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "9" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + 0"
-      "movetoworkspace"
-      "10"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "10" })'')
     ];
   }
 
   {
     _args = [
       "SUPER + CTRL + ALT + RIGHT"
-      "movetoworkspace"
-      "r+1"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "r+1" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + CTRL + ALT + LEFT"
-      "movetoworkspace"
-      "r-1"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ workspace = "r-1" })'')
     ];
   }
 
@@ -392,44 +390,42 @@ bind = [
   {
     _args = [
       "SUPER + SHIFT + CTRL + LEFT"
-      "movewindow"
-      "l"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "l" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + CTRL + RIGHT"
-      "movewindow"
-      "r"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "r" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + CTRL + UP"
-      "movewindow"
-      "u"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "u" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + SHIFT + CTRL + DOWN"
-      "movewindow"
-      "d"
+      (lib.generators.mkLuaInline ''hl.dsp.window.move({ direction = "d" })'')
     ];
   }
 
   {
     _args = [
       "SUPER + MOUSE_DOWN"
-      "workspace"
-      "e+1"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')
     ];
   }
+
   {
     _args = [
       "SUPER + MOUSE_UP"
-      "workspace"
-      "e-1"
+      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')
     ];
   }
 
@@ -510,7 +506,8 @@ bind = [
   {
     _args = [
       "SUPER + Q"
-      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-dontkillsteam")'')
+      #(lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-dontkillsteam")'')
+        (lib.generators.mkLuaInline ''hl.dsp.window.kill()'')
     ];
   }
 
