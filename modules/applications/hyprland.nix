@@ -148,7 +148,477 @@
       # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
       # caelestia shell drawers toggle dashboard
       # caelestia shell drawers toggle utilities
+bind = [
+  {
+    _args = [
+      "SUPER + W"
+      "togglefloating"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + G"
+      "togglegroup"
+    ];
+  }
+  {
+    _args = [
+      "ALT + RETURN"
+      "fullscreen"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + LEFT"
+      "movefocus"
+      "l"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + RIGHT"
+      "movefocus"
+      "r"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + UP"
+      "movefocus"
+      "u"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + DOWN"
+      "movefocus"
+      "d"
+    ];
+  }
+  {
+    _args = [
+      "ALT + TAB"
+      "movefocus"
+      "d"
+    ];
+  }
 
+  {
+    _args = [
+      "SUPER + 1"
+      "workspace"
+      "1"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 2"
+      "workspace"
+      "2"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 3"
+      "workspace"
+      "3"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 4"
+      "workspace"
+      "4"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 5"
+      "workspace"
+      "5"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 6"
+      "workspace"
+      "6"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 7"
+      "workspace"
+      "7"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 8"
+      "workspace"
+      "8"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 9"
+      "workspace"
+      "9"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + 0"
+      "workspace"
+      "10"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + RIGHT"
+      "workspace"
+      "r+1"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + CTRL + LEFT"
+      "workspace"
+      "r-1"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + CTRL + DOOWN"
+      "workspace"
+      "empty"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + 1"
+      "movetoworkspace"
+      "1"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 2"
+      "movetoworkspace"
+      "2"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 3"
+      "movetoworkspace"
+      "3"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 4"
+      "movetoworkspace"
+      "4"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 5"
+      "movetoworkspace"
+      "5"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 6"
+      "movetoworkspace"
+      "6"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 7"
+      "movetoworkspace"
+      "7"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 8"
+      "movetoworkspace"
+      "8"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 9"
+      "movetoworkspace"
+      "9"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + 0"
+      "movetoworkspace"
+      "10"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + CTRL + ALT + RIGHT"
+      "movetoworkspace"
+      "r+1"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + CTRL + ALT + LEFT"
+      "movetoworkspace"
+      "r-1"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + BACKSPACE"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle session")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + LEFT"
+      "movewindow"
+      "l"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + RIGHT"
+      "movewindow"
+      "r"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + UP"
+      "movewindow"
+      "u"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + SHIFT + CTRL + DOWN"
+      "movewindow"
+      "d"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + MOUSE_DOWN"
+      "workspace"
+      "e+1"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + MOUSE_UP"
+      "workspace"
+      "e-1"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + V"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("cliphist list | rofi -dmenu | cliphist decode | wl-copy")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + B"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprkeys -bkr | rofi -dmenu")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + S"
+      "togglespecialworkspace"
+    ];
+  }
+  {
+    _args = [
+      "ALT + SUPER + S"
+      "movetoworkspace"
+      "special"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + A"
+      "layoutmsg"
+      "move -col"
+    ];
+  }
+  {
+    _args = [
+      "SUPER + D"
+      "layoutmsg"
+      "move +col"
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + T"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${term}")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + E"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${file}")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + F"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${browser}")'')
+    ];
+  }
+  {
+    _args = [
+      "SUPER + N"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("${notes}")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + A"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle launcher")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + Q"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-dontkillsteam")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + W"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle sidebar")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + L"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell lock lock")'')
+    ];
+  }
+
+  {
+    _args = [
+      "F11"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia screenshot")'')
+    ];
+  }
+
+  {
+    _args = [
+      "SUPER + SHIFT + S"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell picker open")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 6"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-killall")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 7"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-performance")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 1"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle sidebar")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 4"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell notifs toggleDnd")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 3"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("pavucontrol")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SHIFT + ALT + 0"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("kitty --hold --class \\"custom-changeAudioOutput\\" --name \\"Select audio output\\" zsh -c \\"custom-changeAudioOutput\\"")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + SUPER + 5"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("gnome-characters")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 8"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("hyprpicker | tee >(wl-copy) | cliphist store")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 0"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-tomato")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 2"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("custom-bottom")'')
+    ];
+  }
+
+  {
+    _args = [
+      "CTRL + ALT + 9"
+      (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("anki")'')
+    ];
+  }
+];
       bind = [
         #hyprland/utility keybindings
         "${mod}, W, togglefloating"
