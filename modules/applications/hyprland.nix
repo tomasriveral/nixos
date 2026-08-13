@@ -94,7 +94,7 @@
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
       #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
     ];
-    wayland.windowManager.hyprland.configType = "hyprlang";
+    wayland.windowManager.hyprland.configType = "lua";
     wayland.windowManager.hyprland.settings = {
       # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
       # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
@@ -220,18 +220,6 @@
         # framework 16 rgb macropad
         "Ctrl+${mod}, 6, exec, custom-killall" # pos 1 1 killall apps except focused one
         "Ctrl+Alt, 7, exec, custom-performance" # pos 2 1 start performance mode
-        #"Ctrl+Alt, 7, exec, caelestia shell gameMode toggle"
-        # reloads the autostart programs # pos 3 1
-        # we passed to caelestia-shell and stoped using that
-        /*
-          "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=16 -e sh -c 'custom-weather'"
-        "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=11 -e sh -c 'custom-cowsay'"
-        "Ctrl+$mod, 4, exec, kitty -e 'custom-launch'"
-        "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
-        "Ctrl+$mod, 4, exec, sleep 1 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
-        #"Ctrl+Alt, 1, exec, swaync-client -t" # pos 4 1 notification center
-        "Ctrl+Alt, 1, exec, qs ipc call notifications toggle"
-        */
         # pos 4 1 notification center.
         "Ctrl+Alt, 1, exec, caelestia shell drawers toggle sidebar"
         #"Ctrl+Alt, 1, exec, [[ -f ~/.cache/hypr-battery-saver ]] || swaync-client -t"
@@ -243,11 +231,6 @@
         "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
         "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
         "Ctrl+Alt, 9, exec, anki"
-        # if hyprexpo plugin enabled bind = $mainMod, Space, hyprexpo:expo, toggle
-        # maybe exec sudo framework-tools-tui
-
-        #plugins keybindings
-        #"$mod, SPACE, overview:toggle, "
       ];
       binde = [
         "${mod}+Shift, Right, resizeactive, 30 0"
