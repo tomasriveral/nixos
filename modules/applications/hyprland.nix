@@ -98,6 +98,64 @@
     wayland.windowManager.hyprland.settings = {
       # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
       # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
+
+      config = {
+        input = {
+          kb_layout = "ch";
+          follow_mouse = 1;
+          sensitivity = 0;
+          force_no_accel = 1;
+        };
+        
+        # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
+        # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
+  
+        dwindle = {
+          preserve_split = true;
+        };
+        scrolling = {
+          column_width = 0.45;
+        };
+  
+        # █▀▄▀█ █ █▀ █▀▀
+        # █░▀░█ █ ▄█ █▄▄
+  
+        misc = {
+          vrr = 0;
+          force_default_wallpaper = 0;
+        };
+        xwayland = {
+          force_zero_scaling = true;
+        };
+              decoration = {
+        dim_special = 0.3;
+        rounding = 18;
+        blur = {
+          special = true;
+          enabled = true;
+          size = 4;
+          passes = 2;
+          new_optimizations = true;
+          ignore_opacity = true;
+        };
+      };
+      general = {
+        gaps_in = 5;
+        gaps_out = 15;
+        border_size = 4;
+        #"col.active_border" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+        #"col.inactive_border" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+        layout = "dwindle";
+        resize_on_border = true;
+      };
+      group = {
+        #"col.border_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+        #"col.border_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+        #"col.border_locked_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
+        #"col.border_locked_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
+      };
+
+      };
       /*animations = {
         enabled = true;
         bezier = [
@@ -137,12 +195,7 @@
       # █ █▄░█ █▀█ █░█ ▀█▀
       # █ █░▀█ █▀▀ █▄█ ░█░
 
-      input = {
-        kb_layout = ["ch"];
-        follow_mouse = 1;
-        sensitivity = 0;
-        force_no_accel = 1;
-      };
+      
 
       # █▄▀ █▀▀ █▄█ █▄▄ █ █▄░█ █▀▄ █ █▄░█ █▀▀ █▀
       # █░█ ██▄ ░█░ █▄█ █ █░▀█ █▄▀ █ █░▀█ █▄█ ▄█
@@ -415,19 +468,19 @@ bind = [
     ];
   }
 
-  {
-    _args = [
-      "SUPER + MOUSE_DOWN"
-      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')
-    ];
-  }
-
-  {
-    _args = [
-      "SUPER + MOUSE_UP"
-      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')
-    ];
-  }
+#  {
+#    _args = [
+#      "SUPER + MOUSE_DOWN"
+#      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e+1" })'')
+#    ];
+#  }
+#
+#  {
+#    _args = [
+#      "SUPER + MOUSE_UP"
+#      (lib.generators.mkLuaInline ''hl.dsp.focus({ workspace = "e-1" })'')
+#    ];
+#  }
 
   {
     _args = [
@@ -442,34 +495,34 @@ bind = [
     ];
   }
 
-  {
-    _args = [
-      "SUPER + S"
-      "togglespecialworkspace"
-    ];
-  }
-  {
-    _args = [
-      "ALT + SUPER + S"
-      "movetoworkspace"
-      "special"
-    ];
-  }
+#  {
+#    _args = [
+#      "SUPER + S"
+#      "togglespecialworkspace"
+#    ];
+#  }
+#  {
+#    _args = [
+#      "ALT + SUPER + S"
+#      "movetoworkspace"
+#      "special"
+#    ];
+#  }
 
-  {
-    _args = [
-      "SUPER + A"
-      "layoutmsg"
-      "move -col"
-    ];
-  }
-  {
-    _args = [
-      "SUPER + D"
-      "layoutmsg"
-      "move +col"
-    ];
-  }
+#  {
+#    _args = [
+#      "SUPER + A"
+#      "layoutmsg"
+#      "move -col"
+#    ];
+#  }
+#  {
+#    _args = [
+#      "SUPER + D"
+#      "layoutmsg"
+#      "move +col"
+#    ];
+#  }
 
   {
     _args = [
@@ -500,7 +553,7 @@ bind = [
     _args = [
       "SUPER + SHIFT + A"
       (lib.generators.mkLuaInline ''hl.dsp.exec_cmd("caelestia shell drawers toggle launcher")'')
-    ];
+      ];
   }
 
   {
@@ -758,26 +811,6 @@ bind = [
         "3, left, move, -col"
       ];
 
-      # █░░ ▄▀█ █▄█ █▀█ █░█ ▀█▀ █▀
-      # █▄▄ █▀█ ░█░ █▄█ █▄█ ░█░ ▄█
-
-      dwindle = {
-        preserve_split = true;
-      };
-      scrolling = {
-        column_width = 0.45;
-      };
-
-      # █▀▄▀█ █ █▀ █▀▀
-      # █░▀░█ █ ▄█ █▄▄
-
-      misc = {
-        vrr = 0;
-        force_default_wallpaper = 0;
-      };
-      xwayland = {
-        force_zero_scaling = true;
-      };
 
       # █▀▄▀█ █▀█ █▄░█ █ ▀█▀ █▀█ █▀█
       # █░▀░█ █▄█ █#░▀█ █ ░█░ █▄█ █▀▄
@@ -841,33 +874,6 @@ bind = [
       #####################################################
       #####################################################
       # theme
-      decoration = {
-        dim_special = 0.3;
-        rounding = 18;
-        blur = {
-          special = true;
-          enabled = true;
-          size = 4;
-          passes = 2;
-          new_optimizations = true;
-          ignore_opacity = true;
-        };
-      };
-      general = {
-        gaps_in = 5;
-        gaps_out = 15;
-        border_size = 4;
-        "col.active_border" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
-        "col.inactive_border" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
-        layout = "dwindle";
-        resize_on_border = true;
-      };
-      group = {
-        "col.border_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
-        "col.border_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
-        "col.border_locked_active" = "rgba(ca6702ff) rgba(ecd3a0ff) 45deg";
-        "col.border_locked_inactive" = "rgba(f1dca7d9) rgba(ffe1a8d9) 45deg";
-      };
       ####################################################
       ##################################################
 
