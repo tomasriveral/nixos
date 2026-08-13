@@ -262,6 +262,7 @@
         _args = [
           "hyprland.start"
           (lib.generators.mkLuaInline ''
+            function()
             hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- for XDPH
             hl.exec_cmd("dbus-update-activation-environment --systemd --all") -- for XDPH
             hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- for XDPH
@@ -279,7 +280,8 @@
             hl.exec_cmd("custom-gitnotify")
             hl.exec_cmd("sleep 4 & caelestia-shell") -- works better if it sleeps a bit before
             hl.exec_cmd("sleep 20 && ngcp pull --automatic") -- see github.com/tomasriveral/nix-git-cherry-picker
-          '')
+            end
+            '')
         ];
       };
       splash = true; # remove default background on startup
@@ -324,7 +326,8 @@
       #|   |    |       ||       ||   |_| ||   | | | |   | _____| |
       #|___|    |_______||_______||_______||___| |_|  |__||_______|
       #
-      "plugin:dynamic-cursors" = {
+      
+      /*"plugin:dynamic-cursors" = {
         enabled = true;
         threshold = 2;
         mode = "rotate";
@@ -366,7 +369,7 @@
         showEmptyWorkspace = true;
         workspaceActiveBorder = "rgb(ab7746)";
         disableBlur = true;
-      };
+      };*/
 
       #####################################################
       #####################################################
