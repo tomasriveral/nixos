@@ -37,12 +37,20 @@
     # Enable the X11 windowing system.
     services.xserver.enable = true;
   };
-  flake.homeModules.hyprland-laptop = _: {
+  flake.homeModules.hyprland-laptop = {lib, ...}: {
     wayland.windowManager.hyprland.settings = {
-      exec-once = [
-        "qtbatticon" # custom battery tray
-        "source /run/agenix/ntfy && nixpkgs-notifier listen" # tracks PR merge in nixos-unstable
-      ];
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            function()
+              hl.exec_cmd("qtbatticon") --- custom battery tray
+              hl.exec_cmd("source /run/agenix/ntfy && nixpkgs-notifier listen") --- tracks PR merge in nixos-unstable
+            end
+          '')
+        ];
+      };
+
       monitor = [
         "eDP-1, highres@highrr, 0x0, 1"
       ];
@@ -67,7 +75,7 @@
       ];
     };
   };
-  flake.homeModules.hyprland = {pkgs-unstable, ...}: let
+  flake.homeModules.hyprland = {pkgs-unstable, lib, ...}: let
     wallpaper = ../../assets/wallpaper1.jpg;
     mod = "SUPER";
     term = "kitty";
@@ -86,7 +94,7 @@
       #pkgs-unstable.hyprlandPlugins.hyprspace # currently broken
       #pkgs-unstable.hyprlandPlugins.hypr-dynamic-cursors
     ];
-    wayland.windowManager.hyprland.configType = "lua";
+    wayland.windowManager.hyprland.configType = "hyprlang";
     wayland.windowManager.hyprland.settings = {
       # ▄▀█ █▄░█ █ █▀▄▀█ ▄▀█ ▀█▀ █ █▀█ █▄░█
       # █▀█ █░▀█ █ █░▀░█ █▀█ ░█░ █ █▄█ █░▀█
@@ -267,47 +275,30 @@
       ];
       # █░░ ▄▀█ █░█ █▄░█ █▀▀ █░█
       # █▄▄ █▀█ █▄█ █░▀█ █▄▄ █▀█
-      exec-once = [
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # for XDPH
-        "dbus-update-activation-environment --systemd --all" # for XDPH
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP" # for XDPH
-        "systemctl --user start xdg-desktop-portal-wlr.service"
-        "blueman-applet" # systray app for Bluetooth
-        "udiskie --no-automount --smart-tray" # front-end that allows to manage removable media
-        "nm-applet --indicator" # systray app for Network/wifi
-        #setups clipboard
-        "rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store"
-        #"wl-paste --type text --watch cliphist store" # clipboard store text data
-        #"wl-paste --type image --watch cliphist store" # clipboard store image data
-        "custom-batterynotify"
-        "custom-batterywarning"
-        #"birdtray" # thunderbird tray app # curently broken
-        #wallpapers/b
-        "awww img ${wallpaper}"
-        "awww-daemon"
-        "sleep 1 && custom-wallpaper"
-        "custom-checkKdrive && custom-mountkdrive" # checks if the remote works and mount it
-        #"waybar"
-        "custom-gitnotify"
-        #"custom-obsidianbackup" # backups the obsidian notes to kdrive and to a timed hidden dir (~/.Notes.backup/)
-        #"QS-notifycache" # builds the cache that will be used for the notification history
-        "sleep 4 & caelestia-shell" #works better if it sleeps a bit before
-        "sleep 20 && ngcp pull --automatic" # see github.com/tomasriveral/nix-git-cherry-picker
-        #"rm ~/.cache/hypr-battery-saver"
-        #"rm ~/.cache/hypr-battery-saver.brightness"
-        /*
-           We stopped using that ######################### maybe we should desactivate those scripts
-        # login autostart
-        #######################
-        "[workspace 1 silent]  sleep 1 && kitty -o font_size=16 -e sh -c 'custom-weather'"
-        "[workspace 1 silent] sleep 1 && kitty -o font_size=11 -e sh -c 'custom-cowsay'"
-        "[workspace 1 silent] kitty -e 'custom-launch'"
-        "[workspace 1 silent] sleep 1 && kitty -o font_size=5 -e btm --theme gruvbox --disable-click --disable_advanced_kill --enable_cache_memory -g -R -T "
-        "[workspace 1 silent] sleep 1 && kitty -o font_size=1 -e sh -c 'cmatrix -br'"
-        ######################
-        ######################
-        */
-      ];
+      on = {
+        _args = [
+          "hyprland.start"
+          (lib.generators.mkLuaInline ''
+            hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- for XDPH
+            hl.exec_cmd("dbus-update-activation-environment --systemd --all") -- for XDPH
+            hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP") -- for XDPH
+            hl.exec_cmd("systemctl --user start xdg-desktop-portal-wlr.service")
+            hl.exec_cmd("blueman-applet") -- systray app for Bluetooth
+            hl.exec_cmd("udiskie --no-automount --smart-tray") -- front-end that allows to manage removable media
+            hl.exec_cmd("nm-applet --indicator") -- systray app for Network/wifi
+            hl.exec_cmd("rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store")
+            hl.exec_cmd("custom-batterynotify")
+            hl.exec_cmd("custom-batterywarning")
+            hl.exec_cmd("awww img ${wallpaper}")
+            hl.exec_cmd("awww-daemon")
+            hl.exec_cmd("sleep 1 && custom-wallpaper")
+            hl.exec_cmd("custom-checkKdrive && custom-mountkdrive") -- checks if the remote works and mount it
+            hl.exec_cmd("custom-gitnotify")
+            hl.exec_cmd("sleep 4 & caelestia-shell") -- works better if it sleeps a bit before
+            hl.exec_cmd("sleep 20 && ngcp pull --automatic") -- see github.com/tomasriveral/nix-git-cherry-picker
+          '')
+        ];
+      };
       splash = true; # remove default background on startup
       # gestures (also keybindings)
       gesture = [
