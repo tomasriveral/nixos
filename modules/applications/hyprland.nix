@@ -619,7 +619,7 @@ bind = [
     ];
   }
 ];
-      bind = [
+      /*bind = [
         #hyprland/utility keybindings
         "${mod}, W, togglefloating"
         "${mod}, G, togglegroup"
@@ -701,7 +701,7 @@ bind = [
         "Ctrl+Alt, 0, exec, custom-tomato" # pos 1 3 pomodoro app
         "Ctrl+Alt, 2, exec, custom-bottom" # pos 2 3 btm (like htop but cleaner)
         "Ctrl+Alt, 9, exec, anki"
-      ];
+      ];*/
       /*binde = [
         "${mod}+Shift, Right, resizeactive, 30 0"
         "${mod}+Shift, Left, resizeactive, -30, 0"
