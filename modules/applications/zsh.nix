@@ -36,6 +36,7 @@ _: {
     home.packages = [
       #self.packages.${pkgs.system}.dejaManuallyDerived
       pkgs-unstable.deja
+      pkgs-unstable.trash-cli
     ];
 
     programs.zsh = {
@@ -88,6 +89,12 @@ _: {
         nnvim = "nvim";
         nvvim = "nvim";
         nviim = "nvim";
+        hledger-ui = "puffin";
+        rm = "trash-put";
+        rml = "trash-list";
+        rmr = "trash-restore";
+        rme = "trash-empty";
+        rmx = "trash-rm";
       };
     };
   };
