@@ -1,7 +1,5 @@
 # NixOS Configuration
 
-![NixOS configuration](/assets/example.png)
-
 This repository contains my personal NixOS configuration.
 
 The configuration uses the **[dendritic pattern](https://github.com/mightyiam/dendritic)**. Instead of keeping one large system configuration, functionality is split into smaller, composable modules. This makes it easier to reuse pieces of the configuration across hosts and to keep application, hardware, utility, and host-specific configuration separate.
@@ -109,7 +107,7 @@ nixos/
 │   │   └── README.md
 │   ├── kblayouts/          # Keyboard and Framework macropad layouts
 │   ├── mullvad/            # Mullvad configuration
-│   └── quickshell/         # Quickshell configuration
+│   └── quickshell/         # Legacy Quickshell configuration
 │
 ├── secrets/                # agenix-encrypted secrets
 ├── flake.nix
@@ -502,16 +500,18 @@ Useful command-line tools include:
 * `fastfetch`
 * `man`
 * `manix`
+* `trash`
 
-`ls` is replaced by `eza`.
+`ls`. `l`, `ll` and `la` are aliased/replaced by `eza`.
 
-Common aliases include:
+`man` and `manix` are modified to use fzf to search for the man(ix) page. So in `man(ix) <arg>` `<arg>` will be ignored. If you want a specific man(ix) page, you can use `\man` and `\manix`.
 
-```text
-l
-ll
-la
-```
+`rm` is replaced by trash-cli :
+* `rm` alias to `trash-put`
+* `rml` alias to `trash-list`
+* `rmr` alias to `trash-restore`
+* `rme` alias to `trash-empty`
+* `rmx` alias to `trash-rm` (remove individual item from the trash).
 
 ---
 
@@ -587,15 +587,6 @@ Custom scripts and packages are located in:
 ```text
 modules/packages/
 ```
-Examples include:
-
-* `custom-colorpicker`
-* `custom-cowsay`
-* `custom-syllabes`
-* `custom-tomato`
-* `custom-weather`
-* `vivifyManuallyDerived`
-* `dejaManuallyDerived`
 
 Or imported in flake.nix from other repos.
 
@@ -604,7 +595,7 @@ Examples include:
 * `custom-syllabes` A syllab counter when I write french poetry. (note: algorithmic syllab counting is pretty difficult in french, so this small scripts makes a lot of errors)
 * `ngcp` (see the [GitHub repo](https://github.com/tomasriveral/Nix-Git-Cherry-Picker)) is what i use to manage between my `laptop` and `desktop` git branch.
 * `nixpkgs-notifier` (see the [GitHub repo](https://github.com/tomasriveral/nixpkgs-notifier)) notifies my when PRs get merged to nixos-unstable.
-
+* `notewrapper` (see the [GitHub repo](https://github.com/tomasriveral/Notewrapper)) a notetaking/journalling TUI wrapper organizer.
 ---
 
 # Applications and Desktop Environment
