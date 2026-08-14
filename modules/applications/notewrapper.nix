@@ -16,17 +16,16 @@
           "dateEntry": "# %Y %m %d %a",
           "newLineOnOpening": true,
           "backup": {
-            "enable": false,
+            "enable": true,
             "directory": {
-              "~/Documents/Notes/": "~/kdrive/Notes/",
-              "~/test/": "~/backupTest/"
+              "~/kdrive/Notes/": "~/kdrive/Notes/"
             },
             "interval": "daily",
             "rsyncArgs": ["-Lqah", "--update"],
             "git": {
               "enable": true,
-              "signatureName": "Tomas Rivera",
-              "signatureEmail": "tomas.riveral@icloud.com"
+              "name": "Tomas Rivera",
+              "email": "tomas.riveral@icloud.com"
             }
           }
         }
