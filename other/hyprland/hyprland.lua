@@ -38,6 +38,7 @@ local function close_other_windows()
     end
 end
 
+local wallpapers_enabled = true
 local wallpapers = {
     [1] = "WALLPAPER1/PATH/PLACEHOLDER",
     [2] = "WALLPAPER2/PATH/PLACEHOLDER",
@@ -51,13 +52,144 @@ local wallpapers = {
     [10] = "WALLPAPER5/PATH/PLACEHOLDER",
 }
 
-hl.on("workspace.active", function(workspace)
+local function set_wallpaper(workspace)
+    if not wallpapers_enabled then
+        return
+    end
+
     local wallpaper = wallpapers[workspace.id]
 
     if wallpaper then
         hl.exec_cmd("awww img -t none " .. wallpaper)
     end
-end)
+end
+
+hl.on("workspace.active", set_wallpaper)
+
+local performance_mode = false
+local saved_brightness = nil
+
+local function get_brightness()
+    local handle = io.popen("brightnessctl get 2>/dev/null")
+
+    if not handle then
+        return nil
+    end
+
+    local value = handle:read("*a")
+    handle:close()
+
+    if not value then
+        return nil
+    end
+
+    value = value:gsub("%s+$", "")
+    return tonumber(value)
+end
+
+local function set_performance_mode()
+      if performance_mode then
+        hl.monitor({
+            output = "eDP-1",
+            mode = "2560x1600@165",
+            position = "0x0",
+            scale = 1,
+        })
+
+        hl.exec_cmd("pkill swaync || true")
+        hl.exec_cmd("pkill waybar || true")
+        hl.exec_cmd("caelestia shell -d")
+
+        if saved_brightness then
+            hl.exec_cmd("brightnessctl set " .. saved_brightness)
+        end
+
+        saved_brightness = nil
+        wallpapers_enabled = true
+        performance_mode = false
+
+        hl.exec_cmd("hyprctl reload")
+
+        local workspace = hl.get_active_workspace()
+        if workspace then
+            set_wallpaper(workspace)
+        end
+
+        hl.notification.create({
+            text = "Battery Saver",
+            subtext = "Disabled",
+            timeout = 3000,
+        })
+
+        return
+    end
+    -- Save current brightness.
+    saved_brightness = get_brightness()
+
+    -- Lower refresh rate.
+    hl.monitor({
+        output = "eDP-1",
+        mode = "2560x1600@60",
+        position = "0x0",
+        scale = 1,
+    })
+
+    -- Stop heavy UI components.
+    hl.exec_cmd("pkill -f caelestia-shell || true")
+    hl.exec_cmd("pkill -f caelestia || true")
+
+    -- Start lightweight notification daemon.
+    hl.exec_cmd("pkill swaync || true")
+    hl.exec_cmd("swaync")
+
+    -- Start lightweight status bar.
+    hl.exec_cmd("pkill waybar || true")
+    hl.exec_cmd("waybar")
+
+    -- Disable expensive Hyprland effects.
+    hl.config({
+        animations = {
+            enabled = false,
+        },
+
+        decoration = {
+            shadow = {
+                enabled = false,
+            },
+            blur = {
+                enabled = false,
+            },
+            rounding = 0,
+            fullscreen_opacity = 1,
+            active_opacity = 1,
+            inactive_opacity = 1,
+        },
+
+        general = {
+            gaps_in = 0,
+            gaps_out = 0,
+            border_size = 1,
+        },
+
+        misc = {
+            vfr = 1,
+        },
+    })
+
+    -- Lower brightness.
+    hl.exec_cmd("brightnessctl set 5%")
+
+    -- Disable workspace wallpaper switching.
+    wallpapers_enabled = false
+
+    performance_mode = true
+
+    hl.notification.create({
+        text = "Battery Saver",
+        subtext = "Enabled",
+        timeout = 3000,
+    })
+end
 
 hl.curve("wind", { type = "bezier", points = { { 0.05, 0.9 }, { 0.1, 1.05 } } })
 hl.curve("winIn", { type = "bezier", points = { { 0.1, 1.1 }, { 0.1, 1.1 } } })
@@ -171,12 +303,19 @@ hl.bind(mod .. " + F", hl.dsp.exec_cmd(browser))
 hl.bind(mod .. " + N", hl.dsp.exec_cmd(notes))
 hl.bind(mod .. " + SHIFT + A", hl.dsp.exec_cmd("caelestia shell drawers toggle launcher"))
 hl.bind(mod .. " + Q", close_or_move_special)
-hl.bind("CTRL + ALT + W", hl.dsp.exec_cmd("caelestia shell drawers toggle sidebar"))
+local function toggle_sidebar()
+    if performance_mode then
+        hl.exec_cmd("swaync-client -t")
+    else
+        hl.exec_cmd("caelestia shell drawers toggle sidebar")
+    end
+end
+hl.bind("CTRL + ALT + W", toggle_sidebar)
 hl.bind(mod .. " + L", hl.dsp.exec_cmd("caelestia shell lock lock"))
 hl.bind("F11", hl.dsp.exec_cmd("caelestia screenshot"))
 hl.bind(mod .. " + SHIFT + S", hl.dsp.exec_cmd("caelestia shell picker open"))
 hl.bind(mod .. " + CTRL + 6", close_other_windows)
-hl.bind("CTRL + ALT + 7", hl.dsp.exec_cmd("custom-performance"))
+hl.bind("CTRL + ALT + 7", set_performance_mode)
 hl.bind("CTRL + ALT + 1", hl.dsp.exec_cmd("caelestia shell drawers toggle sidebar"))
 hl.bind(mod .. " + CTRL + 4", hl.dsp.exec_cmd("caelestia shell notifs toggleDnd"))
 hl.bind(mod .. " + CTRL + 3", hl.dsp.exec_cmd("pavucontrol"))
@@ -794,7 +933,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("custom-batterywarning")
     hl.exec_cmd("awww img WALLPAPER/PATH/PLACEHOLDER")
     hl.exec_cmd("awww-daemon")
-    hl.exec_cmd("sleep 1 && custom-wallpaper")
     hl.exec_cmd("custom-checkKdrive && custom-mountkdrive")
     hl.exec_cmd("custom-gitnotify")
     hl.exec_cmd("sleep 4 & caelestia-shell")
