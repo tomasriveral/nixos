@@ -14,7 +14,6 @@
   flake.nixosModules.kdrive-desktop = {pkgs-unstable, ...}: {
     environment.systemPackages = with pkgs-unstable; [
       rclone
-      icloudpd
       self.packages.${pkgs-unstable.system}.custom-checkKdrive
       self.packages.${pkgs-unstable.system}.custom-synckdrive-desktop
     ];
