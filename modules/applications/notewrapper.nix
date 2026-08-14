@@ -22,7 +22,12 @@
               "~/test/": "~/backupTest/"
             },
             "interval": "daily",
-            "rsyncArgs": ["-Lqah", "--update"]
+            "rsyncArgs": ["-Lqah", "--update"],
+            "git": {
+              "enable": true,
+              "signatureName": "Tomas Rivera",
+              "signatureEmail": "tomas.riveral@icloud.com"
+            }
           }
         }
       '';
@@ -47,7 +52,7 @@
           "backup": {
             "enable": false,
             "directory": {
-              "~/Documents/Notes/": "~/kdrive/Notes/",
+              "~/Documents/Notes/": "~/hdd/kdrive/Notes/",
               "~/test/": "~/backupTest/"
             },
             "interval": "daily",
