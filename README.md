@@ -1,235 +1,690 @@
-⚠️ Documentation outdated. I recently rewrote the entire config using the [dendritic pattern](https://github.com/mightyiam/dendritic/). One of these days, I will update the README.
-
 # NixOS Configuration
+
 ![NixOS configuration](/assets/example.png)
 
-## Installation Guide
+This repository contains my personal NixOS configuration.
 
-⚠️ **Important Notes**  
-Before applying this configuration on another system, make sure to:
-- Update the `hostName` (in `configuration.nix` and `home.nix`).
+The configuration uses the **[dendritic pattern](https://github.com/mightyiam/dendritic)**. Instead of keeping one large system configuration, functionality is split into smaller, composable modules. This makes it easier to reuse pieces of the configuration across hosts and to keep application, hardware, utility, and host-specific configuration separate.
 
-Requirements: `git` installed. Then run:
-
-```bash
-cd
-git clone https://github.com/Totorile1/nixos.git
-cd nixos
-sudo cp /etc/nixos/hardware-configuration.nix ./hosts/laptop/hardware-configuration
-sudo nixos-rebuild switch --flake ~/nixos/#laptop
-```
-
-### Things That Don't Work Reliably and need manual setup
-
-- Librewolf's extension settings
-- Librewolf's bookmarks
-- Thunderbird's email servers and settings and birdtray's settings[^1]
-- Inkscape's settings
-
-
-[^1]: You must change in Advanced settings Thunderbird command line to the result of `where thunderbird`.
+See the [dendritic pattern repository](https://github.com/mightyiam/dendritic) for an explanation of the approach.
 
 ---
 
-## Configuration Structure
+## Installation
+
+This configuration is primarily designed for my own machines, so some parts are host- and hardware-specific.
+
+### Requirements
+
+* NixOS
+* Git
+* Nix flakes enabled
+
+Clone the repository:
+
+```bash
+cd ~
+git clone https://github.com/tomasriveral/nixos.git
+cd nixos
+```
+
+The available hosts are:
+
+```text
+hosts/
+├── laptop.nix
+└── desktop.nix
+```
+
+Build and switch to a host with:
+
+```bash
+sudo nixos-rebuild switch --flake ~/nixos#laptop
+```
+
+or:
+
+```bash
+sudo nixos-rebuild switch --flake ~/nixos#desktop
+```
+
+For a temporary test generation:
+
+```bash
+sudo nixos-rebuild test --flake ~/nixos#laptop
+```
+
+### Hardware configuration
+
+Hardware-specific configuration is kept under:
+
+```text
+modules/hardware/
+```
+
+This includes:
+
+* bootloader configuration
+* disks and filesystems
+* battery and power management
+* Bluetooth
+* NVIDIA
+* performance settings
+* udev rules
+* hardware utilities
+
+Declarative disk configuration is located in:
+
+```text
+modules/hardware/disko/
+```
+
+When deploying this configuration to a new machine, review the host and hardware modules rather than assuming the existing hardware configuration is appropriate.
+
+---
+
+# Repository Structure
 
 ```text
 nixos/
-├── assets/                # Images, icons, wallpapers, sounds
-├── hosts/laptop/          # Host-specific NixOS config
+├── assets/                 # Wallpapers, images, sounds and other static assets
+├── docs/                   # Additional documentation
+│   └── printing.md
+│
 ├── modules/
-│   ├── home-manager/      # User-level configurations (apps, shell, WM, plugins)
-│   ├── nixos/             # System-level modules (daemons, services, udev, ly)
-│   ├── qt/                # qt modules (qtbatticon)
-│   └── scripts/           # Custom scripts called from keybinds or tools
+│   ├── applications/       # Application and desktop application configuration
+│   ├── hardware/           # Hardware, boot, disk, battery, GPU and device configuration
+│   ├── other/              # Fonts, cursor, printer, desktop entries, user configuration, etc.
+│   ├── packages/            # Custom packages and scripts
+│   └── utilities/           # Reusable utilities and supporting services
+│
+├── hosts/
+│   ├── laptop.nix          # Laptop-specific configuration
+│   └── desktop.nix         # Desktop-specific configuration
+│
 ├── other/
-│   ├── kblayouts/         # Framework 16 RGB macropad layout
-│   └── quickshell/        # QML configuration for topbar, notifications, screenshot, etc.
+│   ├── hyprland/           # Hyprland configuration
+│   │   ├── hyprland.conf   # Previous hyprlang configuration
+│   │   ├── hyprland.lua    # Current Lua configuration
+│   │   └── README.md
+│   ├── kblayouts/          # Keyboard and Framework macropad layouts
+│   ├── mullvad/            # Mullvad configuration
+│   └── quickshell/         # Quickshell configuration
+│
+├── secrets/                # agenix-encrypted secrets
 ├── flake.nix
 ├── flake.lock
 └── README.md
 ```
 
-> other/quickshell is the older quickshell configuration.  
+---
+
+# Modules
+
+## Applications
+
+`modules/applications/` contains configuration for applications and desktop components.
+
+Some examples:
+
+* `anki.nix`
+* `browser.nix`
+* `caelestia.nix`
+* `git.nix`
+* `gtk.nix`
+* `hypridle.nix`
+* `hyprland.nix`
+* `kitty.nix`
+* `neovim.nix`
+* `obsidian.nix`
+* `rofi.nix`
+* `thunderbird.nix`
+* `waybar.nix`
+* `wlogout.nix`
+* `zsh.nix`
+
+## Hardware
+
+`modules/hardware/` contains machine-level configuration such as:
+
+* battery and power management
+* Bluetooth
+* bootloader
+* disks
+* hardware detection/configuration
+* NVIDIA
+* performance tuning
+* udev rules
+
+## Other
+
+`modules/other/` contains configuration that does not fit directly into applications or hardware, such as:
+
+* cursors
+* desktop entries
+* fonts
+* I/O configuration
+* printers
+* user configuration
+
+## Packages
+
+`modules/packages/` contains custom packages and scripts used throughout the configuration.
+
+Examples include:
+
+* `custom-bottom`
+* `custom-browserprofiles`
+* `custom-colorpicker`
+* `custom-cowsay`
+* `custom-syllabes`
+* `custom-tomato`
+* `custom-weather`
+* manually derived packages
+
+Many of these packages are called directly by Hyprland keybindings.
+
+## Utilities
+
+`modules/utilities/` contains reusable system utilities and services, including:
+
+* agenix
+* audio/media configuration
+* automatic cleanup
+* automatic updates
+* communication and notifications
+* development tools
+* documentation tools
+* Git backup
+* LaTeX
+* networking
+* Nix utilities
+* office tools
+* Ollama
+* RSS tools
 
 ---
 
-## Applications & Tools
+# Hosts
 
-### Shell & Terminal
-- [`zsh`](https://www.zsh.org/) with [`oh-my-zsh`](https://ohmyz.sh/) for shell customization  
-- [`kitty`](https://sw.kovidgoyal.net/kitty/) terminal  
+Host-specific configuration is kept under:
 
-### Window Management
-- [`hyprland`](https://github.com/hyprwm/Hyprland) (tiling window manager)  
-- [`ly`](https://github.com/fairyglade/ly) login manager  
-- [`swaylock`](https://github.com/swaywm/swaylock) screen locking  
-- [`hypridle`](https://github.com/hyprwm/Hyprland/wiki/HyprIdle) for idle mode  
+```text
+hosts/
+```
 
-### Browsing & Productivity
-- [`librewolf`](https://librewolf-community.gitlab.io/) browser  
-  - Extensions: [AdNauseam](https://github.com/dhowe/AdNauseam), [Enhancer for YouTube](https://github.com/ParticleCore/yt-enhancer), [TrackMeNot](https://www.tornhq.com/tmn/), [SponsorBlock](https://sponsor.ajay.app/)  
-  - Privacy options mostly enabled; some disabled to avoid conflicts with AdNauseam  
-- [`thunderbird`](https://www.thunderbird.net/) email client  
-- [`obsidian`](https://obsidian.md/) notes and knowledge management  
-- [`libreoffice`](https://www.libreoffice.org/) full-featured office suite  
+Currently:
 
-### Utilities
-- [`cliphist`](https://github.com/skywind3000/cliphist) clipboard manager  
-- [`zoxide`](https://github.com/ajeetdsouza/zoxide) faster directory navigation  
-- [`fastfetch`](https://github.com/LinusDierheimer/fastfetch) system info  
-- [`gnome-calculator`](https://wiki.gnome.org/Apps/Calculator)  
-- [`gnome-characters`](https://wiki.gnome.org/Apps/Characters)  
-- [`gnome-disk-utility`](https://wiki.gnome.org/Apps/Disks)  
-- [`gnome-font-viewer`](https://wiki.gnome.org/Apps/FontViewer)  
-- [`nautilus`](https://wiki.gnome.org/Apps/Nautilus) file manager  
-- [`okular`](https://okular.kde.org/) document & image viewer  
-- [`vlc`](https://www.videolan.org/vlc/) media player  
-- [`krita`](https://krita.org/) and [`inkscape`](https://inkscape.org/) for image editing  and drawing
-- [`anki`](https://apps.ankiweb.net/) flashcards for learning  
-- [`texlive`](https://www.tug.org/texlive/) LaTeX distribution  
-- [`biber`](https://ctan.org/pkg/biber) bibliography for LaTeX 
-- [`eza`](https://github.com/eza-community/eza) replacement for `ls`
+```text
+hosts/
+├── laptop.nix
+└── desktop.nix
+```
 
-### System & Hardware
-- [`bottom`](https://github.com/ClementTsang/bottom) system monitor  
-- [`tomato-c`](https://github.com/erikras/tomato-c) Pomodoro timer  
-- [`framework-tool-tui`](https://github.com/romanl/fx16-tui) Framework 16 laptop settings  
-
-**Daemons:** `upower`, `pipewire`, `pulseaudio`, `brightnessctl`, `playerctl`, `blueman`, `udiskie`, `networkmanager-applet`, `swww` wallpaper daemon  
-
-### Screenshots, Notifications, Bar and much more!
-- [caelestia-shell](https://github.com/caelestia-dots/shell)
+The host files combine the nixos and home-manager modules needed for each machine.
 
 ---
 
-## Keybindings
+# Hyprland
 
-### Window Management
-| Key | Action |
-|-----|--------|
-| `$mod + W` | Toggle floating |
-| `$mod + G` | Toggle group |
-| `Alt + Return` | Fullscreen |
-| `$mod + Arrow keys` / `Alt + Tab` | Move focus |
-| `$mod + Shift + Ctrl + Arrow keys` | Move window |
-| `$mod + Shift + Arrow keys` | Resize window |
+Hyprland is configured using its **Lua configuration API**.
 
-### Workspaces
-| Key | Action |
-|-----|--------|
-| `$mod + 1..0` | Switch workspace |
-| `$mod + Shift + 1..0` | Move window to workspace |
-| `$mod + Ctrl + Arrow keys` | Cycle workspaces |
-| `$mod + Mouse wheel` | Scroll workspace |
-| `$mod + S` / `Alt + $mod + S` | Special workspace |
+The current configuration is:
 
-### Layout
-| Key | Action |
-|-----|--------|
-| `$mod + A` | Scroll layout column left |
-| `$mod + D` | Scroll layout column right |
+```text
+other/hyprland/hyprland.lua
+```
 
-### Applications
-| Key | Action |
-|-----|--------|
-| `$mod + T` | Terminal |
-| `$mod + E` | File manager |
-| `$mod + F` | Browser |
-| `$mod + N` | Notes |
-| `$mod + Shift + A` | App launcher |
-| `$mod + Alt + A` | Toggle sidebar | 
-| `$mod + Q` | Kill apps (Steam/Pomodoro to special workspace) |
-| `$mod + L` | Lock screen |
-| `$mod + Shift + S` | Screenshot a window|
-| `F11` | Screenshot the whole screen|
+The previous hyprlang configuration remains here:
 
-### Multimedia & System
-| Key | Action |
-|-----|--------|
-| F1 | Mute audio |
-| F2 / F3 | Volume down / up |
-| F4 / F5 / F6 | Media prev / play / next |
-| F7 / F8 | Brightness down / up |
-| `$mod + mouse` | Move / resize window |
+```text
+other/hyprland/hyprland.conf
+```
 
----
+Host specific hyprland settings are generated by `/modules/applications/hyprland.nix` as `host.lua` which is imported by `hyprland.lua`.
 
-### Framework 16 RGB Macropad
 
-The **Framework 16 RGB macropad** is a 4×6 programmable key grid. Each key triggers one of the keybindings above via a macro.  
+## Workspace layouts
 
-If you **don’t have the physical macropad**, the table below shows which keybinding each macro triggers so you can run it from the keyboard instead:
+The current layout configuration is:
 
-| Macropad Key | Linked Action (Hyprland keybinding)          |
-| ------------ | -------------------------------------------- |
-| Row 1, Col 1 | Kill all apps except focused (`Ctrl+$mod+6`) |
-| Row 1, Col 2 | Performance mode (`Ctrl+Alt+7`)              |
-| Row 1, Col 3 | Do not disturb (`Ctrl+$mod+4`                |
-| Row 1, Col 4 | Notification center (`Ctrl+Alt+1`)           |
-| Row 2, Col 1 | Pulseaudio control (`Ctrl+$mod+3`)           |
-| Row 2, Col 2 | Change audio output (`Ctrl+Alt+Shift+0`)     |
-| Row 2, Col 3 | Special characters (`Ctrl+$mod+3`)           |
-| Row 2, Col 4 | Color picker (`Ctrl+Alt+8`)                  |
-| Row 3, Col 1 | Pomodoro timer (`Ctrl+Alt+0`)                |
-| Row 4, Col 1 | Launch Anki (`Ctrl+Alt+9`)                   |
+| Workspace | Layout      |
+| --------- | ----------- |
+| `1`       | `master`    |
+| `2`       | `scrolling` 0.45 width |
+| `other`   | `dwindle` |
 
-> Positions are labeled as `[row, column]` starting from top-left `[1,1]`.  
-> Each macro calls a script or application from this configuration.
+## Wallpapers
 
-### Neovim keybinds
+The wallpapers are stored in:
 
-| Key         | Action                |
-|-------------|-----------------------|
-| `<Space>`     | `<leader>`              |
-| `§`           | Cheatsheet            |
-| `<leader>1`   | Open fold             |
-| `<leader>2`   | Close fold            |
-| `<leader>e4`  | Previous error        |
-| `<leader>e5`  | Next error            |
-| `<leader>e1`  | See error message     |
-| `<leader>e3`  | See list of errors    |
-| `<leader>e2`  | Show correction       |
-| `<leader>e<Tab>` | Stop grammar LSP    |
-| `<leader>f1`  | Telescope files       |
-| `<leader>f2`  | Telescope grep        |
-| `<leader>f3`  | Telescope buffers     |
-| `<leader>f4`  | Telescope help        |
-| `<leader>g1`  | Hover documentation   |
-| `<leader>g2`  | Go to definition      |
-| `<leader>g3`  | Go to declaration     |
-| `<leader>g4`  | Go to implementation  |
-| `<leader>g5`  | Show references       |
-| `<leader><leader>` | Launch runner (terminal) |
-| `<leader>r1` | Run fugit |
-| `t` | Count syllabes (french) |
+```text
+assets/
+├── wallpaper1.jpg
+├── wallpaper2.jpg
+├── wallpaper3.jpg
+├── wallpaper4.jpg
+└── wallpaper5.jpg
+```
 
-All moving macros with `<Space>`, `g`, and the recording with `q` are disabled.
----
+The active wallpaper is selected based on the workspace:
 
-## Aliases
+| Workspace | Wallpaper        |
+| --------- | ---------------- |
+| `1`       | `wallpaper1.jpg` |
+| `2`       | `wallpaper2.jpg` |
+| `3`       | `wallpaper3.jpg` |
+| `4`       | `wallpaper4.jpg` |
+| `5`       | `wallpaper5.jpg` |
+| `6`       | `wallpaper1.jpg` |
+| `7`       | `wallpaper2.jpg` |
+| `8`       | `wallpaper3.jpg` |
+| `9`       | `wallpaper4.jpg` |
+| `10`      | `wallpaper5.jpg` |
 
-| Alias  | Command                                                           |
-| ------ | ----------------------------------------------------------------- |
-| `snrt` | `git add -A && sudo nixos-rebuild test --flake ~/nixos/#laptop`   |
-| `snrs` | `git add -A && sudo nixos-rebuild switch --flake ~/nixos/#laptop` |
+The Lua configuration contains placeholders for these paths, which are replaced by Nix during configuration generation.
+
+The five wallpapers are paintings from Thomas Cole's *The Course of Empire* series.
 
 ---
 
-## Useful Information
-- If you have an error similar to `Failed to register with host portal QDBusError("org.freedesktop.portal.Error.Failed", "Could not register app ID: App info not found for 'org.quickshell'")` see `./modules/other/desktopEntries.nix`
-- `ls` is an alias for `eza`. If you want more info than the normal `ls` run `eza`, `l`, `ll` or `la`
-- `qtbatticon` is a custom battery icon tray, because `cbatticon` and `batticonplus` did not work. Click on it to get more info about the battery.
-- `man` and `manix` use `fzf` for fuzzy search of pages.  
-- `pkgs-unstable` can be used for unstable nixpkgs packages.  
-- Nix garbage collection runs weekly, deleting generations older than 7 days.  
-- Non-free packages (e.g., Obsidian) are allowed.  
-- `neovim` plugins configured in `./modules/home-manager/neovim.nix`  
-- `oh-my-zsh` plugins configured in `./modules/home-manager/oh-my-zsh.nix`  
-- `ripgrep` default flags: `-S -. -p -n`  
-- Wallpapers change per workspace (5 paintings from Thomas Cole’s *The Course of Empire*).  
-- LibreWolf search engines: `@q` (Quant), `@hm` (Home-manager), `@np` (nixpkgs), `@nw` (Nixwiki), `@map` (OpenStreetMap).  
-- `ccat` colors `cat` output when not redirected; disables coloring if output is redirected (e.g., `>>`) to avoid breaking pipelines.  
-- Anki addons: `./modules/nixos/anki.nix`  
-- TLP config: `./modules/nixos/battery.nix`  
-- Framework 16 RGB macropad layout: `./other/kblayouts/framework_laptop_16_rgb_macropad.layout.json`  
+# Hyprland Keybindings
+
+`SUPER` is the primary modifier.
+
+## Window management
+
+| Key                                 | Action            |
+| ----------------------------------- | ----------------- |
+| `SUPER + W`                         | Toggle floating   |
+| `SUPER + G`                         | Toggle group      |
+| `ALT + Return`                      | Toggle fullscreen |
+| `SUPER + Arrow keys`                | Move focus        |
+| `SUPER + CTRL + A`                  | Swap column left  |
+| `SUPER + CTRL + D`                  | Swap column right |
+| `SUPER + SHIFT + CTRL + Arrow keys` | Move window       |
+| `SUPER + SHIFT + Arrow keys`        | Resize window     |
+| `SUPER + Z`                         | Drag window       |
+| `SUPER + X`                         | Resize window     |
+| `SUPER + mouse:272`                 | Drag window       |
+| `SUPER + mouse:273`                 | Resize window     |
+
+## Workspaces
+
+| Key                    | Action                                  |
+| ---------------------- | --------------------------------------- |
+| `SUPER + 1..9`         | Focus workspace 1–9                     |
+| `SUPER + 0`            | Focus workspace 10                      |
+| `SUPER + SHIFT + 1..9` | Move window to workspace 1–9            |
+| `SUPER + SHIFT + 0`    | Move window to workspace 10             |
+| `SUPER + CTRL + Right` | Move to relative workspace `+1`         |
+| `SUPER + CTRL + Left`  | Move to relative workspace `-1`         |
+| `SUPER + CTRL + Down`  | Focus an empty workspace                |
+| `SUPER + mouse_down`   | Next workspace                          |
+| `SUPER + mouse_up`     | Previous workspace                      |
+| `SUPER + S`            | Toggle special workspace                |
+| `SUPER + ALT + S`      | Move active window to special workspace |
+
+## Scrolling layout
+
+| Key         | Action                      |
+| ----------- | --------------------------- |
+| `SUPER + A` | Move scrolling layout left  |
+| `SUPER + D` | Move scrolling layout right |
+
+## Custom window management
+
+### `SUPER + Q`
+
+A custom Lua function checks the active window.
+
+* Steam → move it to the special workspace
+* `custom-pomodoro` → move it to the special workspace
+* anything else → close the window
+
+### `SUPER + CTRL + 6`
+
+Closes every window on the current workspace except the currently focused window.
+
+---
+
+# Applications
+
+| Key                 | Action                   |
+| ------------------- | ------------------------ |
+| `SUPER + T`         | Kitty                    |
+| `SUPER + E`         | Dolphin                  |
+| `SUPER + F`         | Browser profile selector |
+| `SUPER + N`         | Obsidian vault selector  |
+| `SUPER + SHIFT + A` | Application launcher     |
+| `SUPER + Backspace` | Session drawer           |
+| `CTRL + ALT + W`    | Sidebar                  |
+| `SUPER + L`         | Lock screen              |
+| `SUPER + SHIFT + S` | Screenshot picker        |
+| `F11`               | Screenshot               |
+| `SUPER + V`         | Clipboard history
+
+Additional bindings launch or control:
+
+* Hyprland keybinding viewer
+* Pavucontrol
+* GNOME Characters
+* Anki
+* custom performance mode
+* custom tomato/pomodoro
+* custom bottom launcher
+* custom audio-output selector
+* Caelestia shell
+
+---
+
+# Multimedia and Hardware Keys
+
+| Key  | Action               |
+| ---- | -------------------- |
+| `F1` | Mute audio           |
+| `F2` | Volume down          |
+| `F3` | Volume up            |
+| `F4` | Previous media track |
+| `F5` | Play/pause           |
+| `F6` | Next media track     |
+| `F7` | Brightness down      |
+| `F8` | Brightness up        |
+
+Volume and brightness bindings repeat while held.
+
+---
+
+# Gestures
+
+The current Hyprland configuration includes:
+
+| Gesture                 | Action        |
+| ----------------------- | ------------- |
+| Three-finger horizontal | `scroll_move` (only for scrolling layout) |
+| Two-finger pinch        | Cursor zoom   |
+
+---
+
+# Framework 16 RGB Macropad
+
+The Framework 16 RGB Macropad layout is stored at:
+
+```text
+other/kblayouts/framework_laptop_16_rgb_macropad.layout.json
+```
+
+The macropad is used as a collection of physical shortcuts for actions that already have Hyprland keybindings.
+
+The macros in the layout generate combinations involving `CTRL`, `ALT`, `SUPER`, and `SHIFT`. The important part is the **logical mapping** between each physical macropad position and its Hyprland shortcut.
+
+> Positions are documented as `[row, column]`, starting from the top-left.
+
+| Macropad Key | Linked Action                                     |
+| ------------ | ------------------------------------------------- |
+| Row 1, Col 1 | Kill all apps except focused (`CTRL + SUPER + 6`) |
+| Row 1, Col 2 | Performance mode (`CTRL + ALT + 7`)               |
+| Row 1, Col 3 | Do not disturb (`CTRL + SUPER + 4`)               |
+| Row 1, Col 4 | Notification center (`CTRL + ALT + 1`)            |
+| Row 2, Col 1 | PulseAudio control (`CTRL + SUPER + 3`)           |
+| Row 2, Col 2 | Change audio output (`CTRL + ALT + SHIFT + 0`)    |
+| Row 2, Col 3 | Special characters (`CTRL + SUPER + 5`)           |
+| Row 2, Col 4 | Color picker (`CTRL + ALT + 8`)                   |
+| Row 3, Col 1 | Pomodoro timer (`CTRL + ALT + 0`)                 |
+| Row 4, Col 1 | Launch Anki (`CTRL + ALT + 9`)                    |
+
+The physical layout file contains additional transparent/unused positions, but the bindings above are the active shortcuts documented for the macropad.
+
+---
+
+# Neovim
+
+Neovim is configured in:
+
+```text
+modules/applications/neovim.nix
+```
+
+The configuration includes LSP support, Telescope, Git tooling, grammar tooling and custom commands.
+
+`<Space>` is the leader key.
+
+| Key                | Action                 |
+| ------------------ | ---------------------- |
+| `§`                | Cheatsheet             |
+| `<leader>1`        | Open fold              |
+| `<leader>2`        | Close fold             |
+| `<leader>e1`       | Show error message     |
+| `<leader>e2`       | Show correction        |
+| `<leader>e3`       | Show diagnostics       |
+| `<leader>e4`       | Previous error         |
+| `<leader>e5`       | Next error             |
+| `<leader>e<Tab>`   | Stop grammar LSP       |
+| `<leader>f1`       | Telescope files        |
+| `<leader>f2`       | Telescope grep         |
+| `<leader>f3`       | Telescope buffers      |
+| `<leader>f4`       | Telescope help         |
+| `<leader>g1`       | Hover documentation    |
+| `<leader>g2`       | Go to definition       |
+| `<leader>g3`       | Go to declaration      |
+| `<leader>g4`       | Go to implementation   |
+| `<leader>g5`       | Show references        |
+| `<leader><leader>` | Launch runner          |
+| `<leader>r1`       | Run Fugitive           |
+| `t`                | Count French syllables |
+
+Some movement macros involving `<Space>`, `g`, and recording with `q` are intentionally disabled.
+
+---
+
+# Shell
+
+The shell is based on **zsh**.
+
+Relevant configuration is primarily found in:
+
+```text
+modules/applications/zsh.nix
+```
+
+and related application modules.
+
+`oh-my-zsh` is used for shell customization.
+
+`deja` is used for shell completion.
+
+Useful command-line tools include:
+
+* `eza`
+* `zoxide`
+* `ripgrep`
+* `fzf`
+* `fastfetch`
+* `man`
+* `manix`
+
+`ls` is replaced by `eza`.
+
+Common aliases include:
+
+```text
+l
+ll
+la
+```
+
+---
+
+# Git and Nix Workflow
+
+The configuration includes tooling for Git, Nix development, backups and cherry-picking.
+
+Relevant modules include:
+
+```text
+modules/utilities/gitBackup.nix
+modules/utilities/nixGitCherryPicker.nix
+modules/utilities/nixUtils.nix
+```
+
+Two useful rebuild aliases are:
+
+```bash
+snrt
+```
+
+which runs:
+
+```bash
+git add -A && sudo nixos-rebuild test --flake ~/nixos/#laptop
+```
+
+and:
+
+```bash
+snrs
+```
+
+which runs:
+
+```bash
+git add -A && sudo nixos-rebuild switch --flake ~/nixos/#laptop
+```
+
+These aliases currently target the laptop host.
+
+---
+
+# Secrets
+
+Secrets are managed using **agenix**.
+
+The relevant files are:
+
+```text
+secrets/
+├── ntfy.age
+└── secrets.nix
+```
+
+Encrypted secrets should remain encrypted in Git. Decrypted secret contents and private keys should not be committed.
+
+---
+
+# Quickshell
+
+The legacy Quickshell configuration lives under:
+
+```text
+other/quickshell/
+```
+---
+
+# Custom Packages
+
+Custom scripts and packages are located in:
+
+```text
+modules/packages/
+```
+Examples include:
+
+* `custom-colorpicker`
+* `custom-cowsay`
+* `custom-syllabes`
+* `custom-tomato`
+* `custom-weather`
+* `vivifyManuallyDerived`
+* `dejaManuallyDerived`
+
+Or imported in flake.nix from other repos.
+
+Examples include:
+* `custom-browserprofiles` Fzf selector between different LibreWolf profiles, private window and the tor browser.
+* `custom-syllabes` A syllab counter when I write french poetry. (note: algorithmic syllab counting is pretty difficult in french, so this small scripts makes a lot of errors)
+* `ngcp` (see the [GitHub repo](https://github.com/tomasriveral/Nix-Git-Cherry-Picker)) is what i use to manage between my `laptop` and `desktop` git branch.
+* `nixpkgs-notifier` (see the [GitHub repo](https://github.com/tomasriveral/nixpkgs-notifier)) notifies my when PRs get merged to nixos-unstable.
+
+---
+
+# Applications and Desktop Environment
+
+The configuration currently contains modules for applications and components such as:
+
+* Hyprland
+* Kitty
+* Dolphin
+* LibreWolf/browser tooling
+* Thunderbird
+* Obsidian
+* Neovim
+* Caelestia
+* Quickshell
+* Hypridle
+* Rofi
+* Waybar
+* Wlogout
+* Git
+* SSH
+* Mullvad
+* Bluetooth
+* audio/media tools
+* office tools
+* LaTeX
+* development tools
+* Ollama
+
+The exact set of enabled software depends on the host configuration and imported modules.
+
+---
+
+# Things That Still Require Manual Setup
+
+Not everything used by the desktop environment is completely declarative.
+
+Some application state may need to be configured manually after installation:
+
+* LibreWolf extension settings
+* LibreWolf bookmarks
+* Thunderbird account/server settings
+* Birdtray settings
+* Inkscape settings
+* other application-specific user data
+
+---
+
+# Useful Information
+
+* Wallpapers are five paintings from Thomas Cole's *The Course of Empire*.
+* `qtbatticon` is a custom battery tray indicator.
+* `man` and `manix` use `fzf` for fuzzy searching.
+* `pkgs-unstable` is available for packages that need to come from unstable nixpkgs.
+* `pkgs-master` can be enabled in flake.nix. Attention, all the packages will need to be compiled on the machine.
+* `pkgs-local` can be enable in flake.nix. Attention, all the packages will need to be compiled on the machine.
+* Automatic Nix garbage collection removes old generations according to the configured cleanup policy.
+* Non-free packages are enabled where required.
+* Neovim plugins are configured in `modules/applications/neovim.nix`.
+* `oh-my-zsh` configuration is kept with the shell/application modules.
+* The Framework 16 RGB Macropad layout is stored in `other/kblayouts/framework_laptop_16_rgb_macropad.layout.json`.
+* Anki-related configuration is distributed across the relevant application/package modules.
+* Battery and power-related configuration is under `modules/hardware/`.
+* Custom commands used by Hyprland are generally provided by `modules/packages/`.
+
+---
+
+# Documentation
+
+Additional documentation is kept close to the corresponding configuration where practical.
+
+Important documentation files include:
+
+```text
+docs/printing.md
+modules/applications/README.md
+modules/hardware/disko/README.md
+modules/packages/README.md
+modules/utilities/README.md
+other/hyprland/README.md
+other/mullvad/README.md
+other/quickshell/README.md
+```
