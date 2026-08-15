@@ -333,7 +333,7 @@ _: {
             }
         })
         vim.lsp.config("texlab", { cmd = { "texlab" }, filetypes = { "tex" }, on_attach = on_attach })
-        
+
         -- i remove ltex from being enable bellow as it's too anoying and doesn't really help as sometime i write in french and other times in english/spanish or even german
         vim.lsp.config("ltex", {
           cmd = { "ltex-ls-plus" },

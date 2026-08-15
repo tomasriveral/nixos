@@ -1,8 +1,4 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{self, ...}: {
   flake.nixosModules.battery-laptop = {pkgs, ...}:
   # https://discourse.nixos.org/t/what-is-the-best-option-for-power-management/63406/2
   # we just activate tlp unconditonally
