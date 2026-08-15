@@ -1,4 +1,4 @@
-{...}: {
+_: {
   flake.nixosModules.hyprland = {
     pkgs,
     pkgs-unstable,
@@ -93,6 +93,7 @@ let
     (builtins.readFile ../../other/hyprland/hyprland.lua);
 in
   {
+
       #refer to https://wiki.hypr.land/Nix/Hyprland-on-Home-Manager/
       wayland.windowManager.hyprland.enable = true;
       wayland.windowManager.hyprland.package = pkgs-unstable.hyprland;

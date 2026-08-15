@@ -569,6 +569,9 @@ secrets/
 
 Encrypted secrets should remain encrypted in Git. Decrypted secret contents and private keys should not be committed.
 
+* To edit a secret use `agenix -e <secret_file>.age -i /etc/ssh/ssh_host_ed25519_key`.
+* To decrypt a secret use `sudo agenix -d <secret_file>.age -i /etc/ssh/ssh_host_ed25519_key`.
+
 ---
 
 # Quickshell

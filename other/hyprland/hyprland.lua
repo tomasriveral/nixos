@@ -300,7 +300,7 @@ hl.bind(mod .. " + D", hl.dsp.layout("move +col"))
 hl.bind(mod .. " + T", hl.dsp.exec_cmd(term))
 hl.bind(mod .. " + E", hl.dsp.exec_cmd(file))
 hl.bind(mod .. " + F", hl.dsp.exec_cmd(browser))
-hl.bind(mod .. " + N", hl.dsp.exec_cmd(notes))
+hl.bind(mod .. " + N", hl.dsp.exec_cmd("kitty --hold --class \"custom-vpn-picker\" --name \"Select vpn option\" custom-vpn-picker"))
 hl.bind(mod .. " + SHIFT + A", hl.dsp.exec_cmd("caelestia shell drawers toggle launcher"))
 hl.bind(mod .. " + Q", close_or_move_special)
 local function toggle_sidebar()
@@ -811,6 +811,13 @@ hl.window_rule({
     },
     float = true,
     size = "400 225",
+})
+hl.window_rule({
+    match = {
+        class = "^(custom-vpn-picker)$",
+    },
+    float = true,
+    size = "350 250",
 })
 
 hl.window_rule({
