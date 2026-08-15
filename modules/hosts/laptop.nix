@@ -29,6 +29,7 @@
       documentation
       disk
       disk-laptop
+      epfl
       fonts
       gitBackup
       hardware-configuration-laptop
