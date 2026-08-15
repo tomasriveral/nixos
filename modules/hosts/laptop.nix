@@ -40,7 +40,6 @@
       latex
       ly
       mathematics
-      mullvad
       networking
       nixUtils-laptop
       nixUtils
@@ -52,6 +51,7 @@
       rss
       udev
       user
+      vpn
     ];
   };
   flake.homeModules.laptop = {...}: {
@@ -70,7 +70,6 @@
       hyprland-laptop
       kitty
       librewolf
-      mullvad
       neovim
       nix-git-cherry-picker-laptop
       laptop-notewrapper
