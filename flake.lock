@@ -304,11 +304,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786722495,
-        "narHash": "sha256-pLLWA0cicB9umFfutsqiJPqSPCWLz8RVo/rbGpIxi40=",
+        "lastModified": 1786862287,
+        "narHash": "sha256-fk7fRwvFTm7bGgkplslbiHfnw+k3g9CHt/YRj+7SWWc=",
         "owner": "tomasriveral",
         "repo": "notewrapper",
-        "rev": "edc979dccba67ebe0e949e9c0dc6cb2ba1f7b6f3",
+        "rev": "d56e7d9e4fc0b58df7e2383ca930862489d0ebac",
         "type": "github"
       },
       "original": {
