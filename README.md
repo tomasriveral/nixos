@@ -644,6 +644,7 @@ Some application state may need to be configured manually after installation:
 * Birdtray settings
 * Inkscape settings
 * other application-specific user data
+* git configuration
 
 ---
 
