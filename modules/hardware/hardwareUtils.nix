@@ -5,6 +5,20 @@ _: {
       framework-tool
       framework-tool-tui
       vial # Open-source GUI and QMK fork for configuring your keyboard in real time
+      netwatch
+      (diskwatch.override {
+        withSmartmontools = true;
+      })
+      syswatch
+    ];
+  };
+  flake.nixosModules.hardwareUtils-desktop = {pkgs, ...}: {
+    environment.systemPackages = with pkgs; [
+      netwatch
+      (diskwatch.override {
+        withSmartmontools = true;
+      })
+      syswatch
     ];
   };
 }

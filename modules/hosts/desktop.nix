@@ -29,6 +29,7 @@
       fonts
       games
       hardware-configuration-desktop
+      hardwareUtils-desktop
       hdd
       hledger
       hledger-desktop
