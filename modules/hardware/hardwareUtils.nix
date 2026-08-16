@@ -1,6 +1,6 @@
 _: {
-  flake.nixosModules.hardwareUtils-laptop = {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [
+  flake.nixosModules.hardwareUtils-laptop = {pkgs-unstable, ...}: {
+    environment.systemPackages = with pkgs-unstable; [
       # used for the framework 16 laptop
       framework-tool
       framework-tool-tui
@@ -12,8 +12,8 @@ _: {
       syswatch
     ];
   };
-  flake.nixosModules.hardwareUtils-desktop = {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [
+  flake.nixosModules.hardwareUtils-desktop = {pkgs-unstable, ...}: {
+    environment.systemPackages = with pkgs-unstable; [
       netwatch
       (diskwatch.override {
         withSmartmontools = true;
