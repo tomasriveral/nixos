@@ -4,8 +4,8 @@
       libnotify # Library that sends desktop notifications to a notification daemon
       socat # Utility for bidirectional data transfer between two independent data channels (used to communicate between hyprland and awww to change wallpapers dinamically)
       # battery notifications
-      self.packages.${pkgs.system}.custom-batterynotify
-      self.packages.${pkgs.system}.custom-batterywarning
+      /*self.packages.${pkgs.system}.custom-batterynotify
+      self.packages.${pkgs.system}.custom-batterywarning*/
       self.packages.${pkgs.system}.custom-gitnotify # checks if git is set up
       self.packages.${pkgs.system}.custom-checkKdrive # check if kdrive is set up with rclone
       zoom-us
