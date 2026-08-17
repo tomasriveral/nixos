@@ -8,7 +8,7 @@
       force = true;
       text = ''
         {
-          "directory": ["~/kdrive/Notes/"],
+          "directory": ["~/Documents/Notes/"],
           "render": true,
           "jumpToEndOfFileOnLaunch": true,
           "editor": "neovim",
@@ -18,7 +18,7 @@
           "backup": {
             "enable": true,
             "directory": {
-              "~/kdrive/Notes/": "~/kdrive/Notes/"
+              "~/Documents/Notes/": "~/kdrive/Notes/"
             },
             "interval": "daily",
             "rsyncArgs": ["-Lqah", "--update"],
