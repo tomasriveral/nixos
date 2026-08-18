@@ -45,6 +45,7 @@
       nix-index
       statix
       self.packages.${pkgs-unstable.system}.custom-trimmer
+      nix-update
     ];
   };
   perSystem = {pkgs, ...}: {
