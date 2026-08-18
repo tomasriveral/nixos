@@ -45,7 +45,7 @@
       nix-index
       statix
       self.packages.${pkgs-unstable.system}.custom-trimmer
-      nix-update
+      nix-update # nix-update <package> --build --test --format # the review will be done by nixpkgs-review-gha
     ];
   };
   perSystem = {pkgs, ...}: {
