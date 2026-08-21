@@ -926,7 +926,6 @@ hl.config({
 
 hl.on("hyprland.start", function()
     hl.exec_cmd("/nix/store/8kih8alkk4qzgjchg5501r1c3a8a71aw-dbus-1.16.2/bin/dbus-update-activation-environment --systemd DISPLAY HYPRLAND_INSTANCE_SIGNATURE WAYLAND_DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_TYPE && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target")
-    hl.exec_cmd("qtbatticon")
     hl.exec_cmd("source /run/agenix/ntfy && nixpkgs-notifier listen")
     hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
     hl.exec_cmd("dbus-update-activation-environment --systemd --all")
