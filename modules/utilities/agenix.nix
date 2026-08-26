@@ -13,5 +13,11 @@
       group = "users";
       mode = "0400";
     };
+    age.secrets.epfl = {
+      file = ../../secrets/epfl.age;
+      owner = "tomasr";
+      group = "users";
+      mode = "0400";
+    };
   };
 }

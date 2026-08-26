@@ -29,6 +29,7 @@
       fonts
       games
       hardware-configuration-desktop
+      hardwareUtils-desktop
       hdd
       hledger
       hledger-desktop
@@ -38,7 +39,6 @@
       latex
       ly
       mathematics
-      #mullvad #temporarly broken
       networking
       nixUtils
       notifications
@@ -51,6 +51,7 @@
       rss
       udev
       user
+      vpn
     ];
   };
   flake.homeModules.desktop = {...}: {
@@ -68,7 +69,6 @@
       hyprland-desktop
       kitty
       librewolf
-      #mullvad #temporarly broken
       neovim
       nix-git-cherry-picker-desktop
       desktop-notewrapper

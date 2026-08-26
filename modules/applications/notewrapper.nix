@@ -8,7 +8,7 @@
       force = true;
       text = ''
         {
-          "directory": ["~/kdrive/Notes/"],
+          "directory": ["~/Documents/Notes/"],
           "render": true,
           "jumpToEndOfFileOnLaunch": true,
           "editor": "neovim",
@@ -16,13 +16,17 @@
           "dateEntry": "# %Y %m %d %a",
           "newLineOnOpening": true,
           "backup": {
-            "enable": false,
+            "enable": true,
             "directory": {
-              "~/Documents/Notes/": "~/kdrive/Notes/",
-              "~/test/": "~/backupTest/"
+              "~/Documents/Notes/": "~/kdrive/Notes/"
             },
             "interval": "daily",
-            "rsyncArgs": ["-Lqah", "--update"]
+            "rsyncArgs": ["-Lqah", "--update"],
+            "git": {
+              "enable": true,
+              "name": "Tomas Rivera",
+              "email": "tomas.riveral@icloud.com"
+            }
           }
         }
       '';
@@ -47,7 +51,7 @@
           "backup": {
             "enable": false,
             "directory": {
-              "~/Documents/Notes/": "~/kdrive/Notes/",
+              "~/Documents/Notes/": "~/hdd/kdrive/Notes/",
               "~/test/": "~/backupTest/"
             },
             "interval": "daily",

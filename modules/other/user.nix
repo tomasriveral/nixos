@@ -44,6 +44,18 @@ _: {
               command = "${pkgs-unstable.nixos-rebuild}/bin/nixos-rebuild";
               options = ["NOPASSWD"];
             }
+            {
+              command = "/run/current-system/sw/bin/open";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.openconnect}/bin/openconnect";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs-unstable.openconnect}/bin/openconnect";
+              options = ["NOPASSWD"];
+            }
           ];
         }
       ];

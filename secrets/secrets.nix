@@ -6,4 +6,8 @@ in {
     backupAgeKey
     laptopHostKey
   ];
+  "epfl.age".publicKeys = [
+    backupAgeKey
+    laptopHostKey
+  ];
 }

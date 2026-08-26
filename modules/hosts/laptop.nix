@@ -27,6 +27,7 @@
       documentation
       disk
       disk-laptop
+      epfl
       fonts
       gitBackup
       hardware-configuration-laptop
@@ -39,7 +40,6 @@
       latex
       ly
       mathematics
-      #mullvad #temporarly broken
       networking
       nixUtils-laptop
       nixUtils
@@ -51,6 +51,7 @@
       rss
       udev
       user
+      vpn
     ];
   };
   flake.homeModules.laptop = {...}: {
@@ -69,7 +70,6 @@
       hyprland-laptop
       kitty
       librewolf
-      #mullvad #temporarly broken
       neovim
       nix-git-cherry-picker-laptop
       laptop-notewrapper
