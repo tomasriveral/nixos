@@ -24,16 +24,16 @@
       inhibitWhenAudio = true;
       timeouts = [
         {
-          timeout = 180;
+          timeout = 600;
           idleAction = "lock";
         }
         {
-          timeout = 300;
+          timeout = 610;
           idleAction = "dpms off"; # what's that?
           returnAction = "dpms on";
         }
         {
-          timeout = 600;
+          timeout = 12200;
           idleAction = ["systemctl" "suspend-then-hibernate"];
         }
       ];
