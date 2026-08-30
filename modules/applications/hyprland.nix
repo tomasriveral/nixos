@@ -39,7 +39,6 @@ _: {
       text = ''
           hl.on("hyprland.start", function()
             hl.exec_cmd("qtbatticon")
-          hl.exec_cmd("source /run/agenix/ntfy && nixpkgs-notifier listen")
         end)
 
         hl.monitor({
