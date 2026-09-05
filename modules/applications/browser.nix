@@ -402,6 +402,12 @@
               keyword = "nix function search";
               url = "https://noogle.dev";
             }
+            {
+              name = "EPFL Moodle";
+              tags = ["epfl" "moodle"];
+              keyword = "epfl moodle";
+              url = "https://moodle.epfl.ch/my/courses.php";
+            }
           ];
         };
         search = {
