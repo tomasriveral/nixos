@@ -25,6 +25,7 @@
       bootloader
       browsers
       caelestia
+      cs-119l # I'm obliged to use vscode. RIP neovim
       development
       documentation
       disk
