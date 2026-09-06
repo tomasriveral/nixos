@@ -66,7 +66,9 @@ _: {
         }
         eval "$(direnv hook zsh)"
         eval "$(deja init zsh)"
-              fastfetch''\n
+        if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+          fastfetch
+        fi
 
         '';
       shellAliases = {
