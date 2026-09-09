@@ -35,23 +35,22 @@ _: {
     services.xserver.enable = true;
   };
   flake.homeModules.hyprland-laptop = {
-  home.file.".config/hypr/host.lua" = {
-    text = ''
-        hl.on("hyprland.start", function()
-          hl.exec_cmd("qtbatticon")
-        hl.exec_cmd("source /run/agenix/ntfy && nixpkgs-notifier listen")
-      end)
-  
-      hl.monitor({
-        output = "eDP-1",
-        mode = "highres@highrr",
-        position = "0x0",
-        scale = 1,
-      })
-    '';
-    enable = true;
-    force = true;
-  };
+    home.file.".config/hypr/host.lua" = {
+      text = ''
+          hl.on("hyprland.start", function()
+            hl.exec_cmd("qtbatticon")
+        end)
+
+        hl.monitor({
+          output = "eDP-1",
+          mode = "highres@highrr",
+          position = "0x0",
+          scale = 1,
+        })
+      '';
+      enable = true;
+      force = true;
+    };
 };
 flake.homeModules.hyprland-desktop = {
   home.file.".config/hypr/host.lua" = {

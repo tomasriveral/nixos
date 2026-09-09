@@ -43,6 +43,11 @@ _: {
       enable = true;
       autosuggestion.enable = false; # zsh-autocomplete is replaced by deja
       initContent = ''
+        # those aliases can't be written in nix, because of ö
+        # l and ö are very close
+        alias -- ös=ls
+        alias -- öös=ls
+
         # Safe cat that uses colorize plugin ccat
         custom-cat() {
           if [[ -t 1 ]]; then
@@ -61,7 +66,11 @@ _: {
         }
         eval "$(direnv hook zsh)"
         eval "$(deja init zsh)"
-              fastfetch''\n'';
+        if [[ "$TERM_PROGRAM" != "vscode" ]]; then
+          fastfetch
+        fi
+
+        '';
       shellAliases = {
         ".." = "z ..";
         grep = "rg";

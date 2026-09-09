@@ -402,6 +402,18 @@
               keyword = "nix function search";
               url = "https://noogle.dev";
             }
+            {
+              name = "EPFL Moodle";
+              tags = ["epfl" "moodle"];
+              keyword = "epfl moodle";
+              url = "https://moodle.epfl.ch/my/courses.php";
+            }
+            {
+              name = "EPFL ICC Courseware";
+              tags = ["icc" "epfl" "courseware"];
+              keyword = "icc epfl courseware";
+              url = "https://courseware.epfl.ch/learner-dashboard/";
+            }
           ];
         };
         search = {
