@@ -1,7 +1,8 @@
-_: {
+{self, ...}: {
   flake.nixosModules.epfl = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       openconnect
+      self.packages.${pkgs.system}.custom-mountEpflDrive
     ];
   };
 
@@ -42,4 +43,27 @@ _: {
       };
     };
   };
+  perSystem = {pkgs, ...}: {
+    packages.custom-mountEpflDrive = pkgs.writeShellApplication {
+      name = "custom-mountEpflDrive";
+      runtimeInputs = with pkgs; [
+        rclone
+        libnotify
+      ];
+      text = ''
+        REMOTE_NAME="epfl"
+        MOUNT_POINT="$HOME/epfl/drive"
+
+        if rclone listremotes | rg "^''${REMOTE_NAME}:"; then
+            echo "Mounting ''${REMOTE_NAME}..."
+            rclone mount "''${REMOTE_NAME}:" "$MOUNT_POINT" --vfs-cache-mode writes --allow-non-empty &
+        else
+            notify-send "rclone mount failed" \
+                "Remote ''${REMOTE_NAME} not found.\nConfigure rclone and create the dir ~/epfl/drive/ or comment out the exec line in hyprland.lua."
+        echo        "Remote ''${REMOTE_NAME} not found. Configure rclone or comment out the exec line in hyprland.lua."
+        fi
+      '';
+    };
+  };
+
 }
