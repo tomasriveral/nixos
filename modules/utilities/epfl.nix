@@ -8,7 +8,7 @@
 
   flake.nixosModules.cs-119l = {pkgs, ...}: 
   let
-    user = "YOUR_USERNAME";
+    user = "tomasr";
     home = "/home/${user}";
     src = "${home}/epfl/cs-119l-ICC/";
     dst = "${home}/kdrive/Travaille/2 - Bachelor/Information, calcul, communication CS-119l/";
