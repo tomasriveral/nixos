@@ -6,34 +6,31 @@
     ];
   };
 
-  flake.nixosModules.cs-119l = {pkgs, ...}: 
-  let
-    user = "YOUR_USERNAME";
+  flake.nixosModules.cs-119l = {pkgs, ...}: let
+    user = "tomasr";
     home = "/home/${user}";
     src = "${home}/epfl/cs-119l-ICC/";
-    dst = "${home}/kdrive/Travaille/2 - Bachelor/Information, calcul, communication CS-119l/";
-  in
-  {
+    dst = "${home}/kdrive/Travail/2 - Bachelor/Information, calcul, communication CS-119l/";
+  in {
     environment.systemPackages = with pkgs; [
       vscode-fhs
     ];
     systemd.services.sync-cs119l-to-kdrive = {
       description = "Sync CS-119l ICC to kDrive";
-  
+
       serviceConfig = {
         Type = "oneshot";
         User = user;
-  
-        ExecStart =
-          "${pkgs.rsync}/bin/rsync -a '${src}' '${dst}'";
+
+        ExecStart = "${pkgs.rsync}/bin/rsync -a '${src}' '${dst}'";
       };
     };
-  
+
     systemd.timers.sync-cs119l-to-kdrive = {
       description = "Sync CS-119l ICC to kDrive every Thursday and Friday evening";
-  
-      wantedBy = [ "timers.target" ];
-  
+
+      wantedBy = ["timers.target"];
+
       timerConfig = {
         OnCalendar = [
           "Thu *-*-* 20:00:00"
@@ -65,5 +62,4 @@
       '';
     };
   };
-
 }
