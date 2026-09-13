@@ -10,7 +10,7 @@
     user = "tomasr";
     home = "/home/${user}";
     src = "${home}/epfl/cs-119l-ICC/";
-    dst = "${home}/kdrive/Travail/2 - Bachelor/Information, calcul, communication CS-119l/";
+    dst = "${home}/kdrive/Travail/2 - Bachelor/BA1/Information, calcul, communication CS-119l/code/";
   in {
     environment.systemPackages = with pkgs; [
       vscode-fhs
