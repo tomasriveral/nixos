@@ -322,7 +322,7 @@ hl.bind(mod .. " + CTRL + 3", hl.dsp.exec_cmd("pavucontrol"))
 hl.bind("CTRL + SHIFT + ALT + 0", hl.dsp.exec_cmd("kitty --hold --class \"custom-changeAudioOutput\" --name \"Select audio output\" zsh -c \"custom-changeAudioOutput\""))
 hl.bind(mod .. " + CTRL + 5", hl.dsp.exec_cmd("gnome-characters"))
 hl.bind("CTRL + ALT + 8", hl.dsp.exec_cmd("hyprpicker | tee >(wl-copy) | cliphist store"))
-hl.bind("CTRL + ALT + 0", hl.dsp.exec_cmd("custom-tomato"))
+-- hl.bind("CTRL + ALT + 0", hl.dsp.exec_cmd("custom-tomato"))
 hl.bind("CTRL + ALT + 2", hl.dsp.exec_cmd("custom-bottom"))
 hl.bind("CTRL + ALT + 9", hl.dsp.exec_cmd("anki"))
 
