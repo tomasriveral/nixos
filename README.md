@@ -430,7 +430,6 @@ The macros in the layout generate combinations involving `CTRL`, `ALT`, `SUPER`,
 | Row 2, Col 2 | Change audio output (`CTRL + ALT + SHIFT + 0`)    |
 | Row 2, Col 3 | Special characters (`CTRL + SUPER + 5`)           |
 | Row 2, Col 4 | Color picker (`CTRL + ALT + 8`)                   |
-| Row 3, Col 1 | Pomodoro timer (`CTRL + ALT + 0`)                 |
 | Row 4, Col 1 | Launch Anki (`CTRL + ALT + 9`)                    |
 
 The physical layout file contains additional transparent/unused positions, but the bindings above are the active shortcuts documented for the macropad.
