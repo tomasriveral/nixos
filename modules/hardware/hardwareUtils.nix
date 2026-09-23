@@ -11,6 +11,7 @@ _: {
       })
       syswatch
     ];
+    services.fwupd.enable = true; # update device firmware
   };
   flake.nixosModules.hardwareUtils-desktop = {pkgs-unstable, ...}: {
     environment.systemPackages = with pkgs-unstable; [
@@ -20,5 +21,6 @@ _: {
       })
       syswatch
     ];
+    services.fwupd.enable = true; # update device firmware
   };
 }
