@@ -414,6 +414,12 @@
               keyword = "icc epfl courseware";
               url = "https://courseware.epfl.ch/learner-dashboard/";
             }
+            {
+              name = "Detexify";
+              tags = ["draw" "Latex" "symbols"];
+              keyword = "draw latex symbols";
+              url = "https://detexify.kirelabs.org/";
+            }
           ];
         };
         search = {
