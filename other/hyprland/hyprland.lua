@@ -937,8 +937,32 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("rm -rf ~/.cache/cliphist/ && wl-paste --type text --watch cliphist store & wl-paste --type image --watch cliphist store")
 --    hl.exec_cmd("custom-batterynotify")
 --    hl.exec_cmd("custom-batterywarning")
-    hl.exec_cmd("awww img WALLPAPER/PATH/PLACEHOLDER")
-    hl.exec_cmd("awww-daemon")
+--    hl.exec_cmd("awww img WALLPAPER/PATH/PLACEHOLDER")
+--    hl.exec_cmd("awww-daemon")
+--    Fix the order things are launched
+    hl.exec_cmd([[
+        (
+            for i in $(seq 1 50); do
+                if pgrep -x awww-daemon >/dev/null; then
+                    break
+                fi
+                sleep 0.2
+            done
+    
+            for i in $(seq 1 50); do
+                if awww query >/dev/null 2>&1; then
+                    awww img -t none "WALLPAPER/PATH/PLACEHOLDER"
+                    exit $?
+                fi
+                sleep 0.2
+            done
+    
+            echo "awww was not ready after 10 seconds" \
+                >> "$HOME/.cache/awww-startup.log"
+        ) &
+    ]])
+
+hl.exec_cmd("awww-daemon")
     hl.exec_cmd("custom-checkKdrive && custom-mountkdrive")
     hl.exec_cmd("custom-mountEpflDrive")
     hl.exec_cmd("custom-gitnotify")
