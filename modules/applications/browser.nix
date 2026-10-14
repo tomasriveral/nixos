@@ -160,10 +160,6 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4749958/bitwarden_password_manager-latest.xpi";
             installation_mode = "force_installed";
           };
-          "@crw-extension-firefox" = {
-            install_url = "https://addons.mozilla.org/firefox/downloads/file/4790089/consumer_rights_wiki-latest.xpi";
-            installation_mode = "force_installed";
-          };
           "archivebox@tjhorner.dev" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4820668/archivebox_exporter-latest.xpi";
             installation_mode = "force_installed";
