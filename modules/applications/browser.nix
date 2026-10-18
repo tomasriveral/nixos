@@ -152,9 +152,9 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi";
             installation_mode = "force_installed";
           };
-          "trackmenot@mrl.nyu.edu" = {
+          "trackmenot@mrl.nyu.edu" = { # stopped working for some reason
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/trackmenot/latest.xpi";
-            installation_mode = "force_installed";
+            installation_mode = "blocked";
           };
           "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
             install_url = "https://addons.mozilla.org/firefox/downloads/file/4749958/bitwarden_password_manager-latest.xpi";
