@@ -152,7 +152,8 @@
             install_url = "https://addons.mozilla.org/firefox/downloads/file/3729287/gruvboxgruvboxgruvboxgruvboxgr-1.0.xpi";
             installation_mode = "force_installed";
           };
-          "trackmenot@mrl.nyu.edu" = { # stopped working for some reason
+          "trackmenot@mrl.nyu.edu" = {
+            # stopped working for some reason
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/trackmenot/latest.xpi";
             installation_mode = "blocked";
           };
