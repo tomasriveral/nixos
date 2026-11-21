@@ -7,6 +7,7 @@
       ...
     }: {
       environment.systemPackages = with pkgs; [
+        pkgs-unstable.asciimol
         gnome-calculator
         snapshot
         gnome-characters
